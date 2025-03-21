@@ -22,14 +22,14 @@ const Choose = () => {
     <MainBox image={backImage}>
       <ContentBox>
         <InsideBox>
-          <Grid container spacing={4} alignItems="center">
+          <Grid container spacing={2} alignItems="center">
             {/* Image Column (Hidden on md and smaller screens) */}
-            <Grid item xs={12} sm={12} md={6} sx={{ display: { xs: "none", md: "block" } }}>
+            <Grid item xs={12} sm={12} md={2} sx={{ display: { xs: "none", md: "block" } }}>
               <img src={back1Image} alt="img" width="100%" />
             </Grid>
 
             {/* Text Column */}
-            <Grid item xs={12} sm={12} md={6}>
+            <Grid item xs={12} sm={12} md={10}>
               <LeftBox>
                 <Typography
                   sx={{ fontSize: { xs: "28px", md: "40px" }, color: "black", fontWeight: "900", textAlign: "center" }}
@@ -51,7 +51,7 @@ const Choose = () => {
                       <RoundBox>
                         <AdsClickIcon sx={{ fontSize: "24px" }} />
                       </RoundBox>
-                      <Typography sx={{ fontSize: "18px", fontWeight: "600" }}>
+                      <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
                       <span style={{ color:"#23395d",fontWeight:900}}>{highlight} –</span> {rest.join(" – ")}
                       </Typography>
                     </BlockBox>
@@ -92,7 +92,7 @@ const ContentBox = styled(Box)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 80px 50px;
+  padding: 80px 30px;
 
   @media (max-width: 900px) {
     padding: 40px 20px;
@@ -121,9 +121,9 @@ const BlockBox = styled(Box)`
   justify-content: flex-start;
   background: linear-gradient(to right, white, #23395d);
   border-radius: 50px;
-  padding: 10px;
+  padding: 6px;
   margin-top: 20px;
-  width: 100%;
+  /* width: 100%; */
 
   @media (max-width: 600px) {
     flex-direction: column;
