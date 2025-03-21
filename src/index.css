@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  scroll-behavior: smooth;
+}
+:root{
+  --primary-color: #fa0001;
+  --secondary-color:#013396;
+  --ternary-color:#000000;
+  background: "linear-gradient(90deg, rgba(192,2,2,1) 0%, rgba(2,0,36,0.8715861344537815) 49%, rgba(5,46,138,1) 100%);" 
+}
+:root {
+  --primary-color: #E63946; /* Soft and eye-catching red */
+  --secondary-color: #1D3557; /* Deep navy blue for contrast */
+  --ternary-color: #2B2D42; /* Dark charcoal for text and accents */
+  --accent-color: #F1FAEE; /* Light, soft background or highlight color */
+  --highlight-color: #A8DADC; /* Subtle teal for callouts or highlights */
+}
+a{
+  text-decoration: none !important;
+}
+/* 
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+  background-color:var(--primary-color);
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+}
+
+::-webkit-scrollbar:hover {
+  background-color: var(--primary-color);
+} 
+
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color); 
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px #00FFFF; 
+
+} */
