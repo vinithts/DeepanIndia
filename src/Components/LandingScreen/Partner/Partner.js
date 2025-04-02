@@ -69,7 +69,7 @@ const Partner = () => {
             },
           }}
         >
-          Are you looking for an<HighlightSpan>independent income opportunities</HighlightSpan> in the financial sector?
+          Are you looking for an <HighlightSpan>independent income opportunities</HighlightSpan> in the financial sector?
         </Typography>
         
         <QualificationBox>
