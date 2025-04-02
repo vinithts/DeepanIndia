@@ -4,6 +4,8 @@ import styled, { keyframes } from "styled-components";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { Box, IconButton, Button, Typography } from "@mui/material";
 import backgroundImage from "../../../assets/close-up-coin-jar-with-tree.jpg";
+import pigImage from "../../../assets/hand-putting-coin-piggy-bank-growth-chart.jpg";
+import InvestImage from "../../../assets/slider-img2.jpg";
 import { Url } from "../../../utils/api";
 import Link from "@mui/material/Link";
 
@@ -23,6 +25,7 @@ export const SlideShowBar = ({ data = [] }) => {
     image = "",
   } = currentSlide;
 
+  const fallbackImages = [backgroundImage, pigImage, InvestImage];
   // Function to navigate slides
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);

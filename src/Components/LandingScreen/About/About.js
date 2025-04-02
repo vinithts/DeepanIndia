@@ -7,7 +7,7 @@ export const About = ({ data }) => {
   const { title, description } = data[0] || {};
 
   return (
-    <MainBox>
+    <MainBox id="About">
       <ContentBox>
         <InsideBox>
           <Grid container spacing={10} alignItems="center">
@@ -34,7 +34,8 @@ export const About = ({ data }) => {
                     marginTop: "20px",
                   }}
                 >
-                  {title || "Deepan India, we believe that wealth creation should be accessible to everyone. Our mission is to empower investors with financial education, strategic investment guidance, and risk management solutions"}
+                  {title ||
+                    "Deepan India, we believe that wealth creation should be accessible to everyone. Our mission is to empower investors with financial education, strategic investment guidance, and risk management solutions"}
                 </Typography>
                 <Typography
                   sx={{
@@ -44,7 +45,8 @@ export const About = ({ data }) => {
                     textAlign: "left",
                   }}
                 >
-                  {description || "We offer personalized investment and trading strategies tailored to individual financial goals and risk appetites. Whether you're a beginner or an experienced investor, our technology-driven approach ensures transparent, data-backed, and result-oriented wealth management.With a performance-based fee model, we succeed only when you do. Our commitment is simple: Zero fixed fees, 100% transparency, and lifetime support."}
+                  {description ||
+                    "We offer personalized investment and trading strategies tailored for individual financial goals and risk appetites. Whether you're a beginner or an experienced investor, our technology-driven approach ensures transparent, data-backed and result-oriented wealth management solutions with lifetime support."}
                 </Typography>
               </TextBox>
             </Grid>
@@ -114,11 +116,11 @@ const ImageBox = styled(Box)`
 
 const StyledImage = styled.img`
   width: 500px;
-  height: 500px; 
+  height: 500px;
   /* object-fit: cover; */
 
   @media (max-width: 600px) {
-    height: auto; 
-    width:100%;
+    height: auto;
+    width: 100%;
   }
 `;

@@ -12,6 +12,7 @@ import Choose from "./WhyChoose/Choose";
 import Calculator from "./Calculator/Calculator";
 import OurStory from "./story/OurStory";
 import Wealthy from "./WealthHelp/Wealthy";
+import Partner from "./Partner/Partner";
 
 const LandingScreen = () => {
   const [head, setHead] = useState([]);
@@ -71,7 +72,8 @@ const LandingScreen = () => {
       <Tabscontent />
       <Services/>
       <Cardpart data={Blogs} />
-     <Joiningpart data={JoinUs} />
+     {/* <Joiningpart data={JoinUs} /> */}
+     <Partner/>
       <MediaContent data={media} />
       <Calculator/>
       {/* <Reviews data={review} /> */}

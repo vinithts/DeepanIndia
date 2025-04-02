@@ -29,7 +29,8 @@ const services = [
     path: "/service/insurance",
   },
   {
-    title: "Portfolio Management Services (PMS) & Alternative Investment Funds (AIFs)",
+    title:
+      "Portfolio Management Services (PMS) & Alternative Investment Funds (AIFs)",
     image: loanimage,
     icon: iconImage,
     path: "/service/loans",
@@ -39,7 +40,7 @@ const services = [
 const Services = () => {
   const navigate = useNavigate();
   return (
-    <MainBox>
+    <MainBox id="offering">
       <Typography
         sx={{
           padding: "40px",
@@ -52,7 +53,7 @@ const Services = () => {
           },
         }}
       >
-     Our Offerings
+        Our Offerings
       </Typography>
 
       <Grid container spacing={4} justifyContent="center" padding={"30px"}>
@@ -67,7 +68,7 @@ const Services = () => {
                     color: "white",
                     fontWeight: "bold",
                     fontSize: "20px",
-                    ":hover": { color: "black" }
+                    ":hover": { color: "black" },
                   }}
                 >
                   {service.title}

@@ -30,19 +30,28 @@ export default function Header() {
       <Topheader>
         <Navbar expand="lg" className="my-topheader">
           <Container>
-            <h6 style={{color:"white"}}>#Deepan India</h6>
+            <h6 style={{ color: "white" }}>#Deepan India</h6>
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <Nav.Link href="#About"  style={{color:"white"}}>Who We Are</Nav.Link>
-                  <Nav.Link href="#card"  style={{color:"white"}}>Profile</Nav.Link>
+                  <Nav.Link href="#ourstory" style={{ color: "white" }}>
+                    Profile
+                  </Nav.Link>
+                  <Nav.Link href="#About" style={{ color: "white" }}>
+                    Who We Are
+                  </Nav.Link>
+
                   {/* <NavDropdown title="Who We Are" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#about">Company history</NavDropdown.Item>
                   <NavDropdown.Item href="#leadership">Mission and vision</NavDropdown.Item>
                   <NavDropdown.Item href="#responsibility">Leadership team profiles</NavDropdown.Item>
                 </NavDropdown> */}
-                  <Nav.Link href="#investor"  style={{color:"white"}}>Investor Relationship</Nav.Link>
-                  <Nav.Link href="#media"  style={{color:"white"}}>News</Nav.Link>
+                  <Nav.Link href="#partner" style={{ color: "white" }}>
+                    Partner with us
+                  </Nav.Link>
+                  <Nav.Link href="#media" style={{ color: "white" }}>
+                    News
+                  </Nav.Link>
                   {/* <NavDropdown title="Career" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#what-we-do">What We Do</NavDropdown.Item>
                   <NavDropdown.Item href="#career">Career</NavDropdown.Item>
@@ -87,7 +96,7 @@ export default function Header() {
                   onMouseEnter={() => handleMouseEnter(0)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  Who We Serve <FaAngleDown />
+                  What We Serve <FaAngleDown />
                   <Dropdown show={visibleDropdown === 0}>
                     <ul>
                       <li>Investment Solutions</li>
@@ -104,14 +113,30 @@ export default function Header() {
                   What We Do <FaAngleDown />
                   <Dropdown show={visibleDropdown === 1}>
                     <ul>
-                      <li>Mutual Funds</li>
-                      <li>Life Insurance</li>
-                      <li>REITs</li>
-                      <li>Estate Planning</li>
-                      <li>Tax Optimization Strategies</li>
-                      <li>High-Net-Worth Advisory</li>
-                      <li>IRA/Roth IRA Management</li>
-                      <li>Business Insurance</li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Mutual Funds</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Training</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Advisory Services</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Algo Trading Solutions</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Alternative Investment funds</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Fixed Deposits & Bonds</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Real Estate funds</a>
+                      </li>
+                      <li>
+                        <a href="#offering" style={{color:"black"}}>Insurances </a>
+                      </li>
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -123,7 +148,6 @@ export default function Header() {
                   <Dropdown show={visibleDropdown === 2}>
                     <ul>
                       <li>Consulting</li>
-                      <li>Centers of Excellence</li>
                       <li>Market Analysis</li>
                       <li>Market Updates</li>
                     </ul>
@@ -139,8 +163,20 @@ export default function Header() {
                       <li>Blogs</li>
                       <li>Videos</li>
                       <li>Reports</li>
-                      <li>Direct contact form</li>
-                      <li>Schedule consultation</li>
+                    </ul>
+                  </Dropdown>
+                </NavLink>
+                <NavLink
+                  onMouseEnter={() => handleMouseEnter(2)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Calculator <FaAngleDown />
+                  <Dropdown show={visibleDropdown === 2}>
+                    <ul>
+                      <li>SIP Calculator</li>
+                      <li>Lumpsum</li>
+                      <li>SIP combined with Lumpsum</li>
+                      <li>SWP</li>
                     </ul>
                   </Dropdown>
                 </NavLink>
