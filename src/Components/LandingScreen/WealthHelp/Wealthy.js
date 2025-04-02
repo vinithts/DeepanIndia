@@ -31,7 +31,7 @@ const products = [
   },
   {
     title:
-      "Leverage Your Assets – Pledge your MF, stocks, or bonds to generate additional income using rule-based option trading strategies on our automated algorithmic platform.",
+      "Leverage Your Assets – Pledge your holding for addtional income using automated rule-based option trading strategies.",
     icon: solar3,
   },
 ];
@@ -89,7 +89,7 @@ const MainBox = styled(Box)`
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    opacity: 0.9;
+    opacity: 0.5;
     z-index: 1;
   }
 
@@ -158,8 +158,8 @@ const ProductCard = styled(Box)`
 `;
 
 const IconWrapper = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 10px;
   transition:
     transform 0.3s ease-in-out,

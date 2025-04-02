@@ -402,7 +402,7 @@ const ServiceDetails = () => {
               >
                 Our Portfolio Management Services are designed to grow and
                 protect your wealth. We offer a range of investment strategies
-                tailored to your financial goals. Portfolio Management Services
+                tailored for your financial goals. Portfolio Management Services
                 involve professionals making investment decisions on your
                 behalf, aiming to deliver optimal returns.
               </p>
@@ -499,7 +499,7 @@ const ServiceDetails = () => {
               >
                 Our Portfolio Management Services are designed to grow and
                 protect your wealth. We offer a range of investment strategies
-                tailored to your financial goals. Portfolio Management Services
+                tailored for your financial goals. Portfolio Management Services
                 involve professionals making investment decisions on your
                 behalf, aiming to deliver optimal returns.
               </p>

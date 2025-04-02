@@ -37,7 +37,6 @@ export default function Footer() {
             <Foottitle>How We Deliver</Foottitle>
             <Links>
               <li>Consulting</li>
-              <li>Centers of Excellence</li>
               <li>Market Analysis</li>
               <li>Market Updates</li>
             </Links>
@@ -48,8 +47,6 @@ export default function Footer() {
               <li>Blogs</li>
               <li>Videos</li>
               <li>Reports</li>
-              <li>Direct contact form</li>
-              <li>Schedule consultation</li>
             </Links>
           </Col>
         </Row>

@@ -4,7 +4,8 @@ import { Grid } from "@mui/system";
 import { styled, keyframes } from "styled-components";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
-import back1Image from "../../../assets/home-second-block-bg-removebg-preview.png";
+// import back1Image from "../../../assets/home-second-block-bg-removebg-preview.png";
+import back1Image from "../../../assets/5216607-removebg-preview.png";
 
 const slideIn = keyframes`
   from {
@@ -22,10 +23,10 @@ const Choose = () => {
     <MainBox image={backImage}>
       <ContentBox>
         <InsideBox>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={6} >
             {/* Image Column (Hidden on md and smaller screens) */}
             <Grid item xs={12} sm={12} md={2} sx={{ display: { xs: "none", md: "block" } }}>
-              <img src={back1Image} alt="img" width="100%" />
+              <img src={back1Image} alt="img" width={"100%"} />
             </Grid>
 
             {/* Text Column */}
@@ -38,11 +39,11 @@ const Choose = () => {
                 </Typography>
                 <Box>
                   {[
+                    "Right Asset allocation – Deploying Right financial Solutions for each client after proper profiling.",
                     "Zero Management Fees – No hidden charges, making our services cost-effective.",
                     "Performance-Based Fees – Pay only when your portfolio crosses a predefined profit threshold.  ",
                     "Strong Track Record – Monitor our past and present performance at any time.  ",
                     "Transparent and Accessible – A user-friendly platform with clear reporting.",
-                    "Long-Term Wealth Creation Focus – Sustainable investment strategies rather than short-term gains.",
                     "Technology-Driven Approach – Enhancing investment processes through smart technology."
                   ].map((text, index) => {
                     const [highlight, ...rest] = text.split(" – "); 
@@ -92,7 +93,7 @@ const ContentBox = styled(Box)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 80px 30px;
+  padding: 80px 50px;
 
   @media (max-width: 900px) {
     padding: 40px 20px;
@@ -102,8 +103,6 @@ const ContentBox = styled(Box)`
 const InsideBox = styled(Box)`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `;
 
 const LeftBox = styled(Box)`
@@ -121,7 +120,7 @@ const BlockBox = styled(Box)`
   justify-content: flex-start;
   background: linear-gradient(to right, white, #23395d);
   border-radius: 50px;
-  padding: 6px;
+  padding: 6px 20px 6px 6px;
   margin-top: 20px;
   /* width: 100%; */
 

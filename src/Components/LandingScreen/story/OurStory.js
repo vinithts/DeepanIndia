@@ -33,7 +33,7 @@ const slideIn = keyframes`
 `;
 const OurStory = () => {
   return (
-    <MainBox image={backImage}>
+    <MainBox id="ourstory" image={backImage}>
       <ContentBox>
         <Typography
           sx={{
@@ -47,14 +47,14 @@ const OurStory = () => {
         </Typography>
         <TileBox>
           <Grid container spacing={6}>
-            <Grid item xs={12} md={4} xl={4}>
+            <Grid item xs={12} md={6} xl={6}>
               <img
                 src={aboutImage}
                 alt="About Us"
                 style={{ width: "100%", borderRadius: "5px" }}
               />
             </Grid>
-            <Grid item xs={12} md={4} xl={4}>
+            <Grid item xs={12} md={6} xl={6}>
               <ParaBox>
                 <Customtypography2>
                   Deepan India was founded under the leadership of Mr. Raja
@@ -62,7 +62,7 @@ const OurStory = () => {
                   markets. Starting his career as a Floor Assistant at the
                   Madras Stock Exchange, he later became an Authorized Partner
                   for reputed NSE brokers. Over the years, he witnessed the
-                  challenges investors faced—lack of genuine advisors, high
+                  challenges investors are facing lack of genuine trainers/advisors, high
                   fees, and one-size-fits-all strategies.
                 </Customtypography2>
                 <Divider
@@ -72,15 +72,11 @@ const OurStory = () => {
                     margin: "20px 0",
                   }}
                 />
-                <Customtypography2>
+                {/* <Customtypography2>
                   Our product range includes Solar Home systems, Commercial
                   Solar power plants, Solar Inverters, Solar Panels, Solar water
                   pumps and Solar Street-lights.
-                </Customtypography2>
-              </ParaBox>
-            </Grid>
-            <Grid item xs={12} md={4} xl={4}>
-              <ParaBox>
+                </Customtypography2> */}
                 <Customtypography2>
                   Determined to bridge this gap, he established *Deepan India*
                   with a vision to provide customized, performance-driven

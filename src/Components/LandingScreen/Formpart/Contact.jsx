@@ -6,14 +6,17 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-  FormControl,
   FormGroup,
   Checkbox,
   Button,
+  Grid,
+  Typography,
 } from "@mui/material";
-import { IoIosRefresh } from "react-icons/io";
-import { GiSpeaker } from "react-icons/gi";
 import { Container, Row, Col } from "react-bootstrap";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
 
 export default function Contact() {
@@ -29,7 +32,11 @@ export default function Contact() {
 
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [captchaInput, setCaptchaInput] = useState("");
+  const [fund, setFund] = React.useState("");
 
+  const handleChange = (event) => {
+    setFund(event.target.value);
+  };
   const handleFormChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -41,15 +48,6 @@ export default function Contact() {
   const handleCaptchaRefresh = () => {
     setCaptcha(generateCaptcha());
     setCaptchaInput("");
-  };
-
-  const handleCaptchaSpeak = () => {
-    const speech = new SpeechSynthesisUtterance(captcha);
-    window.speechSynthesis.speak(speech);
-  };
-
-  const handleCaptchaInputChange = (e) => {
-    setCaptchaInput(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -82,143 +80,118 @@ export default function Contact() {
 
   return (
     <MainDiv id="contact" image={backImage}>
+      <Typography
+        sx={{
+          padding: "30px",
+          textAlign: "center",
+          fontWeight: 900,
+          color: "#23395d",
+          fontSize: "30px",
+          "@media (max-width: 600px)": {
+            fontSize: "26px",
+          },
+        }}
+      >
+        Let’s partner for #Dream2Reach Deepan India
+      </Typography>
       <Container>
-        <Row>
-          <Col md={12}>
-            <Heading>Let’s partner for #FutureReady Deepan India</Heading>
-          </Col>
-        </Row>
-        <form onSubmit={handleSubmit}>
-          <Row>
-            <Col md={6}>
-              <TextField
-                className="my-3"
-                fullWidth
-                label="Enter your Full Name"
-                name="fullname"
-                value={formData.fullname}
-                onChange={handleFormChange}
-                required
-              />
-              <TextField
-                className="my-3"
-                fullWidth
-                label="Enter your Email ID"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleFormChange}
-                required
-              />
-              <TextField
-                className="my-3"
-                fullWidth
-                label="Enter your Mobie Number"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleFormChange}
-              />
-              <TextField
-                className="my-3"
-                fullWidth
-                label="Enter your intrested Company Name"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleFormChange}
-              />
-            </Col>
-            <Col md={6}>
-              <TextareaAutosize
-                className="my-3"
-                minRows={12}
-                placeholder="Your message"
-                name="message"
-                value={formData.message}
-                onChange={handleFormChange}
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
-              <FormControl>
-                <RadioGroup
-                  className="my-3"
-                  name="opportunityType"
-                  value={formData.opportunityType}
-                  onChange={handleFormChange}
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Row>
+              <Col md={12}>
+                <Typography
+                  sx={{
+                    fontWeight: 900,
+                    textAlign: "left",
+                    color: "#0a1930",
+                    fontSize: "25px",
+                    marginBottom: "20px",
+                    "@media (max-width: 600px)": {
+                      fontSize: "20px",
+                    },
+                  }}
                 >
-                  <FormControlLabel
-                    className="my-2"
-                    value="Business Opportunity"
-                    control={<Radio />}
-                    label="Business Opportunity"
-                  />
-                  <FormControlLabel
-                    className="my-2"
-                    value="Self Investments"
-                    control={<Radio />}
-                    label="Self Investments"
-                  />
-                  <FormControlLabel
-                    className="my-2"
-                    value="Mutual Funds"
-                    control={<Radio />}
-                    label="Mutual Funds"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Col>
-            <Col md={6}>
-              <CaptchaWrapper>
-                <CaptchaBox>
-                  <CaptchaText>{captcha}</CaptchaText>
-                  <IconButton
-                    onClick={handleCaptchaRefresh}
-                    title="Refresh CAPTCHA"
-                  >
-                    <IoIosRefresh size={24} />
-                  </IconButton>
-                  <IconButton
-                    onClick={handleCaptchaSpeak}
-                    title="Speak CAPTCHA"
-                  >
-                    <GiSpeaker size={24} />
-                  </IconButton>
-                </CaptchaBox>
-                <Input
-                  type="text"
-                  placeholder="Enter CAPTCHA"
-                  value={captchaInput}
-                  onChange={handleCaptchaInputChange}
+                  How to Get Started?{" "}
+                </Typography>
+                <ul style={{ color: "#040a13", fontSize: "16px" }}>
+                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+                    Speak with our experts.
+                  </li>
+                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+                    Share your financial needs and expectations.
+                  </li>
+                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+                    Get a personalized, detailed wealth creation plan designed
+                    just for you.
+                  </li>
+                </ul>
+              </Col>
+            </Row>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <form onSubmit={handleSubmit}>
+              <Row>
+                <TextField
+                  className="my-3"
+                  fullWidth
+                  label="Enter your Full Name"
+                  name="fullname"
+                  value={formData.fullname}
+                  onChange={handleFormChange}
                   required
                 />
-              </CaptchaWrapper>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={formData.agreeToPrivacy}
-                      className="p-2"
-                      onChange={handleFormChange}
-                      name="agreeToPrivacy"
-                    />
-                  }
-                  label="* I agree to share my information with Indegene and understand it will be used as described in its Privacy Policy"
+                <TextField
+                  className="my-3"
+                  fullWidth
+                  label="Enter your Email ID"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  required
                 />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
+                <TextField
+                  className="my-3"
+                  fullWidth
+                  label="Enter your Mobie Number"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleFormChange}
+                  required
+                />
+                <FormControl fullWidth>
+                  <InputLabel id="demo-select-small-label">I am interested in</InputLabel>
+                  <Select
+                    labelId="demo-select-small-label"
+                    id="demo-select-small"
+                    value={fund}
+                    label="I am interested in"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}> Mutual funds</MenuItem>
+                    <MenuItem value={20}>Training</MenuItem>
+                    <MenuItem value={30}>Advisory Services</MenuItem>
+                    <MenuItem value={40}>Algo Trading </MenuItem>
+                    <MenuItem value={50}>Partnership</MenuItem>
+                    <MenuItem value={60}>Others</MenuItem>
+                  </Select>
+                </FormControl>
+                <TextareaAutosize
+                  className="my-3"
+                  minRows={12}
+                  placeholder="Your message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleFormChange}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </Row>
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -228,17 +201,14 @@ export default function Contact() {
                       name="agreeToCommunication"
                     />
                   }
-                  label="* I agree to receive communication from Indegene."
+                  label="* I agree to receive communication from DeepanIndia."
                 />
               </FormGroup>
-            </Col>
-          </Row>
-          <Row className="my-5">
-            <Col md={4}>
+
               <Submitbtn type="submit">Get Started Today</Submitbtn>
-            </Col>
-          </Row>
-        </form>
+            </form>
+          </Grid>
+        </Grid>
       </Container>
     </MainDiv>
   );
@@ -268,38 +238,6 @@ const MainDiv = styled.div`
   }
 `;
 
-const Heading = styled.h1`
-  text-align: left;
-  font-size: 34px;
-  font-weight: bold;
-  font-family: 'Nunito Sans', sans-serif;
-  margin-bottom: 20px;
-
-  @media screen and (max-width: 600px) {
-    font-size: 24px;
-  }
-`;
-
-const CaptchaWrapper = styled.div`
-  margin: 20px 0;
-`;
-
-const CaptchaBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-`;
-
-const CaptchaText = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  font-family: 'Nunito Sans', sans-serif;
-`;
-
 const IconButton = styled.button`
   background: none;
   border: none;
@@ -311,7 +249,7 @@ const IconButton = styled.button`
 `;
 
 const Input = styled.input`
-   font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   width: 100%;
   height: 45px;
   padding: 10px;
