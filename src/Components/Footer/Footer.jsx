@@ -89,7 +89,7 @@ export default function Footer() {
             </Links>
           </Col>
         </Row>
-        <StyledDivider/>
+        <StyledDivider />
         <Row>
           <Col md={10}>
             <Bottomlink>
@@ -125,7 +125,7 @@ export default function Footer() {
 }
 const Footermain = styled.section`
   padding: 70px 0 30px 0;
-  background-color:  #23395d;
+  background-color: #23395d;
   @media screen and (max-width: 600px) {
     padding: 40px 0;
   }
@@ -134,14 +134,14 @@ const Foottitle = styled.h3`
   font-size: 16px;
   font-weight: 700;
   padding: 5px 0;
-  color:white;
+  color: white;
   text-transform: capitalize;
 `;
 const Links = styled.ul`
   margin: 10px 0;
   list-style-type: none;
   padding: 0;
-  color:white;
+  color: white;
 
   li {
     padding: 5px 0;
@@ -157,7 +157,7 @@ const Bottomlink = styled.ul`
   margin: 20px 0 0 0;
   list-style-type: none;
   padding: 0;
- color:white;
+  color: white;
   li {
     padding: 5px 10px;
     font-size: 13px;
