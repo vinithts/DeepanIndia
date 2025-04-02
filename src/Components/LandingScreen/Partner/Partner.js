@@ -69,7 +69,7 @@ const Partner = () => {
             },
           }}
         >
-          Are you looking for <HighlightSpan>independent income opportunities</HighlightSpan> in the financial sector?
+          Are you looking for an <HighlightSpan>independent income opportunities</HighlightSpan> in the financial sector?
         </Typography>
         
         <QualificationBox>
@@ -101,7 +101,7 @@ const Partner = () => {
           </List>
           
           <CtaText>
-            If so, <HighlightSpan>partner with Deepan India today!</HighlightSpan>
+            If so, <a href="#contact"><HighlightSpan>partner with Deepan India today!</HighlightSpan></a>
           </CtaText>
         </QualificationBox>
         
