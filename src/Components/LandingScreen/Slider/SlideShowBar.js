@@ -15,8 +15,9 @@ export const SlideShowBar = ({ data = [] }) => {
   const [showButton, setShowButton] = useState(false);
   const [hover, setHover] = useState(false);
 
-  // Get current slide data safely
-  const currentSlide = data[currentIndex] || {};
+  const fallbackImages = [backgroundImage, pigImage, InvestImage];
+  const isDataAvailable = data.length > 0;
+  const currentSlide = isDataAvailable ? data[currentIndex] : {};
   const {
     subTitle = "",
     title = "",
@@ -25,21 +26,26 @@ export const SlideShowBar = ({ data = [] }) => {
     image = "",
   } = currentSlide;
 
-  const fallbackImages = [backgroundImage, pigImage, InvestImage];
-  // Function to navigate slides
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+    setCurrentIndex(
+      (prevIndex) =>
+        (prevIndex + 1) %
+        (isDataAvailable ? data.length : fallbackImages.length)
+    );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1
+      prevIndex === 0
+        ? isDataAvailable
+          ? data.length - 1
+          : fallbackImages.length - 1
+        : prevIndex - 1
     );
   };
 
-  // Handle text animation effect
   useEffect(() => {
-    let text = currentSlide.title || "";
+    let text = title || "";
     setDisplayText("");
     setShowButton(false);
 
@@ -61,7 +67,6 @@ export const SlideShowBar = ({ data = [] }) => {
     };
   }, [currentIndex, data]);
 
-  // Auto slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -72,11 +77,10 @@ export const SlideShowBar = ({ data = [] }) => {
 
   return (
     <MainBox
-      image={image ? `${Url}${image}` : backgroundImage}
+      image={isDataAvailable ? `${Url}${image}` : fallbackImages[currentIndex]}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* Slide Content */}
       <ContentBox>
         <Typography variant="h6" className="subTitle">
           {subTitle || "Your Trusted Wealth Creation Partner"}
@@ -103,8 +107,6 @@ export const SlideShowBar = ({ data = [] }) => {
           </Button>
         </Link>
       </ContentBox>
-
-      {/* Navigation Arrows */}
       {hover && (
         <NavControls>
           <IconButton className="navButton" onClick={prevSlide}>
@@ -118,8 +120,6 @@ export const SlideShowBar = ({ data = [] }) => {
     </MainBox>
   );
 };
-
-// Styled Components
 
 const slideIn = keyframes`
   from { transform: translateX(100%); }

@@ -11,6 +11,7 @@ import {
   Button,
   Grid,
   Typography,
+  Box,
 } from "@mui/material";
 import { Container, Row, Col } from "react-bootstrap";
 import InputLabel from "@mui/material/InputLabel";
@@ -18,6 +19,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import Joinus from "../../../assets/joinus.png";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -86,7 +88,7 @@ export default function Contact() {
           textAlign: "center",
           fontWeight: 900,
           color: "#23395d",
-          fontSize: "30px",
+          fontSize: "38px",
           "@media (max-width: 600px)": {
             fontSize: "26px",
           },
@@ -99,12 +101,13 @@ export default function Contact() {
           <Grid item xs={12} md={6}>
             <Row>
               <Col md={12}>
+              <Box sx={{display:"flex", flexDirection:"column",marginBottom:"20px"}}>
                 <Typography
                   sx={{
                     fontWeight: 900,
                     textAlign: "left",
-                    color: "#0a1930",
-                    fontSize: "25px",
+                    color: "#630775",
+                    fontSize: "30px",
                     marginBottom: "20px",
                     "@media (max-width: 600px)": {
                       fontSize: "20px",
@@ -113,18 +116,29 @@ export default function Contact() {
                 >
                   How to Get Started?{" "}
                 </Typography>
-                <ul style={{ color: "#040a13", fontSize: "16px" }}>
-                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+               
+                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
                     Speak with our experts.
-                  </li>
-                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+                  </Typography>
+                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
                     Share your financial needs and expectations.
-                  </li>
-                  <li style={{ color: "#040a13", fontSize: "16px" }}>
+                  </Typography>
+                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
                     Get a personalized, detailed wealth creation plan designed
                     just for you.
-                  </li>
-                </ul>
+                  </Typography>
+                </Box>
+                <img
+                  src={Joinus}
+                  alt="joinus"
+                  style={{
+                    width: "100%",
+                    maxWidth: "400px",
+                    display: "block",
+                    "@media (max-width: 600px)": { display: "none" },
+                  }}
+                  className="desktop-only"
+                />
               </Col>
             </Row>
           </Grid>
@@ -160,7 +174,9 @@ export default function Contact() {
                   required
                 />
                 <FormControl fullWidth>
-                  <InputLabel id="demo-select-small-label">I am interested in</InputLabel>
+                  <InputLabel id="demo-select-small-label">
+                    I am interested in
+                  </InputLabel>
                   <Select
                     labelId="demo-select-small-label"
                     id="demo-select-small"
