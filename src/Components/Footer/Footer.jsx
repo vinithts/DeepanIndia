@@ -1,21 +1,54 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
-import { FaTwitter } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa6";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { Divider } from "@mui/material";
+import { Row, Col } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Divider, Typography, Container } from "@mui/material";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (href) => {
+    if (href.startsWith("#")) {
+      // Handle anchor links on the same page
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (href.startsWith("/#")) {
+      // Handle anchor links from other pages
+      const currentPath = location.pathname;
+
+      if (currentPath === "/") {
+        // Already on home page, just scroll to the section
+        const anchorId = href.substring(2);
+        const element = document.querySelector(`#${anchorId}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home page and then scroll to section
+        navigate("/");
+        setTimeout(() => {
+          const anchorId = href.substring(2);
+          const element = document.querySelector(`#${anchorId}`);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    } else {
+      // Handle regular page navigation
+      navigate(href);
+    }
+  };
+
   return (
     <Footermain>
-      <Container>
+      <Container maxWidth="xl">
         <Row>
-          <Col md={3} lg={3} xl={3} xs={12}>
-            <Foottitle>Who We Serve</Foottitle>
+          <Col md={2} lg={2} xl={2} xs={12}>
+            <Foottitle>What We Serve</Foottitle>
             <Links>
               <li>Investment Solutions</li>
               <li>Retirement Planning</li>
@@ -23,17 +56,62 @@ export default function Footer() {
               <li>Educational Resources</li>
             </Links>
           </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
+          <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Do</Foottitle>
             <Links>
-              <li>Mutual Funds</li>
-              <li>Life Insurance</li>
-              <li>REITs</li>
-              <li>Estate Planning</li>
-              <li>Tax Optimization Strategies</li>
+              {/* <ul style={{ listStyle: "none" }}>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Mutual Funds
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Training
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Advisory Services
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Algo Trading Solutions
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Alternative Investment funds
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Fixed Deposits & Bonds
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Real Estate funds
+                  </a>
+                </li>
+                <li>
+                  <a href="#offering" style={{ color: "white" }}>
+                    Insurances{" "}
+                  </a>
+                </li>
+              </ul> */}
+               <li onClick={() => handleNavigation("/#offering")}>Mutual Funds</li>
+              <li onClick={() => handleNavigation("/#offering")}>Training</li>
+              <li onClick={() => handleNavigation("/#offering")}>Advisory Services</li>
+              <li onClick={() => handleNavigation("/#offering")}>Algo Trading Solutions</li>
+              <li onClick={() => handleNavigation("/#offering")}>Alternative Investment Funds</li>
+              <li onClick={() => handleNavigation("/#offering")}>Fixed Deposits & Bonds</li>
+              <li onClick={() => handleNavigation("/#offering")}>Real Estate Funds</li>
+              <li onClick={() => handleNavigation("/#offering")}>Insurances</li>
             </Links>
           </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
+          <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>How We Deliver</Foottitle>
             <Links>
               <li>Consulting</li>
@@ -41,7 +119,7 @@ export default function Footer() {
               <li>Market Updates</li>
             </Links>
           </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
+          <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Think</Foottitle>
             <Links>
               <li>Blogs</li>
@@ -49,43 +127,22 @@ export default function Footer() {
               <li>Reports</li>
             </Links>
           </Col>
-        </Row>
-        <Row>
-          <Col md={3} lg={3} xl={3} xs={12}>
-            <Foottitle>Who We Are</Foottitle>
+          <Col md={2} lg={2} xl={2} xs={12}>
+            <Foottitle>Calculator</Foottitle>
             <Links>
-              <li>About Us</li>
-              <li>Leadership</li>
-              <li>Social Responsibility</li>
-              <li>Recognition</li>
+              <li>Sip</li>
+              <li>Lumpsum</li>
+              <li>Sip combined with lumbsum</li>
+              <li>Swap</li>
             </Links>
           </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
-            <Foottitle>Investor Relations</Foottitle>
+          <Col md={2} lg={2} xl={2} xs={12}>
+            <Foottitle>Address</Foottitle>
             <Links>
-              <li>News</li>
-              <li>High-Net-Worth Advisory</li>
-              <li>IRA/Roth IRA Management</li>
-              <li>Business Insurance</li>
-            </Links>
-          </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
-            <Foottitle>Careers</Foottitle>
-            <Links>
-              <li>What We Value</li>
-              <li>Opportunities</li>
-              <li>For Employees</li>
-            </Links>
-          </Col>
-          <Col md={3} lg={3} xl={3} xs={12}>
-            <Links>
-              <li>Contact</li>
-              <Link to="/adminlogin">
-                <li>Admin login</li>
-              </Link>
-              {/* <Link to="/login">
-                            <li>Login</li>
-                        </Link> */}
+              {/* <Link to="/adminlogin">
+                <li>Admin LogIn</li> */}
+                No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021
+              {/* </Link> */}
             </Links>
           </Col>
         </Row>
@@ -93,14 +150,21 @@ export default function Footer() {
         <Row>
           <Col md={10}>
             <Bottomlink>
-              <li>© 2024 Deepan India. All Rights Reserved.</li>
-              <li>Privacy Policy</li>
-              <li>Other Policies</li>
-              <li>Cookies</li>
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                &copy; {new Date().getFullYear()} Deepan India. All rights
+                reserved.
+              </Typography>
             </Bottomlink>
           </Col>
           <Col md={2}>
-            <Bottomlink>
+            {/* <Bottomlink>
               <li>
                 <FaLinkedin />
               </li>
@@ -116,6 +180,10 @@ export default function Footer() {
               <li>
                 <FaInstagramSquare />
               </li>
+            </Bottomlink> */}
+            <Bottomlink>
+            <li onClick={() => navigate("/privacy-policy")}>Privacy Policy</li>
+            <li onClick={() => navigate("/terms-of-service")}>Terms of Service</li>
             </Bottomlink>
           </Col>
         </Row>
@@ -142,14 +210,13 @@ const Links = styled.ul`
   list-style-type: none;
   padding: 0;
   color: white;
-
   li {
     padding: 5px 0;
     font-size: 15px;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #013396;
+      color: #e4160f;
     }
   }
 `;
@@ -165,7 +232,7 @@ const Bottomlink = styled.ul`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #013396;
+      color: #da1818;
     }
   }
 `;
