@@ -49,7 +49,7 @@ const MediaContent = ({ data }) => {
         sx={{
           fontSize: "50px",
           fontWeight: "900",
-          color: "#231f20",
+          color: "#23395d",
           textAlign: "center",
           marginBottom: "40px",
           "@media (max-width: 600px)": {

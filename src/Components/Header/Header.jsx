@@ -8,8 +8,11 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaSearch } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 export default function Header() {
+   const navigate = useNavigate();
+    const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [visibleDropdown, setVisibleDropdown] = useState(null);
   let hoverTimeout;
@@ -24,7 +27,40 @@ export default function Header() {
       setVisibleDropdown(null);
     }, 300);
   };
+  const handleNavigation = (href) => {
+    if (href.startsWith("#")) {
+      // Handle anchor links on the same page
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (href.startsWith("/#")) {
+      // Handle anchor links from other pages
+      const currentPath = location.pathname;
 
+      if (currentPath === "/") {
+        // Already on home page, just scroll to the section
+        const anchorId = href.substring(2);
+        const element = document.querySelector(`#${anchorId}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home page and then scroll to section
+        navigate("/");
+        setTimeout(() => {
+          const anchorId = href.substring(2);
+          const element = document.querySelector(`#${anchorId}`);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    } else {
+      // Handle regular page navigation
+      navigate(href);
+    }
+  };
   return (
     <HeaderContainer>
       <Topheader>
@@ -34,10 +70,10 @@ export default function Header() {
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <Nav.Link href="#ourstory" style={{ color: "white" }}>
+                  <Nav.Link  onClick={() => handleNavigation("/#ourstory")} style={{ color: "white" }}>
                     Profile
                   </Nav.Link>
-                  <Nav.Link href="#About" style={{ color: "white" }}>
+                  <Nav.Link onClick={() => handleNavigation("/#About")} style={{ color: "white" }}>
                     Who We Are
                   </Nav.Link>
 
@@ -46,10 +82,10 @@ export default function Header() {
                   <NavDropdown.Item href="#leadership">Mission and vision</NavDropdown.Item>
                   <NavDropdown.Item href="#responsibility">Leadership team profiles</NavDropdown.Item>
                 </NavDropdown> */}
-                  <Nav.Link href="#partner" style={{ color: "white" }}>
+                  <Nav.Link onClick={() => handleNavigation("/#partner")} style={{ color: "white" }}>
                     Partner with us
                   </Nav.Link>
-                  <Nav.Link href="#media" style={{ color: "white" }}>
+                  <Nav.Link onClick={() => handleNavigation("/#media")} style={{ color: "white" }}>
                     News
                   </Nav.Link>
                   {/* <NavDropdown title="Career" id="basic-nav-dropdown">
@@ -65,7 +101,7 @@ export default function Header() {
       <Nav.Link as={Link} to="/slider">
         SLIDER
       </Nav.Link> */}
-                  <Nav.Link href="#contact">
+                  <Nav.Link onClick={() => handleNavigation("/#contact")}>
                     <Btntopheader>Contact</Btntopheader>
                   </Nav.Link>
                 </Nav>
@@ -78,7 +114,7 @@ export default function Header() {
       <HeaderBottom>
         <Container>
           <MyContainer>
-            <LogoContainer className="sample">
+            <LogoContainer className="sample" onClick={() => handleNavigation("/")}>
               <Logo src={Deepalogo} alt="Logo" />
             </LogoContainer>
             <Hamburger
@@ -113,29 +149,29 @@ export default function Header() {
                   What We Do <FaAngleDown />
                   <Dropdown show={visibleDropdown === 1}>
                     <ul>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Mutual Funds</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Mutual Funds
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Training</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Training
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Advisory Services</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Advisory Services
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Algo Trading Solutions</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Algo Trading Solutions
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Alternative Investment funds</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Alternative Investment funds
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Fixed Deposits & Bonds</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Fixed Deposits & Bonds
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Real Estate funds</a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Real Estate funds
                       </li>
-                      <li>
-                        <a href="#offering" style={{color:"black"}}>Insurances </a>
+                      <li onClick={() => handleNavigation("/#offering")}>
+                        Insurances{" "}
                       </li>
                     </ul>
                   </Dropdown>
@@ -294,6 +330,10 @@ const Btntopheader = styled.button`
   border: 1px solid #013396;
   background-color: #fff;
   font-size: 14px;
+  &:hover {
+    background-color: #33197a;
+    color: #fff;
+  }
 `;
 
 const HeaderBottom = styled.header`

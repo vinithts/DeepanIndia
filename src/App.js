@@ -17,6 +17,8 @@ import LandingScreen from "./Components/LandingScreen";
 import ServiceDetails from "./Components/LandingScreen/Serivces/ServiceDetails";
 import CardDetails from "./Components/LandingScreen/Cards/CardDetails";
 import ScrollToTop from "./Components/Scroll/ScrollToTop";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsOfServices from "./Components/TermsOfSerivce";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -42,6 +44,8 @@ export default function App() {
             </>
           }
         />
+        <Route path="/terms-of-service" element={<TermsOfServices />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/service/:serviceName" element={<ServiceDetails />} />
         <Route path="/details/:id" element={<CardDetails />} />
         <Route path="/adminlogin" element={<Loginform />} />
