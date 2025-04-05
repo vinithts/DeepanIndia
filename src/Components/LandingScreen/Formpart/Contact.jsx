@@ -3,21 +3,19 @@ import styled from "styled-components";
 import {
   TextField,
   TextareaAutosize,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormGroup,
   Checkbox,
   Button,
   Grid,
   Typography,
   Box,
+  FormControlLabel,
+  FormGroup,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  Container,
 } from "@mui/material";
-import { Container, Row, Col } from "react-bootstrap";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
 import Joinus from "../../../assets/joinus.png";
 
@@ -39,6 +37,7 @@ export default function Contact() {
   const handleChange = (event) => {
     setFund(event.target.value);
   };
+
   const handleFormChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -67,7 +66,6 @@ export default function Contact() {
 
     alert("Form submitted successfully!");
     console.log(formData);
-    // Reset form
     setFormData({
       fullname: "",
       email: "",
@@ -81,209 +79,176 @@ export default function Contact() {
   };
 
   return (
-    <MainDiv id="contact" image={backImage}>
+    <MainDiv image={backImage} id="contact">
+      <Container maxWidth="xl">
       <Typography
         sx={{
           padding: "30px",
           textAlign: "center",
           fontWeight: 900,
           color: "#23395d",
-          fontSize: "38px",
-          "@media (max-width: 600px)": {
-            fontSize: "26px",
-          },
+          fontSize: { xs: "26px", sm: "38px" },
         }}
       >
         Let’s partner for #Dream2Reach Deepan India
       </Typography>
-      <Container>
-        <Grid container justifyContent="center" alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Row>
-              <Col md={12}>
-              <Box sx={{display:"flex", flexDirection:"column",marginBottom:"20px"}}>
-                <Typography
-                  sx={{
-                    fontWeight: 900,
-                    textAlign: "left",
-                    color: "#630775",
-                    fontSize: "30px",
-                    marginBottom: "20px",
-                    "@media (max-width: 600px)": {
-                      fontSize: "20px",
-                    },
-                  }}
-                >
-                  How to Get Started?{" "}
-                </Typography>
-               
-                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
-                    Speak with our experts.
-                  </Typography>
-                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
-                    Share your financial needs and expectations.
-                  </Typography>
-                  <Typography sx={{ color: "#122f5c", fontSize: "16px",fontWeight:"bold" }}>
-                    Get a personalized, detailed wealth creation plan designed
-                    just for you.
-                  </Typography>
-                </Box>
-                <img
-                  src={Joinus}
-                  alt="joinus"
-                  style={{
-                    width: "100%",
-                    maxWidth: "400px",
-                    display: "block",
-                    "@media (max-width: 600px)": { display: "none" },
-                  }}
-                  className="desktop-only"
-                />
-              </Col>
-            </Row>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <form onSubmit={handleSubmit}>
-              <Row>
-                <TextField
-                  className="my-3"
-                  fullWidth
-                  label="Enter your Full Name"
-                  name="fullname"
-                  value={formData.fullname}
-                  onChange={handleFormChange}
-                  required
-                />
-                <TextField
-                  className="my-3"
-                  fullWidth
-                  label="Enter your Email ID"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleFormChange}
-                  required
-                />
-                <TextField
-                  className="my-3"
-                  fullWidth
-                  label="Enter your Mobie Number"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleFormChange}
-                  required
-                />
-                <FormControl fullWidth>
-                  <InputLabel id="demo-select-small-label">
-                    I am interested in
-                  </InputLabel>
-                  <Select
-                    labelId="demo-select-small-label"
-                    id="demo-select-small"
-                    value={fund}
-                    label="I am interested in"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}> Mutual funds</MenuItem>
-                    <MenuItem value={20}>Training</MenuItem>
-                    <MenuItem value={30}>Advisory Services</MenuItem>
-                    <MenuItem value={40}>Algo Trading </MenuItem>
-                    <MenuItem value={50}>Partnership</MenuItem>
-                    <MenuItem value={60}>Others</MenuItem>
-                  </Select>
-                </FormControl>
-                <TextareaAutosize
-                  className="my-3"
-                  minRows={12}
-                  placeholder="Your message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleFormChange}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </Row>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={formData.agreeToCommunication}
-                      onChange={handleFormChange}
-                      name="agreeToCommunication"
-                    />
-                  }
-                  label="* I agree to receive communication from DeepanIndia."
-                />
-              </FormGroup>
-
-              <Submitbtn type="submit">Get Started Today</Submitbtn>
-            </form>
-          </Grid>
+      <Grid container spacing={4} justifyContent="center" alignItems="center" px={{ xs: 2, md: 6 }}>
+        {/* Left Panel */}
+        <Grid item xs={12} md={6}>
+          <Box display="flex" flexDirection="column" mb={3}>
+            <Typography
+              sx={{
+                fontWeight: 900,
+                color: "#630775",
+                fontSize: { xs: "20px", sm: "30px" },
+                mb: 2,
+              }}
+            >
+              How to Get Started?
+            </Typography>
+            <Typography sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}>
+              Speak with our experts.
+            </Typography>
+            <Typography sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}>
+              Share your financial needs and expectations.
+            </Typography>
+            <Typography sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}>
+              Get a personalized, detailed wealth creation plan designed just for you.
+            </Typography>
+          </Box>
+          <Box
+            component="img"
+            src={Joinus}
+            alt="joinus"
+            sx={{
+              width: "100%",
+              maxWidth: 400,
+              display: { xs: "none", md: "block" },
+            }}
+          />
         </Grid>
+
+        {/* Right Panel - Form */}
+        <Grid item xs={12} md={6}>
+          <form onSubmit={handleSubmit}>
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                label="Enter your Full Name"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleFormChange}
+                required
+              />
+            </Box>
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                label="Enter your Email ID"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleFormChange}
+                required
+              />
+            </Box>
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                label="Enter your Mobile Number"
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleFormChange}
+                required
+              />
+            </Box>
+            <Box mb={2}>
+              <FormControl fullWidth>
+                <InputLabel id="interest-select">I am interested in</InputLabel>
+                <Select
+                  labelId="interest-select"
+                  value={fund}
+                  label="I am interested in"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>Mutual funds</MenuItem>
+                  <MenuItem value={20}>Training</MenuItem>
+                  <MenuItem value={30}>Advisory Services</MenuItem>
+                  <MenuItem value={40}>Algo Trading</MenuItem>
+                  <MenuItem value={50}>Partnership</MenuItem>
+                  <MenuItem value={60}>Others</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box mb={2}>
+              <TextareaAutosize
+                minRows={6}
+                placeholder="Your message"
+                name="message"
+                value={formData.message}
+                onChange={handleFormChange}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  fontSize: "16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </Box>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.agreeToCommunication}
+                    onChange={handleFormChange}
+                    name="agreeToCommunication"
+                  />
+                }
+                label="* I agree to receive communication from DeepanIndia."
+              />
+            </FormGroup>
+            <Submitbtn type="submit">Get Started Today</Submitbtn>
+          </form>
+        </Grid>
+      </Grid>
       </Container>
     </MainDiv>
   );
 }
 
+// Generates a 6-character CAPTCHA
 const generateCaptcha = () => {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let captcha = "";
-  for (let i = 0; i < 6; i++) {
-    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return captcha;
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  return Array.from({ length: 6 }, () =>
+    chars.charAt(Math.floor(Math.random() * chars.length))
+  ).join("");
 };
 
+// Styled components
 const MainDiv = styled.div`
-  padding: 80px 0px;
+  padding: 80px 0;
   background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 
-  @media screen and (max-width: 600px) {
+  @media (max-width: 600px) {
     padding: 40px 0;
   }
-`;
-
-const IconButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  &:hover {
-    color: #007bff;
-  }
-`;
-
-const Input = styled.input`
-  font-family: "Nunito Sans", sans-serif;
-  width: 100%;
-  height: 45px;
-  padding: 10px;
-  font-size: 16px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 `;
 
 const Submitbtn = styled.button`
   background-color: #fff;
   border: 1px solid #013396;
   padding: 10px 15px;
-  margin: 10px 0;
+  margin-top: 20px;
   width: 100%;
-  color: blue;
+  color: #013396;
   font-weight: 800;
   transition: all 0.5s ease-in-out;
+  cursor: pointer;
+
   &:hover {
     background-color: #013396;
     color: #fff;
