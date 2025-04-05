@@ -3,9 +3,36 @@ import { Box, Typography, Grid } from "@mui/material";
 import styled from "styled-components";
 import { Url } from "../../../utils/api";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import trade from "../../../assets/trader.png";
+import fund from "../../../assets/fund.png";
+ import number from "../../../assets/4880206.jpg";
+
+const fallbackData = [
+  {
+    subTitle: "Case Study 1",
+    title: "How ABC Corp Transformed Finance",
+    description: "ABC Corp used our platform to automate financial workflows and cut costs by 30%.",
+    image: trade,
+    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    subTitle: "Case Study 2",
+    title: "Scaling Fund Management at XYZ Ltd.",
+    description: "XYZ Ltd. improved fund transparency and reduced errors using our analytics suite.",
+    image: fund,
+    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    subTitle: "Case Study 3",
+    title: "Real-Time Insights for PQR Finance",
+    description: "PQR Finance achieved real-time insights and faster decision making with our dashboards.",
+    image: number,
+    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
 
 const MediaContent = ({ data }) => {
-  const caseStudyData = data?.caseStudyData || [];
+  const caseStudyData = (data?.caseStudyData?.length ? data.caseStudyData : fallbackData);
   const [slideIndex, setSlideIndex] = useState(0);
   const [progress, setProgress] = useState([]);
 
@@ -33,7 +60,7 @@ const MediaContent = ({ data }) => {
         }
         return newProgress;
       });
-    }, 50); // Slightly faster transition than original
+    }, 50); 
 
     return () => clearInterval(interval);
   }, [slideIndex, caseStudyData.length]);

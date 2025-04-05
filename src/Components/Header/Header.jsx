@@ -209,10 +209,10 @@ export default function Header() {
                   Calculator <FaAngleDown />
                   <Dropdown show={visibleDropdown === 2}>
                     <ul>
-                      <li>SIP Calculator</li>
-                      <li>Lumpsum</li>
-                      <li>SIP combined with Lumpsum</li>
-                      <li>SWP</li>
+                      <li onClick={() => handleNavigation("/#calculator")}>SIP Calculator</li>
+                      <li onClick={() => handleNavigation("/#calculator")}>Lumpsum</li>
+                      <li onClick={() => handleNavigation("/#calculator")}>SIP combined with Lumpsum</li>
+                      <li onClick={() => handleNavigation("/#calculator")}>SWP</li>
                     </ul>
                   </Dropdown>
                 </NavLink>

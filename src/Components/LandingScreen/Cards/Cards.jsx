@@ -10,7 +10,6 @@ import { Url } from "../../../utils/api";
 import { Divider } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useNavigate } from "react-router-dom";
-import LandingImage3 from "../../../assets/landingImage3.jpg";
 
 // Styled Components (Optional)
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -29,11 +28,11 @@ export default function Cards({ e }) {
   const { description, subTitle, title, image } = e || {};
   const navigate = useNavigate();
   const imageSrc =
-    typeof e.image === "object"
-      ? URL.createObjectURL(e.image)
-      : e.image
-        ? `${Url}${e.image}`
-        : image;
+  typeof e.image === "object"
+    ? URL.createObjectURL(e.image)
+    : e.image?.includes("static") || e.image?.includes("assets")
+    ? e.image
+    : `${Url}${e.image}`;
 
   const handleReadMore = () => {
     navigate(`/details/${e?.id || "default"}`);
