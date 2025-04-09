@@ -21,6 +21,9 @@ const LandingScreen = () => {
   const [Blogs, setBlogs] = useState([]);
   const [review, setReview] = useState([]);
   const [media, setSocialMedia] = useState([]);
+  const [choose, setChoose] = useState([]);
+  const [wealth, setWealth] = useState([]);
+  const [story, setStory] = useState([]);
 
   // Fetch Landing Screen Data
   const LandingScreenDetails = async () => {
@@ -35,6 +38,9 @@ const LandingScreen = () => {
         },
         { url: `/landing/customer/Reviews`, setState: setReview },
         { url: `/landing/customer/CaseStudy`, setState: setSocialMedia },
+        { url: `/landing/customer/WhyChoose`, setState: setChoose },
+        { url: `/landing/customer/WealthList`, setState: setWealth },
+        { url: `/landing/customer/Story`, setState: setStory }
       ];
 
       const responses = await Promise.all(
@@ -65,9 +71,9 @@ const LandingScreen = () => {
   return (
     <>
       <SlideShowBar data={head} />
-      <Choose/>
-      <Wealthy/>
-      <OurStory/>
+      <Choose data={choose}/>
+      <Wealthy data={wealth}/>
+      <OurStory data={story}/>
       <About data={AboutUs} />
       <Tabscontent />
       <Services/>

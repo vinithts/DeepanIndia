@@ -24,8 +24,10 @@ import {
   MdPermMedia,
   MdOutlinePreview,
 } from "react-icons/md";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import { PiPlugsConnectedFill } from "react-icons/pi";
-
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 import Deepalogo from "../../assets/logos/logo-deepan1.png";
 import styled from "styled-components";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -96,6 +98,30 @@ const Admin = () => {
               <MdOutlineViewHeadline />
             </ListItemIcon>
             <ListItemText primary="Headers" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/admin/choose">
+            <ListItemIcon className="icon">
+              <PsychologyAltIcon />
+            </ListItemIcon>
+            <ListItemText primary="Choose" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/admin/wealth">
+            <ListItemIcon className="icon">
+              <AcUnitIcon />
+            </ListItemIcon>
+            <ListItemText primary="wealth" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/admin/story">
+            <ListItemIcon className="icon">
+              <AutoStoriesIcon/>
+            </ListItemIcon>
+            <ListItemText primary="story" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

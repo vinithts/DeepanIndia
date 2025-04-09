@@ -19,6 +19,9 @@ import CardDetails from "./Components/LandingScreen/Cards/CardDetails";
 import ScrollToTop from "./Components/Scroll/ScrollToTop";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 import TermsOfServices from "./Components/TermsOfSerivce";
+import Choose from "./Components/Adminscreen/Choose";
+import Wealth from "./Components/Adminscreen/Wealth";
+import Story from "./Components/Adminscreen/Story";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -52,6 +55,9 @@ export default function App() {
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Instruction />} />
           <Route path="slider" index element={<Slider />} />
+          <Route path="choose" index element={<Choose />} />
+          <Route path="wealth" index element={<Wealth />} />
+          <Route path="story" index element={<Story />} />
           <Route path="about" element={<Aboutss />} />
           <Route path="card" element={<Cardss />} />
           <Route path="joiner" element={<Joiner />} />

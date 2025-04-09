@@ -18,14 +18,21 @@ const slideIn = keyframes`
   }
 `;
 
-const Choose = () => {
+const Choose = ({ data }) => {
+  console.log(data, "choose");
   return (
     <MainBox image={backImage}>
       <ContentBox>
         <InsideBox>
-          <Grid container spacing={6} >
+          <Grid container spacing={6}>
             {/* Image Column (Hidden on md and smaller screens) */}
-            <Grid item xs={12} sm={12} md={2} sx={{ display: { xs: "none", md: "block" } }}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={2}
+              sx={{ display: { xs: "none", md: "block" } }}
+            >
               <img src={back1Image} alt="img" width={"100%"} />
             </Grid>
 
@@ -33,31 +40,64 @@ const Choose = () => {
             <Grid item xs={12} sm={12} md={10}>
               <LeftBox>
                 <Typography
-                  sx={{ fontSize: { xs: "28px", md: "40px" }, color: "black", fontWeight: "900", textAlign: "center" }}
+                  sx={{
+                    fontSize: { xs: "28px", md: "40px" },
+                    color: "black",
+                    fontWeight: "900",
+                    textAlign: "center",
+                  }}
                 >
-                  Why Choose <span style={{ color:"#95151A"}}>Deepan </span> <span style={{ color:"#23395d"}}>India</span>
+                  Why Choose <span style={{ color: "#95151A" }}>Deepan </span>{" "}
+                  <span style={{ color: "#23395d" }}>India</span>
                 </Typography>
                 <Box>
-                  {[
-                    "Right Asset allocation – Deploying Right financial Solutions for each client after proper profiling.",
-                    "Zero Management Fees – No hidden charges, making our services cost-effective.",
-                    "Performance-Based Fees – Pay only when your portfolio crosses a predefined profit threshold.  ",
-                    "Strong Track Record – Monitor our past and present performance at any time.  ",
-                    "Transparent and Accessible – A user-friendly platform with clear reporting.",
-                    "Technology-Driven Approach – Enhancing investment processes through smart technology."
-                  ].map((text, index) => {
-                    const [highlight, ...rest] = text.split(" – "); 
-                    return (
+                  {(data?.reviewData?.length > 0
+                    ? data.reviewData
+                    : [
+                        {
+                          title: "Right Asset allocation",
+                          subTitle:
+                            "Deploying Right financial Solutions for each client after proper profiling.",
+                        },
+                        {
+                          title: "Zero Management Fees",
+                          subTitle:
+                            "No hidden charges, making our services cost-effective.",
+                        },
+                        {
+                          title: "Performance-Based Fees",
+                          subTitle:
+                            "Pay only when your portfolio crosses a predefined profit threshold.",
+                        },
+                        {
+                          title: "Strong Track Record",
+                          subTitle:
+                            "Monitor our past and present performance at any time.",
+                        },
+                        {
+                          title: "Transparent and Accessible",
+                          subTitle:
+                            "A user-friendly platform with clear reporting.",
+                        },
+                        {
+                          title: "Technology-Driven Approach",
+                          subTitle:
+                            "Enhancing investment processes through smart technology.",
+                        },
+                      ]
+                  ).map((item, index) => (
                     <BlockBox key={index}>
                       <RoundBox>
                         <AdsClickIcon sx={{ fontSize: "24px" }} />
                       </RoundBox>
                       <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
-                      <span style={{ color:"#23395d",fontWeight:900}}>{highlight} –</span> {rest.join(" – ")}
+                        <span style={{ color: "#23395d", fontWeight: 900 }}>
+                          {item.title} –
+                        </span>{" "}
+                        {item.subTitle}
                       </Typography>
                     </BlockBox>
-                    );
-                  })}
+                  ))}
                 </Box>
               </LeftBox>
             </Grid>

@@ -22,15 +22,13 @@ import SuccessPopup from "./Successpop";
 import FailurePopup from "./Failurepop";
 import { instance } from "../../utils/api";
 
-export default function Slider() {
+export default function Choose() {
   const [tabIndex, setTabIndex] = useState(0);
   const [successOpen, setSuccessOpen] = useState(false);
   const [failureOpen, setFailureOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     subTitle: "",
-    description: "",
-    button_name: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [sliderData, setSliderData] = useState([]);
@@ -43,7 +41,7 @@ export default function Slider() {
 
   const getSliders = async () => {
     try {
-      const response = await instance.get(`/landing/admin/Header`);
+      const response = await instance.get(`/landing/admin/WhyChoose`);
       if (response.status === 200) {
         setSliderData(response.data);
       }
@@ -57,21 +55,19 @@ export default function Slider() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = new FormData();
-      Object.keys(formData).forEach((key) => data.append(key, formData[key]));
-      if (imageFile) data.append("images", imageFile);
-
       if (editData) {
-        await instance.put(`/landing/admin/Header/${editData.id}`, data);
+        await instance.put(`/landing/admin/WhyChoose/${editData.id}`, {
+          title: formData.title,
+          subTitle: formData.subTitle,
+        });
       } else {
-        await instance.post(`/landing/admin/Header`, data);
+        await instance.post(`/landing/admin/WhyChoose`, {
+          title: formData.title,
+          subTitle: formData.subTitle,
+        });
       }
 
       getSliders();
@@ -92,15 +88,15 @@ export default function Slider() {
   const handleClosePopup = () => {
     setOpenEditPopup(false);
     setEditData(null);
-    setFormData({ title: "", subTitle: "", description: "", button_name: "" });
+    setFormData({ title: "", subTitle: "" });
     setImageFile(null);
   };
 
   return (
     <AdminContentPart>
       <Tabs value={tabIndex} onChange={(e, newValue) => setTabIndex(newValue)}>
-        <Tab label="Create Slider" />
-        <Tab label="Manage Sliders" />
+        <Tab label="Create Choose" />
+        <Tab label="Manage Choose" />
       </Tabs>
       {tabIndex === 0 && (
         <Grid container spacing={3} marginTop={"20px"}>
@@ -127,34 +123,6 @@ export default function Slider() {
                     required
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextareaAutosize
-                    minRows={6}
-                    placeholder="Enter Description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleFormChange}
-                    required
-                    style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Enter Button Name"
-                    name="button_name"
-                    value={formData.button_name}
-                    onChange={handleFormChange}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    type="file"
-                    onChange={handleImageChange}
-                  />
-                </Grid>
               </Grid>
               <Grid container justifyContent="flex-end" className="my-5">
                 <Grid item>
@@ -174,9 +142,7 @@ export default function Slider() {
               <TableRow>
                 <TableCell>Title</TableCell>
                 <TableCell>Subtitle</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Button Name</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Edit</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -184,8 +150,6 @@ export default function Slider() {
                 <TableRow key={slider.id}>
                   <TableCell>{slider.title}</TableCell>
                   <TableCell>{slider.subTitle}</TableCell>
-                  <TableCell>{slider.description}</TableCell>
-                  <TableCell>{slider.button_name}</TableCell>
                   <TableCell>
                     <Button onClick={() => handleEdit(slider)}>Edit</Button>
                   </TableCell>
@@ -229,34 +193,18 @@ export default function Slider() {
                 required
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextareaAutosize
-                minRows={4}
-                placeholder="Enter Description"
-                name="description"
-                value={formData.description}
-                onChange={handleFormChange}
-                required
-                style={{ width: "100%", padding: "10px" }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Enter Button Name"
-                name="button_name"
-                value={formData.button_name}
-                onChange={handleFormChange}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth type="file" onChange={handleImageChange} />
-            </Grid>
           </Grid>
-          <Box sx={{display: "flex",flexDirection:"row", justifyContent: "space-between", marginTop: "20px", width:"100%"}}>
-          <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
-          <SubmitButton type="submit">Update</SubmitButton>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: "20px",
+              width: "100%",
+            }}
+          >
+            <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
+            <SubmitButton type="submit">Update</SubmitButton>
           </Box>
         </form>
       </Dialog>

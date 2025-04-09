@@ -1,13 +1,11 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { Url } from "../../../utils/api";
 import BlogImg from "../../../assets/business-plan-concept-3d-rendering.jpg";
 import solar1 from "../../../assets/solar1.png";
 import solar2 from "../../../assets/solar2.png";
 import solar3 from "../../../assets/solar3.png";
-import solar4 from "../../../assets/solar4.png";
-import solar5 from "../../../assets/solar5.png";
-import solar6 from "../../../assets/solar6.png";
 
 const slideIn = keyframes`
   from {
@@ -35,7 +33,15 @@ const products = [
     icon: solar3,
   },
 ];
-const Wealthy = () => {
+const Wealthy = ({ data }) => {
+  const itemsToRender =
+    Array.isArray(data) && data.length > 0
+      ? data.map((item) => ({
+          title: item.title,
+          icon: item.image, // Adjust path if needed
+        }))
+      : products;
+
   return (
     <MainBox image={BlogImg}>
       <Grid container justifyContent="center" alignItems="center">
@@ -50,14 +56,20 @@ const Wealthy = () => {
           </TextBox>
         </Grid>
         <Grid item xs={12} md={8} container>
-          {products.map((product, index) => (
+          {itemsToRender.map((product, index) => (
             <Grid item xs={12} sm={4} md={4} key={index}>
               <ProductCard>
-                <IconWrapper src={product.icon} alt={product.title} />
+                <IconWrapper
+                  src={
+                    product.icon.startsWith("/Docs")
+                      ? `${Url}${product.icon}`
+                      : product.icon
+                  }
+                  alt={product.title}
+                />
                 <Tooltip title={product.title} arrow>
                   <ProductTitle>{product.title}</ProductTitle>
                 </Tooltip>
-                {/* <ReadMore>Read More</ReadMore> */}
               </ProductCard>
             </Grid>
           ))}
