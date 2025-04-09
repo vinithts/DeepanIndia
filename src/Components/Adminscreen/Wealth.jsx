@@ -22,15 +22,12 @@ import SuccessPopup from "./Successpop";
 import FailurePopup from "./Failurepop";
 import { instance } from "../../utils/api";
 
-export default function Slider() {
+export default function Wealth() {
   const [tabIndex, setTabIndex] = useState(0);
   const [successOpen, setSuccessOpen] = useState(false);
   const [failureOpen, setFailureOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
-    subTitle: "",
-    description: "",
-    button_name: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [sliderData, setSliderData] = useState([]);
@@ -43,7 +40,7 @@ export default function Slider() {
 
   const getSliders = async () => {
     try {
-      const response = await instance.get(`/landing/admin/Header`);
+      const response = await instance.get(`/landing/admin/WealthList`);
       if (response.status === 200) {
         setSliderData(response.data);
       }
@@ -66,16 +63,17 @@ export default function Slider() {
     try {
       const data = new FormData();
       Object.keys(formData).forEach((key) => data.append(key, formData[key]));
-      if (imageFile) data.append("images", imageFile);
+      if (imageFile) data.append("image", imageFile);
 
       if (editData) {
-        await instance.put(`/landing/admin/Header/${editData.id}`, data);
+        await instance.put(`/landing/admin/WealthList/${editData.id}`, data);
       } else {
-        await instance.post(`/landing/admin/Header`, data);
+        await instance.post(`/landing/admin/WealthList`, data);
       }
 
       getSliders();
       setSuccessOpen(true);
+      setImageFile(null);
       handleClosePopup();
     } catch (error) {
       console.error("Error submitting slider:", error);
@@ -92,15 +90,15 @@ export default function Slider() {
   const handleClosePopup = () => {
     setOpenEditPopup(false);
     setEditData(null);
-    setFormData({ title: "", subTitle: "", description: "", button_name: "" });
+    setFormData({ title: "" });
     setImageFile(null);
   };
 
   return (
     <AdminContentPart>
       <Tabs value={tabIndex} onChange={(e, newValue) => setTabIndex(newValue)}>
-        <Tab label="Create Slider" />
-        <Tab label="Manage Sliders" />
+        <Tab label="Create WealthList" />
+        <Tab label="Manage WealthList" />
       </Tabs>
       {tabIndex === 0 && (
         <Grid container spacing={3} marginTop={"20px"}>
@@ -113,37 +111,6 @@ export default function Slider() {
                     label="Enter Title"
                     name="title"
                     value={formData.title}
-                    onChange={handleFormChange}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Enter Subtitle"
-                    name="subTitle"
-                    value={formData.subTitle}
-                    onChange={handleFormChange}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextareaAutosize
-                    minRows={6}
-                    placeholder="Enter Description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleFormChange}
-                    required
-                    style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Enter Button Name"
-                    name="button_name"
-                    value={formData.button_name}
                     onChange={handleFormChange}
                     required
                   />
@@ -173,9 +140,6 @@ export default function Slider() {
             <TableHead>
               <TableRow>
                 <TableCell>Title</TableCell>
-                <TableCell>Subtitle</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Button Name</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -183,9 +147,6 @@ export default function Slider() {
               {sliderData.map((slider) => (
                 <TableRow key={slider.id}>
                   <TableCell>{slider.title}</TableCell>
-                  <TableCell>{slider.subTitle}</TableCell>
-                  <TableCell>{slider.description}</TableCell>
-                  <TableCell>{slider.button_name}</TableCell>
                   <TableCell>
                     <Button onClick={() => handleEdit(slider)}>Edit</Button>
                   </TableCell>
@@ -215,37 +176,6 @@ export default function Slider() {
                 label="Enter Title"
                 name="title"
                 value={formData.title}
-                onChange={handleFormChange}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Enter Subtitle"
-                name="subTitle"
-                value={formData.subTitle}
-                onChange={handleFormChange}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextareaAutosize
-                minRows={4}
-                placeholder="Enter Description"
-                name="description"
-                value={formData.description}
-                onChange={handleFormChange}
-                required
-                style={{ width: "100%", padding: "10px" }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Enter Button Name"
-                name="button_name"
-                value={formData.button_name}
                 onChange={handleFormChange}
                 required
               />
