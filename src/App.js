@@ -22,6 +22,7 @@ import TermsOfServices from "./Components/TermsOfSerivce";
 import Choose from "./Components/Adminscreen/Choose";
 import Wealth from "./Components/Adminscreen/Wealth";
 import Story from "./Components/Adminscreen/Story";
+import CustomerData from "./Components/Adminscreen/CustomerData";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -63,6 +64,7 @@ export default function App() {
           <Route path="joiner" element={<Joiner />} />
           {/* <Route path="reviews" element={<Reviewss />} /> */}
           <Route path="socialmedia" element={<Socialmedia />} />
+          <Route path="customerdetails" element={<CustomerData />} />
         </Route>
       </Routes>
       {!isAdminRoute && <Footer />}

@@ -28,6 +28,7 @@ export default function Wealth() {
   const [failureOpen, setFailureOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
+    image: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [sliderData, setSliderData] = useState([]);
@@ -55,9 +56,16 @@ export default function Wealth() {
   };
 
   const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setImageFile(file);
   };
-
+  const handleImageChange1 = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    if (file) {
+      setFormData((prev) => ({ ...prev, image: "" }));
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -137,10 +145,10 @@ export default function Wealth() {
       {tabIndex === 1 && (
         <TableContainer component={Paper} marginTop={"20px"}>
           <Table>
-            <TableHead>
+            <TableHead sx={{ backgroundColor: "#121472", color: "#fff" }}>
               <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Title</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -181,12 +189,25 @@ export default function Wealth() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth type="file" onChange={handleImageChange} />
+              <Typography variant="body2" sx={{ marginBottom: "8px" }}>
+                {formData.image
+                  ? `Current Image: ${formData.image.split("/").pop()}`
+                  : "No image uploaded"}
+              </Typography>
+              <TextField fullWidth type="file" onChange={handleImageChange1} />
             </Grid>
           </Grid>
-          <Box sx={{display: "flex",flexDirection:"row", justifyContent: "space-between", marginTop: "20px", width:"100%"}}>
-          <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
-          <SubmitButton type="submit">Update</SubmitButton>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: "20px",
+              width: "100%",
+            }}
+          >
+            <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
+            <SubmitButton type="submit">Update</SubmitButton>
           </Box>
         </form>
       </Dialog>
@@ -205,7 +226,9 @@ export default function Wealth() {
 }
 
 const AdminContentPart = styled.div`
-  padding: 30px 15px;
+  padding: 30px 30px;
+  margin-top: 30px;
+  background-color: #f3f3f3;
 `;
 const SubmitButton = styled.button`
   color: #fff;

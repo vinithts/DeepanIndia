@@ -159,7 +159,8 @@ export default function Aboutss() {
 
 const AdminContentPart = styled.div`
   background-color: #f3f3f3;
-  padding: 30px 15px;
+  padding: 30px 30px;
+  margin-top: 30px;
   height: 600px;
 `;
 

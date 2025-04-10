@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import SuccessPopup from "./Successpop";
 import FailurePopup from "./Failurepop";
 import styled from "styled-components";
-import { TextField, TextareaAutosize, Grid, Button } from "@mui/material";
+import {
+  TextField,
+  TextareaAutosize,
+  Grid,
+  Button,
+  Typography,
+} from "@mui/material";
 import { instance } from "../../utils/api";
 
 export default function Story() {
@@ -13,75 +19,10 @@ export default function Story() {
     id: null,
     title: "",
     subTitle: "",
+    image: "",
   });
 
-  // Handle image change
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
-
-  // Create new About data
-  const createAboutData = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("title", aboutData.title);
-      formData.append("subTitle", aboutData.subTitle);
-      if (image) formData.append("image", image);
-
-      await instance.post(`/landing/admin/Story`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      await getAboutData();
-      setSuccessOpen(true);
-    } catch (error) {
-      console.error(
-        "Error creating about:",
-        error.response?.data || error.message
-      );
-      setFailureOpen(true);
-    }
-  };
-
-  // Update existing About data
-  const updateAboutData = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("title", aboutData.title);
-      formData.append("subTitle", aboutData.subTitle);
-      if (image) formData.append("image", image);
-
-      await instance.put(`/landing/admin/Story/${aboutData.id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      await getAboutData();
-      setSuccessOpen(true);
-    } catch (error) {
-      console.error(
-        "Error updating about:",
-        error.response?.data || error.message
-      );
-      setFailureOpen(true);
-    }
-  };
-  
-  // Handle form changes
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setAboutData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // Fetch about data
+  // Fetch existing story data
   const getAboutData = async () => {
     try {
       const response = await instance.get(`/landing/admin/Story`);
@@ -90,81 +31,118 @@ export default function Story() {
           id: null,
           title: "",
           subTitle: "",
+          image: "",
         };
         setAboutData(data);
       }
     } catch (error) {
-      console.error(
-        "Error fetching about data:",
-        error.response?.data || error.message
-      );
+      console.error("Error fetching data:", error);
     }
-  };
-
-  // Close popups
-  const handleClose = () => {
-    setSuccessOpen(false);
-    setFailureOpen(false);
   };
 
   useEffect(() => {
     getAboutData();
   }, []);
 
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setAboutData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      setAboutData((prev) => ({ ...prev, image: "" }));
+    }
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("title", aboutData.title);
+    formData.append("subTitle", aboutData.subTitle);
+    if (image) formData.append("image", image);
+
+    try {
+      if (aboutData.id === null) {
+        await instance.post(`/landing/admin/Story`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        await instance.put(`/landing/admin/Story/${aboutData.id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
+
+      await getAboutData();
+      setSuccessOpen(true);
+    } catch (error) {
+      console.error("Submission error:", error.response?.data || error.message);
+      setFailureOpen(true);
+    }
+  };
+
+  const handleClose = () => {
+    setSuccessOpen(false);
+    setFailureOpen(false);
+  };
+
   return (
     <AdminContentPart>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Grid container spacing={2}>
-            <Grid item md={12} xs={12}>
-              <TextField
-                className="my-3"
-                fullWidth
-                label="Enter Title"
-                name="title"
-                value={aboutData.title}
-                onChange={handleFormChange}
-                required
-              />
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <TextareaAutosize
-                className="my-3"
-                minRows={6}
-                placeholder="Enter subTitle"
-                name="subTitle"
-                value={aboutData.subTitle}
-                onChange={handleFormChange}
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                  background: "#f3f3f3",
-                }}
-              />
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <TextField fullWidth type="file" onChange={handleImageChange} />
-            </Grid>
-          </Grid>
-          <Grid container justifyContent="flex-start" className="my-5">
-            <Grid item>
-              {aboutData.id === null ? (
-                <SubmitButton type="submit" onClick={createAboutData}>
-                  Create
-                </SubmitButton>
-              ) : (
-                <SubmitButton type="submit" onClick={updateAboutData}>
-                  Update
-                </SubmitButton>
-              )}
-            </Grid>
-          </Grid>
+          <Typography variant="h5" gutterBottom>
+            Story Section
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label="Enter Title"
+            name="title"
+            value={aboutData.title}
+            onChange={handleFormChange}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextareaAutosize
+            minRows={6}
+            placeholder="Enter Subtitle"
+            name="subTitle"
+            value={aboutData.subTitle}
+            onChange={handleFormChange}
+            style={{
+              width: "100%",
+              padding: "12px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              background: "#f9f9f9",
+            }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="body2" sx={{ marginBottom: "8px" }}>
+            {aboutData.image
+              ? `Current Image: ${aboutData.image.split("/").pop()}`
+              : image
+              ? `Selected Image: ${image.name}`
+              : "No image uploaded"}
+          </Typography>
+          <TextField fullWidth type="file" onChange={handleImageChange} />
+        </Grid>
+        <Grid item xs={12}>
+          <SubmitButton onClick={handleSubmit}>
+            {aboutData.id === null ? "Create" : "Update"}
+          </SubmitButton>
         </Grid>
       </Grid>
-      {/* Success and Failure Popups */}
+
+      {/* Popups */}
       <SuccessPopup
         open={successOpen}
         message="Form submitted successfully!"
@@ -181,24 +159,22 @@ export default function Story() {
 
 const AdminContentPart = styled.div`
   background-color: #f3f3f3;
-  padding: 30px 15px;
-  height: 600px;
+  padding: 30px;
+  margin-top: 30px;
+  min-height: 600px;
 `;
 
-const SubmitButton = styled.button`
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 10px 10px;
-  border: 1px solid;
-  margin: 10px 15px;
-  text-align: center;
-  width: 10rem;
-  cursor: pointer;
-  background: rgb(225, 35, 35);
-  transition: all 0.5s ease-in-out;
+const SubmitButton = styled(Button)`
+  && {
+    background-color: #e12323;
+    color: white;
+    font-weight: bold;
+    width: 10rem;
+    padding: 10px;
+    margin: 15px 0;
 
-  &:hover {
-    background-color: #0056b3;
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 `;

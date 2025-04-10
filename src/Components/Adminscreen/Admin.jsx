@@ -24,14 +24,18 @@ import {
   MdPermMedia,
   MdOutlinePreview,
 } from "react-icons/md";
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
+import { useLocation } from "react-router-dom";
+import AddchartIcon from "@mui/icons-material/Addchart";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import { PiPlugsConnectedFill } from "react-icons/pi";
-import AcUnitIcon from '@mui/icons-material/AcUnit';
+import AcUnitIcon from "@mui/icons-material/AcUnit";
 import Deepalogo from "../../assets/logos/logo-deepan1.png";
 import styled from "styled-components";
 import { useTheme, useMediaQuery } from "@mui/material";
 import Cookies from "universal-cookie";
+
 export const cookies = new Cookies();
 
 const drawerWidth = 240;
@@ -42,6 +46,22 @@ const Admin = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md", "sx"));
+  const location = useLocation();
+
+  const headerTitle = useMemo(() => {
+    const routeMap = {
+      "/admin/slider": "Headers",
+      "/admin/choose": "Choose",
+      "/admin/wealth": "Wealth",
+      "/admin/story": "Story",
+      "/admin/about": "About",
+      "/admin/card": "Card",
+      "/admin/joiner": "Joiner",
+      "/admin/socialmedia": "Social Media",
+      "/admin/customerdetails": "Customer Data",
+    };
+    return routeMap[location.pathname] || "Admin Panel";
+  }, [location.pathname]);
 
   const isAuthenticated = useMemo(() => {
     const token = cookies.get("user")?.userId;
@@ -80,7 +100,6 @@ const Admin = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          p: 1,
         }}
       >
         <img src={Deepalogo} alt="Logo" />
@@ -93,77 +112,113 @@ const Admin = () => {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/slider">
+          <ListItemButton
+            component={Link}
+            to="/admin/slider"
+            selected={location.pathname === "/admin/slider"}
+          >
             <ListItemIcon className="icon">
-              <MdOutlineViewHeadline />
+              <AddchartIcon />
             </ListItemIcon>
-            <ListItemText primary="Headers" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="Headers" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/choose">
+          <ListItemButton
+            component={Link}
+            to="/admin/choose"
+            selected={location.pathname === "/admin/choose"}
+          >
             <ListItemIcon className="icon">
               <PsychologyAltIcon />
             </ListItemIcon>
-            <ListItemText primary="Choose" />
+            <ListItemText primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="Choose" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/wealth">
+          <ListItemButton
+            component={Link}
+            to="/admin/wealth"
+            selected={location.pathname === "/admin/wealth"}
+          >
             <ListItemIcon className="icon">
               <AcUnitIcon />
             </ListItemIcon>
-            <ListItemText primary="wealth" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="wealth" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/story">
+          <ListItemButton
+            component={Link}
+            to="/admin/story"
+            selected={location.pathname === "/admin/story"}
+          >
             <ListItemIcon className="icon">
-              <AutoStoriesIcon/>
+              <AutoStoriesIcon />
             </ListItemIcon>
-            <ListItemText primary="story" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="story" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/about">
+          <ListItemButton
+            component={Link}
+            to="/admin/about"
+            selected={location.pathname === "/admin/about"}
+          >
             <ListItemIcon className="icon">
               <FaBookReader />
             </ListItemIcon>
-            <ListItemText primary="About" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="About" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/card">
+          <ListItemButton
+            component={Link}
+            to="/admin/card"
+            selected={location.pathname === "/admin/card"}
+          >
             <ListItemIcon className="icon">
               <FaAddressCard />
             </ListItemIcon>
-            <ListItemText primary="Card" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="Card" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/joiner">
+          <ListItemButton
+            component={Link}
+            to="/admin/joiner"
+            selected={location.pathname === "/admin/joiner"}
+          >
             <ListItemIcon className="icon">
               <PiPlugsConnectedFill />
             </ListItemIcon>
-            <ListItemText primary="Joiner" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="Joiner" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/socialmedia">
+          <ListItemButton
+            component={Link}
+            to="/admin/socialmedia"
+            selected={location.pathname === "/admin/socialmedia"}
+          >
             <ListItemIcon className="icon">
               <MdPermMedia />
             </ListItemIcon>
-            <ListItemText primary="Social Media" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="Social Media" />
           </ListItemButton>
         </ListItem>
-        {/* <ListItem disablePadding>
-          <ListItemButton component={Link} to="/admin/reviews">
+        <ListItem disablePadding>
+          <ListItemButton
+            component={Link}
+            to="/admin/customerdetails"
+            selected={location.pathname === "/admin/customerdetails"}
+          >
             <ListItemIcon className="icon">
-              <MdOutlinePreview />
+              <PeopleAltIcon />
             </ListItemIcon>
-            <ListItemText primary="Reviews" />
+            <ListItemText  primaryTypographyProps={{ style: { color: "#0c1035" } }}  primary="CustomerData" />
           </ListItemButton>
-        </ListItem> */}
+        </ListItem>
       </List>
       <Divider />
     </Mobileadmin>
@@ -179,10 +234,10 @@ const Admin = () => {
             sx={{
               width: isMobile ? "100%" : `calc(100% - ${drawerWidth}px)`,
               ml: isMobile ? 0 : `${drawerWidth}px`,
-              background: "#0c1035",
+              background: "#ffffff",
             }}
           >
-            <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Toolbar sx={{ display: "flex", justifyContent: "space-between", height:"100px"}}>
               {isMobile && (
                 <IconButton
                   color="inherit"
@@ -193,8 +248,8 @@ const Admin = () => {
                   <MenuIcon />
                 </IconButton>
               )}
-              <Typography variant="h6" noWrap component="div">
-                Admin Panel
+              <Typography sx={{fontSize:"30px",fontWeight:700, color:"#0c1035"}} noWrap component="div">
+                {headerTitle}
               </Typography>
               <div>
                 <IconButton onClick={handleMenuOpen} sx={{ p: 0 }}>
@@ -259,7 +314,7 @@ const Admin = () => {
                 "& .MuiDrawer-paper": {
                   width: drawerWidth,
                   boxSizing: "border-box",
-                  background: "#0c1035",
+                  background: "#ffffff",
                   color: "#fff",
                 },
               }}
@@ -285,16 +340,16 @@ const Mobileadmin = styled.div`
   .icon {
     min-width: 50px;
     font-size: 22px;
-    color: #fa0001;
+    color: #0c1035;
   }
   img {
     width: 100%;
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
   }
   @media screen and (max-width: 600px) {
     .icon {
-      color: #fa0001;
+      color: #0c1035;
     }
     img {
       width: 85%;
