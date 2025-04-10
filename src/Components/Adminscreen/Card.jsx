@@ -281,7 +281,8 @@ export default function Cardss() {
 
 const AdminContentPart = styled.div`
   background-color: #f3f3f3;
-  padding: 30px 15px;
+  padding: 30px 30px;
+  margin-top: 30px;
   .cardbody {
     position: relative;
   }

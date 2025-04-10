@@ -31,6 +31,7 @@ export default function Slider() {
     subTitle: "",
     description: "",
     button_name: "",
+    image: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [sliderData, setSliderData] = useState([]);
@@ -56,9 +57,31 @@ export default function Slider() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setImageFile(file);
+  };
+
+  const handleImageChange1 = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    if (file) {
+      setFormData((prev) => ({ ...prev, image: "" }));
+    }
+  };
+
+const deleteSlider = async (id) => {
+    try {
+      const response = await instance.delete(`/landing/admin/Header/deleteHeader/${id}`);
+      if (response.status === 200) {
+        getSliders();
+        setSuccessOpen(true);
+      } else {
+        setFailureOpen(true);
+      }
+    } catch (error) {
+      console.error("Error deleting slider:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -73,10 +96,9 @@ export default function Slider() {
       } else {
         await instance.post(`/landing/admin/Header`, data);
       }
-
+      handleClosePopup();
       getSliders();
       setSuccessOpen(true);
-      handleClosePopup();
     } catch (error) {
       console.error("Error submitting slider:", error);
       setFailureOpen(true);
@@ -170,13 +192,14 @@ export default function Slider() {
       {tabIndex === 1 && (
         <TableContainer component={Paper} marginTop={"20px"}>
           <Table>
-            <TableHead>
+            <TableHead sx={{ backgroundColor: "#121472", color: "#fff" }}>
               <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell>Subtitle</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Button Name</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Title</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Subtitle</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Description</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Button Name</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Actions</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -188,6 +211,9 @@ export default function Slider() {
                   <TableCell>{slider.button_name}</TableCell>
                   <TableCell>
                     <Button onClick={() => handleEdit(slider)}>Edit</Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button onClick={() => deleteSlider(slider.id)}>Delete</Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -251,12 +277,29 @@ export default function Slider() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth type="file" onChange={handleImageChange} />
+              <Typography variant="body2" sx={{ marginBottom: "8px" }}>
+                {formData.image
+                  ? `Current Image: ${formData.image.split("/").pop()}`
+                  : "No image uploaded"}
+              </Typography>
+              <TextField
+                fullWidth
+                type="file"
+                onChange={handleImageChange1}
+              />
             </Grid>
           </Grid>
-          <Box sx={{display: "flex",flexDirection:"row", justifyContent: "space-between", marginTop: "20px", width:"100%"}}>
-          <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
-          <SubmitButton type="submit">Update</SubmitButton>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: "20px",
+              width: "100%",
+            }}
+          >
+            <Submit1Button onClick={handleClosePopup}>Close</Submit1Button>
+            <SubmitButton type="submit">Update</SubmitButton>
           </Box>
         </form>
       </Dialog>
@@ -275,7 +318,9 @@ export default function Slider() {
 }
 
 const AdminContentPart = styled.div`
-  padding: 30px 15px;
+  padding: 30px 30px;
+  margin-top: 30px;
+  background-color: #f3f3f3;
 `;
 const SubmitButton = styled.button`
   color: #fff;

@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
 import Joinus from "../../../assets/joinus.png";
+import { instance } from "../../../utils/api";
 
 export default function Contact() {
   const [checked, setChecked] = useState(false);
@@ -57,25 +58,14 @@ export default function Contact() {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/deepanindia/landing/customer/CustomerDetails",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
+      const response = await instance.post(`/landing/customer/CustomerDetails`,
+        {   name: formData.name,
             email: formData.email,
             phone: formData.phone,
             interested_in: formData.interested_in,
             message: formData.message,
-          }),
-        }
-      );
-
-      const result = await response.json();
-      if (response.ok) {
+          });
+      if (response.status === 200) {
         alert("Form submitted successfully!");
         setFormData({
           name: "",
@@ -85,9 +75,7 @@ export default function Contact() {
           message: "",
         });
         setChecked(false);
-      } else {
-        alert("Submission failed: " + result.error);
-      }
+      } 
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Something went wrong. Please try again later.");

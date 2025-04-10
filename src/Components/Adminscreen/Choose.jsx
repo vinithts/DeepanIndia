@@ -138,11 +138,11 @@ export default function Choose() {
       {tabIndex === 1 && (
         <TableContainer component={Paper} marginTop={"20px"}>
           <Table>
-            <TableHead>
+            <TableHead sx={{ backgroundColor: "#121472", color: "#fff" }}>
               <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell>Subtitle</TableCell>
-                <TableCell>Edit</TableCell>
+                <TableCell sx={{color: "#fff"}}>Title</TableCell>
+                <TableCell sx={{color: "#fff"}}>Subtitle</TableCell>
+                <TableCell sx={{color: "#fff"}}>Edit</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -223,7 +223,9 @@ export default function Choose() {
 }
 
 const AdminContentPart = styled.div`
-  padding: 30px 15px;
+   padding: 30px 30px;
+   margin-top: 30px;
+  background-color: #f3f3f3;
 `;
 const SubmitButton = styled.button`
   color: #fff;
