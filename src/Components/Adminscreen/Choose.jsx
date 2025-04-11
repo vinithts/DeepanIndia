@@ -36,10 +36,10 @@ export default function Choose() {
   const [openEditPopup, setOpenEditPopup] = useState(false);
 
   useEffect(() => {
-    getSliders();
+    getChoose();
   }, []);
 
-  const getSliders = async () => {
+  const getChoose = async () => {
     try {
       const response = await instance.get(`/landing/admin/WhyChoose`);
       if (response.status === 200) {
@@ -70,12 +70,26 @@ export default function Choose() {
         });
       }
 
-      getSliders();
+      getChoose();
       setSuccessOpen(true);
       handleClosePopup();
     } catch (error) {
       console.error("Error submitting slider:", error);
       setFailureOpen(true);
+    }
+  };
+
+const deleteChoose = async (id) => {
+    try {
+      const response = await instance.delete(`/landing/admin/WhyChoose/deletechoose/${id}`);
+      if (response.status === 200) {
+        getChoose();
+        setSuccessOpen(true);
+      } else {
+        setFailureOpen(true);
+      }
+    } catch (error) {
+      console.error("Error deleting slider:", error);
     }
   };
 
@@ -143,6 +157,7 @@ export default function Choose() {
                 <TableCell sx={{color: "#fff"}}>Title</TableCell>
                 <TableCell sx={{color: "#fff"}}>Subtitle</TableCell>
                 <TableCell sx={{color: "#fff"}}>Edit</TableCell>
+                <TableCell sx={{color: "#fff"}}>Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -152,6 +167,9 @@ export default function Choose() {
                   <TableCell>{slider.subTitle}</TableCell>
                   <TableCell>
                     <Button onClick={() => handleEdit(slider)}>Edit</Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button onClick={() => deleteChoose(slider.id)}>Delete</Button>
                   </TableCell>
                 </TableRow>
               ))}

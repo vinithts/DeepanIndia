@@ -4,6 +4,7 @@ import FailurePopup from "./Failurepop";
 import styled from "styled-components";
 import { TextField, Grid, Box, Button, Dialog } from "@mui/material";
 import { MdEdit } from "react-icons/md";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { instance } from "../../utils/api";
 import Card from "react-bootstrap/Card";
 
@@ -31,6 +32,22 @@ export default function Socialmedia() {
       }
     } catch (error) {
       console.error("Error fetching social data:", error.response || error);
+    }
+  };
+
+  const deleteSocialMedia = async (id) => {
+    try {
+      const response = await instance.delete(
+        `/landing/admin/CaseStudy/deletecasestudy/${id}`
+      );
+      if (response.status === 200) {
+        getSocialData();
+        setSuccessOpen(true);
+      } else {
+        setFailureOpen(true);
+      }
+    } catch (error) {
+      console.error("Error deleting slider:", error);
     }
   };
 
@@ -271,9 +288,22 @@ export default function Socialmedia() {
               >
                 <Card.Title>{card.subTitle}</Card.Title>
                 <Card.Text>{card.description}</Card.Text>
-                <Editbtn onClick={() => handleOpenEditModal(card.id)}>
-                  <MdEdit />
-                </Editbtn>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Editbtn1 onClick={() => deleteSocialMedia(card.id)}>
+                    <DeleteIcon />
+                  </Editbtn1>
+                  <Editbtn onClick={() => handleOpenEditModal(card.id)}>
+                    <MdEdit />
+                  </Editbtn>
+                </Box>
               </Card.Body>
             </Card>
           </Grid>
@@ -320,7 +350,7 @@ const Editbtn = styled.button`
   padding: 5px;
   color: #fff;
   border: none;
-  background: rgb(225, 35, 35);
+  background: rgb(106, 130, 238);
   cursor: pointer;
   position: absolute;
   right: 5px;
@@ -328,6 +358,20 @@ const Editbtn = styled.button`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: #013396;
+    background-color: #0f2042;
+  }
+`;
+
+const Editbtn1 = styled.button`
+  padding: 5px;
+  color: #fff;
+  border: none;
+  background: rgb(225, 35, 35);
+  transition: all 0.5s ease-in-out;
+  right: 5px;
+  bottom: 5px;
+
+  &:hover {
+    background-color: #e28924;
   }
 `;

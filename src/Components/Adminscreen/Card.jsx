@@ -8,6 +8,7 @@ import { instance, Url } from "../../utils/api";
 import Dialog from "@mui/material/Dialog";
 import Card from "react-bootstrap/Card";
 import { MdEdit } from "react-icons/md";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Cardss() {
   const [successOpen, setSuccessOpen] = useState(false);
@@ -56,6 +57,23 @@ export default function Cardss() {
       setFailureOpen(true);
     }
   };
+
+  const deleteBlog = async (id) => {
+    try {
+      const response = await instance.delete(
+        `/landing/admin/Blogs/deleteblog/${id}`
+      );
+      if (response.status === 200) {
+        getCardDetails();
+        setSuccessOpen(true);
+      } else {
+        setFailureOpen(true);
+      }
+    } catch (error) {
+      console.error("Error deleting slider:", error);
+    }
+  };
+
   const handleOpen = () => {
     setCardOpen(true);
     setFormData({
@@ -257,10 +275,24 @@ export default function Cardss() {
                 <Card.Text style={{ fontWeight: "900", fontSize: "18px" }}>
                   {e.description}
                 </Card.Text>
-                <Editbtn onClick={() => handleOpenEditModal(e.id)}>
-                  <MdEdit />
-                </Editbtn>
+                
               </Card.Body>
+              <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Editbtn1 onClick={() => deleteBlog(e.id)}>
+                    <DeleteIcon />
+                  </Editbtn1>
+                  <Editbtn onClick={() => handleOpenEditModal(e.id)}>
+                    <MdEdit />
+                  </Editbtn>
+                </Box>
             </Card>
           </Grid>
         ))}
@@ -311,13 +343,25 @@ const Editbtn = styled.button`
   padding: 5px;
   color: #fff;
   border: none;
-  background: rgb(225, 35, 35);
+  background: rgb(114, 128, 248);
   transition: all 0.5s ease-in-out;
-  position: absolute;
   right: 5px;
   bottom: 5px;
 
   &:hover {
-    background-color: #013396;
+    background-color: #0a1f4b;
+  }
+`;
+const Editbtn1 = styled.button`
+  padding: 5px;
+  color: #fff;
+  border: none;
+  background: rgb(225, 35, 35);
+  transition: all 0.5s ease-in-out;
+  right: 5px;
+  bottom: 5px;
+
+  &:hover {
+    background-color: #e28924;
   }
 `;
