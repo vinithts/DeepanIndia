@@ -36,10 +36,10 @@ export default function Wealth() {
   const [openEditPopup, setOpenEditPopup] = useState(false);
 
   useEffect(() => {
-    getSliders();
+    getWealth();
   }, []);
 
-  const getSliders = async () => {
+  const getWealth = async () => {
     try {
       const response = await instance.get(`/landing/admin/WealthList`);
       if (response.status === 200) {
@@ -79,13 +79,27 @@ export default function Wealth() {
         await instance.post(`/landing/admin/WealthList`, data);
       }
 
-      getSliders();
+      getWealth();
       setSuccessOpen(true);
       setImageFile(null);
       handleClosePopup();
     } catch (error) {
       console.error("Error submitting slider:", error);
       setFailureOpen(true);
+    }
+  };
+
+const deleteWealth = async (id) => {
+    try {
+      const response = await instance.delete(`/landing/admin/WealthList/deletewealth/${id}`);
+      if (response.status === 200) {
+        getWealth();
+        setSuccessOpen(true);
+      } else {
+        setFailureOpen(true);
+      }
+    } catch (error) {
+      console.error("Error deleting slider:", error);
     }
   };
 
@@ -149,6 +163,7 @@ export default function Wealth() {
               <TableRow>
                 <TableCell sx={{ color: "#fff" }}>Title</TableCell>
                 <TableCell sx={{ color: "#fff" }}>Actions</TableCell>
+                <TableCell sx={{ color: "#fff" }}>Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -158,7 +173,10 @@ export default function Wealth() {
                   <TableCell>
                     <Button onClick={() => handleEdit(slider)}>Edit</Button>
                   </TableCell>
-                </TableRow>
+                  <TableCell>
+                    <Button onClick={() => deleteWealth(slider.id)}>Delete</Button>
+                  </TableCell>
+                 </TableRow>
               ))}
             </TableBody>
           </Table>
