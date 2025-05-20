@@ -31,7 +31,7 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import { PiPlugsConnectedFill } from "react-icons/pi";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
-import Deepalogo from "../../assets/logos/logo-deepan1.png";
+import Deepalogo from "../../assets/Deepan-India Logo.jpg";
 import styled from "styled-components";
 import { useTheme, useMediaQuery } from "@mui/material";
 import Cookies from "universal-cookie";
@@ -102,7 +102,7 @@ const Admin = () => {
           alignItems: "center",
         }}
       >
-        <img src={Deepalogo} alt="Logo" />
+        <img src={Deepalogo} alt="Logo" width={"100%"} />
         {isMobile && (
           <IconButton onClick={handleDrawerToggle}>
             <CloseIcon sx={{ color: "#fff" }} />

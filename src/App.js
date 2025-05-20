@@ -23,6 +23,10 @@ import Choose from "./Components/Adminscreen/Choose";
 import Wealth from "./Components/Adminscreen/Wealth";
 import Story from "./Components/Adminscreen/Story";
 import CustomerData from "./Components/Adminscreen/CustomerData";
+import InvestmentSolution from "./Components/LandingScreen/WhatWeServe/InvestmentSolution";
+import RetirementPlanning from "./Components/LandingScreen/WhatWeServe/RetirementPlanning";
+import WealthManagement from "./Components/LandingScreen/WhatWeServe/WealthManagement";
+import EducationalResource from "./Components/LandingScreen/WhatWeServe/EducationalResource";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -50,6 +54,10 @@ export default function App() {
         />
         <Route path="/terms-of-service" element={<TermsOfServices />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/investment-solution" element={<InvestmentSolution />} />
+        <Route path="/retirement-planning" element={<RetirementPlanning />} />
+        <Route path="/wealth-management" element={<WealthManagement />} />
+        <Route path="/educational-resource" element={<EducationalResource />} />
         <Route path="/service/:serviceName" element={<ServiceDetails />} />
         <Route path="/details/:id" element={<CardDetails />} />
         <Route path="/adminlogin" element={<Loginform />} />

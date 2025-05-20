@@ -1,19 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { styled, keyframes } from "@mui/material/styles";
 import aboutImage from "../../../assets/about-us.jpg";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import fixed from "../../../assets/4454526-removebg-preview.png";
 
-const services = {
-  "mutual-funds": "Details about Mutual Funds.",
-  "fixed-deposits": "Details about Fixed Deposits.",
-  insurance: "Details about Insurance.",
-  loans: "Details about Loans.",
-  pms: "Details about PMS.",
-};
-
-// Animation for slide-in effect
 const slideIn = keyframes`
   from {
     opacity: 0;
@@ -24,6 +17,62 @@ const slideIn = keyframes`
     transform: translateY(0);
   }
 `;
+const cards = [
+  {
+    id: "overview",
+    title: "Mutual Funds",
+    icon: "💼",
+    color: "bg-blue-100",
+    border: "border-blue-500",
+    shadow: "shadow-blue-200",
+    benefits: [
+      "Diversification across sectors/assets",
+      "Professional fund management",
+      "Suitable for every risk profile",
+      "Liquidity and transparency",
+    ],
+  },
+  {
+    id: "sip",
+    title: "SIP (Systematic Investment Plan)",
+    icon: "📊",
+    color: "bg-green-100",
+    border: "border-green-500",
+    shadow: "shadow-green-200",
+    benefits: [
+      "Small, regular investments (monthly/weekly)",
+      "Builds discipline and long-term wealth",
+      "Rupee cost averaging benefit",
+      "Great for salaried individuals",
+    ],
+  },
+  {
+    id: "lumpsum",
+    title: "Lumpsum Investment",
+    icon: "💰",
+    color: "bg-purple-100",
+    border: "border-purple-500",
+    shadow: "shadow-purple-200",
+    benefits: [
+      "One-time bulk investment (when you have surplus)",
+      "Best suited during market dips or windfalls",
+      "Potential for higher returns in long-term bull phases",
+    ],
+  },
+  {
+    id: "swp",
+    title: "SWP (Systematic Withdrawal Plan)",
+    icon: "💸",
+    color: "bg-amber-100",
+    border: "border-amber-500",
+    shadow: "shadow-amber-200",
+    benefits: [
+      "Regular income from invested funds",
+      "Ideal for retirees or passive income seekers",
+      "Capital remains invested while income is generated",
+    ],
+  },
+];
 
 const ServiceDetails = () => {
   const { serviceName } = useParams();
@@ -34,532 +83,589 @@ const ServiceDetails = () => {
         {/* Slide Content */}
         <ContentBox>
           <Typography variant="h2" className="subTitle">
-            {serviceName.replace("-", " ").toUpperCase()}
+            {serviceName.replace(/-/g, " ").toUpperCase()}
           </Typography>
         </ContentBox>
       </MainBox>
       <Main2Box image={backImage}>
         <Content1Box>
-          {serviceName === "fixed-deposits" && (
-            <Typography
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              {/* {services[serviceName] || "Service details not found."} */}
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
+          {serviceName === "fixed-deposits-&-bond" && (
+            <QualificationBox>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Fixed Deposits (FDs)
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Explore Our Fixed Deposit Services
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Guaranteed Returns for Your Investments
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Fixed Deposits (FDs) are a reliable and straightforward
-                investment option. They provide a safe harbour for your
-                hard-earned money, offering guaranteed returns with minimal
-                risk. In this era of financial uncertainty, FDs stand as a
-                beacon of stability. FDs are financial instruments where you
-                deposit a lump sum with a financial institution for a
-                predetermined tenure. In return, you earn a fixed interest rate,
-                making it an ideal choice for risk-averse investors.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Types of Fixed Deposits:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Regular Fixed Deposits: These are standard FDs with flexible
-                tenure options. <br />
-                2.Tax-saving Fixed Deposits: These FDs offer tax benefits under
-                Section 80C of the Income Tax Act. <br />
-                3.Senior Citizen Fixed Deposits: Exclusively for senior
-                citizens, these FDs offer higher interest rates.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Features of Fixed Deposits:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Assured Returns: You'll earn a fixed interest rate, ensuring
-                the safety of your principal amount. <br />
-                2.Flexible Tenure Options: Choose a tenure that suits your
-                financial goals. <br />
-                3.Low to Zero Risk: FDs are one of the safest investment
-                options. <br />
-                4.High Liquidity: In case of an emergency, you can prematurely
-                withdraw your FD with a slight penalty. <br />
-                5.Loan against FD: You can avail of a loan against your FD,
-                helping you in times of need. <br />
-                6.Nomination Facility: Ensure a smooth transition of your
-                investment to your loved ones.
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Fixed Deposits are a secure investment option providing peace of
-                mind and guaranteed returns. Whether you're looking to save for
-                your future, plan for retirement, or save on taxes, FDs offer a
-                reliable way to grow your wealth. Don't miss out on this
-                opportunity
-              </p>
-            </Typography>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: "bold", color: "black" }}
+                    >
+                      <CheckCircleIcon
+                        sx={{ color: "#388e3c", mt: "4px", mr: 1 }}
+                      />{" "}
+                      Safe, stable returns.
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: "bold", color: "black" }}
+                    >
+                      <CheckCircleIcon
+                        sx={{ color: "#388e3c", mt: "4px", mr: 1 }}
+                      />{" "}
+                      Ideal for conservative investors.
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: "bold", color: "black" }}
+                    >
+                      <CheckCircleIcon
+                        sx={{ color: "#388e3c", mt: "4px", mr: 1 }}
+                      />{" "}
+                      Includes corporate FDs, government & tax-saving bonds.
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <img
+                      src={fixed}
+                      alt="img"
+                      style={{
+                        width: "100%",
+                        maxWidth: "400px",
+                        display: "block",
+                        "@media (max-width: 600px)": { display: "none" },
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </QualificationBox>
           )}
           {serviceName === "mutual-funds" && (
-            <Typography
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              {/* {services[serviceName] || "Service details not found."} */}
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Mutual Funds Simplified
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Invest Smart and Grow Your Wealth
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Investing in mutual funds is a smart option to grow your wealth.
-                Mutual funds pool money from various investors to buy a
-                diversified portfolio of stocks, bonds, and other securities.
-                This diversified approach reduces risk and allows you to benefit
-                from professional fund management.
-                <br />
-                Mutual funds offer an easy entry point into the world of
-                investing, making them an excellent choice for both beginners
-                and experienced investors. With mutual funds, your money is
-                managed by skilled fund managers who analyze the market and
-                select the best investment opportunities.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Types of Mutual Funds
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Equity Funds: These funds primarily invest in stocks and offer
-                the potential for high returns.
-                <br />
-                2.Debt Funds: Debt funds focus on bonds and fixed-income
-                securities, providing stability. benefits under Section 80C of
-                the Income Tax Act. <br />
-                3.Hybrid Funds: These combine equity and debt, striking a
-                balance between risk and return.
-                <br />
-                4.Index Funds: Designed to replicate a specific market index,
-                offering broad market exposure.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Key Features:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Professional Management: Skilled fund managers make investment
-                decisions. <br />
-                2.Diversification: Spread your risk across various assets.
-                <br />
-                3.Liquidity: Easily buy and sell fund units as per your needs.{" "}
-                <br />
-                4.Transparency: Regular updates on the fund's performance.
-                <br />
-                5.SIP Option: Invest a fixed amount regularly for financial
-                discipline.
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Mutual funds provide a flexible and convenient way to grow your
-                money over time. Start your investment journey today for a
-                brighter financial future.
-              </p>
-            </Typography>
+            <Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={6}>
+                  {/* Key Benefits */}
+                  <Box
+                    sx={{
+                      backgroundColor: "#f9fbfc",
+                      p: { xs: 2, md: 4 },
+                      borderRadius: 2,
+                      maxWidth: "900px",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                    }}
+                  >
+                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                      ✅ Key Benefits
+                    </Typography>
+                    <Box sx={{ pl: 2, color: "text.secondary" }}>
+                      <Typography>
+                        - Diversification across sectors/assets.
+                      </Typography>
+                      <Typography>- Professional fund management.</Typography>
+                      <Typography>
+                        - Suitable for every risk profile.
+                      </Typography>
+                      <Typography>- Liquidity and transparency.</Typography>
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6}>
+                  {/* SIP */}
+                  <Box
+                    sx={{
+                      backgroundColor: "#f9fbfc",
+                      p: { xs: 2, md: 4 },
+                      borderRadius: 2,
+                      maxWidth: "900px",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color="secondary"
+                      gutterBottom
+                    >
+                      📌 SIP (Systematic Investment Plan)
+                    </Typography>
+                    <Box sx={{ pl: 2, color: "text.secondary" }}>
+                      <Typography>
+                        - Small, regular investments (monthly/weekly).
+                      </Typography>
+                      <Typography>
+                        - Builds discipline and long-term wealth.
+                      </Typography>
+                      <Typography>- Rupee cost averaging benefit.</Typography>
+                      <Typography>- Great for salaried individuals.</Typography>
+                    </Box>
+                    <Box sx={{ mt: 2, maxWidth: 400 }}>
+                      <img
+                        src="/images/sip-vs-lumpsum.png"
+                        alt="SIP vs Lumpsum"
+                        style={{ width: "100%", borderRadius: 8 }}
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6}>
+                  {/* Lumpsum */}
+                  <Box
+                    sx={{
+                      backgroundColor: "#f9fbfc",
+                      p: { xs: 2, md: 4 },
+                      borderRadius: 2,
+                      maxWidth: "900px",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color="secondary"
+                      gutterBottom
+                    >
+                      📌 Lumpsum Investment
+                    </Typography>
+                    <Box sx={{ pl: 2, color: "text.secondary" }}>
+                      <Typography>
+                        - One-time bulk investment (as & when you get surplus).
+                      </Typography>
+                      <Typography>
+                        - Best suited during market dips or windfalls.
+                      </Typography>
+                      <Typography>
+                        - Potential for higher returns in long-term bull phases.
+                      </Typography>
+                    </Box>
+                    <Box sx={{ mt: 2, maxWidth: 300 }}>
+                      <img
+                        src="/images/lumpsum-coin-jar.png"
+                        alt="Lumpsum Investment"
+                        style={{ width: "100%", borderRadius: 8 }}
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6}>
+                  {/* SWP */}
+                  <Box
+                    sx={{
+                      backgroundColor: "#f9fbfc",
+                      p: { xs: 2, md: 4 },
+                      borderRadius: 2,
+                      maxWidth: "900px",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color="secondary"
+                      gutterBottom
+                    >
+                      📌 SWP (Systematic Withdrawal Plan)
+                    </Typography>
+                    <Box sx={{ pl: 2, color: "text.secondary" }}>
+                      <Typography>
+                        - Regular income from invested funds.
+                      </Typography>
+                      <Typography>
+                        - Ideal for retirees or passive income seekers.
+                      </Typography>
+                      <Typography>
+                        - Capital remains invested while income is generated.
+                      </Typography>
+                    </Box>
+                    <Box sx={{ mt: 2, maxWidth: 350 }}>
+                      <img
+                        src="/images/swp-cashflow.png"
+                        alt="SWP Cash Flow"
+                        style={{ width: "100%", borderRadius: 8 }}
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
           )}
-          {serviceName === "loans" && (
-            <Typography
+          {serviceName === "training-in-financial-markets" && (
+            <Box
               sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
               }}
             >
-              {/* {services[serviceName] || "Service details not found."} */}
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Unlock Liquidity
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Grow Your Wealth With Loan Against Securities
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                When you need quick access to funds without liquidating your
-                investments, a Loan Against Securities is the smart choice. It
-                allows you to leverage your holdings to meet your financial
-                goals without selling them.
-                <br />A Loan Against Securities is a secured loan that lets you
-                pledge your stocks, mutual funds, or other financial instruments
-                as collateral, ensuring you can continue to benefit from
-                potential market gains.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Types of Loan Against Securities:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Equity Shares: Pledge your equity shares for instant funds.
-                <br />
-                2.Mutual Funds: Use your mutual fund units as collateral.
-                <br />
-                3.Hybrid Funds: These combine equity and debt, striking a
-                balance between risk and return.
-                <br />
-                4.Index Funds: Designed to replicate a specific market index,
-                offering broad market exposure.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Features of Loan Against Securities:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Competitive interest rates <br />
-                2.Flexible repayment options
-                <br />
-                3.No need to liquidate your investments. <br />
-                4.Quick approval and disbursal
-                <br />
-                5.Continue to receive dividends and interest.
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Experience the power of your investments. Opt for a Loan Against
-                Securities and secure your financial future. Take the first step
-                today with a simple online application
-              </p>
-            </Typography>
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Wise Investor Course
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Beginner-friendly course covering savings, budgeting, mutual
+                  funds, and basic stock investing.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Perfect for: Students, Working Professionals, Housewives,
+                  Retirees
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/student-learning-finance.png"
+                    alt="Student at laptop learning finance"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Smart Trading for Wealth
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Intermediate-level program focusing on stock & index trading,
+                  technical analysis, charting tools, and risk management.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Includes hands-on learning with live market sessions.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/candlestick-chart.png"
+                    alt="Candlestick chart with annotations"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Pro Trader for Full-time Career */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Pro Trader for Full-time Career
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Advanced training in professional trading systems, trader
+                  psychology, capital management, and option strategies.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Covers derivatives, intraday/swing trading, and includes
+                  mentorship & placement support.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt="Dual-screen setup, trader analyzing markets"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
           )}
-          {serviceName === "pms" && (
-            <Typography
+          {serviceName === "alternate-investment-funds-(AIFS)" && (
+            <Box
               sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
               }}
             >
-              {/* {services[serviceName] || "Service details not found."} */}
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Expert Portfolio Management
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Maximize Your Wealth With Experts
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Our Portfolio Management Services are designed to grow and
-                protect your wealth. We offer a range of investment strategies
-                tailored for your financial goals. Portfolio Management Services
-                involve professionals making investment decisions on your
-                behalf, aiming to deliver optimal returns.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Types of Portfolio Management Services:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Discretionary Portfolio Management: Let our experts manage your
-                investments, making decisions based on your goals and risk
-                tolerance. Advisory Portfolio Management: We provide guidance,
-                but you have the final say in investment decisions.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Features of Portfolio Management Services:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Customized Investment Strategies: Tailored to your financial
-                objectives. <br />
-                2.Diversification: Spread your investments across various asset
-                classes.
-                <br />
-                3.Risk Management: Proactive risk assessment and mitigation.{" "}
-                <br />
-                4.Regular Monitoring: Continuous oversight and adjustments.
-                <br />
-                5.Transparency: Access to real-time performance reports.
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                With our Portfolio Management Services, your wealth is in
-                capable hands. Let us help you achieve your financial dreams.
-                Start investing today
-              </p>
-            </Typography>
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Structured funds for HNIs.
+                </Typography>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Diversification beyond traditional assets.
+                </Typography>
+              </Box>
+
+              {/* Pro Trader for Full-time Career */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Includes private equity, venture capital, hedge funds.
+                </Typography>
+
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt="Puzzle of different investment assets forming a portfolio."
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
           )}
-            {serviceName === "insurance" && (
-            <Typography
+          {serviceName === "insurances" && (
+            <Box
               sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
               }}
             >
-              {/* {services[serviceName] || "Service details not found."} */}
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Expert Isurance 
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Maximize Your Wealth With Experts
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Our Portfolio Management Services are designed to grow and
-                protect your wealth. We offer a range of investment strategies
-                tailored for your financial goals. Portfolio Management Services
-                involve professionals making investment decisions on your
-                behalf, aiming to deliver optimal returns.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Types of Portfolio Management Services:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Discretionary Portfolio Management: Let our experts manage your
-                investments, making decisions based on your goals and risk
-                tolerance. Advisory Portfolio Management: We provide guidance,
-                but you have the final say in investment decisions.
-              </p>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                Features of Portfolio Management Services:
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                1.Customized Investment Strategies: Tailored to your financial
-                objectives. <br />
-                2.Diversification: Spread your investments across various asset
-                classes.
-                <br />
-                3.Risk Management: Proactive risk assessment and mitigation.{" "}
-                <br />
-                4.Regular Monitoring: Continuous oversight and adjustments.
-                <br />
-                5.Transparency: Access to real-time performance reports.
-              </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#616161",
-                }}
-              >
-                With our Portfolio Management Services, your wealth is in
-                capable hands. Let us help you achieve your financial dreams.
-                Start investing today
-              </p>
-            </Typography>
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Life, Health, and Term plans.
+                </Typography>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Secures family’s future and medical emergencies.
+                </Typography>
+              </Box>
+
+              {/* Pro Trader for Full-time Career */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘Portfolio protection through smart cover allocation.
+                </Typography>
+              </Box>
+              <Box>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt=" Umbrella over family or heart/health symbol"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
+          )}
+          {serviceName === "advisory-services" && (
+            <Box
+              sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
+              }}
+            >
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Short & Medium-Term Stock Bags SIP & Lumpsum options from
+                  ₹5,000 to ₹50,000.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Actively managed with averaging & timely churning.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Ideal for beginners and progressive investors.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/student-learning-finance.png"
+                    alt="Stock bag with multiple logos and a SIP chart."
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Long-Term Stock Bags for HNIs Starting from ₹10,000 to any
+                  amount.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Blue-chip and growth picks.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Managed with periodic review and realignment.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/candlestick-chart.png"
+                    alt="Tree growing from coins with long-term tag."
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Pro Trader for Full-time Career */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Momentum Delivery-Based Trading (e.g., MTF) Short-term
+                  high-potential trades.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Uses margin/leveraged funds with strong risk management.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Regular alerts and exit strategies.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt=" Speedometer with “Momentum” label on dial"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Swing Trading – Index & Futures (With Hedges) 3–10 day
+                  trading strategies.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Includes hedge-based risk reduction.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Suits active traders seeking calculated exposure.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt="Swing graph with hedge overlay (put/call icons)"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
+          )}
+          {serviceName === "real-estate-funds" && (
+            <Box
+              sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
+              }}
+            >
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Pooled investment in commercial/residential property.
+                </Typography>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Offers rental income & capital appreciation.
+                </Typography>
+              </Box>
+
+              {/* Pro Trader for Full-time Career */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Lower ticket size compared to direct real estate.
+                </Typography>
+              </Box>
+              <Box>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt="City skyline with coin stacks or REIT tag"
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
+          )}
+          {serviceName === "algo-trading" && (
+            <Box
+              sx={{
+                backgroundColor: "#f9fbfc",
+                p: 4,
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+                color: "#424242",
+                maxWidth: "900px",
+              }}
+            >
+              {/* Wise Investor Course */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Stock SIP (Algo-Based) Automated SIP into hand-picked
+                  stocks.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Custom frequency & amount.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Eliminates emotional bias.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt=" Robot hand placing coins regularly into stocks."
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Smart Trading for Wealth */}
+              <Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">
+                  📘 Stock Bag for Lumpsum (Like Smallcase) Themed portfolios
+                  (value, growth, sectoral).
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  Lumpsum investment, algorithmically selected.
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  One-click rebalancing and exit.
+                </Typography>
+                <Box sx={{ mt: 2, maxWidth: 300 }}>
+                  <img
+                    src="/images/pro-trader-setup.png"
+                    alt="Portfolio dashboard UI with smallcase-style stock groups."
+                    style={{ width: "100%", borderRadius: 8 }}
+                  />
+                </Box>
+              </Box>
+            </Box>
           )}
         </Content1Box>
       </Main2Box>
@@ -586,18 +692,15 @@ const MainBox = styled(Box)`
 const Main2Box = styled(Box)`
   position: relative;
   width: 100%;
-  height: 700px;
   background-image: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-position: center;
   animation: ${slideIn} 0.8s ease-in-out;
-  background-size: cover;
-  background-position: center;
   background-attachment: fixed;
-  /* filter: blur(8px); */
-  /* -webkit-filter: blur(8px); */
+  padding: 60px 0;
+
   @media (max-width: 900px) {
-    height: 1600px;
+    padding: 40px 0;
   }
 `;
 const ContentBox = styled(Box)`
@@ -629,9 +732,20 @@ const ContentBox = styled(Box)`
   }
 `;
 const Content1Box = styled(Box)`
-  position: absolute;
+  /* position: absolute;
   color: white;
   text-align: left;
   z-index: 1;
-  padding: 50px;
+  padding: 50px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const QualificationBox = styled(Box)`
+  background-color: rgba(131, 129, 129, 0.1);
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
 `;

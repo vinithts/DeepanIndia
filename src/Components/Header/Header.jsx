@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import styled from "styled-components";
-import Deepalogo from "../../assets/logos/logo-deepan1.png";
+import Deepalogo from "../../assets/Deepan-India Logo.jpg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,8 +11,8 @@ import { FaAngleDown } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
-   const navigate = useNavigate();
-    const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [visibleDropdown, setVisibleDropdown] = useState(null);
   let hoverTimeout;
@@ -70,37 +70,58 @@ export default function Header() {
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <Nav.Link  onClick={() => handleNavigation("/#ourstory")} style={{ color: "white" }}>
+                  <Nav.Link
+                    onClick={() => handleNavigation("/#ourstory")}
+                    style={{ color: "white" }}
+                  >
                     Profile
                   </Nav.Link>
-                  <Nav.Link onClick={() => handleNavigation("/#About")} style={{ color: "white" }}>
+                  <Nav.Link
+                    onClick={() => handleNavigation("/#About")}
+                    style={{ color: "white" }}
+                  >
                     Who We Are
                   </Nav.Link>
+                  <Nav.Link
+                    onClick={() => handleNavigation("/")}
+                    style={{
+                      color: "white",
+                      backgroundColor: "#62adaa",
+                      padding: "8px 16px",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontWeight: "bold",
+                      animation: "blink 1s infinite",
+                      textAlign: "center",
+                      display: "inline-block",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Algo Trading
+                  </Nav.Link>
 
-                  {/* <NavDropdown title="Who We Are" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#about">Company history</NavDropdown.Item>
-                  <NavDropdown.Item href="#leadership">Mission and vision</NavDropdown.Item>
-                  <NavDropdown.Item href="#responsibility">Leadership team profiles</NavDropdown.Item>
-                </NavDropdown> */}
-                  <Nav.Link onClick={() => handleNavigation("/#partner")} style={{ color: "white" }}>
+                  <style>
+                    {`
+                 @keyframes blink {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.3; }
+                    100% { opacity: 1; }
+                                  }
+                  `}
+                  </style>
+
+                  <Nav.Link
+                    onClick={() => handleNavigation("/#partner")}
+                    style={{ color: "white" }}
+                  >
                     Partner with us
                   </Nav.Link>
-                  <Nav.Link onClick={() => handleNavigation("/#media")} style={{ color: "white" }}>
+                  <Nav.Link
+                    onClick={() => handleNavigation("/#media")}
+                    style={{ color: "white" }}
+                  >
                     News
                   </Nav.Link>
-                  {/* <NavDropdown title="Career" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#what-we-do">What We Do</NavDropdown.Item>
-                  <NavDropdown.Item href="#career">Career</NavDropdown.Item>
-                  <NavDropdown.Item href="#openings">Openings</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#contact">Contact</NavDropdown.Item>
-                </NavDropdown> */}
-                  {/* <Nav.Link as={Link} to="/admin">
-        Admin
-      </Nav.Link>
-      <Nav.Link as={Link} to="/slider">
-        SLIDER
-      </Nav.Link> */}
                   <Nav.Link onClick={() => handleNavigation("/#contact")}>
                     <Btntopheader>Contact</Btntopheader>
                   </Nav.Link>
@@ -114,7 +135,10 @@ export default function Header() {
       <HeaderBottom>
         <Container>
           <MyContainer>
-            <LogoContainer className="sample" onClick={() => handleNavigation("/")}>
+            <LogoContainer
+              className="sample"
+              onClick={() => handleNavigation("/")}
+            >
               <Logo src={Deepalogo} alt="Logo" />
             </LogoContainer>
             <Hamburger
@@ -135,10 +159,18 @@ export default function Header() {
                   What We Serve <FaAngleDown />
                   <Dropdown show={visibleDropdown === 0}>
                     <ul>
-                      <li>Investment Solutions</li>
-                      <li>Retirement Planning</li>
-                      <li>Wealth Management</li>
-                      <li>Educational Resources</li>
+                      <li onClick={() => navigate("/investment-solution")}>
+                        Investment Solutions
+                      </li>
+                      <li onClick={() => navigate("/retirement-planning")}>
+                        Retirement Planning
+                      </li>
+                      <li onClick={() => navigate("/wealth-management")}>
+                        Wealth Management
+                      </li>
+                      <li onClick={() => navigate("/educational-resource")}>
+                        Educational Resources
+                      </li>
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -149,29 +181,45 @@ export default function Header() {
                   What We Do <FaAngleDown />
                   <Dropdown show={visibleDropdown === 1}>
                     <ul>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li onClick={() => navigate("/service/mutual-funds")}>
                         Mutual Funds
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
-                        Training
+                      <li
+                        onClick={() =>
+                          navigate("/service/training-in-financial-markets")
+                        }
+                      >
+                        Training in Financial Markets
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li
+                        onClick={() => navigate("/service/advisory-services")}
+                      >
                         Advisory Services
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
-                        Algo Trading Solutions
-                      </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li
+                        onClick={() =>
+                          navigate("/service/alternate-investment-funds-(AIFS)")
+                        }
+                      >
                         Alternative Investment funds
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li
+                        onClick={() =>
+                          navigate("/service/fixed-deposits-&-bond")
+                        }
+                      >
                         Fixed Deposits & Bonds
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li
+                        onClick={() => navigate("/service/real-estate-funds")}
+                      >
                         Real Estate funds
                       </li>
-                      <li onClick={() => handleNavigation("/#offering")}>
+                      <li onClick={() => navigate("/service/insurances")}>
                         Insurances{" "}
+                      </li>
+                      <li onClick={() => navigate("/service/algo-trading")}>
+                        Algo Trading Solutions
                       </li>
                     </ul>
                   </Dropdown>
@@ -209,10 +257,18 @@ export default function Header() {
                   Calculator <FaAngleDown />
                   <Dropdown show={visibleDropdown === 2}>
                     <ul>
-                      <li onClick={() => handleNavigation("/#calculator")}>SIP Calculator</li>
-                      <li onClick={() => handleNavigation("/#calculator")}>Lumpsum</li>
-                      <li onClick={() => handleNavigation("/#calculator")}>SIP combined with Lumpsum</li>
-                      <li onClick={() => handleNavigation("/#calculator")}>SWP</li>
+                      <li onClick={() => handleNavigation("/#calculator")}>
+                        SIP Calculator
+                      </li>
+                      <li onClick={() => handleNavigation("/#calculator")}>
+                        Lumpsum
+                      </li>
+                      <li onClick={() => handleNavigation("/#calculator")}>
+                        SIP combined with Lumpsum
+                      </li>
+                      <li onClick={() => handleNavigation("/#calculator")}>
+                        SWP
+                      </li>
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -364,6 +420,7 @@ const LogoContainer = styled.div`
 const Logo = styled.img`
   // width: 40%;
   height: 100px;
+   cursor: pointer;
 `;
 
 const Hamburger = styled.div`
