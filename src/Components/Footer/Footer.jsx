@@ -50,10 +50,18 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Serve</Foottitle>
             <Links>
-              <li>Investment Solutions</li>
-              <li>Retirement Planning</li>
-              <li>Wealth Management</li>
-              <li>Educational Resources</li>
+              <li onClick={() => navigate("/investment-solution")}>
+                Investment Solutions
+              </li>
+              <li onClick={() => navigate("/retirement-planning")}>
+                Retirement Planning
+              </li>
+              <li onClick={() => navigate("/wealth-management")}>
+                Wealth Management
+              </li>
+              <li onClick={() => navigate("/educational-resource")}>
+                Educational Resources
+              </li>
             </Links>
           </Col>
           <Col md={2} lg={2} xl={2} xs={12}>
@@ -101,14 +109,38 @@ export default function Footer() {
                   </a>
                 </li>
               </ul> */}
-               <li onClick={() => handleNavigation("/#offering")}>Mutual Funds</li>
-              <li onClick={() => handleNavigation("/#offering")}>Training</li>
-              <li onClick={() => handleNavigation("/#offering")}>Advisory Services</li>
-              <li onClick={() => handleNavigation("/#offering")}>Algo Trading Solutions</li>
-              <li onClick={() => handleNavigation("/#offering")}>Alternative Investment Funds</li>
-              <li onClick={() => handleNavigation("/#offering")}>Fixed Deposits & Bonds</li>
-              <li onClick={() => handleNavigation("/#offering")}>Real Estate Funds</li>
-              <li onClick={() => handleNavigation("/#offering")}>Insurances</li>
+              <li onClick={() => navigate("/service/mutual-funds")}>
+                Mutual Funds
+              </li>
+              <li
+                onClick={() =>
+                  navigate("/service/training-in-financial-markets")
+                }
+              >
+                Training in Financial Markets
+              </li>
+              <li onClick={() => navigate("/service/advisory-services")}>
+                Advisory Services
+              </li>
+              <li
+                onClick={() =>
+                  navigate("/service/alternate-investment-funds-(AIFS)")
+                }
+              >
+                Alternative Investment Funds
+              </li>
+              <li onClick={() => navigate("/service/fixed-deposits-&-bond")}>
+                Fixed Deposits & Bonds
+              </li>
+              <li onClick={() => navigate("/service/real-estate-funds")}>
+                Real Estate Funds
+              </li>
+              <li onClick={() => navigate("/service/insurances")}>
+                Insurances
+              </li>
+              <li onClick={() => navigate("/service/algo-trading")}>
+                Algo Trading Solutions
+              </li>
             </Links>
           </Col>
           <Col md={2} lg={2} xl={2} xs={12}>
@@ -132,7 +164,9 @@ export default function Footer() {
             <Links>
               <li onClick={() => handleNavigation("/#calculator")}>Sip</li>
               <li onClick={() => handleNavigation("/#calculator")}>Lumpsum</li>
-              <li onClick={() => handleNavigation("/#calculator")}>Sip combined with lumbsum</li>
+              <li onClick={() => handleNavigation("/#calculator")}>
+                Sip combined with lumbsum
+              </li>
               <li onClick={() => handleNavigation("/#calculator")}>Swap</li>
             </Links>
           </Col>
@@ -141,7 +175,8 @@ export default function Footer() {
             <Links>
               {/* <Link to="/adminlogin">
                 <li>Admin LogIn</li> */}
-                No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021
+              No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan
+              Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021
               {/* </Link> */}
             </Links>
           </Col>
@@ -182,8 +217,12 @@ export default function Footer() {
               </li>
             </Bottomlink> */}
             <Bottomlink>
-            <li onClick={() => navigate("/privacy-policy")}>Privacy Policy</li>
-            <li onClick={() => navigate("/terms-of-service")}>Terms of Service</li>
+              <li onClick={() => navigate("/privacy-policy")}>
+                Privacy Policy
+              </li>
+              <li onClick={() => navigate("/terms-of-service")}>
+                Terms of Service
+              </li>
             </Bottomlink>
           </Col>
         </Row>

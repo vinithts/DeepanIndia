@@ -33,7 +33,7 @@ const slideIn = keyframes`
   }
 `;
 const OurStory = ({data}) => {
-  console.log(data, "ourstory");
+
   return (
     <MainBox id="ourstory" image={backImage}>
       <ContentBox>
