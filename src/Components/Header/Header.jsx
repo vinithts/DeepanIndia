@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import styled from "styled-components";
-import Deepalogo from "../../assets/Deepan-India Logo.jpg";
+import Deepalogo from "../../assets/Deepan-India_Logo-removebg-preview.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -70,23 +70,25 @@ export default function Header() {
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <Nav.Link
+                  <StyledNavLink
                     onClick={() => handleNavigation("/#ourstory")}
-                    style={{ color: "white" }}
                   >
                     Profile
-                  </Nav.Link>
-                  <Nav.Link
+                  </StyledNavLink>
+                  <StyledNavLink
                     onClick={() => handleNavigation("/#About")}
-                    style={{ color: "white" }}
                   >
                     Who We Are
-                  </Nav.Link>
+                  </StyledNavLink>
                   <Nav.Link
                     onClick={() => handleNavigation("/")}
                     style={{
                       color: "white",
-                      backgroundColor: "#62adaa",
+                      transition: "color 0.3s ease",
+                      "&:hover": {
+                        color: "#16155e",
+                      },
+                      backgroundColor: "#260b57",
                       padding: "8px 16px",
                       borderRadius: "4px",
                       cursor: "pointer",
@@ -110,18 +112,16 @@ export default function Header() {
                   `}
                   </style>
 
-                  <Nav.Link
+                  <StyledNavLink
                     onClick={() => handleNavigation("/#partner")}
-                    style={{ color: "white" }}
                   >
                     Partner with us
-                  </Nav.Link>
-                  <Nav.Link
+                  </StyledNavLink>
+                  <StyledNavLink
                     onClick={() => handleNavigation("/#media")}
-                    style={{ color: "white" }}
                   >
                     News
-                  </Nav.Link>
+                  </StyledNavLink>
                   <Nav.Link onClick={() => handleNavigation("/#contact")}>
                     <Btntopheader>Contact</Btntopheader>
                   </Nav.Link>
@@ -191,17 +191,13 @@ export default function Header() {
                       >
                         Training in Financial Markets
                       </li>
+                      <li onClick={() => navigate("/service/algo-trading")}>
+                        Algo Trading Solutions
+                      </li>
                       <li
                         onClick={() => navigate("/service/advisory-services")}
                       >
                         Advisory Services
-                      </li>
-                      <li
-                        onClick={() =>
-                          navigate("/service/alternate-investment-funds-(AIFS)")
-                        }
-                      >
-                        Alternative Investment funds
                       </li>
                       <li
                         onClick={() =>
@@ -211,15 +207,20 @@ export default function Header() {
                         Fixed Deposits & Bonds
                       </li>
                       <li
+                        onClick={() =>
+                          navigate("/service/alternate-investment-funds-(AIFS)")
+                        }
+                      >
+                        Alternative Investment funds
+                      </li>
+
+                      <li
                         onClick={() => navigate("/service/real-estate-funds")}
                       >
                         Real Estate funds
                       </li>
                       <li onClick={() => navigate("/service/insurances")}>
                         Insurances{" "}
-                      </li>
-                      <li onClick={() => navigate("/service/algo-trading")}>
-                        Algo Trading Solutions
                       </li>
                     </ul>
                   </Dropdown>
@@ -281,7 +282,7 @@ export default function Header() {
 
           <div className="mobile-menus">
             <Navbar expand="lg" className="my-topheader">
-              <Container>
+              <Container maxWidth={"xl"}>
                 <LogoContainer>
                   <Logo src={Deepalogo} alt="Logo" />
                 </LogoContainer>
@@ -365,7 +366,7 @@ const HeaderContainer = styled.section`
 const Topmenuitem = styled.div``;
 
 const Topheader = styled.div`
-  background-color: #23395d;
+  background-color: #f33d25;
   h6 {
     font-weight: 800;
     margin: 0;
@@ -383,7 +384,7 @@ const Topheader = styled.div`
 `;
 const Btntopheader = styled.button`
   padding: 6px 15px;
-  border: 1px solid #013396;
+  border: 1px solid #f33d25;
   background-color: #fff;
   font-size: 14px;
   &:hover {
@@ -396,8 +397,8 @@ const HeaderBottom = styled.header`
   position: sticky;
   top: 0;
   z-index: 500;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional for better visibility */
+  background-color: #f3f1f155;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   padding: 10px 0;
 `;
 
@@ -420,7 +421,7 @@ const LogoContainer = styled.div`
 const Logo = styled.img`
   // width: 40%;
   height: 100px;
-   cursor: pointer;
+  cursor: pointer;
 `;
 
 const Hamburger = styled.div`
@@ -453,6 +454,16 @@ const Hamburger = styled.div`
     }
   }
 `;
+
+const StyledNavLink = styled(Nav.Link)`
+  color: white !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #16155e !important;
+  }
+`;
+
 const NavBtn = styled.div`
   display: flex;
 
@@ -542,10 +553,10 @@ const Dropdown = styled.div`
       color: #000;
       background: #f0f0f5;
       transition: 0.3s;
-
+      border-bottom: 1px solid white;
       &:hover {
         background: #d5d5d9;
-        border-top: 5px solid #013396;
+        border-top: 5px solid #f33d25;
       }
     }
   }

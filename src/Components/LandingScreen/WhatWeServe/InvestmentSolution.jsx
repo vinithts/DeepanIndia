@@ -56,7 +56,7 @@ const InvestmentSolution = () => {
             },
           }}
         >
-          Investment Solution
+          Investment Solutions
         </Typography>
 
         <Typography

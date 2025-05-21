@@ -159,7 +159,7 @@ const ProductCard = styled(Box)`
     left: 0;
     width: 100%;
     height: 0;
-    background-color: rgb(5, 4, 59);
+    background-color: #f33d25;
     transition: height 0.4s ease-in-out;
     z-index: -1;
   }

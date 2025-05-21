@@ -47,7 +47,7 @@ const Choose = ({ data }) => {
                     textAlign: "center",
                   }}
                 >
-                  Why Choose <span style={{ color: "#95151A" }}>Deepan </span>{" "}
+                  Why Choose <span style={{ color: "#f33d25" }}>Deepan </span>{" "}
                   <span style={{ color: "#23395d" }}>India</span>
                 </Typography>
                 <Box>
@@ -90,8 +90,8 @@ const Choose = ({ data }) => {
                       <RoundBox>
                         <AdsClickIcon sx={{ fontSize: "24px" }} />
                       </RoundBox>
-                      <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
-                        <span style={{ color: "#23395d", fontWeight: 900 }}>
+                      <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>
+                        <span style={{ fontSize: "18px",color: "#23395d", fontWeight: 900 }}>
                           {item.title} –
                         </span>{" "}
                         {item.subTitle}
@@ -158,7 +158,7 @@ const BlockBox = styled(Box)`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  background: linear-gradient(to right, white, #23395d);
+  background: linear-gradient(to right,#f3f1f155 5%, #f33d25 90%);
   border-radius: 50px;
   padding: 6px 20px 6px 6px;
   margin-top: 20px;

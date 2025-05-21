@@ -60,7 +60,7 @@ export default function Tabscontent() {
             padding: "10px",
             textAlign: "center",
             fontWeight: 900,
-            color: "#23395d",
+             color: "rgb(5, 4, 59)",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -73,7 +73,7 @@ export default function Tabscontent() {
           sx={{
             textAlign: "center",
             fontWeight: 600,
-            color: "#23395d",
+            color: "#5e5f61",
             fontSize: "18px",
           }}
         >
