@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import mutualimage from "../../../assets/business-plan-concept-3d-rendering.jpg";
@@ -27,58 +27,55 @@ const services = [
     path: "/service/training-in-financial-markets",
   },
   {
-    title:
-      " Alternate Investment Funds (AIFs)",
-    image: Tree,
+    title: "Algo Trading",
+    image: Algo,
     icon: iconImage,
-    path: "/service/alternate-investment-funds-(AIFS)",
+    path: "/service/algo-trading",
   },
-   {
-    title:
-      " Advisory Services",
+  {
+    title: " Advisory Services",
     image: pmsimage,
     icon: iconImage,
     path: "/service/advisory-services",
   },
-   {
-    title:
-      "Real Estate Funds",
-    image: RealEstate,
-    icon: iconImage,
-    path: "/service/real-estate-funds",
-  },
-   {
+  {
     title: "Fixed Deposits & Bonds",
     image: fixedimage,
     icon: iconImage,
     path: "/service/fixed-deposits-&-bond",
   },
-    {
-    title:
-      "Insurances",
+  {
+    title: " Alternate Investment Funds (AIFs)",
+    image: Tree,
+    icon: iconImage,
+    path: "/service/alternate-investment-funds-(AIFS)",
+  },
+
+  {
+    title: "Real Estate Funds",
+    image: RealEstate,
+    icon: iconImage,
+    path: "/service/real-estate-funds",
+  },
+  {
+    title: "Insurances",
     image: insurnanceimage,
     icon: iconImage,
     path: "/service/insurances",
   },
-   {
-    title:
-      "Algo Trading",
-    image: Algo,
-    icon: iconImage,
-    path: "/service/algo-trading",
-  }
 ];
 
 const Services = () => {
   const navigate = useNavigate();
   return (
     <MainBox id="offering">
+      <ContentBox>
       <Typography
         sx={{
-          padding: "40px",
+          padding: "20px 40px 0px 40px",
           textAlign: "center",
           fontWeight: 900,
-          color: "white",
+          color: "rgb(5, 4, 59)",
           fontSize: "50px",
           "@media (max-width: 600px)": {
             fontSize: "26px",
@@ -87,7 +84,7 @@ const Services = () => {
       >
         Our Offerings
       </Typography>
-
+      <StyledDivider />
       <Grid container spacing={4} justifyContent="center" padding={"30px"}>
         {services.map((service, index) => (
           <Grid item xs={12} sm={6} md={2.4} key={index}>
@@ -100,7 +97,7 @@ const Services = () => {
                     color: "white",
                     fontWeight: "bold",
                     fontSize: "20px",
-                    ":hover": { color: "black" },
+                    ":hover": { color: "#f33d25" },
                   }}
                 >
                   {service.title}
@@ -110,6 +107,7 @@ const Services = () => {
           </Grid>
         ))}
       </Grid>
+      </ContentBox>
     </MainBox>
   );
 };
@@ -117,10 +115,44 @@ const Services = () => {
 export default Services;
 
 const MainBox = styled(Box)`
-  background-color: #23395d;
-  padding: 50px 0;
+  position: relative;
+  width: 100%;
+  height: auto;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+`;
+const ContentBox = styled(Box)`
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 50px;
+
+  @media (max-width: 900px) {
+    padding: 40px 20px;
+  }
 `;
 
+const StyledDivider = styled(Divider)`
+  background-color: white;
+  height: 6px;
+  /* margin: 50px 0; */
+  width: 200px;
+`;
 const ServiceCard = styled(Box)`
   display: flex;
   flex-direction: column;

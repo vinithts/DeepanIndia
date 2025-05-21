@@ -16,6 +16,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { PieChart, Pie, Cell, Legend } from "recharts";
+import styled from "styled-components";
 
 // Create a custom dark theme
 const darkTheme = createTheme({
@@ -90,10 +91,10 @@ const FinancialCalculatorsMUI = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box id="calculator"
-        sx={{
-          minHeight: "100vh",
-          bgcolor: "background.default",
+      <MainBox id="calculator"
+        style={{
+          // minHeight: "100vh",
+          // bgcolor: "background.default",
           py: { xs: 5, md: 10 },
           px: 2,
         }}
@@ -104,7 +105,8 @@ const FinancialCalculatorsMUI = () => {
             align="center"
             gutterBottom
             sx={{
-              color: "common.white",
+                color: "rgb(5, 4, 59)",
+                // padding:"40px",
               fontSize: { xs: "2.5rem", md: "3.5rem" },
               mb: 5,
             }}
@@ -151,7 +153,7 @@ const FinancialCalculatorsMUI = () => {
             <GoalCalculator />
           </TabPanel>
         </Container>
-      </Box>
+      </MainBox>
     </ThemeProvider>
   );
 };
@@ -922,3 +924,26 @@ const GoalCalculator = () => {
 };
 
 export default FinancialCalculatorsMUI;
+
+
+const MainBox = styled(Box)`
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding:40px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+`;

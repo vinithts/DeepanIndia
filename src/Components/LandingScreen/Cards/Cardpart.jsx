@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container, Typography, Divider, Box } from "@mui/material";
 import Cards from "./Cards";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -63,8 +63,10 @@ export default function Cardpart({ data = [] }) {
 
   return (
     <Maindiv id="card" image={backImage}>
-      <Container maxWidth="xl">
-        <Heading>Investor Relations</Heading>
+      <Container maxWidth="xl" >
+        <Heading>Popular Blogs</Heading>
+        {/* <StyledDivider/> */}
+        {/* <Box> */}
         <Slider {...settings}>
           {sliderData.map((e, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -72,6 +74,7 @@ export default function Cardpart({ data = [] }) {
             </Grid>
           ))}
         </Slider>
+        {/* </Box> */}
       </Container>
     </Maindiv>
   );
@@ -115,7 +118,14 @@ const Heading = styled(Typography).attrs({
     padding: "40px",
     textAlign: "center",
     fontWeight: 900,
-    color: "#23395d",
+    color: "rgb(5, 4, 59)",
     fontSize: { xs: "26px", sm: "50px" },
   },
 })``;
+
+const StyledDivider = styled(Divider)`
+  background-color: #bcbec2;
+  height: 8px;
+  margin: 50px 0;
+  width: 200px;
+`;

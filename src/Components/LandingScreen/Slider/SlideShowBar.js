@@ -3,9 +3,9 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 import styled, { keyframes } from "styled-components";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { Box, IconButton, Button, Typography } from "@mui/material";
-import backgroundImage from "../../../assets/close-up-coin-jar-with-tree.jpg";
-import pigImage from "../../../assets/hand-putting-coin-piggy-bank-growth-chart.jpg";
-import InvestImage from "../../../assets/slider-img2.jpg";
+import backgroundImage from "../../../assets/gold-coin-hourglass-time-is-money-concept.jpg";
+import pigImage from "../../../assets/tree-grows-coin-glass-jar-with-copy-space.jpg";
+import InvestImage from "../../../assets/human-hand-inserting-coin-piggybank.jpg";
 import { Url } from "../../../utils/api";
 import Link from "@mui/material/Link";
 
@@ -77,10 +77,15 @@ export const SlideShowBar = ({ data = [] }) => {
 
   return (
     <MainBox
-      image={isDataAvailable ? `${Url}${image}` : fallbackImages[currentIndex]}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
+      <ImageContainer>
+        <SlideImage 
+          src={isDataAvailable ? `${Url}${image}` : fallbackImages[currentIndex]} 
+          alt={title || "Slide image"}
+        />
+      </ImageContainer>
       <ContentBox>
         <Typography variant="h6" className="subTitle">
           {subTitle || "Your Trusted Wealth Creation Partner"}
@@ -99,7 +104,7 @@ export const SlideShowBar = ({ data = [] }) => {
         />
         <Link href="#contact" passHref>
           <Button
-            variant="contained"
+            variant="outlined"
             className="ctaButton"
             endIcon={<IoArrowForwardSharp className="arrowIcon" />}
           >
@@ -125,19 +130,48 @@ const slideIn = keyframes`
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
 `;
-
+const float = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
 const MainBox = styled(Box)`
   position: relative;
   width: 100%;
   height: 600px;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   animation: ${slideIn} 0.8s ease-in-out;
 
   @media (max-width: 900px) {
+    height: 400px;
+  }
+  
+  @media (max-width: 600px) {
     height: 300px;
   }
+`;
+
+const ImageContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
+
+const SlideImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
 `;
 
 const ContentBox = styled(Box)`
@@ -180,24 +214,30 @@ const ContentBox = styled(Box)`
     }
   }
 
-  .ctaButton {
-    padding: 10px 50px;
-    background-color: #95151a;
-    &:hover {
-      background-color: rgb(5, 4, 59);
-    }
-    text-transform: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    z-index: 1;
-    margin-top: 8px;
+  
+.ctaButton {
+  padding: 10px 50px;
+  border: 1px solid #f33d25;
+  text-transform: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 1;
+  margin-top: 8px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  animation: float 3s ease-in-out infinite;
 
-    @media (max-width: 600px) {
-      font-size: 12px;
-      padding: 6px 20px;
-    }
+  &:hover {
+    background-color: #f33d25;
+    color: white;
   }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 6px 20px;
+  }
+}
 
   .arrowIcon {
     color: white;
@@ -214,15 +254,17 @@ const NavControls = styled(Box)`
   transform: translateY(-50%);
   align-items: center;
   padding: 0 20px;
+  z-index: 2;
 
   .navButton {
     border-radius: 50px;
     padding: 16px;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(0, 0, 0, 0.4);
     }
   }
 

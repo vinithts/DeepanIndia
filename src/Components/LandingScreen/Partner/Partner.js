@@ -59,7 +59,7 @@ const Partner = () => {
             padding: "30px 0",
             textAlign: "center",
             fontWeight: 900,
-            color: "white",
+            color: "rgb(5, 4, 59)",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -164,7 +164,7 @@ const Partner = () => {
             padding: "30px 0 20px",
             textAlign: "center",
             fontWeight: 700,
-            color: "#fff",
+            color: "rgb(5, 4, 59)",
             fontSize: "32px",
             "@media (max-width: 600px)": {
               fontSize: "22px",
@@ -174,8 +174,17 @@ const Partner = () => {
         >
           Benefits of Our Affiliate Program:
         </Typography>
-
-        <Grid container spacing={3} sx={{ marginBottom: "40px" }}>
+        {/* <customBox> */}
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            marginBottom: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {benefits.map((benefit, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <BenefitCard>
@@ -200,6 +209,7 @@ const Partner = () => {
             </Grid>
           ))}
         </Grid>
+        {/* </customBox> */}
       </Container>
     </MainBox>
   );
@@ -208,28 +218,32 @@ const Partner = () => {
 export default Partner;
 
 const MainBox = styled(Box)`
-  background-color: #23395d;
-  background-image: linear-gradient(135deg, #23395d 0%, #162740 100%);
-  padding: 50px 0;
   position: relative;
-  overflow: hidden;
-
-  &:before {
+  width: 100%;
+  padding-bottom: 50px;
+  height: auto;
+  &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-      circle at 20% 150%,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0) 60%
-    );
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  > * {
+    position: relative;
+    z-index: 2;
   }
 `;
 
+const customBox = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const QualificationBox = styled(Box)`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -252,7 +266,7 @@ const QualificationBox = styled(Box)`
 // `;
 
 const HighlightSpan = styled.span`
-  color: #ffc107;
+  color: #f33d25;
   font-weight: 700;
   &:hover {
     color: red;
@@ -262,12 +276,12 @@ const HighlightSpan = styled.span`
 const BenefitCard = styled(Card)`
   height: 100%;
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transform 0.3s ease,
+  box-shadow 0.3s ease;
   text-align: center;
-  border: none;
+  border-top:10px solid #f33d25 ;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-
+  background-color: #f3f1f155;
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
@@ -275,7 +289,7 @@ const BenefitCard = styled(Card)`
 `;
 
 const IconContainer = styled(Box)`
-  color: #23395d;
+  color: #828285;
   margin-bottom: 15px;
   display: flex;
   justify-content: center;

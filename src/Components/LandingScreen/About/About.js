@@ -18,7 +18,7 @@ export const About = ({ data }) => {
                   sx={{
                     fontSize: { xs: "32px", md: "40px" },
                     fontWeight: 900,
-                    color: "white",
+                    color: "rgb(5, 4, 59)",
                     textAlign: "left",
                   }}
                 >
@@ -37,6 +37,8 @@ export const About = ({ data }) => {
                   {title ||
                     "Deepan India, we believe that wealth creation should be accessible to everyone. Our mission is to empower investors with financial education, strategic investment guidance, and risk management solutions"}
                 </Typography>
+                <br/>
+                <Box sx={{border:"1px solid #f33d25", padding:"10px"}}>
                 <Typography
                   sx={{
                     fontSize: { xs: "14px", md: "16px" },
@@ -48,6 +50,7 @@ export const About = ({ data }) => {
                   {description ||
                     "We offer personalized investment and trading strategies tailored for individual financial goals and risk appetites. Whether you're a beginner or an experienced investor, our technology-driven approach ensures transparent, data-backed and result-oriented wealth management solutions with lifetime support."}
                 </Typography>
+                </Box>
               </TextBox>
             </Grid>
 
@@ -69,7 +72,21 @@ const MainBox = styled(Box)`
   position: relative;
   width: 100%;
   height: auto;
-  background-color: #23395d;
+   &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0.5;
+    z-index: 1;
+  }
+    > * {
+    position: relative;
+    z-index: 2;
+  }
 `;
 
 const ContentBox = styled(Box)`

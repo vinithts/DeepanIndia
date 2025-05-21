@@ -46,12 +46,12 @@ const PricingCard = ({
       {features.length > visibleFeatures  && (
         <Box sx={{ display: "flex", justifyContent: "center",width:"100%"}}>
         <Button 
-        variant="contained" 
+        variant="outlined" 
         sx={{
             width:"100%",
-            backgroundColor: "#12114b",
-            border: "1px solid #fdfdff",
-            color: "white",
+            // backgroundColor: "#12114b",
+            border: "1px solid #f33d25",
+            color: "#828285",
             fontWeight: "bold",
             padding: "10px 20px",
             borderRadius: "10px",
@@ -59,8 +59,8 @@ const PricingCard = ({
             marginTop: "10px",
              textDecoration:"none",
             "&:hover": {
-              color: "#12114b",
-              backgroundColor: "white",
+              color: "white",
+              backgroundColor: "#f33d25",
             },
           }}
         onClick={() => setOpen(true)}>Read More</Button>
@@ -151,7 +151,7 @@ const Para = styled.p`
 `;
 
 const DivederBox = styled.div`
-  background-color: #cfcccc;
+  background-color: #f33d25;
   width: 100%;
   height: 4px;
 `;

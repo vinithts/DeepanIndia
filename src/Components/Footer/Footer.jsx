@@ -119,8 +119,14 @@ export default function Footer() {
               >
                 Training in Financial Markets
               </li>
+              <li onClick={() => navigate("/service/algo-trading")}>
+                Algo Trading Solutions
+              </li>
               <li onClick={() => navigate("/service/advisory-services")}>
                 Advisory Services
+              </li>
+              <li onClick={() => navigate("/service/fixed-deposits-&-bond")}>
+                Fixed Deposits & Bonds
               </li>
               <li
                 onClick={() =>
@@ -129,17 +135,12 @@ export default function Footer() {
               >
                 Alternative Investment Funds
               </li>
-              <li onClick={() => navigate("/service/fixed-deposits-&-bond")}>
-                Fixed Deposits & Bonds
-              </li>
+
               <li onClick={() => navigate("/service/real-estate-funds")}>
                 Real Estate Funds
               </li>
               <li onClick={() => navigate("/service/insurances")}>
                 Insurances
-              </li>
-              <li onClick={() => navigate("/service/algo-trading")}>
-                Algo Trading Solutions
               </li>
             </Links>
           </Col>
@@ -232,7 +233,8 @@ export default function Footer() {
 }
 const Footermain = styled.section`
   padding: 70px 0 30px 0;
-  background-color: #23395d;
+  border-top:10px solid #f33d25;
+  background-color: gray;
   @media screen and (max-width: 600px) {
     padding: 40px 0;
   }
@@ -255,7 +257,7 @@ const Links = styled.ul`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #e4160f;
+      color: #23395d;
     }
   }
 `;
@@ -271,7 +273,7 @@ const Bottomlink = styled.ul`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #da1818;
+      color: #23395d;
     }
   }
 `;

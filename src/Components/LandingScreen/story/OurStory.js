@@ -32,8 +32,7 @@ const slideIn = keyframes`
     transform: translateY(0);
   }
 `;
-const OurStory = ({data}) => {
-
+const OurStory = ({ data }) => {
   return (
     <MainBox id="ourstory" image={backImage}>
       <ContentBox>
@@ -47,37 +46,40 @@ const OurStory = ({data}) => {
         >
           Our Story
         </Typography>
+        <StyledDivider />
         <TileBox>
           <Grid container spacing={6}>
-          <Grid item xs={12} md={6} xl={6}>
-            <img
-              src={data && data[0]?.image ? `${Url}${data[0].image}` : aboutImage}
-              alt="About Us"
-              style={{ width: "100%", borderRadius: "5px" }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={6}>
-            <ParaBox>
-              <Customtypography2>
-                {data && data[0]?.title
-                  ? data[0].title
-                  : "Deepan India was founded under the leadership of Mr. Raja Yogi, a veteran with 24 years of experience in financial markets. Starting his career as a Floor Assistant at the Madras Stock Exchange, he later became an Authorized Partner for reputed NSE brokers. Over the years, he witnessed the challenges investors are facing lack of genuine trainers/advisors, high fees, and one-size-fits-all strategies."}
-              </Customtypography2>
-              <Divider
-                style={{
-                  backgroundColor: "#b0e8bf",
-                  width: "100%",
-                  margin: "20px 0",
-                }}
+            <Grid item xs={12} md={6} xl={6}>
+              <img
+                src={
+                  data && data[0]?.image ? `${Url}${data[0].image}` : aboutImage
+                }
+                alt="About Us"
+                style={{ width: "100%", borderRadius: "5px" }}
               />
-              <Customtypography2>
-                {data && data[0]?.subTitle
-                  ? data[0].subTitle
-                  : "Determined to bridge this gap, he established *Deepan India* with a vision to provide customized, performance-driven investment solutions that truly benefit clients. Today, he leads our research and trading desk, ensuring investors receive expert guidance, innovative strategies, and lifelong financial support."}
-              </Customtypography2>
-              <br />
-              <br />
-              <Button
+            </Grid>
+            <Grid item xs={12} md={6} xl={6}>
+              <ParaBox>
+                <Customtypography2>
+                  {data && data[0]?.title
+                    ? data[0].title
+                    : "Deepan India was founded under the leadership of Mr. Raja Yogi, a veteran with 24 years of experience in financial markets. Starting his career as a Floor Assistant at the Madras Stock Exchange, he later became an Authorized Partner for reputed NSE brokers. Over the years, he witnessed the challenges investors are facing lack of genuine trainers/advisors, high fees, and one-size-fits-all strategies."}
+                </Customtypography2>
+                <Divider
+                  style={{
+                    backgroundColor: "#f33d25",
+                    width: "100%",
+                    margin: "20px 0",
+                  }}
+                />
+                <Customtypography2>
+                  {data && data[0]?.subTitle
+                    ? data[0].subTitle
+                    : "Determined to bridge this gap, he established *Deepan India* with a vision to provide customized, performance-driven investment solutions that truly benefit clients. Today, he leads our research and trading desk, ensuring investors receive expert guidance, innovative strategies, and lifelong financial support."}
+                </Customtypography2>
+                <br />
+                <br />
+                {/* <Button
                 variant="outlined"
                 sx={{
                   borderColor: "rgb(65, 20, 9)",
@@ -90,9 +92,17 @@ const OurStory = ({data}) => {
                 }}
               >
                 Read More
-              </Button>
-            </ParaBox>
-          </Grid>
+              </Button> */}
+                <Divider
+                  style={{
+                    backgroundColor: "#f33d25",
+                    width: "100%",
+                    margin: "20px 0",
+                    height: "20px",
+                  }}
+                />
+              </ParaBox>
+            </Grid>
           </Grid>
         </TileBox>
       </ContentBox>
@@ -132,11 +142,14 @@ const ContentBox = styled(Box)`
 const Customtypography2 = styled(Typography)`
   && {
     text-align: left;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 400;
     color: black;
     transition: color 0.3s ease;
     animation: ${slideUp} 0.4s ease-out;
+  }
+  @media (max-width: 900px) {
+    font-size: 15px;
   }
 `;
 
@@ -153,3 +166,9 @@ const ParaBox = styled(Box)`
   align-items: flex-start;
 `;
 
+const StyledDivider = styled(Divider)`
+  background-color: #bcbec2;
+  height: 8px;
+  margin: 50px 0;
+  width: 200px;
+`;

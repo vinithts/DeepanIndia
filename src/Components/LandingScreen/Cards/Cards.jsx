@@ -74,7 +74,7 @@ export default function Cards({ e }) {
           size="small"
           sx={{
             textTransform: "none",
-            color: "rgba(58, 57, 59, 0.7)",
+            color: "#f33d25",
             fontWeight: 500,
             "&:hover": { color: "rgba(58, 57, 59, 1)" },
           }}
@@ -91,7 +91,7 @@ export default function Cards({ e }) {
 const StyledDivider = styled(Divider)`
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(50, 8, 99, 0.12);
+  border-color: gray;
   background-color: rgba(50, 8, 99, 0.12);
   width: 100%;
 `;
