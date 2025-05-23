@@ -90,7 +90,10 @@ export default function Contact() {
             padding: "30px",
             textAlign: "center",
             fontWeight: 900,
-            color: "#23395d",
+             background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
             fontSize: { xs: "26px", sm: "38px" },
           }}
         >
@@ -109,7 +112,7 @@ export default function Contact() {
               <Typography
                 sx={{
                   fontWeight: 900,
-                  color: "#630775",
+                  color: "#e31e1e",
                   fontSize: { xs: "20px", sm: "30px" },
                   mb: 2,
                 }}
@@ -117,17 +120,17 @@ export default function Contact() {
                 How to Get Started?
               </Typography>
               <Typography
-                sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
               >
                 Speak with our experts.
               </Typography>
               <Typography
-                sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
               >
                 Share your financial needs and expectations.
               </Typography>
               <Typography
-                sx={{ color: "#122f5c", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
               >
                 Get a personalized, detailed wealth creation plan designed just
                 for you.
@@ -240,12 +243,45 @@ export default function Contact() {
 
 // Styled components
 const MainDiv = styled.div`
-  padding: 80px 0;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-
+  /* padding: 80px 0; */
+  /* background-image: ${({ image }) => `url(${image})`}; */
+  /* background-size: cover; */
+  /* background-position: center; */
+  /* background-attachment: fixed; */
+  position: relative;
+  width: 100%;
+  padding-bottom: 50px;
+  height: auto;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgb(245, 227, 223) 0%,
+        rgba(250, 244, 244, 0.99) 50%,
+        rgb(255, 255, 255) 100%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(220, 20, 60, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(245, 61, 37, 0.1) 0%,
+        transparent 50%
+      );
+    /* opacity: 0.5; */
+    z-index: 1;
+  }
+  > * {
+    position: relative;
+    z-index: 2;
+  }
   @media (max-width: 600px) {
     padding: 40px 0;
   }

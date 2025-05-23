@@ -3,9 +3,9 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Url } from "../../../utils/api";
 import BlogImg from "../../../assets/business-plan-concept-3d-rendering.jpg";
-import solar1 from "../../../assets/solar1.png";
-import solar2 from "../../../assets/solar2.png";
-import solar3 from "../../../assets/solar3.png";
+import solar1 from "../../../assets/asset-allocation_15132089.png";
+import solar2 from "../../../assets/credit_12532412.png";
+import solar3 from "../../../assets/folder_10857385.png";
 
 const slideIn = keyframes`
   from {
@@ -20,12 +20,12 @@ const products = [
   {
     title:
       "Start Investing – SIP or lump sum in our recommended mutual funds, stocks, or risk-free bonds",
-    icon: solar1,
+    icon: solar2,
   },
   {
     title:
       "Short-Term Trading – Trade in qualified short-term equity delivery-based recommendations",
-    icon: solar2,
+    icon: solar1,
   },
   {
     title:
@@ -48,8 +48,8 @@ const Wealthy = ({ data }) => {
         <Grid item xs={12} md={3}>
           <TextBox>
             <Title>
-              How <span style={{ color: "#95151A" }}> Deepan</span>{" "}
-              <span style={{ color: "#23395d" }}>India</span> <br />
+              How <span style={{ color:"#f33d25",fontSize:"32px",fontWeight:900 }} > Deepan</span>{" "}
+              <span style={{ color: "#23395d",fontSize:"32px",fontWeight:900 }}>India</span> <br />
               Helps You Build Wealth?
             </Title>
             <br />
@@ -100,8 +100,8 @@ const MainBox = styled(Box)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0.5;
+    background: rgba(8, 8, 8, 0.7);
+    opacity: 0.2;
     z-index: 1;
   }
 
@@ -126,7 +126,7 @@ const TextBox = styled(Box)`
 const Title = styled(Typography)`
   && {
     font-size: 28px;
-    color: white;
+    color: #c9062d ;
     font-weight: bold;
   }
 `;
@@ -145,12 +145,13 @@ const ProductCard = styled(Box)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 0.5px solid rgba(185, 185, 184, 0.349);
+  border: 0.5px solid rgba(255, 255, 255, 0.9);
   padding: 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
   transition: 0.3s;
+  background: rgba(8, 8, 8, 0.7);
 
   &::before {
     content: "";
@@ -159,11 +160,12 @@ const ProductCard = styled(Box)`
     left: 0;
     width: 100%;
     height: 0;
-    background-color: #f33d25;
+    background-color:rgb(255, 30, 0);
+    color:white;
     transition: height 0.4s ease-in-out;
     z-index: -1;
   }
-
+ 
   &:hover::before {
     height: 100%;
   }
@@ -186,13 +188,16 @@ const IconWrapper = styled.img`
 const ProductTitle = styled(Typography)`
   && {
     font-size: 20px;
-    color: white;
+    color: #fa0234;
     font-weight: bold;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Limits to 4 lines */
+    -webkit-line-clamp: 4; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  ${ProductCard}:hover & {
+   color:white;
   }
 `;
 

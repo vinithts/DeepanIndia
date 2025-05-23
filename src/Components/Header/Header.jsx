@@ -9,6 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaSearch } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Divider } from "@mui/material";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -29,24 +30,20 @@ export default function Header() {
   };
   const handleNavigation = (href) => {
     if (href.startsWith("#")) {
-      // Handle anchor links on the same page
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else if (href.startsWith("/#")) {
-      // Handle anchor links from other pages
       const currentPath = location.pathname;
 
       if (currentPath === "/") {
-        // Already on home page, just scroll to the section
         const anchorId = href.substring(2);
         const element = document.querySelector(`#${anchorId}`);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
       } else {
-        // Navigate to home page and then scroll to section
         navigate("/");
         setTimeout(() => {
           const anchorId = href.substring(2);
@@ -57,7 +54,6 @@ export default function Header() {
         }, 100);
       }
     } else {
-      // Handle regular page navigation
       navigate(href);
     }
   };
@@ -66,18 +62,15 @@ export default function Header() {
       <Topheader>
         <Navbar expand="lg" className="my-topheader">
           <Container>
-            <h6 style={{ color: "white" }}>#Deepan India</h6>
+            <h6 style={{ color: "#201b69" }}>#
+              <span style={{ color: "#f33d25" }}>Deepan </span>India</h6>
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <StyledNavLink
-                    onClick={() => handleNavigation("/#ourstory")}
-                  >
+                  <StyledNavLink onClick={() => handleNavigation("/#ourstory")}>
                     Profile
                   </StyledNavLink>
-                  <StyledNavLink
-                    onClick={() => handleNavigation("/#About")}
-                  >
+                  <StyledNavLink onClick={() => handleNavigation("/#About")}>
                     Who We Are
                   </StyledNavLink>
                   <Nav.Link
@@ -112,14 +105,10 @@ export default function Header() {
                   `}
                   </style>
 
-                  <StyledNavLink
-                    onClick={() => handleNavigation("/#partner")}
-                  >
+                  <StyledNavLink onClick={() => handleNavigation("/#partner")}>
                     Partner with us
                   </StyledNavLink>
-                  <StyledNavLink
-                    onClick={() => handleNavigation("/#media")}
-                  >
+                  <StyledNavLink onClick={() => handleNavigation("/#media")}>
                     News
                   </StyledNavLink>
                   <Nav.Link onClick={() => handleNavigation("/#contact")}>
@@ -131,7 +120,7 @@ export default function Header() {
           </Container>
         </Navbar>
       </Topheader>
-
+     <StyledDivider/>
       <HeaderBottom>
         <Container>
           <MyContainer>
@@ -245,9 +234,9 @@ export default function Header() {
                   What We Think <FaAngleDown />
                   <Dropdown show={visibleDropdown === 3}>
                     <ul>
-                      <li>Blogs</li>
-                      <li>Videos</li>
-                      <li>Reports</li>
+                      <li onClick={() => handleNavigation("/#card")}>Blogs</li>
+                      <li onClick={() => handleNavigation("/#media")}>Videos</li>
+                      <li onClick={() => handleNavigation("/#media")}>Reports</li>
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -290,48 +279,128 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="">
                     <NavDropdown title="Who We Are" id="basic-nav-dropdown">
-                      <NavDropdown.Item>Investment Solutions</NavDropdown.Item>
-                      <NavDropdown.Item>Retirement Planning</NavDropdown.Item>
-                      <NavDropdown.Item>Wealth Management</NavDropdown.Item>
-                      <NavDropdown.Item>Educational Resources</NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/investment-solution")}
+                      >
+                        Investment Solutions
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/retirement-planning")}
+                      >
+                        Retirement Planning
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/wealth-management")}
+                      >
+                        Wealth Management
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/educational-resource")}
+                      >
+                        Educational Resources
+                      </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="What We Do" id="basic-nav-dropdown">
-                      <NavDropdown.Item>Mutual Funds</NavDropdown.Item>
-                      <NavDropdown.Item>
-                        NavDropdown.Itemfe Insurance
+                      <NavDropdown.Item
+                        onClick={() => navigate("/service/mutual-funds")}
+                      >
+                        Mutual Funds
                       </NavDropdown.Item>
-                      <NavDropdown.Item>REITs</NavDropdown.Item>
-                      <NavDropdown.Item>Estate Planning</NavDropdown.Item>
-                      <NavDropdown.Item>
-                        Tax Optimization Strategies
+                      <NavDropdown.Item
+                        onClick={() =>
+                          navigate("/service/training-in-financial-markets")
+                        }
+                      >
+                        Training in Financial Markets
                       </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        High-Net-Worth Advisory
+                      <NavDropdown.Item
+                        onClick={() => navigate("/service/algo-trading")}
+                      >
+                        Algo Trading
                       </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        IRA/Roth IRA Management
+                      <NavDropdown.Item
+                        onClick={() => navigate("/service/advisory-services")}
+                      >
+                        Advisory Services
                       </NavDropdown.Item>
-                      <NavDropdown.Item>Business Insurance</NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() =>
+                          navigate("/service/fixed-deposits-&-bond")
+                        }
+                      >
+                        Fixed Deposits & Bonds
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() =>
+                          navigate("/service/alternate-investment-funds-(AIFS)")
+                        }
+                      >
+                        Alternative Investment funds
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/service/real-estate-funds")}
+                      >
+                        Real Estate funds
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => navigate("/service/insurances")}
+                      >
+                        Insurances
+                      </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="How We Deliver" id="basic-nav-dropdown">
-                      <NavDropdown.Item>Investment Solutions</NavDropdown.Item>
-                      <NavDropdown.Item>Retirement Planning</NavDropdown.Item>
-                      <NavDropdown.Item>Wealth Management</NavDropdown.Item>
-                      <NavDropdown.Item>Educational Resources</NavDropdown.Item>
-                    </NavDropdown>
-                    <NavDropdown title="Who We Are" id="basic-nav-dropdown">
                       <NavDropdown.Item>Consulting</NavDropdown.Item>
-                      <NavDropdown.Item>Centers of Excellence</NavDropdown.Item>
                       <NavDropdown.Item>Market Analysis</NavDropdown.Item>
-                      <NavDropdown.Item>Market Updates</NavDropdown.Item>
+                      <NavDropdown.Item>arket Updates</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="What We Think" id="basic-nav-dropdown">
-                      <NavDropdown.Item>Blogs</NavDropdown.Item>
-                      <NavDropdown.Item>Videos</NavDropdown.Item>
-                      <NavDropdown.Item>Reports</NavDropdown.Item>
-                      <NavDropdown.Item>Direct contact form</NavDropdown.Item>
-                      <NavDropdown.Item>Schedule consultation</NavDropdown.Item>
+                      <NavDropdown.Item onClick={() => handleNavigation("/#card")}>Blogs</NavDropdown.Item>
+                      <NavDropdown.Item onClick={() => handleNavigation("/#media")}>Videos</NavDropdown.Item>
+                      <NavDropdown.Item onClick={() => handleNavigation("/#media")}>Reports</NavDropdown.Item>
                     </NavDropdown>
+                    <NavDropdown title="Calculator" id="basic-nav-dropdown">
+                      <NavDropdown.Item
+                        onClick={() => handleNavigation("/#calculator")}
+                      >
+                        SIP Calculator
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => handleNavigation("/#calculator")}
+                      >
+                        Lumpsum
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => handleNavigation("/#calculator")}
+                      >
+                        SIP combined with Lumpsum
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => handleNavigation("/#calculator")}
+                      >
+                        SWP
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link
+                      onClick={() => handleNavigation("/")}
+                      style={{
+                        color: "white",
+                        transition: "color 0.3s ease",
+                        "&:hover": {
+                          color: "#16155e",
+                        },
+                        backgroundColor: "#260b57",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        animation: "blink 1s infinite",
+                        textAlign: "center",
+                        display: "inline-block",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Algo Trading
+                    </Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </Container>
@@ -366,7 +435,8 @@ const HeaderContainer = styled.section`
 const Topmenuitem = styled.div``;
 
 const Topheader = styled.div`
-  background-color: #f33d25;
+  background-color: #f3f1f155;
+  border-bottom: #16151553;
   h6 {
     font-weight: 800;
     margin: 0;
@@ -384,12 +454,15 @@ const Topheader = styled.div`
 `;
 const Btntopheader = styled.button`
   padding: 6px 15px;
+  border-radius:5px;
   border: 1px solid #f33d25;
   background-color: #fff;
+  color:#f33d25;
   font-size: 14px;
   &:hover {
     background-color: #33197a;
     color: #fff;
+     border: 1px solid #33197a;
   }
 `;
 
@@ -398,7 +471,7 @@ const HeaderBottom = styled.header`
   top: 0;
   z-index: 500;
   background-color: #f3f1f155;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
 `;
 
@@ -456,7 +529,7 @@ const Hamburger = styled.div`
 `;
 
 const StyledNavLink = styled(Nav.Link)`
-  color: white !important;
+  color: #f33d25 !important;
   transition: color 0.3s ease;
 
   &:hover {
@@ -504,15 +577,16 @@ const NavLinks = styled.ul`
 `;
 const NavLink = styled.li`
   position: relative; /* This ensures the dropdown aligns to this parent */
-  color: #000;
+  color: #f33d25;
   padding: 0 0.8rem;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 16px;
   transition: 0.5s;
   cursor: pointer;
-
+  padding: 10px;
   &:hover {
     transform: scale(1);
+    background-color: #d3d0d0;  
   }
 
   @media screen and (max-width: 600px) {
@@ -550,7 +624,7 @@ const Dropdown = styled.div`
     li {
       display: block;
       padding: 0.5rem 1rem;
-      color: #000;
+      color: #f33d25;
       background: #f0f0f5;
       transition: 0.3s;
       border-bottom: 1px solid white;
@@ -568,4 +642,10 @@ const Dropdown = styled.div`
 
     display: none;
   }
+`;
+const StyledDivider = styled(Divider)`
+  background-color: #e9e3e3;
+  /* height: 6px; */
+  /* margin: 50px 0; */
+  width: 100%;
 `;

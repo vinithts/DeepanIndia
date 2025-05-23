@@ -10,6 +10,7 @@ import {
   ListItemText,
   Button,
   Container,
+  Divider,
 } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
@@ -19,7 +20,7 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import SchoolIcon from "@mui/icons-material/School";
 import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import Handshake from "../../../assets/30758-removebg-preview-removebg-preview.png";
+import Handshake from "../../../assets/5454062-removebg-preview.png";
 
 const Partner = () => {
   const benefits = [
@@ -59,7 +60,10 @@ const Partner = () => {
             padding: "30px 0",
             textAlign: "center",
             fontWeight: 900,
-            color: "rgb(5, 4, 59)",
+            background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -73,10 +77,10 @@ const Partner = () => {
         <Typography
           sx={{
             textAlign: "center",
-            color: "#fff",
+            color: "#f20707",
             fontSize: "22px",
             marginBottom: "40px",
-            fontWeight: 300,
+            fontWeight: 600,
             "@media (max-width: 600px)": {
               fontSize: "18px",
               marginBottom: "30px",
@@ -84,7 +88,7 @@ const Partner = () => {
           }}
         >
           Are you looking for an{" "}
-          <HighlightSpan>independent income opportunities</HighlightSpan> in the
+          <HighlightSpan>Independent income opportunities</HighlightSpan> in the
           financial sector?
         </Typography>
         <QualificationBox>
@@ -96,8 +100,9 @@ const Partner = () => {
               justifyContent: "center",
             }}
           >
-            <Grid container spacing={6}>
+            <Grid container spacing={12}>
               <Grid item xs={12} sm={6} md={6}>
+                <Box sx={{backgroundColor:"#f5ebeb", padding:"20px",marginBottom:"20px"}}>
                 <List>
                   {[
                     "Do you have a strong network?",
@@ -107,14 +112,15 @@ const Partner = () => {
                   ].map((item, index) => (
                     <ListItem key={index} sx={{ paddingY: "8px" }}>
                       <ListItemIcon sx={{ minWidth: "40px" }}>
-                        <CheckCircleIcon sx={{ color: "#4caf50" }} />
+                        <CheckCircleIcon sx={{ color: "#9e0808" }} />
                       </ListItemIcon>
                       <ListItemText
                         primary={item}
                         primaryTypographyProps={{
                           sx: {
-                            color: "#fff",
+                            color: "#f00202",
                             fontSize: "18px",
+                            fontWeight: 600,
                             "@media (max-width: 600px)": {
                               fontSize: "16px",
                             },
@@ -124,6 +130,7 @@ const Partner = () => {
                     </ListItem>
                   ))}
                 </List>
+                </Box>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
                 <img
@@ -139,12 +146,13 @@ const Partner = () => {
               </Grid>
             </Grid>
           </Box>
+          <StyledDivider/>
           <Typography
             sx={{
               textAlign: "center",
               fontSize: "28px",
               fontWeight: "900",
-              color: "white",
+              color: "#520909",
               marginTop: "20px",
               padding: "10px",
               "@media (max-width: 600px)": {
@@ -154,7 +162,17 @@ const Partner = () => {
           >
             If so,{" "}
             <a href="#contact">
-              <HighlightSpan>partner with Deepan India today!</HighlightSpan>
+              <HighlightSpan>
+                partner with
+                <span style={{ fontWeight:900, color: "#f20707" }}>
+                  {" "}
+                  Deepan
+                </span>{" "}
+                <span style={{ fontWeight:900, color: "rgb(5, 4, 59)" }}>
+                  India
+                </span>{" "}
+                today!
+              </HighlightSpan>
             </a>
           </Typography>
         </QualificationBox>
@@ -164,7 +182,7 @@ const Partner = () => {
             padding: "30px 0 20px",
             textAlign: "center",
             fontWeight: 700,
-            color: "rgb(5, 4, 59)",
+            color: "#991717",
             fontSize: "32px",
             "@media (max-width: 600px)": {
               fontSize: "22px",
@@ -188,7 +206,7 @@ const Partner = () => {
           {benefits.map((benefit, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <BenefitCard>
-                <CardContent>
+                <CardContent style={{backgroundColor:"#fcfcfc"}}>
                   <IconContainer>{benefit.icon}</IconContainer>
                   <Typography
                     variant="h6"
@@ -196,12 +214,12 @@ const Partner = () => {
                     sx={{
                       fontWeight: 700,
                       marginBottom: "8px",
-                      color: "#23395d",
+                      color: "#d60b0b",
                     }}
                   >
                     {benefit.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" sx={{color:"#9c5959"}}>
                     {benefit.description}
                   </Typography>
                 </CardContent>
@@ -229,8 +247,23 @@ const MainBox = styled(Box)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0.5;
+    background: linear-gradient(
+        135deg,
+        rgb(245, 227, 223) 0%,
+        rgba(250, 244, 244, 0.99) 50%,
+        rgb(255, 255, 255) 100%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(220, 20, 60, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(245, 61, 37, 0.1) 0%,
+        transparent 50%
+      );
+    /* opacity: 0.5; */
     z-index: 1;
   }
   > * {
@@ -239,75 +272,82 @@ const MainBox = styled(Box)`
   }
 `;
 
-const customBox = styled(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 const QualificationBox = styled(Box)`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  padding: 40px;
+  /* border: 1px solid red; */
+  padding: 40px 40px 20px 40px;
   margin-bottom: 40px;
   backdrop-filter: blur(10px);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 `;
 
-// const CtaText = styled(Typography)`
-//   text-align: center;
-//   font-size: 28px;
-//   font-weight: 900;
-//   color: white;
-//   margin-top: 20px;
-//   padding: 10px;
-
-//   @media (max-width: 600px) {
-//     font-size: 18px;
-//   }
-// `;
-
 const HighlightSpan = styled.span`
-  color: #f33d25;
+  color: #520909;
   font-weight: 700;
+  font-size: 24px;
   &:hover {
     color: red;
   }
 `;
 
-const BenefitCard = styled(Card)`
-  height: 100%;
-  transition:
-  transform 0.3s ease,
-  box-shadow 0.3s ease;
+const BenefitCard = styled(Box)`
+  position: relative;
+  width: 100%;
+  height: 250px;
+  padding: 20px;
+  color: #000;
   text-align: center;
-  border-top:10px solid #f33d25 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(
+    50% 0%,
+    93% 25%,
+    93% 75%,
+    50% 100%,
+    7% 75%,
+    7% 25%
+  );
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  background-color: #f3f1f155;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
   }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: inherit;
+    background: #fcfcfc;
+    border: 14px solid red;
+    z-index: -1;
+  }
 `;
 
+
 const IconContainer = styled(Box)`
-  color: #828285;
+  color: #8c0d0d;
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const StyledButton = styled(Button)`
-  background-color: #ffc107;
-  color: #23395d;
-  padding: 12px 40px;
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 50px;
-  text-transform: none;
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
-
-  &:hover {
-    background-color: #ffca28;
-    box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
-  }
+const StyledDivider = styled(Divider)`
+  background-color: gray;
+  height: 2px;
+  /* margin: 20px; */
+  width: 100%;
 `;

@@ -63,7 +63,22 @@ export default function Cardpart({ data = [] }) {
 
   return (
     <Maindiv id="card" image={backImage}>
-      <Container maxWidth="xl" >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `
+                    radial-gradient(circle at 20% 50%, #f33d2510 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, #f3f1f120 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, #f33d2508 0%, transparent 50%)
+                  `,
+          zIndex: 0,
+        }}
+      />
+      <Container maxWidth="xl">
         <Heading>Popular Blogs</Heading>
         {/* <StyledDivider/> */}
         {/* <Box> */}
@@ -83,10 +98,13 @@ export default function Cardpart({ data = [] }) {
 // Styled Components
 const Maindiv = styled.section`
   padding: 50px 0;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  /* background-image: ${({ image }) => `url(${image})`}; */
+  background: linear-gradient(135deg, #f3f1f155 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+  /* background-size: cover; */
+  /* background-position: center; */
+  /* background-attachment: fixed; */
 
   @media screen and (max-width: 600px) {
     padding: 40px 0;
@@ -118,7 +136,10 @@ const Heading = styled(Typography).attrs({
     padding: "40px",
     textAlign: "center",
     fontWeight: 900,
-    color: "rgb(5, 4, 59)",
+    background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
     fontSize: { xs: "26px", sm: "50px" },
   },
 })``;

@@ -1,187 +1,395 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Container,
+  useTheme,
+  useMediaQuery,
+  Fade,
+  Slide,
+  Chip,
+} from "@mui/material";
 import { Grid } from "@mui/system";
-import { styled, keyframes } from "styled-components";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import SecurityIcon from "@mui/icons-material/Security";
+import SpeedIcon from "@mui/icons-material/Speed";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
-// import back1Image from "../../../assets/home-second-block-bg-removebg-preview.png";
 import back1Image from "../../../assets/5216607-removebg-preview.png";
 
-const slideIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
 const Choose = ({ data }) => {
-  console.log(data, "choose");
-  return (
-    <MainBox image={backImage}>
-      <ContentBox>
-        <InsideBox>
-          <Grid container spacing={6}>
-            {/* Image Column (Hidden on md and smaller screens) */}
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={2}
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              <img src={back1Image} alt="img" width={"100%"} />
-            </Grid>
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
 
-            {/* Text Column */}
-            <Grid item xs={12} sm={12} md={10}>
-              <LeftBox>
-                <Typography
+  const iconMap = {
+    0: TrendingUpIcon,
+    1: MonetizationOnIcon,
+    2: SpeedIcon,
+    3: SecurityIcon,
+    4: VisibilityIcon,
+    5: SmartToyIcon,
+  };
+
+  const defaultData = [
+    {
+      title: "Right Asset allocation",
+      subTitle:
+        "Deploying Right financial Solutions for each client after proper profiling.",
+    },
+    {
+      title: "Zero Management Fees",
+      subTitle: "No hidden charges, making our services cost-effective.",
+    },
+    {
+      title: "Performance-Based Fees",
+      subTitle:
+        "Pay only when your portfolio crosses a predefined profit threshold.",
+    },
+    {
+      title: "Strong Track Record",
+      subTitle: "Monitor our past and present performance at any time.",
+    },
+    {
+      title: "Transparent and Accessible",
+      subTitle: "A user-friendly platform with clear reporting.",
+    },
+    {
+      title: "Technology-Driven Approach",
+      subTitle: "Enhancing investment processes through smart technology.",
+    },
+  ];
+
+  const reviewData =
+    data?.reviewData?.length > 0 ? data.reviewData : defaultData;
+
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: `linear-gradient(135deg, #f3f1f155 0%, #ffffff 100%)`,
+        position: "relative",
+        overflow: "hidden",
+        py: { xs: 4, md: 8 },
+      }}
+    >
+      {/* Background Pattern */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `
+        radial-gradient(circle at 20% 50%, #f33d2510 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, #f3f1f120 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, #f33d2508 0%, transparent 50%)
+      `,
+          zIndex: 0,
+        }}
+      />
+
+      <Container
+        maxWidth="xl"
+        sx={{
+          position: "relative",
+          zIndex: 1,
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Grid container spacing={{ xs: 4, md: 8 }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            sx={{
+              order: { xs: 1, md: 2 },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box sx={{ mb: { xs: 4, md: 6 } }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontSize: {
+                    xs: "2rem",
+                    sm: "2rem",
+                    md: "2rem",
+                    lg: "2rem",
+                  },
+                  fontWeight: 900,
+                  background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Why Choose Us
+              </Typography>
+
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: {
+                    xs: "2rem",
+                    sm: "2.5rem",
+                    md: "3rem",
+                    lg: "3.5rem",
+                  },
+                  fontWeight: 900,
+                  lineHeight: 1.2,
+                  mb: 2,
+                  color: "#f33d25 ",
+                }}
+              >
+                Deepan <span style={{ color: "rgb(20, 18, 99)" }}>India</span>
+              </Typography>
+
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#666666",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  fontWeight: 400,
+                  maxWidth: "600px",
+                  lineHeight: 1.6,
+                }}
+              >
+                Discover the advantages that set us apart in delivering
+                exceptional financial solutions tailored just for you.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+            <Slide in timeout={1000}>
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  maxWidth: { xs: 300, md: 400, lg: 450 },
+                  mx: "auto",
+                }}
+              >
+                <Box
                   sx={{
-                    fontSize: { xs: "28px", md: "40px" },
-                    color: "black",
-                    fontWeight: "900",
-                    textAlign: "center",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: { xs: 280, md: 380, lg: 420 },
+                    height: { xs: 280, md: 380, lg: 420 },
+                    borderRadius: "50%",
+                    background: `linear-gradient(135deg, #f33d2520, #f3f1f130)`,
+                    animation: "pulse 4s ease-in-out infinite",
+                    "@keyframes pulse": {
+                      "0%, 100%": {
+                        transform: "translate(-50%, -50%) scale(1)",
+                      },
+                      "50%": {
+                        transform: "translate(-50%, -50%) scale(1.05)",
+                      },
+                    },
+                  }}
+                />
+
+                {/* Main Image */}
+                <Box
+                  sx={{
+                    position: "relative",
+                    zIndex: 2,
+                    "& img": {
+                      width: "100%",
+                      height: "auto",
+                      filter: "drop-shadow(0 20px 40px rgba(243, 61, 37, 0.2))",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        transform: "scale(1.02) translateY(-5px)",
+                        filter:
+                          "drop-shadow(0 30px 60px rgba(243, 61, 37, 0.3))",
+                      },
+                    },
                   }}
                 >
-                  Why Choose <span style={{ color: "#f33d25" }}>Deepan </span>{" "}
-                  <span style={{ color: "#23395d" }}>India</span>
-                </Typography>
-                <Box>
-                  {(data?.reviewData?.length > 0
-                    ? data.reviewData
-                    : [
-                        {
-                          title: "Right Asset allocation",
-                          subTitle:
-                            "Deploying Right financial Solutions for each client after proper profiling.",
-                        },
-                        {
-                          title: "Zero Management Fees",
-                          subTitle:
-                            "No hidden charges, making our services cost-effective.",
-                        },
-                        {
-                          title: "Performance-Based Fees",
-                          subTitle:
-                            "Pay only when your portfolio crosses a predefined profit threshold.",
-                        },
-                        {
-                          title: "Strong Track Record",
-                          subTitle:
-                            "Monitor our past and present performance at any time.",
-                        },
-                        {
-                          title: "Transparent and Accessible",
-                          subTitle:
-                            "A user-friendly platform with clear reporting.",
-                        },
-                        {
-                          title: "Technology-Driven Approach",
-                          subTitle:
-                            "Enhancing investment processes through smart technology.",
-                        },
-                      ]
-                  ).map((item, index) => (
-                    <BlockBox key={index}>
-                      <RoundBox>
-                        <AdsClickIcon sx={{ fontSize: "24px" }} />
-                      </RoundBox>
-                      <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>
-                        <span style={{ fontSize: "18px",color: "#23395d", fontWeight: 900 }}>
-                          {item.title} –
-                        </span>{" "}
-                        {item.subTitle}
-                      </Typography>
-                    </BlockBox>
-                  ))}
+                  <img src={back1Image} alt="Financial Services" />
                 </Box>
-              </LeftBox>
-            </Grid>
+
+                {/* Floating Elements */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "10%",
+                    right: "-10%",
+                    width: 60,
+                    height: 60,
+                    borderRadius: "50%",
+                    background: `linear-gradient(45deg, #f33d25, #ff6b4a)`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(243, 61, 37, 0.3)",
+                    animation: "float 3s ease-in-out infinite",
+                    "@keyframes float": {
+                      "0%, 100%": { transform: "translateY(0px)" },
+                      "50%": { transform: "translateY(-10px)" },
+                    },
+                  }}
+                >
+                  <TrendingUpIcon sx={{ color: "white", fontSize: "1.5rem" }} />
+                </Box>
+
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: "15%",
+                    left: "-8%",
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    background: `#f3f1f1cc`,
+                    border: `2px solid #f33d25`,
+                    animation: "float 4s ease-in-out infinite reverse",
+                  }}
+                />
+              </Box>
+            </Slide>
           </Grid>
-        </InsideBox>
-      </ContentBox>
-    </MainBox>
+        </Grid>
+        <Fade in timeout={800}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <Grid container spacing={{ xs: 2, md: 3 }}>
+              {reviewData.map((item, index) => {
+                const IconComponent = iconMap[index] || AdsClickIcon;
+                return (
+                  <Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
+                    {/* <Slide in timeout={1000 + index * 100}> */}
+                    <Card
+                      sx={{
+                        height: "100%",
+                        width: "auto",
+                        backgroundColor: "#ffffff",
+                        borderRadius: "10px",
+                        borderTop: "5px solid red",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        position: "relative",
+                        overflow: "hidden",
+                        "&:hover": {
+                          transform: "translateY(-8px)",
+                          boxShadow: `0 20px 40px rgba(243, 61, 37, 0.15)`,
+                          background: `linear-gradient(135deg, #f33d2508 0%, #f3f1f140 100%)`,
+                          "& .feature-icon": {
+                            transform: "scale(1.1)",
+                            background: `linear-gradient(45deg, #f33d25, #ff4d6d)`,
+                          },
+                        },
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: "3px",
+                          // background: `linear-gradient(90deg, #f33d25, #ff6b4a)`,
+                        },
+                      }}
+                    >
+                      <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            // mb: 2,
+                          }}
+                        >
+                          <Box
+                            className="feature-icon"
+                            sx={{
+                              width: 48,
+                              height: 48,
+                              borderRadius: "50px",
+                              backgroundColor: " #f2140c",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              mr: 2,
+                              transition: "all 0.3s ease",
+                              boxShadow: "0 4px 12px rgba(223, 125, 69, 0.1)",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <IconComponent
+                              sx={{
+                                fontSize: "1.5rem",
+                                color: "white",
+                              }}
+                            />
+                          </Box>
+
+                          <Box sx={{ flex: 1 }}>
+                            <Typography
+                              className="feature-title"
+                              variant="h6"
+                              sx={{
+                                fontWeight: "bold",
+                                fontSize: { xs: "1rem", md: "1.1rem" },
+                                color: " #a62f0a",
+                                mb: 1,
+                                transition: "color 0.3s ease",
+                                lineHeight: 1.3,
+                              }}
+                            >
+                              {item.title}
+                            </Typography>
+
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#f33d25",
+                                lineHeight: 1.6,
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              {item.subTitle.split(" ").map((word, index) => (
+                                <React.Fragment key={index}>
+                                  {word}
+                                  {(index + 1) % 8 === 0 ? <br /> : " "}
+                                </React.Fragment>
+                              ))}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                    {/* </Slide> */}
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
+        </Fade>
+      </Container>
+    </Box>
   );
 };
 
 export default Choose;
-
-/* Styled Components */
-const MainBox = styled(Box)`
-  position: relative;
-  width: 100%;
-  height: auto;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  animation: ${slideIn} 0.8s ease-in-out;
-  background-attachment: fixed;
-
-  @media (max-width: 900px) {
-    height: auto;
-    background-attachment: scroll;
-  }
-`;
-
-const ContentBox = styled(Box)`
-  color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 50px;
-
-  @media (max-width: 900px) {
-    padding: 40px 20px;
-  }
-`;
-
-const InsideBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
-`;
-
-const LeftBox = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-`;
-
-const BlockBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  background: linear-gradient(to right,#f3f1f155 5%, #f33d25 90%);
-  border-radius: 50px;
-  padding: 6px 20px 6px 6px;
-  margin-top: 20px;
-  /* width: 100%; */
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-  }
-`;
-
-const RoundBox = styled(Box)`
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(129, 109, 238);
-  border-radius: 50px;
-  margin-right: 10px;
-
-  @media (max-width: 600px) {
-    margin-bottom: 10px;
-  }
-`;
