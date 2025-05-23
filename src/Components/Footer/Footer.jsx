@@ -155,9 +155,9 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Think</Foottitle>
             <Links>
-              <li>Blogs</li>
-              <li>Videos</li>
-              <li>Reports</li>
+              <li onClick={() => handleNavigation("/#card")}>Blogs</li>
+              <li onClick={() => handleNavigation("/#media")}>Videos</li>
+              <li onClick={() => handleNavigation("/#media")}>Reports</li>
             </Links>
           </Col>
           <Col md={2} lg={2} xl={2} xs={12}>
@@ -234,7 +234,7 @@ export default function Footer() {
 const Footermain = styled.section`
   padding: 70px 0 30px 0;
   border-top:10px solid #f33d25;
-  background-color: gray;
+  background-color: #f3f1f155;
   @media screen and (max-width: 600px) {
     padding: 40px 0;
   }
@@ -243,14 +243,14 @@ const Foottitle = styled.h3`
   font-size: 16px;
   font-weight: 700;
   padding: 5px 0;
-  color: white;
+  color: #e31e1e;
   text-transform: capitalize;
 `;
 const Links = styled.ul`
   margin: 10px 0;
   list-style-type: none;
   padding: 0;
-  color: white;
+  color: #e31e1e;
   li {
     padding: 5px 0;
     font-size: 15px;
@@ -265,7 +265,7 @@ const Bottomlink = styled.ul`
   margin: 20px 0 0 0;
   list-style-type: none;
   padding: 0;
-  color: white;
+  color: #e31e1e;
   li {
     padding: 5px 10px;
     font-size: 13px;
@@ -278,7 +278,7 @@ const Bottomlink = styled.ul`
   }
 `;
 const StyledDivider = styled(Divider)`
-  background-color: white;
+  background-color: #e31e1e;
   height: 6px;
   margin: 50px 0;
   width: 100%;

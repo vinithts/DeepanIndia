@@ -1,51 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import styled, { keyframes } from "styled-components";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { Box, IconButton, Button, Typography } from "@mui/material";
-import backgroundImage from "../../../assets/gold-coin-hourglass-time-is-money-concept.jpg";
-import pigImage from "../../../assets/tree-grows-coin-glass-jar-with-copy-space.jpg";
-import InvestImage from "../../../assets/human-hand-inserting-coin-piggybank.jpg";
-import { Url } from "../../../utils/api";
+import { Box, Button, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
+import Video from "../../../assets/573271_Business_Stock_3840x2160.mp4";
 
 export const SlideShowBar = ({ data = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [showButton, setShowButton] = useState(false);
-  const [hover, setHover] = useState(false);
 
-  const fallbackImages = [backgroundImage, pigImage, InvestImage];
-  const isDataAvailable = data.length > 0;
-  const currentSlide = isDataAvailable ? data[currentIndex] : {};
+  const currentSlide = data.length > 0 ? data[currentIndex] : {};
   const {
-    subTitle = "",
-    title = "",
-    description = "",
-    button_name = "",
-    image = "",
+    subTitle = "Your Trusted Wealth Creation Partner",
+    title = "Dream Rich! Dare to Reach!",
+    description = "Everything for Everyone!",
+    button_name = "Get Started",
   } = currentSlide;
 
-  const nextSlide = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex + 1) %
-        (isDataAvailable ? data.length : fallbackImages.length)
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0
-        ? isDataAvailable
-          ? data.length - 1
-          : fallbackImages.length - 1
-        : prevIndex - 1
-    );
-  };
-
   useEffect(() => {
-    let text = title || "";
+    let text = title;
     setDisplayText("");
     setShowButton(false);
 
@@ -69,59 +43,40 @@ export const SlideShowBar = ({ data = [] }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) => (prev + 1) % data.length);
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [currentIndex, data]);
+  }, [data]);
 
   return (
-    <MainBox
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      <ImageContainer>
-        <SlideImage 
-          src={isDataAvailable ? `${Url}${image}` : fallbackImages[currentIndex]} 
-          alt={title || "Slide image"}
-        />
-      </ImageContainer>
+    <MainBox>
+      <BackgroundVideo autoPlay loop muted>
+        <source src={Video} type="video/mp4" />
+        Your browser does not support the video tag.
+      </BackgroundVideo>
+      <Overlay />
       <ContentBox>
         <Typography variant="h6" className="subTitle">
-          {subTitle || "Your Trusted Wealth Creation Partner"}
+          {subTitle}
         </Typography>
         <Typography
           className="title"
-          dangerouslySetInnerHTML={{
-            __html: title || "Dream Rich! Dare to Reach!",
-          }}
+          dangerouslySetInnerHTML={{ __html: displayText }}
         />
         <Typography
           className="description"
-          dangerouslySetInnerHTML={{
-            __html: description || "Everything for Everyone!",
-          }}
+          dangerouslySetInnerHTML={{ __html: description }}
         />
         <Link href="#contact" passHref>
           <Button
-            variant="outlined"
+            variant="contained"
             className="ctaButton"
             endIcon={<IoArrowForwardSharp className="arrowIcon" />}
           >
-            {button_name || "Get Started"}
+            {button_name}
           </Button>
         </Link>
       </ContentBox>
-      {hover && (
-        <NavControls>
-          <IconButton className="navButton" onClick={prevSlide}>
-            <ArrowBackIos />
-          </IconButton>
-          <IconButton className="navButton" onClick={nextSlide}>
-            <ArrowForwardIos />
-          </IconButton>
-        </NavControls>
-      )}
     </MainBox>
   );
 };
@@ -131,16 +86,11 @@ const slideIn = keyframes`
   to { transform: translateX(0); }
 `;
 const float = keyframes`
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
 `;
+
 const MainBox = styled(Box)`
   position: relative;
   width: 100%;
@@ -151,127 +101,124 @@ const MainBox = styled(Box)`
   @media (max-width: 900px) {
     height: 400px;
   }
-  
+
   @media (max-width: 600px) {
     height: 300px;
   }
 `;
 
-const ImageContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-`;
-
-const SlideImage = styled.img`
+const BackgroundVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0.4;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  /* background-color: rgba(241, 117, 117, 0.65); */
+  z-index: 1;
 `;
 
 const ContentBox = styled(Box)`
   position: absolute;
-  top: 30%;
-  left: 15%;
-  right: 15%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
-  text-align: left;
-  z-index: 1;
+  text-align: center;
+  z-index: 2;
 
   .subTitle {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 8px;
-    color: rgb(5, 4, 59);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    animation: ${float} 3s ease-in-out infinite;
 
     @media (max-width: 600px) {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 
   .title {
-    font-size: 50px;
-    font-weight: 900;
-    margin-bottom: 8px;
-    color: rgb(5, 4, 59);
-    @media (max-width: 600px) {
-      font-size: 24px;
-    }
+  font-size: 50px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #f33d25 30%, rgb(202, 9, 9) 70%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+  padding: 10px;
+  border-radius: 10px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
   }
+}
 
   .description {
     font-size: 24px;
     max-width: 800px;
     margin-bottom: 16px;
-    color: rgb(5, 4, 59);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    animation: ${float} 3s ease-in-out infinite;
     @media (max-width: 600px) {
       font-size: 16px;
     }
   }
 
-  
-.ctaButton {
-  padding: 10px 50px;
-  border: 1px solid #f33d25;
-  text-transform: none;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  z-index: 1;
-  margin-top: 8px;
-  background-color: transparent;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  animation: float 3s ease-in-out infinite;
-
-  &:hover {
-    background-color: #f33d25;
+  .ctaButton {
+    padding: 10px 50px;
+    border: 1px solid #f33d25;
+    text-transform: none;
     color: white;
-  }
+    font-size: 20px;
+    background-color: #f33d25;
+    font-weight: bold;
+    z-index: 1;
+    margin-top: 8px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    animation: ${float} 3s ease-in-out infinite;
 
-  @media (max-width: 600px) {
-    font-size: 12px;
-    padding: 6px 20px;
+    &:hover {
+      background-color: transparent;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 12px;
+      padding: 6px 20px;
+    }
   }
-}
 
   .arrowIcon {
     color: white;
     font-size: 16px;
-  }
-`;
-
-const NavControls = styled(Box)`
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  align-items: center;
-  padding: 0 20px;
-  z-index: 2;
-
-  .navButton {
-    border-radius: 50px;
-    padding: 16px;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background-color: rgba(0, 0, 0, 0.2);
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .navButton {
-      padding: 12px;
-    }
   }
 `;
 

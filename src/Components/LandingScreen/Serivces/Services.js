@@ -69,44 +69,48 @@ const Services = () => {
   const navigate = useNavigate();
   return (
     <MainBox id="offering">
+      <BackgroundPattern/>
       <ContentBox>
-      <Typography
-        sx={{
-          padding: "20px 40px 0px 40px",
-          textAlign: "center",
-          fontWeight: 900,
-          color: "rgb(5, 4, 59)",
-          fontSize: "50px",
-          "@media (max-width: 600px)": {
-            fontSize: "26px",
-          },
-        }}
-      >
-        Our Offerings
-      </Typography>
-      <StyledDivider />
-      <Grid container spacing={4} justifyContent="center" padding={"30px"}>
-        {services.map((service, index) => (
-          <Grid item xs={12} sm={6} md={2.4} key={index}>
-            <ServiceCard>
-              <ServiceImage src={service.image} alt={service.title} />
-              <IconBox onClick={() => navigate(service.path)}>
-                <IconImage src={service.icon} alt={service.title} />
-                <Typography
-                  sx={{
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    ":hover": { color: "#f33d25" },
-                  }}
-                >
-                  {service.title}
-                </Typography>
-              </IconBox>
-            </ServiceCard>
-          </Grid>
-        ))}
-      </Grid>
+        <Typography
+          sx={{
+            padding: "20px 40px 0px 40px",
+            textAlign: "center",
+            fontWeight: 900,
+            background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            fontSize: "50px",
+            "@media (max-width: 600px)": {
+              fontSize: "26px",
+            },
+          }}
+        >
+          Our Offerings
+        </Typography>
+        {/* <StyledDivider /> */}
+        <Grid container spacing={4} justifyContent="center" padding={"40px"}>
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={2.4} key={index}>
+              <ServiceCard>
+                <ServiceImage src={service.image} alt={service.title} />
+                <IconBox onClick={() => navigate(service.path)}>
+                  <IconImage src={service.icon} alt={service.title} />
+                  <Typography
+                    sx={{
+                      color: "#f33d25",
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                      ":hover": { color: "#52180b" },
+                    }}
+                  >
+                    {service.title}
+                  </Typography>
+                </IconBox>
+              </ServiceCard>
+            </Grid>
+          ))}
+        </Grid>
       </ContentBox>
     </MainBox>
   );
@@ -118,22 +122,41 @@ const MainBox = styled(Box)`
   position: relative;
   width: 100%;
   height: auto;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0.5;
-    z-index: 1;
-  }
+ &::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 1;
+  background:
+    linear-gradient(
+      135deg,
+rgb(240, 191, 179) 0%,
+      rgba(255, 235, 235, 0.99) 50%,
+      rgb(253, 246, 246) 100%
+    ),
+    radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 61, 37, 0.1) 0%, transparent 50%);
+}
   > * {
     position: relative;
     z-index: 2;
   }
 `;
+const BackgroundPattern = styled(Box)({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  opacity: 0.03,
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23DC143C' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+  zIndex: 1,
+});
+
 const ContentBox = styled(Box)`
   color: white;
   display: flex;
@@ -158,6 +181,17 @@ const ServiceCard = styled(Box)`
   flex-direction: column;
   align-items: center;
   text-align: center;
+   transition:
+  transform 0.3s ease,
+  box-shadow 0.3s ease;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom:10px solid #f33d25 ;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 const ServiceImage = styled.img`

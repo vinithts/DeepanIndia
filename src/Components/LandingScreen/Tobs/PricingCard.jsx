@@ -1,6 +1,7 @@
 import { Box, Dialog, DialogContent, DialogTitle,Button  } from "@mui/material";
 import React, { useState }  from "react";
 import styled from "styled-components";
+import { keyframes } from "@mui/material/styles";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 const PricingCard = ({
@@ -74,7 +75,7 @@ const PricingCard = ({
           <FeatureList>
             {features.slice(3).map((feature, i) => (
               <FeatureItem key={i}>
-                <VerifiedIcon sx={{ color: "#65749e", fontSize: 20 }} />
+                <VerifiedIcon sx={{ color: "#c53856", fontSize: 20 }} />
                 <FeatureText>{feature}</FeatureText>
               </FeatureItem>
             ))}
@@ -88,14 +89,26 @@ const PricingCard = ({
 
 export default PricingCard;
 
+const float = keyframes`
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  }
+`;
+
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  animation: ${({ isCenterCard }) => (isCenterCard ? `${float} 6s ease-in-out infinite` : 'none')};
   padding: ${({ isCenterCard }) => (isCenterCard ? "50px 25px" : "40px 20px 20px 20px")};
   border-radius: 20px;
-  background: rgba(231, 232, 252, 0.3);
+  background: #f3f1f155;
   backdrop-filter: blur(10px);
   box-shadow: ${({ isCenterCard }) =>
     isCenterCard
@@ -125,7 +138,7 @@ const CardContainer = styled.div`
 const Title = styled.h2`
   font-size: 18px;
   font-weight: 900;
-  color: #480d5f;
+  color: #f33d25;
   padding: 20px 0px 0px 0px;
   text-align: left;
 `;
@@ -133,19 +146,19 @@ const Title = styled.h2`
 const PricePara = styled.h1`
   font-size: 30px;
   font-weight: 900;
-  color: #4b2106;
+  color: #b52805;
   text-align: left;
 `;
 
 const Para1 = styled.p`
-  color: #6e6765;
+  color: #f55f3b;
   font-weight: 600;
   text-align: left;
   font-size:14px;
 `;
 
 const Para = styled.p`
-  color: #666362;
+  color: #f2441b;
   font-weight: 600;
   text-align: left;
 `;
@@ -170,7 +183,7 @@ const FeatureItem = styled.li`
 
 const FeatureText = styled.span`
   margin-left: 10px;
-  color: #221106;
+  color: #c55308;
   font-weight: 600;
   text-align: left;
 `;
