@@ -19,8 +19,7 @@ import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
-import back1Image from "../../../assets/5216607-removebg-preview.png";
+import back1Image from "../../../assets/website-faq-section-user-helpdesk-customer-support-frequently-asked-questions-problem-solution-quiz-game-confused-man-cartoon-character.png";
 
 const Choose = ({ data }) => {
   const theme = useTheme();
@@ -72,14 +71,13 @@ const Choose = ({ data }) => {
     <Box
       sx={{
         minHeight: "100vh",
-        background: `linear-gradient(135deg, #f3f1f155 0%, #ffffff 100%)`,
+        backgroundColor: "#f9f3fe",
         position: "relative",
         overflow: "hidden",
         py: { xs: 4, md: 8 },
       }}
     >
-      {/* Background Pattern */}
-      <Box
+      {/* <Box
         sx={{
           position: "absolute",
           top: 0,
@@ -93,7 +91,7 @@ const Choose = ({ data }) => {
       `,
           zIndex: 0,
         }}
-      />
+      /> */}
 
       <Container
         maxWidth="xl"
@@ -130,10 +128,7 @@ const Choose = ({ data }) => {
                     lg: "2rem",
                   },
                   fontWeight: 900,
-                  background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  color: "#49326b",
                 }}
               >
                 Why Choose Us
@@ -154,7 +149,7 @@ const Choose = ({ data }) => {
                   color: "#f33d25 ",
                 }}
               >
-                Deepan <span style={{ color: "rgb(20, 18, 99)" }}>India</span>
+                Deepan <span style={{ color: "#49326b" }}>India</span>
               </Typography>
 
               <Typography
@@ -191,7 +186,7 @@ const Choose = ({ data }) => {
                     width: { xs: 280, md: 380, lg: 420 },
                     height: { xs: 280, md: 380, lg: 420 },
                     borderRadius: "50%",
-                    background: `linear-gradient(135deg, #f33d2520, #f3f1f130)`,
+                    background: `linear-gradient(135deg, #49326b,rgba(186, 157, 231, 0.19))`,
                     animation: "pulse 4s ease-in-out infinite",
                     "@keyframes pulse": {
                       "0%, 100%": {
@@ -212,12 +207,12 @@ const Choose = ({ data }) => {
                     "& img": {
                       width: "100%",
                       height: "auto",
-                      filter: "drop-shadow(0 20px 40px rgba(243, 61, 37, 0.2))",
+                      filter: "drop-shadow(0 20px 40px #49326b)",
                       transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                       "&:hover": {
                         transform: "scale(1.02) translateY(-5px)",
                         filter:
-                          "drop-shadow(0 30px 60px rgba(243, 61, 37, 0.3))",
+                          "drop-shadow(0 30px 60px #49326b)",
                       },
                     },
                   }}
@@ -234,11 +229,11 @@ const Choose = ({ data }) => {
                     width: 60,
                     height: 60,
                     borderRadius: "50%",
-                    background: `linear-gradient(45deg, #f33d25, #ff6b4a)`,
+                    background: `linear-gradient(45deg,rgb(71, 21, 136),rgb(213, 162, 243))`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    boxShadow: "0 8px 32px rgba(243, 61, 37, 0.3)",
+                    boxShadow: "0 8px 32px #49326b",
                     animation: "float 3s ease-in-out infinite",
                     "@keyframes float": {
                       "0%, 100%": { transform: "translateY(0px)" },
@@ -258,7 +253,7 @@ const Choose = ({ data }) => {
                     height: 40,
                     borderRadius: "50%",
                     background: `#f3f1f1cc`,
-                    border: `2px solid #f33d25`,
+                    border: `2px solid #49326b`,
                     animation: "float 4s ease-in-out infinite reverse",
                   }}
                 />
@@ -289,17 +284,17 @@ const Choose = ({ data }) => {
                         width: "auto",
                         backgroundColor: "#ffffff",
                         borderRadius: "10px",
-                        borderTop: "5px solid red",
+                        borderTop: "10px solid #49326b",
                         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         position: "relative",
                         overflow: "hidden",
                         "&:hover": {
                           transform: "translateY(-8px)",
-                          boxShadow: `0 20px 40px rgba(243, 61, 37, 0.15)`,
-                          background: `linear-gradient(135deg, #f33d2508 0%, #f3f1f140 100%)`,
+                          boxShadow: `0 20px 40px #49326b`,
+                          background: `linear-gradient(135deg, #49326b 0%, #rgba(210, 152, 228, 0.25)00%)`,
                           "& .feature-icon": {
                             transform: "scale(1.1)",
-                            background: `linear-gradient(45deg, #f33d25, #ff4d6d)`,
+                            background: `linear-gradient(45deg, #49326b,rgb(167, 103, 180))`,
                           },
                         },
                         "&::before": {
@@ -327,7 +322,7 @@ const Choose = ({ data }) => {
                               width: 48,
                               height: 48,
                               borderRadius: "50px",
-                              backgroundColor: " #f2140c",
+                              backgroundColor: " #49326b",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -352,7 +347,7 @@ const Choose = ({ data }) => {
                               sx={{
                                 fontWeight: "bold",
                                 fontSize: { xs: "1rem", md: "1.1rem" },
-                                color: " #a62f0a",
+                                color: " #49326b",
                                 mb: 1,
                                 transition: "color 0.3s ease",
                                 lineHeight: 1.3,
@@ -364,7 +359,7 @@ const Choose = ({ data }) => {
                             <Typography
                               variant="body2"
                               sx={{
-                                color: "#f33d25",
+                                color: "#49326b",
                                 lineHeight: 1.6,
                                 fontSize: "0.9rem",
                               }}

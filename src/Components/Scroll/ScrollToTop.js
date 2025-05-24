@@ -34,7 +34,7 @@ const CustomIconButton = styled(Box)`
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #f33d25;
+  background-color: #49326b;
   color: white;
   border-radius: 50%;
   padding: 12px;
@@ -44,7 +44,8 @@ const CustomIconButton = styled(Box)`
   z-index: 1000;
 
   &:hover {
-    background-color: #1a237e;
+    background-color: #f9f3fe;
+    color: #49326b;
   }
 
   @media screen and (max-width: 600px) {

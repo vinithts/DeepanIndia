@@ -21,6 +21,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Handshake from "../../../assets/5454062-removebg-preview.png";
+import Handshake1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const Partner = () => {
   const benefits = [
@@ -53,17 +54,14 @@ const Partner = () => {
   ];
 
   return (
-    <MainBox id="partner">
+    <MainBox id="partner" image={Handshake1}>
       <Container maxWidth="xl">
         <Typography
           sx={{
             padding: "30px 0",
             textAlign: "center",
             fontWeight: 900,
-            background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+            color:"white",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -77,7 +75,7 @@ const Partner = () => {
         <Typography
           sx={{
             textAlign: "center",
-            color: "#f20707",
+            color: "#f9f3fe",
             fontSize: "22px",
             marginBottom: "40px",
             fontWeight: 600,
@@ -102,7 +100,7 @@ const Partner = () => {
           >
             <Grid container spacing={12}>
               <Grid item xs={12} sm={6} md={6}>
-                <Box sx={{backgroundColor:"#f5ebeb", padding:"20px",marginBottom:"20px"}}>
+                <Box sx={{padding: "20px"}}>
                 <List>
                   {[
                     "Do you have a strong network?",
@@ -112,13 +110,13 @@ const Partner = () => {
                   ].map((item, index) => (
                     <ListItem key={index} sx={{ paddingY: "8px" }}>
                       <ListItemIcon sx={{ minWidth: "40px" }}>
-                        <CheckCircleIcon sx={{ color: "#9e0808" }} />
+                        <CheckCircleIcon sx={{ color:"#e4d4fa" }} />
                       </ListItemIcon>
                       <ListItemText
                         primary={item}
                         primaryTypographyProps={{
                           sx: {
-                            color: "#f00202",
+                            color: "#f9f3fe",
                             fontSize: "18px",
                             fontWeight: 600,
                             "@media (max-width: 600px)": {
@@ -146,13 +144,14 @@ const Partner = () => {
               </Grid>
             </Grid>
           </Box>
-          <StyledDivider/>
+          {/* <StyledDivider/> */}
+          <Box sx={{ padding: "10px 0",backgroundColor: "#f9f3fe", borderRadius: "10px" }}>  
           <Typography
             sx={{
               textAlign: "center",
               fontSize: "28px",
               fontWeight: "900",
-              color: "#520909",
+              color: "#49326b",
               marginTop: "20px",
               padding: "10px",
               "@media (max-width: 600px)": {
@@ -175,6 +174,7 @@ const Partner = () => {
               </HighlightSpan>
             </a>
           </Typography>
+          </Box>
         </QualificationBox>
 
         <Typography
@@ -182,7 +182,7 @@ const Partner = () => {
             padding: "30px 0 20px",
             textAlign: "center",
             fontWeight: 700,
-            color: "#991717",
+            color: "white",
             fontSize: "32px",
             "@media (max-width: 600px)": {
               fontSize: "22px",
@@ -206,7 +206,7 @@ const Partner = () => {
           {benefits.map((benefit, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <BenefitCard>
-                <CardContent style={{backgroundColor:"#fcfcfc"}}>
+                <CardContent>
                   <IconContainer>{benefit.icon}</IconContainer>
                   <Typography
                     variant="h6"
@@ -214,12 +214,12 @@ const Partner = () => {
                     sx={{
                       fontWeight: 700,
                       marginBottom: "8px",
-                      color: "#d60b0b",
+                      color: "#49326b",
                     }}
                   >
                     {benefit.title}
                   </Typography>
-                  <Typography variant="body2" sx={{color:"#9c5959"}}>
+                  <Typography variant="body2" sx={{color:"#49326b"}}>
                     {benefit.description}
                   </Typography>
                 </CardContent>
@@ -235,42 +235,33 @@ const Partner = () => {
 
 export default Partner;
 
-const MainBox = styled(Box)`
-  position: relative;
-  width: 100%;
-  padding-bottom: 50px;
-  height: auto;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgb(245, 227, 223) 0%,
-        rgba(250, 244, 244, 0.99) 50%,
-        rgb(255, 255, 255) 100%
-      ),
-      radial-gradient(
-        circle at 20% 80%,
-        rgba(220, 20, 60, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
-        rgba(245, 61, 37, 0.1) 0%,
-        transparent 50%
-      );
-    /* opacity: 0.5; */
-    z-index: 1;
-  }
-  > * {
-    position: relative;
-    z-index: 2;
-  }
-`;
+const MainBox = styled(Box)(({ theme, image }) => ({
+  position: "relative",
+  width: "100%",
+  minHeight: "100vh",
+  backgroundImage: `url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "center",
+  padding: "20px 0px 20px 0px",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1,
+  },
+
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+}));
 
 const QualificationBox = styled(Box)`
   background-color: rgba(255, 255, 255, 0.1);
@@ -286,7 +277,7 @@ const QualificationBox = styled(Box)`
 `;
 
 const HighlightSpan = styled.span`
-  color: #520909;
+  color: red;
   font-weight: 700;
   font-size: 24px;
   &:hover {
@@ -298,21 +289,14 @@ const BenefitCard = styled(Box)`
   position: relative;
   width: 100%;
   height: 250px;
-  padding: 20px;
+  padding: 10px;
   color: #000;
+  border-radius: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  clip-path: polygon(
-    50% 0%,
-    93% 25%,
-    93% 75%,
-    50% 100%,
-    7% 75%,
-    7% 25%
-  );
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
@@ -330,15 +314,16 @@ const BenefitCard = styled(Box)`
     width: 100%;
     height: 100%;
     clip-path: inherit;
-    background: #fcfcfc;
-    border: 14px solid red;
+    border-radius: 20px;
+    background: #f9f3fe;
+    border: 10px solid #e4d4fa;
     z-index: -1;
   }
 `;
 
 
 const IconContainer = styled(Box)`
-  color: #8c0d0d;
+  color: #49326b;
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
@@ -346,7 +331,7 @@ const IconContainer = styled(Box)`
 `;
 
 const StyledDivider = styled(Divider)`
-  background-color: gray;
+  background-color: #f9f3fe;
   height: 2px;
   /* margin: 20px; */
   width: 100%;

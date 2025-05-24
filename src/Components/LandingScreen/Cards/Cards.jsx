@@ -15,7 +15,8 @@ import { useNavigate } from "react-router-dom";
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 345,
   margin: "15px auto",
-  borderBottom:"10px solid #f33d25",
+  borderRadius: "20px",
+  borderBottom: "10px solid #49326b",
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "scale(1.02)",
@@ -26,14 +27,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 export default function Cards({ e }) {
-  const { description, subTitle, title, image } = e || {};
+  const { title, metaDescription, intro, image } = e || {};
   const navigate = useNavigate();
   const imageSrc =
-  typeof e.image === "object"
-    ? URL.createObjectURL(e.image)
-    : e.image?.includes("static") || e.image?.includes("assets")
-    ? e.image
-    : `${Url}${e.image}`;
+    typeof image === "object"
+      ? URL.createObjectURL(image)
+      : image?.includes("static") || image?.includes("assets")
+        ? image
+        : `${Url}${image}`;
 
   const handleReadMore = () => {
     navigate(`/details/${e?.id || "default"}`);
@@ -50,23 +51,33 @@ export default function Cards({ e }) {
           objectFit: "cover",
         }}
       />
-      <CardContent style={{backgroundColor:"#f7f5f5"}}>
-        <Typography sx={{ fontSize: "26px", fontWeight: 600, color: "#cc0808"}}>
-          {subTitle || "Default Title"}
+      <CardContent style={{ backgroundColor: "#f9f3fe" }}>
+        <Typography
+          sx={{
+            fontSize: "26px",
+            fontWeight: 600,
+            color: "#49326b",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 1,
+            overflow: "hidden",
+          }}
+        >
+          {title || "Default Title"}
         </Typography>
         {/* <StyledDivider /> */}
         <Typography
           sx={{
             fontSize: "16px",
             fontWeight: 400,
-            color: "#7e0909",
+            color: "#49326b",
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
             WebkitLineClamp: 4,
             overflow: "hidden",
           }}
         >
-          {description || "No description available."}
+          {metaDescription || "No description available."}
         </Typography>
       </CardContent>
       <StyledDivider />
@@ -75,11 +86,11 @@ export default function Cards({ e }) {
           size="small"
           sx={{
             textTransform: "none",
-            color: "#f33d25",
+            color: "#49326b",
             fontWeight: 700,
             "&:hover": { color: "rgba(58, 57, 59, 1)" },
           }}
-          endIcon={<ArrowRightAltIcon style={{fontSize:"20px"}}/>}
+          endIcon={<ArrowRightAltIcon style={{ fontSize: "20px" }} />}
           onClick={handleReadMore}
         >
           Read More
