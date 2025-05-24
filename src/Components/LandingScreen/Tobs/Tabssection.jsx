@@ -53,31 +53,13 @@ const plans = [
 export default function Tabscontent() {
   return (
     <Maindiv image={backImage}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: `
-              radial-gradient(circle at 20% 50%, #f33d2510 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, #f3f1f120 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, #f33d2508 0%, transparent 50%)
-            `,
-          zIndex: 0,
-        }}
-      />
       <Container>
         <Typography
           sx={{
             padding: "10px",
             textAlign: "center",
             fontWeight: 900,
-            background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+           color: "#49326b",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -90,7 +72,7 @@ export default function Tabscontent() {
           sx={{
             textAlign: "center",
             fontWeight: 600,
-            color: "#9c432d",
+            color: "#49326b",
             fontSize: "18px",
           }}
         >
@@ -127,7 +109,7 @@ export default function Tabscontent() {
 
 const Maindiv = styled.div`
   padding: 85px 0;
-  background: linear-gradient(135deg, #f3f1f155 0%, #ffffff 100%);
+  background-color: #f9f3fe;
   position: relative;
   overflow: hidden;
 

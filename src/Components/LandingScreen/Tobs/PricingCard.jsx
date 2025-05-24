@@ -51,8 +51,8 @@ const PricingCard = ({
         sx={{
             width:"100%",
             // backgroundColor: "#12114b",
-            border: "1px solid #f33d25",
-            color: "#828285",
+            border: "1px solid red",
+            color: "#49326b",
             fontWeight: "bold",
             padding: "10px 20px",
             borderRadius: "10px",
@@ -61,7 +61,7 @@ const PricingCard = ({
              textDecoration:"none",
             "&:hover": {
               color: "white",
-              backgroundColor: "#f33d25",
+              backgroundColor: "red",
             },
           }}
         onClick={() => setOpen(true)}>Read More</Button>
@@ -70,12 +70,12 @@ const PricingCard = ({
 
       {/* Popup Dialog for More Features */}
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle style={{color:"#131f3f",fontWeight:"bold"}}>More Features</DialogTitle>
+        <DialogTitle style={{color:"#49326b",fontWeight:"bold"}}>More Features</DialogTitle>
         <DialogContent>
           <FeatureList>
             {features.slice(3).map((feature, i) => (
               <FeatureItem key={i}>
-                <VerifiedIcon sx={{ color: "#c53856", fontSize: 20 }} />
+                <VerifiedIcon sx={{ color: "#49326b", fontSize: 20 }} />
                 <FeatureText>{feature}</FeatureText>
               </FeatureItem>
             ))}
@@ -138,7 +138,7 @@ const CardContainer = styled.div`
 const Title = styled.h2`
   font-size: 18px;
   font-weight: 900;
-  color: #f33d25;
+  color: #49326b;
   padding: 20px 0px 0px 0px;
   text-align: left;
 `;
@@ -146,25 +146,25 @@ const Title = styled.h2`
 const PricePara = styled.h1`
   font-size: 30px;
   font-weight: 900;
-  color: #b52805;
+  color: #49326b;
   text-align: left;
 `;
 
 const Para1 = styled.p`
-  color: #f55f3b;
+  color: #49326b;
   font-weight: 600;
   text-align: left;
   font-size:14px;
 `;
 
 const Para = styled.p`
-  color: #f2441b;
+  color: #49326b;
   font-weight: 600;
   text-align: left;
 `;
 
 const DivederBox = styled.div`
-  background-color: #f33d25;
+  background-color: red;
   width: 100%;
   height: 4px;
 `;
@@ -183,7 +183,7 @@ const FeatureItem = styled.li`
 
 const FeatureText = styled.span`
   margin-left: 10px;
-  color: #c55308;
+  color: #49326b;
   font-weight: 600;
   text-align: left;
 `;

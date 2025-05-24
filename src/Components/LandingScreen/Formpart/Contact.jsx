@@ -90,10 +90,7 @@ export default function Contact() {
             padding: "30px",
             textAlign: "center",
             fontWeight: 900,
-             background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+            color:" #49326b",
             fontSize: { xs: "26px", sm: "38px" },
           }}
         >
@@ -112,7 +109,7 @@ export default function Contact() {
               <Typography
                 sx={{
                   fontWeight: 900,
-                  color: "#e31e1e",
+                  color: " #49326b",
                   fontSize: { xs: "20px", sm: "30px" },
                   mb: 2,
                 }}
@@ -120,17 +117,17 @@ export default function Contact() {
                 How to Get Started?
               </Typography>
               <Typography
-                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: " #49326b", fontSize: "16px", fontWeight: "bold" }}
               >
                 Speak with our experts.
               </Typography>
               <Typography
-                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: " #49326b", fontSize: "16px", fontWeight: "bold" }}
               >
                 Share your financial needs and expectations.
               </Typography>
               <Typography
-                sx={{ color: "#4d0e0e", fontSize: "16px", fontWeight: "bold" }}
+                sx={{ color: " #49326b", fontSize: "16px", fontWeight: "bold" }}
               >
                 Get a personalized, detailed wealth creation plan designed just
                 for you.
@@ -251,6 +248,7 @@ const MainDiv = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 50px;
+  background-color: #f9f3fe;
   height: auto;
   &::before {
     content: "";
@@ -259,22 +257,6 @@ const MainDiv = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgb(245, 227, 223) 0%,
-        rgba(250, 244, 244, 0.99) 50%,
-        rgb(255, 255, 255) 100%
-      ),
-      radial-gradient(
-        circle at 20% 80%,
-        rgba(220, 20, 60, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
-        rgba(245, 61, 37, 0.1) 0%,
-        transparent 50%
-      );
     /* opacity: 0.5; */
     z-index: 1;
   }
@@ -289,18 +271,18 @@ const MainDiv = styled.div`
 
 const Submitbtn = styled.button`
   background-color: #fff;
-  border: 1px solid #013396;
+  border: 1px solid  #49326b;
   padding: 10px 15px;
   margin-top: 20px;
   width: 100%;
-  color: #013396;
+  color:  #49326b;
   font-weight: 800;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    background-color: #013396;
-    color: #fff;
+    background-color:  red;
+    color: #f9f3fe;
     border: 1px solid #fff;
   }
 `;

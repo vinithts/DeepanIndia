@@ -62,8 +62,7 @@ export default function Header() {
       <Topheader>
         <Navbar expand="lg" className="my-topheader">
           <Container>
-            <h6 style={{ color: "#201b69" }}>#
-              <span style={{ color: "#f33d25" }}>Deepan </span>India</h6>
+            <h6 style={{ color: "#ffffff" }}>#Deepan India</h6>
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
@@ -76,12 +75,12 @@ export default function Header() {
                   <Nav.Link
                     onClick={() => handleNavigation("/")}
                     style={{
-                      color: "white",
+                      color: " #49326b",
                       transition: "color 0.3s ease",
                       "&:hover": {
                         color: "#16155e",
                       },
-                      backgroundColor: "#260b57",
+                      backgroundColor: "#ffffff",
                       padding: "8px 16px",
                       borderRadius: "4px",
                       cursor: "pointer",
@@ -435,7 +434,7 @@ const HeaderContainer = styled.section`
 const Topmenuitem = styled.div``;
 
 const Topheader = styled.div`
-  background-color: #f3f1f155;
+  background-color:  #49326b;
   border-bottom: #16151553;
   h6 {
     font-weight: 800;
@@ -455,9 +454,9 @@ const Topheader = styled.div`
 const Btntopheader = styled.button`
   padding: 6px 15px;
   border-radius:5px;
-  border: 1px solid #f33d25;
+  border: 1px solid  #49326b;
   background-color: #fff;
-  color:#f33d25;
+  color: #49326b;
   font-size: 14px;
   &:hover {
     background-color: #33197a;
@@ -529,11 +528,11 @@ const Hamburger = styled.div`
 `;
 
 const StyledNavLink = styled(Nav.Link)`
-  color: #f33d25 !important;
+  color: white !important;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #16155e !important;
+    color: white !important;
   }
 `;
 
@@ -577,7 +576,7 @@ const NavLinks = styled.ul`
 `;
 const NavLink = styled.li`
   position: relative; /* This ensures the dropdown aligns to this parent */
-  color: #f33d25;
+  color:  #49326b;
   padding: 0 0.8rem;
   letter-spacing: 1px;
   font-size: 16px;
@@ -624,13 +623,14 @@ const Dropdown = styled.div`
     li {
       display: block;
       padding: 0.5rem 1rem;
-      color: #f33d25;
+      color:  #49326b;
       background: #f0f0f5;
       transition: 0.3s;
       border-bottom: 1px solid white;
       &:hover {
-        background: #d5d5d9;
-        border-top: 5px solid #f33d25;
+        background:  #49326b;
+        color: white;
+        border-top: 5px solid  #ffffff;
       }
     }
   }

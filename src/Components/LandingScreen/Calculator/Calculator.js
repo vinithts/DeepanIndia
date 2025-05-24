@@ -17,13 +17,14 @@ import {
 } from "@mui/material";
 import { PieChart, Pie, Cell, Legend } from "recharts";
 import styled from "styled-components";
+import background from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 // Create a custom dark theme
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#1976d2",
+      main: "#49326b",
     },
     secondary: {
       main: "#d32f2f",
@@ -46,7 +47,7 @@ const darkTheme = createTheme({
           height: 8,
         },
         track: {
-          backgroundColor: "#78fa78",
+          backgroundColor: "#49326b",
           border: "none",
         },
         rail: {
@@ -91,43 +92,14 @@ const FinancialCalculatorsMUI = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box
-        id="calculator"
-        sx={{
-          // minHeight: "100vh",
-          background: `linear-gradient(135deg, #f3f1f155 0%, #ffffff 100%)`,
-          position: "relative",
-          overflow: "hidden",
-          padding: { xs: 4, md: 8 },
-        }}
-      >
-        {/* Background Pattern */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `
-                radial-gradient(circle at 20% 50%, #f33d2510 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, #f3f1f120 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, #f33d2508 0%, transparent 50%)
-              `,
-            zIndex: 0,
-          }}
-        />
+      <MainBox id="calculator" image={background}>
         <Container maxWidth="xl">
           <Typography
             variant="h1"
             align="center"
             gutterBottom
             sx={{
-              background: `linear-gradient(135deg, #f33d25 0%,rgb(19, 18, 117) 100%)`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              // padding:"40px",
+              color: "white",
               fontSize: { xs: "2.5rem", md: "3.5rem" },
               mb: 5,
             }}
@@ -145,11 +117,11 @@ const FinancialCalculatorsMUI = () => {
               textColor="inherit"
               indicatorColor="secondary"
               sx={{
-                bgcolor: "#f3f1f155",
+                bgcolor: "#f9f3fe",
                 borderRadius: 2,
                 overflowX: "auto",
                 "& .MuiTabs-indicator": {
-                  backgroundColor: "#d60b0b", // Red indicator
+                  backgroundColor: "#49326b", // Red indicator
                 },
                 "& .MuiTab-root": {
                   fontSize: { xs: "0.875rem", md: "1rem" },
@@ -157,9 +129,9 @@ const FinancialCalculatorsMUI = () => {
                   textTransform: "none",
                   py: 2,
                   minWidth: { xs: "auto", sm: 160 },
-                  color: "#8c0d0d", // Red tab text
+                  color: "#49326b", // Red tab text
                   "&.Mui-selected": {
-                    color: "#d60b0b", // Highlight selected tab
+                    color: "#49326b", // Highlight selected tab
                   },
                 },
               }}
@@ -181,7 +153,7 @@ const FinancialCalculatorsMUI = () => {
             <GoalCalculator />
           </TabPanel>
         </Container>
-      </Box>
+      </MainBox>
     </ThemeProvider>
   );
 };
@@ -223,7 +195,7 @@ const SIPCalculator = () => {
 
   const data = [
     { name: "Invested", value: totalInvested, color: "#d32f2f" },
-    { name: "Returns", value: Number(totalReturns), color: "#1976d2" },
+    { name: "Returns", value: Number(totalReturns), color: "#17307a" },
   ];
 
   return (
@@ -231,7 +203,7 @@ const SIPCalculator = () => {
       <Grid container spacing={1} width={"100%"}>
         {/* Inputs */}
         <Grid item xs={12} md={6}>
-          <CardContent style={{ backgroundColor: "#f5f0f0", padding: "20px" }}>
+          <CardContent style={{ backgroundColor: "#f9f3fe", padding: "20px" }}>
             <Box
               sx={{
                 display: "flex",
@@ -244,15 +216,15 @@ const SIPCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Monthly Investment (₹)
               </Typography>
               <Chip
                 label={`₹${monthlyInvestment.toLocaleString()}`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -278,15 +250,15 @@ const SIPCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Expected Return Rate (%)
               </Typography>
               <Chip
                 label={`${interestRate}%`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -311,15 +283,15 @@ const SIPCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Time Period (Years)
               </Typography>
               <Chip
                 label={`${years} years`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -372,20 +344,26 @@ const SIPCalculator = () => {
         <Grid item xs={12}>
           <Grid container spacing={3} marginTop={2}>
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(204, 8, 8)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(204, 8, 8)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600, color: "red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Invested Amount
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700, color: "#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{totalInvested.toLocaleString()}
                   </Typography>
@@ -394,20 +372,26 @@ const SIPCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(22, 5, 85)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(22, 5, 85)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600, color: "red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Est. Returns
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700, color: "#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(totalReturns).toLocaleString()}
                   </Typography>
@@ -416,20 +400,26 @@ const SIPCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(20, 94, 42)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(20, 94, 42)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600, color: "red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Total Value
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700, color: "#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(maturityAmount).toLocaleString()}
                   </Typography>
@@ -458,15 +448,15 @@ const LumpsumCalculator = () => {
 
   const data = [
     { name: "Invested", value: totalInvested, color: "#d32f2f" },
-    { name: "Returns", value: Number(totalReturns), color: "#1976d2" },
+    { name: "Returns", value: Number(totalReturns), color: "#17307a" },
   ];
 
   return (
-    <Card sx={{ bgcolor: "#f7f7f7", boxShadow: 4, p: 5 }}>
+    <Card sx={{ bgcolor: "#f9f3fe", boxShadow: 4, p: 5 }}>
       <Grid container spacing={4}>
         {/* Inputs */}
         <Grid item xs={12} md={6}>
-          <CardContent style={{ backgroundColor: "#f5f0f0", padding: "20px" }}>
+          <CardContent style={{ backgroundColor: "#f9f3fe", padding: "20px" }}>
             <Box
               sx={{
                 display: "flex",
@@ -479,15 +469,15 @@ const LumpsumCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 One-time Investment (₹)
               </Typography>
               <Chip
                 label={`₹${investment.toLocaleString()}`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -513,15 +503,15 @@ const LumpsumCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Expected Return Rate (%)
               </Typography>
               <Chip
                 label={`${interestRate}%`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -546,15 +536,15 @@ const LumpsumCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600, color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Time Period (Years)
               </Typography>
               <Chip
                 label={`${years} years`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -607,20 +597,26 @@ const LumpsumCalculator = () => {
         <Grid item xs={12}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(204, 8, 8)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(204, 8, 8)",
+                  boxShadow: 4,
+                  backgroundColor: "#f3f1f155",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600,color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Invested Amount
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700,color:"#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{totalInvested.toLocaleString()}
                   </Typography>
@@ -629,20 +625,26 @@ const LumpsumCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(19, 20, 119)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(19, 20, 119)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600,color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Est. Returns
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700,color:"#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(totalReturns).toLocaleString()}
                   </Typography>
@@ -651,20 +653,26 @@ const LumpsumCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(40, 128, 40)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(40, 128, 40)",
+                  boxShadow: 4,
+                  backgroundColor: "#f3f1f155",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600,color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Total Value
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700, color:"#691616" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(maturityAmount).toLocaleString()}
                   </Typography>
@@ -701,15 +709,15 @@ const GoalCalculator = () => {
 
   const data = [
     { name: "Invested", value: Number(totalInvested), color: "#d32f2f" },
-    { name: "Returns", value: Number(totalReturns), color: "#1976d2" },
+    { name: "Returns", value: Number(totalReturns), color: "#17307a" },
   ];
 
   return (
-    <Card sx={{ bgcolor: "#f7f7f7", boxShadow: 4, p: 5 }}>
+    <Card sx={{ bgcolor: "#f9f3fe", boxShadow: 4, p: 5 }}>
       <Grid container spacing={4}>
         {/* Inputs */}
         <Grid item xs={12} md={6}>
-          <CardContent style={{ backgroundColor: "#f5f0f0", padding: "20px" }}>
+          <CardContent style={{ backgroundColor: "#f9f3fe", padding: "20px" }}>
             <Box
               sx={{
                 display: "flex",
@@ -722,15 +730,15 @@ const GoalCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600,color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Target Amount (₹)
               </Typography>
               <Chip
                 label={`₹${targetAmount.toLocaleString()}`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -756,15 +764,15 @@ const GoalCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600,color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Expected Return Rate (%)
               </Typography>
               <Chip
                 label={`${interestRate}%`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                 bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -789,15 +797,15 @@ const GoalCalculator = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={{ fontWeight: 600,color: "#b30c0c" }}
+                sx={{ fontWeight: 600, color: "#49326b" }}
               >
                 Time Period (Years)
               </Typography>
               <Chip
                 label={`${years} years`}
                 sx={{
-                  bgcolor: "#e8ffe8",
-                  color: "#60b561",
+                  bgcolor: "#e4d4fa",
+                  color: "#49326b",
                   fontWeight: 900,
                 }}
               />
@@ -830,7 +838,7 @@ const GoalCalculator = () => {
               data={data}
               cx="50%"
               cy="50%"
-               innerRadius={isMobile ? 40 : 50}
+              innerRadius={isMobile ? 40 : 50}
               outerRadius={isMobile ? 100 : 100}
               paddingAngle={2}
               dataKey="value"
@@ -850,20 +858,26 @@ const GoalCalculator = () => {
         <Grid item xs={12}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(204, 8, 8)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(204, 8, 8)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600,color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Monthly SIP Required
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700,color: "#b30c0c" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(monthlyInvestment).toLocaleString()}
                   </Typography>
@@ -872,20 +886,26 @@ const GoalCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(15, 24, 105)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(15, 24, 105)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600, color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Est. Returns
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700, color: "#b30c0c" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(totalReturns).toLocaleString()}
                   </Typography>
@@ -894,20 +914,26 @@ const GoalCalculator = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ borderTop: "10px solid rgb(59, 121, 35)", boxShadow: 4 ,backgroundColor:"#f3f1f155" }}>
+              <Card
+                sx={{
+                  borderTop: "10px solid rgb(59, 121, 35)",
+                  boxShadow: 4,
+                  backgroundColor: "#f9f3fe",
+                }}
+              >
                 <CardContent>
                   <Typography
                     variant="h6"
                     align="center"
                     gutterBottom
-                    sx={{ fontWeight: 600,color:"red" }}
+                    sx={{ fontWeight: 600, color: "#49326b" }}
                   >
                     Total Investment
                   </Typography>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontWeight: 700,color: "#b30c0c" }}
+                    sx={{ fontWeight: 700, color: "#49326b" }}
                   >
                     ₹{Number(totalInvested).toLocaleString()}
                   </Typography>
@@ -923,39 +949,30 @@ const GoalCalculator = () => {
 
 export default FinancialCalculatorsMUI;
 
-const MainBox = styled(Box)`
-  position: relative;
-  width: 100%;
-  padding-bottom: 50px;
-  height: auto;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgb(245, 227, 223) 0%,
-        rgba(250, 244, 244, 0.99) 50%,
-        rgb(255, 255, 255) 100%
-      ),
-      radial-gradient(
-        circle at 20% 80%,
-        rgba(220, 20, 60, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
-        rgba(245, 61, 37, 0.1) 0%,
-        transparent 50%
-      );
-    /* opacity: 0.5; */
-    z-index: 1;
-  }
-  > * {
-    position: relative;
-    z-index: 2;
-  }
-`;
+const MainBox = styled(Box)(({ theme, image }) => ({
+  position: "relative",
+  width: "100%",
+  minHeight: "100vh",
+  backgroundImage: `url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "center",
+  padding: "20px 0px 20px 0px",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1,
+  },
+
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+}));

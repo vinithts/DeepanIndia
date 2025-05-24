@@ -1,11 +1,11 @@
-import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { Box, Container, Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Url } from "../../../utils/api";
-import BlogImg from "../../../assets/business-plan-concept-3d-rendering.jpg";
-import solar1 from "../../../assets/asset-allocation_15132089.png";
+import BlogImg from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import solar1 from "../../../assets/wealth icon.png";
 import solar2 from "../../../assets/credit_12532412.png";
-import solar3 from "../../../assets/folder_10857385.png";
+import solar3 from "../../../assets/wealth icon.png";
 
 const slideIn = keyframes`
   from {
@@ -20,7 +20,7 @@ const products = [
   {
     title:
       "Start Investing – SIP or lump sum in our recommended mutual funds, stocks, or risk-free bonds",
-    icon: solar2,
+    icon: solar1,
   },
   {
     title:
@@ -44,18 +44,34 @@ const Wealthy = ({ data }) => {
 
   return (
     <MainBox image={BlogImg}>
-      <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={12} md={3}>
-          <TextBox>
-            <Title>
-              How <span style={{ color:"#f33d25",fontSize:"32px",fontWeight:900 }} > Deepan</span>{" "}
-              <span style={{ color: "#23395d",fontSize:"32px",fontWeight:900 }}>India</span> <br />
-              Helps You Build Wealth?
-            </Title>
+      <Container>
+      <Box
+        justifyContent="left"
+        alignItems="left"
+        display={"flex"}
+        flexDirection="column"
+      >
+        <TextBox>
+          <Title>
+            How{" "}
+            <span
+              style={{ color: "#f33d25", fontSize: "32px", fontWeight: 900 }}
+            >
+              {" "}
+              Deepan
+            </span>{" "}
+            <span
+              style={{ color: "#23395d", fontSize: "32px", fontWeight: 900 }}
+            >
+              India
+            </span>{" "}
             <br />
-          </TextBox>
-        </Grid>
-        <Grid item xs={12} md={8} container>
+            Helps You Build Wealth?
+          </Title>
+          <br />
+        </TextBox>
+
+        <Grid container spacing={4} >
           {itemsToRender.map((product, index) => (
             <Grid item xs={12} sm={4} md={4} key={index}>
               <ProductCard>
@@ -74,7 +90,8 @@ const Wealthy = ({ data }) => {
             </Grid>
           ))}
         </Grid>
-      </Grid>
+      </Box>
+      </Container>
     </MainBox>
   );
 };
@@ -84,7 +101,8 @@ export default Wealthy;
 const MainBox = styled(Box)`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 600px;
+  padding-bottom: 30px;
   background-image: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-position: center;
@@ -100,8 +118,6 @@ const MainBox = styled(Box)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(8, 8, 8, 0.7);
-    opacity: 0.2;
     z-index: 1;
   }
 
@@ -126,7 +142,7 @@ const TextBox = styled(Box)`
 const Title = styled(Typography)`
   && {
     font-size: 28px;
-    color: #c9062d ;
+    color: white;
     font-weight: bold;
   }
 `;
@@ -143,61 +159,36 @@ const Description = styled(Typography)`
 const ProductCard = styled(Box)`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border: 0.5px solid rgba(255, 255, 255, 0.9);
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
   padding: 40px;
   text-align: center;
-  position: relative;
   overflow: hidden;
   transition: 0.3s;
-  background: rgba(8, 8, 8, 0.7);
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color:rgb(255, 30, 0);
-    color:white;
-    transition: height 0.4s ease-in-out;
-    z-index: -1;
-  }
- 
-  &:hover::before {
-    height: 100%;
-  }
+  background-color:#f9f3fe;
 `;
 
 const IconWrapper = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 50%;
+  height: 50%;
   margin-bottom: 10px;
+  color: #49326b;
   transition:
     transform 0.3s ease-in-out,
     filter 0.3s ease-in-out;
-
-  ${ProductCard}:hover & {
-    animation: ${slideIn} 0.5s ease-in-out forwards;
-    filter: brightness(0) invert(1);
-  }
 `;
 
 const ProductTitle = styled(Typography)`
   && {
     font-size: 20px;
-    color: #fa0234;
+    color:  #49326b;
     font-weight: bold;
     display: -webkit-box;
-    -webkit-line-clamp: 4; 
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  ${ProductCard}:hover & {
-   color:white;
   }
 `;
 

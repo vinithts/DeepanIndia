@@ -3,13 +3,16 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 import styled, { keyframes } from "styled-components";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
-import Video from "../../../assets/573271_Business_Stock_3840x2160.mp4";
+import BackGroundImage1 from "../../../assets/tree-grows-coin-glass-jar-with-copy-space.jpg";
+import BackGroundImage2 from "../../../assets/human-hand-inserting-coin-piggybank.jpg";
 
 export const SlideShowBar = ({ data = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [showButton, setShowButton] = useState(false);
-
+  const backgroundImages = [BackGroundImage1, BackGroundImage2];
+  const backgroundUrl =
+    backgroundImages[currentIndex % backgroundImages.length];
   const currentSlide = data.length > 0 ? data[currentIndex] : {};
   const {
     subTitle = "Your Trusted Wealth Creation Partner",
@@ -49,12 +52,9 @@ export const SlideShowBar = ({ data = [] }) => {
   }, [data]);
 
   return (
-    <MainBox>
-      <BackgroundVideo autoPlay loop muted>
-        <source src={Video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </BackgroundVideo>
-      <Overlay />
+    <MainBox BackGroundImage1={BackGroundImage1}>
+      {/* <BackgroundImage style={{ backgroundImage: `url(${backgroundUrl})` }} /> */}
+      {/* <Overlay /> */}
       <ContentBox>
         <Typography variant="h6" className="subTitle">
           {subTitle}
@@ -67,24 +67,34 @@ export const SlideShowBar = ({ data = [] }) => {
           className="description"
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        <Link href="#contact" passHref>
-          <Button
-            variant="contained"
-            className="ctaButton"
-            endIcon={<IoArrowForwardSharp className="arrowIcon" />}
-          >
-            {button_name}
-          </Button>
-        </Link>
+        {showButton && (
+          <Link href="#contact" passHref>
+            <Button
+              variant="contained"
+              className="ctaButton"
+              endIcon={<IoArrowForwardSharp className="arrowIcon" />}
+            >
+              {button_name}
+            </Button>
+          </Link>
+        )}
       </ContentBox>
     </MainBox>
   );
 };
 
-const slideIn = keyframes`
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+const BackgroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0.4;
 `;
+
 const float = keyframes`
   0% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }
@@ -92,11 +102,26 @@ const float = keyframes`
 `;
 
 const MainBox = styled(Box)`
+  background-image: ${({ BackGroundImage1 }) => `url(${BackGroundImage1})`};
   position: relative;
   width: 100%;
   height: 600px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
-  animation: ${slideIn} 0.8s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 
   @media (max-width: 900px) {
     height: 400px;
@@ -107,43 +132,20 @@ const MainBox = styled(Box)`
   }
 `;
 
-const BackgroundVideo = styled.video`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  opacity: 0.4;
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  /* background-color: rgba(241, 117, 117, 0.65); */
-  z-index: 1;
-`;
-
 const ContentBox = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  z-index: 2;
+  transform: translate(-90%, -50%);
+  color: #49326b;
+  text-align: left;
+  z-index: 1;
 
   .subTitle {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 8px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    color: #fff;
+    color: #49326b;
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
@@ -155,32 +157,28 @@ const ContentBox = styled(Box)`
   }
 
   .title {
-  font-size: 50px;
-  font-weight: 900;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #f33d25 30%, rgb(202, 9, 9) 70%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-  animation: float 3s ease-in-out infinite;
-  padding: 10px;
-  border-radius: 10px;
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: #49326b;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+    padding: 10px;
+    border-radius: 10px;
 
-  @media (max-width: 600px) {
-    font-size: 24px;
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
   }
-}
 
   .description {
     font-size: 24px;
     max-width: 800px;
     margin-bottom: 16px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    color: #fff;
+    /* text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); */
+    color: #49326b;
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
@@ -192,11 +190,11 @@ const ContentBox = styled(Box)`
 
   .ctaButton {
     padding: 10px 50px;
-    border: 1px solid #f33d25;
+    border: 1px solid red;
     text-transform: none;
     color: white;
     font-size: 20px;
-    background-color: #f33d25;
+    background-color: red;
     font-weight: bold;
     z-index: 1;
     margin-top: 8px;

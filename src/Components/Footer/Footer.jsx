@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Divider, Typography, Container } from "@mui/material";
+import { Instagram, Linkedin, Mail, Youtube } from "lucide-react";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import { Divider, Typography, Container, Box } from "@mui/material";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -171,21 +173,99 @@ export default function Footer() {
               <li onClick={() => handleNavigation("/#calculator")}>Swap</li>
             </Links>
           </Col>
-          <Col md={2} lg={2} xl={2} xs={12}>
+          {/* <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>Address</Foottitle>
-            <Links>
-              {/* <Link to="/adminlogin">
+            <Links> */}
+          {/* <Link to="/adminlogin">
                 <li>Admin LogIn</li> */}
-              No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan
-              Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021
-              {/* </Link> */}
-            </Links>
-          </Col>
+          {/* No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan
+              Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021 */}
+          {/* </Link> */}
+          {/* </Links>
+          </Col> */}
         </Row>
         <StyledDivider />
-        <Row>
-          <Col md={10}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            marginTop: "20px",
+            width: "100%",
+            gap: 4,
+            flexWrap: "wrap", // ensures responsiveness
+          }}
+        >
+          {/* Address Section */}
+          <Box
+            sx={{ display: "flex", flexDirection: "column", maxWidth: "45%" }}
+          >
+            <Foottitle>Address</Foottitle>
+            <Links>
+              <p style={{ width: "100%" }}>
+                No 145, 102, Gollavar Agraharam Rd, above ICICI bank,
+                Kanniyappan Colony, Sanjeevarayanpet, Washermanpet, Chennai,
+                Tamil Nadu 600021
+              </p>
+            </Links>
+          </Box>
+
+          {/* Google Map Section */}
+          <Box sx={{ width: "100%", maxWidth: "50%" }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62249.37912285897!2d80.2465766!3d13.1145724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f93a8d6f9fd%3A0x3f1c6d83a234b0a7!2sICICI%20Bank%20Chennai%20-%20Washermanpet!5e0!3m2!1sen!2sin!4v1716544359872!5m2!1sen!2sin"
+              width="100%"
+              height="250"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Deepan India Office Location"
+            ></iframe>
+          </Box>
+        </Box>
+
+        <Row style={{ justifyContent: "space-evenly", alignItems: "center" }}>
+          <Col md={3}>
             <Bottomlink>
+              <li>
+                <a
+                  href="https://www.instagram.com/deepanindia?igsh=MXNyNXh3a256NGNneg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Instagram />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/deepan-india-financial-services-private-limited/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin />
+                </a>
+              </li>
+              <li>
+                <a href="mailto:Deepanindiafinancialservices@gmail.com">
+                  <Mail />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://www.youtube.com/@deepanindiafinancialservices"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Youtube />
+                </a>
+              </li>
+            </Bottomlink>
+          </Col>
+
+          <Col md={6}>
+            <Bottomlink style={{ justifyContent: "center" }}>
               <Typography
                 sx={{
                   fontSize: "16px",
@@ -193,31 +273,14 @@ export default function Footer() {
                   textAlign: "center",
                 }}
               >
-                {" "}
                 &copy; {new Date().getFullYear()} Deepan India. All rights
                 reserved.
               </Typography>
             </Bottomlink>
           </Col>
-          <Col md={2}>
-            {/* <Bottomlink>
-              <li>
-                <FaLinkedin />
-              </li>
-              <li>
-                <FaTwitter />
-              </li>
-              <li>
-                <FaYoutube />{" "}
-              </li>
-              <li>
-                <FaFacebookSquare />
-              </li>
-              <li>
-                <FaInstagramSquare />
-              </li>
-            </Bottomlink> */}
-            <Bottomlink>
+
+          <Col md={3}>
+            <Bottomlink style={{ justifyContent: "flex-end" }}>
               <li onClick={() => navigate("/privacy-policy")}>
                 Privacy Policy
               </li>
@@ -233,8 +296,8 @@ export default function Footer() {
 }
 const Footermain = styled.section`
   padding: 70px 0 30px 0;
-  border-top:10px solid #f33d25;
-  background-color: #f3f1f155;
+  border-top: 5px solid #49326b;
+  background-color: #f9f3fe;
   @media screen and (max-width: 600px) {
     padding: 40px 0;
   }
@@ -243,14 +306,14 @@ const Foottitle = styled.h3`
   font-size: 16px;
   font-weight: 700;
   padding: 5px 0;
-  color: #e31e1e;
+  color: #49326b;
   text-transform: capitalize;
 `;
 const Links = styled.ul`
   margin: 10px 0;
   list-style-type: none;
   padding: 0;
-  color: #e31e1e;
+  color: #49326b;
   li {
     padding: 5px 0;
     font-size: 15px;
@@ -265,7 +328,7 @@ const Bottomlink = styled.ul`
   margin: 20px 0 0 0;
   list-style-type: none;
   padding: 0;
-  color: #e31e1e;
+  color: #49326b;
   li {
     padding: 5px 10px;
     font-size: 13px;
@@ -278,8 +341,8 @@ const Bottomlink = styled.ul`
   }
 `;
 const StyledDivider = styled(Divider)`
-  background-color: #e31e1e;
+  background-color: #49326b;
   height: 6px;
-  margin: 50px 0;
+  margin: 50px;
   width: 100%;
 `;

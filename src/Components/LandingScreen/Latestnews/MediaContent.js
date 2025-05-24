@@ -200,7 +200,7 @@ const slideIn = keyframes`
 
 // Styled Components
 const StyledSection = styled.section`
-  background: linear-gradient(135deg, #fffcfc 0%, #f8f4f4 100%);
+  background-color: #f9f3fe;
   padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 16px);
   position: relative;
   overflow: hidden;
@@ -215,16 +215,6 @@ const StyledSection = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(
-        circle at 20% 80%,
-        rgba(255, 0, 0, 0.05) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
-        rgba(255, 0, 0, 0.05) 0%,
-        transparent 50%
-      );
     pointer-events: none;
   }
 
@@ -263,10 +253,7 @@ const HeaderSection = styled.div`
 const MainTitle = styled.h1`
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   font-weight: 900;
-  background: linear-gradient(135deg, #f33d25 0%, rgb(19, 18, 117) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color:#49326b;
   margin-bottom: clamp(8px, 1.5vw, 12px);
   line-height: 1.2;
 
@@ -277,7 +264,7 @@ const MainTitle = styled.h1`
 
 const Subtitle = styled.p`
   font-size: clamp(0.8rem, 2vw, 1rem);
-  color: #666;
+  color: #49326b;
   font-weight: 400;
   max-width: clamp(300px, 80vw, 500px);
   margin: 0 auto;
@@ -325,12 +312,12 @@ const SlideContent = styled.div`
   gap: clamp(10px, 2vw, 16px);
   width: 100%;
   align-items: center;
-  background: rgba(255, 252, 252, 0.8);
+  background: #f9f3fe;
   backdrop-filter: blur(8px);
   border-radius: 12px;
   padding: clamp(12px, 3vw, 20px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border: 5px solid red;
+  box-shadow: 0 8px 16px #49326b;
+  border: 5px solid #49326b;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
@@ -354,14 +341,14 @@ const ContentSection = styled.div`
 const IconWrapper = styled.div`
   width: clamp(40px, 8vw, 60px);
   height: clamp(40px, 8vw, 60px);
-  background: linear-gradient(135deg, red, #cc0000);
+  background: linear-gradient(135deg, #49326b, #e4d4fa);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fffcfc;
   margin-bottom: clamp(8px, 1.5vw, 16px);
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 4px 8px #49326b;
 
   svg {
     width: clamp(24px, 5vw, 36px);
@@ -388,7 +375,7 @@ const TextContent = styled.div`
 const SubTitle = styled.span`
   font-size: clamp(0.6rem, 1.5vw, 0.8rem);
   font-weight: 600;
-  color: red;
+  color: #49326b;
   text-transform: uppercase;
   letter-spacing: 0.8px;
 `;
@@ -396,7 +383,7 @@ const SubTitle = styled.span`
 const Title = styled.h2`
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: 800;
-  color: rgb(155, 13, 13);
+  color: #49326b;
   line-height: 1.3;
   margin: 0;
 
@@ -407,7 +394,7 @@ const Title = styled.h2`
 
 const Description = styled.p`
   font-size: clamp(0.8rem, 1.8vw, 1rem);
-  color: rgb(170, 64, 64);
+  color: #49326b;
   line-height: 1.5;
   margin: 0;
 
@@ -436,7 +423,7 @@ const Metric = styled.div`
 const MetricValue = styled.div`
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 900;
-  color: red;
+  color: #49326b;
   line-height: 1;
 
   @media (max-width: 480px) {
@@ -456,8 +443,8 @@ const ActionButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: clamp(6px, 1vw, 8px);
-  background: linear-gradient(135deg, red, #cc0000);
-  color: #fffcfc;
+  background: linear-gradient(135deg, #49326b, #e4d4fa);
+  color:#49326b;
   padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
   border-radius: 8px;
   text-decoration: none;
@@ -471,7 +458,7 @@ const ActionButton = styled.a`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(255, 0, 0, 0.3);
+    box-shadow: 0 8px 16px #49326b;
   }
 
   svg {
@@ -501,10 +488,10 @@ const VideoPreview = styled.div`
   aspect-ratio: 16 / 9;
   height: 100%;
   /* max-height: clamp(150px, 35vh, 220px); */
-  background: linear-gradient(135deg, #f5f5f5, #e5e5e5);
+  background: linear-gradient(135deg, #f9f3fe,#e4d4fa);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px #49326b;
 
   /* @media (max-width: 768px) {
     max-height: clamp(120px, 30vh, 180px);
@@ -523,8 +510,8 @@ const VideoOverlay = styled.div`
   bottom: 0;
   background: linear-gradient(
     45deg,
-    rgba(255, 0, 0, 0.1),
-    rgba(204, 0, 0, 0.1)
+    #49326b,
+rgb(169, 144, 206)
   );
 `;
 
@@ -535,22 +522,22 @@ const PlayButton = styled.a`
   transform: translate(-50%, -50%);
   width: clamp(40px, 8vw, 60px);
   height: clamp(40px, 8vw, 60px);
-  background: rgba(255, 252, 252, 0.95);
+  background: #f9f3fe;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: red;
+  color: #49326b;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px #49326b;
   z-index: 2;
   touch-action: manipulation;
   min-height: 44px;
 
   &:hover {
     animation: ${pulse} 1s infinite;
-    background: #fffcfc;
+    background: #f9f3fe;
     transform: translate(-50%, -50%) scale(1.1);
   }
 
@@ -602,7 +589,7 @@ const ProgressContainer = styled.div`
 const ProgressBar = styled.div`
   width: clamp(25px, 5vw, 40px);
   height: 4px;
-  background: rgba(255, 0, 0, 0.2);
+  background:  #49326b;
   border-radius: 2px;
   cursor: pointer;
   position: relative;
@@ -620,7 +607,7 @@ const ProgressBar = styled.div`
     left: 0;
     height: 100%;
     width: ${(props) => props.progress}%;
-    background: linear-gradient(90deg, red, #cc0000);
+    background: linear-gradient(90deg,  #49326b, #e4d4fa);
     border-radius: 2px;
     transition: width 0.1s linear;
   }
@@ -632,8 +619,8 @@ const ProgressBar = styled.div`
 
 const PlayPauseButton = styled.button`
   background: transparent;
-  border: 2px solid red;
-  color: red;
+  border: 2px solid  #49326b;
+  color:  #49326b;
   padding: clamp(6px, 1vw, 8px) clamp(8px, 1.2vw, 10px);
   border-radius: 16px;
   cursor: pointer;
@@ -644,8 +631,8 @@ const PlayPauseButton = styled.button`
   min-height: 36px;
 
   &:hover {
-    background: red;
-    color: #fffcfc;
+    background:  #49326b;
+    color: #f9f3fe;
   }
 
   @media (max-width: 480px) {
