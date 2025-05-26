@@ -7,21 +7,21 @@ import {
   CardContent,
   Avatar,
   Paper,
-   List,
+  List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Container,
-  Button
+  Button,
 } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import DownloadIcon from "@mui/icons-material/Download";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import {styled, keyframes} from "styled-components";
+import { styled, keyframes } from "styled-components";
 import Handshake from "../../../assets/2466548-removebg-preview.png";
-import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
   from {
@@ -33,7 +33,6 @@ const slideIn = keyframes`
     transform: translateY(0);
   }
 `;
-
 
 const resources = [
   {
@@ -60,14 +59,14 @@ const resources = [
 
 const EducationalResource = () => {
   return (
-    <MainBox image={backImage}>
+    <MainBox>
       <Container maxWidth="xl">
         <Typography
           sx={{
             padding: "30px 0",
-            textAlign: "center",
+            textAlign: "left",
             fontWeight: 900,
-            color: "#181515",
+            color: "#49326b",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -80,9 +79,9 @@ const EducationalResource = () => {
 
         <Typography
           sx={{
-            textAlign: "center",
-            color: "#5a5757",
-            fontSize: "22px",
+            textAlign: "left",
+            color: "#49326b",
+            fontSize: "18px",
             marginBottom: "40px",
             fontWeight: 300,
             "@media (max-width: 600px)": {
@@ -96,7 +95,7 @@ const EducationalResource = () => {
           {/* <HighlightSpan>independent income opportunities</HighlightSpan> in the
               financial sector? */}
         </Typography>
-        <QualificationBox>
+        <QualificationBox image={aboutImg1}>
           <Box
             sx={{
               display: "flex",
@@ -110,16 +109,43 @@ const EducationalResource = () => {
                 <List>
                   {resources.map((res, index) => (
                     <ListItem key={index} sx={{ paddingY: "8px" }}>
-                      <ListItemIcon sx={{ minWidth: "40px" }}>
-                        <Avatar sx={{ bgcolor: "#2c1a4e", mr: 2 }}>
-                          {res.icon}
-                        </Avatar>
-                      </ListItemIcon>
-                      <Box sx={{display:"flex", flexDirection:"column"}}>
-                      <Typography variant="h6" sx={{fontWeight:"bold"}}>{res.title}</Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {res.desc}
-                      </Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          padding: "10px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: "40px" }}>
+                          <Avatar
+                            sx={{ bgcolor: "#f9f3fe", color: "#49326b", mr: 2 }}
+                          >
+                            {res.icon}
+                          </Avatar>
+                        </ListItemIcon>
+                      </Box>
+
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          backgroundColor: "white",
+                          width: "100%",
+                          borderbottom: "1px solid #49326b",
+                          padding: "10px",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: "bold", color: "#49326b" }}
+                        >
+                          {res.title}
+                        </Typography>
+                        <Typography variant="body2" color="#49326b">
+                          {res.desc}
+                        </Typography>
                       </Box>
                     </ListItem>
                   ))}
@@ -167,30 +193,52 @@ const EducationalResource = () => {
 export default EducationalResource;
 
 const MainBox = styled(Box)`
+  padding: 60px 0;
+  background-color: #f9f3fe;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  animation: ${slideIn} 0.8s ease-in-out;
-  background-attachment: fixed;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    padding: 30px 0;
+  }
 `;
 
-const QualificationBox = styled(Box)`
-  background-color: rgba(12, 12, 12, 0.1);
-  border-radius: 10px;
-  padding: 40px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(10px);
-`;
-
+const QualificationBox = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "40px 40px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(73, 50, 107, 0.3)",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
 
 const HighlightSpan = styled.span`
-  color: #100842;
+  color: white;
   font-weight: 700;
   &:hover {
     color: #e73ed1;
   }
 `;
-

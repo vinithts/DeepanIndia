@@ -281,7 +281,7 @@ const Choose = ({ data }) => {
                     <Card
                       sx={{
                         height: "100%",
-                        width: "auto",
+                        width: "100%",
                         backgroundColor: "#ffffff",
                         borderRadius: "10px",
                         borderTop: "10px solid #49326b",

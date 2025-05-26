@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import styled from "styled-components";
-import Deepalogo from "../../assets/Deepan-India_Logo-removebg-preview.png";
+import Deepalogo from "../../assets/EditedLogo-removebg-preview.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,6 +15,7 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [visibleDropdown, setVisibleDropdown] = useState(null);
   let hoverTimeout;
 
@@ -81,7 +82,7 @@ export default function Header() {
                         color: "#16155e",
                       },
                       backgroundColor: "#ffffff",
-                      padding: "8px 16px",
+                      padding: "8px 12px",
                       borderRadius: "4px",
                       cursor: "pointer",
                       fontWeight: "bold",
@@ -89,6 +90,8 @@ export default function Header() {
                       textAlign: "center",
                       display: "inline-block",
                       textDecoration: "none",
+                      marginLeft: "10px",
+                      marginRight: "10px",
                     }}
                   >
                     Algo Trading
@@ -119,7 +122,7 @@ export default function Header() {
           </Container>
         </Navbar>
       </Topheader>
-     <StyledDivider/>
+      <StyledDivider />
       <HeaderBottom>
         <Container>
           <MyContainer>
@@ -213,7 +216,7 @@ export default function Header() {
                     </ul>
                   </Dropdown>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   onMouseEnter={() => handleMouseEnter(2)}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -225,7 +228,7 @@ export default function Header() {
                       <li>Market Updates</li>
                     </ul>
                   </Dropdown>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   onMouseEnter={() => handleMouseEnter(3)}
                   onMouseLeave={handleMouseLeave}
@@ -234,8 +237,12 @@ export default function Header() {
                   <Dropdown show={visibleDropdown === 3}>
                     <ul>
                       <li onClick={() => handleNavigation("/#card")}>Blogs</li>
-                      <li onClick={() => handleNavigation("/#media")}>Videos</li>
-                      <li onClick={() => handleNavigation("/#media")}>Reports</li>
+                      <li onClick={() => handleNavigation("/#media")}>
+                        Videos
+                      </li>
+                      <li onClick={() => handleNavigation("/#media")}>
+                        Reports
+                      </li>
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -261,51 +268,61 @@ export default function Header() {
                     </ul>
                   </Dropdown>
                 </NavLink>
-                <NavLink className="search">
+                {/* <NavLink className="search">
                   <FaSearch />
-                </NavLink>
+                </NavLink> */}
               </NavLinks>
             </NavBtn>
           </MyContainer>
 
           <div className="mobile-menus">
-            <Navbar expand="lg" className="my-topheader">
+            <Navbar expand="lg"  expanded={expanded} onToggle={() => setExpanded(!expanded)} className="my-topheader">
               <Container maxWidth={"xl"}>
                 <LogoContainer>
                   <Logo src={Deepalogo} alt="Logo" />
                 </LogoContainer>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-navbar-toggle"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="">
-                    <NavDropdown title="Who We Are" id="basic-nav-dropdown">
+                    <NavDropdown
+                      title="Who We Are"
+                      id="basic-nav-dropdown"
+                      color="#49326b"
+                    >
                       <NavDropdown.Item
-                        onClick={() => navigate("/investment-solution")}
+                        className="nav-dropdown"
+                      onClick={() => {navigate("/investment-solution"); setExpanded(false);}}
                       >
                         Investment Solutions
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/retirement-planning")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/retirement-planning"); setExpanded(false);}}
                       >
                         Retirement Planning
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/wealth-management")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/wealth-management"); setExpanded(false);}}
                       >
                         Wealth Management
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/educational-resource")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/educational-resource"); setExpanded(false);}}
                       >
                         Educational Resources
                       </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="What We Do" id="basic-nav-dropdown">
                       <NavDropdown.Item
-                        onClick={() => navigate("/service/mutual-funds")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/service/mutual-funds"); setExpanded(false);}}
                       >
                         Mutual Funds
                       </NavDropdown.Item>
                       <NavDropdown.Item
+                        className="nav-dropdown"
                         onClick={() =>
                           navigate("/service/training-in-financial-markets")
                         }
@@ -313,74 +330,99 @@ export default function Header() {
                         Training in Financial Markets
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/service/algo-trading")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/service/algo-trading"); setExpanded(false);}}
                       >
                         Algo Trading
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/service/advisory-services")}
+                        className="nav-dropdown"
+                        onClick={() =>{ navigate("/service/advisory-services"); setExpanded(false);}}
                       >
                         Advisory Services
                       </NavDropdown.Item>
                       <NavDropdown.Item
+                        className="nav-dropdown"
                         onClick={() =>
-                          navigate("/service/fixed-deposits-&-bond")
+                        { navigate("/service/fixed-deposits-&-bond"); setExpanded(false);}
                         }
                       >
                         Fixed Deposits & Bonds
                       </NavDropdown.Item>
                       <NavDropdown.Item
+                        className="nav-dropdown"
                         onClick={() =>
-                          navigate("/service/alternate-investment-funds-(AIFS)")
+                          {navigate("/service/alternate-investment-funds-(AIFS)"); setExpanded(false);}
                         }
                       >
                         Alternative Investment funds
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/service/real-estate-funds")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/service/real-estate-funds"); setExpanded(false);}}
                       >
                         Real Estate funds
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => navigate("/service/insurances")}
+                        className="nav-dropdown"
+                        onClick={() => {navigate("/service/insurances"); setExpanded(false);}}
                       >
                         Insurances
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="How We Deliver" id="basic-nav-dropdown">
-                      <NavDropdown.Item>Consulting</NavDropdown.Item>
-                      <NavDropdown.Item>Market Analysis</NavDropdown.Item>
-                      <NavDropdown.Item>arket Updates</NavDropdown.Item>
-                    </NavDropdown>
+                    {/* <NavDropdown title="How We Deliver" id="basic-nav-dropdown">
+                      <NavDropdown.Item className="nav-dropdown">Consulting</NavDropdown.Item>
+                      <NavDropdown.Item className="nav-dropdown">Market Analysis</NavDropdown.Item>
+                      <NavDropdown.Item className="nav-dropdown">Market Updates</NavDropdown.Item>
+                    </NavDropdown> */}
                     <NavDropdown title="What We Think" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={() => handleNavigation("/#card")}>Blogs</NavDropdown.Item>
-                      <NavDropdown.Item onClick={() => handleNavigation("/#media")}>Videos</NavDropdown.Item>
-                      <NavDropdown.Item onClick={() => handleNavigation("/#media")}>Reports</NavDropdown.Item>
+                      <NavDropdown.Item
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#card"); setExpanded(false);}}
+                      >
+                        Blogs
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#media"); setExpanded(false);}}
+                      >
+                        Videos
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#media"); setExpanded(false);}}
+                      >
+                        Reports
+                      </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Calculator" id="basic-nav-dropdown">
                       <NavDropdown.Item
-                        onClick={() => handleNavigation("/#calculator")}
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
                       >
                         SIP Calculator
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => handleNavigation("/#calculator")}
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
                       >
                         Lumpsum
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => handleNavigation("/#calculator")}
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
                       >
                         SIP combined with Lumpsum
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        onClick={() => handleNavigation("/#calculator")}
+                        className="nav-dropdown"
+                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
                       >
                         SWP
                       </NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link
-                      onClick={() => handleNavigation("/")}
+                      onClick={() =>{ handleNavigation("/"); setExpanded(false);}}
                       style={{
                         color: "white",
                         transition: "color 0.3s ease",
@@ -388,7 +430,7 @@ export default function Header() {
                           color: "#16155e",
                         },
                         backgroundColor: "#260b57",
-                        padding: "8px 16px",
+                        padding: "8px 12px",
                         borderRadius: "4px",
                         cursor: "pointer",
                         fontWeight: "bold",
@@ -434,7 +476,7 @@ const HeaderContainer = styled.section`
 const Topmenuitem = styled.div``;
 
 const Topheader = styled.div`
-  background-color:  #49326b;
+  background-color: #49326b;
   border-bottom: #16151553;
   h6 {
     font-weight: 800;
@@ -453,15 +495,15 @@ const Topheader = styled.div`
 `;
 const Btntopheader = styled.button`
   padding: 6px 15px;
-  border-radius:5px;
-  border: 1px solid  #49326b;
+  border-radius: 5px;
+  border: 1px solid #49326b;
   background-color: #fff;
   color: #49326b;
   font-size: 14px;
   &:hover {
     background-color: #33197a;
     color: #fff;
-     border: 1px solid #33197a;
+    border: 1px solid #33197a;
   }
 `;
 
@@ -532,7 +574,7 @@ const StyledNavLink = styled(Nav.Link)`
   transition: color 0.3s ease;
 
   &:hover {
-    color: white !important;
+    color: red !important;
   }
 `;
 
@@ -576,7 +618,7 @@ const NavLinks = styled.ul`
 `;
 const NavLink = styled.li`
   position: relative; /* This ensures the dropdown aligns to this parent */
-  color:  #49326b;
+  color: #49326b;
   padding: 0 0.8rem;
   letter-spacing: 1px;
   font-size: 16px;
@@ -585,7 +627,7 @@ const NavLink = styled.li`
   padding: 10px;
   &:hover {
     transform: scale(1);
-    background-color: #d3d0d0;  
+    background-color: #d3d0d0;
   }
 
   @media screen and (max-width: 600px) {
@@ -623,14 +665,14 @@ const Dropdown = styled.div`
     li {
       display: block;
       padding: 0.5rem 1rem;
-      color:  #49326b;
+      color: #49326b;
       background: #f0f0f5;
       transition: 0.3s;
       border-bottom: 1px solid white;
       &:hover {
-        background:  #49326b;
+        background: #49326b;
         color: white;
-        border-top: 5px solid  #ffffff;
+        border-top: 5px solid #ffffff;
       }
     }
   }

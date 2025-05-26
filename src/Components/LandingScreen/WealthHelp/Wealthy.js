@@ -61,7 +61,7 @@ const Wealthy = ({ data }) => {
               Deepan
             </span>{" "}
             <span
-              style={{ color: "#23395d", fontSize: "32px", fontWeight: 900 }}
+              style={{ color: "#e4d4fa", fontSize: "32px", fontWeight: 900 }}
             >
               India
             </span>{" "}
@@ -158,15 +158,23 @@ const Description = styled(Typography)`
 
 const ProductCard = styled(Box)`
   display: flex;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  padding: 40px;
+  border-top: 10px solid #e4d4fa;
+  padding: 20px;
   text-align: center;
   overflow: hidden;
   transition: 0.3s;
   background-color:#f9f3fe;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const IconWrapper = styled.img`
@@ -184,9 +192,9 @@ const ProductTitle = styled(Typography)`
     font-size: 20px;
     color:  #49326b;
     font-weight: bold;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 4; */
+    /* -webkit-box-orient: vertical; */
     overflow: hidden;
     text-overflow: ellipsis;
   }
