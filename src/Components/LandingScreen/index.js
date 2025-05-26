@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { instance } from "../../utils/api";
-import { SlideShowBar } from "./Slider/SlideShowBar";
 import { About } from "./About/About";
 import Cardpart from "./Cards/Cardpart";
 import MediaContent from "./Latestnews/MediaContent";
@@ -11,6 +10,7 @@ import Calculator from "./Calculator/Calculator";
 import OurStory from "./story/OurStory";
 import Wealthy from "./WealthHelp/Wealthy";
 import Partner from "./Partner/Partner";
+import SlideShowBar from "./Slider/SlideShowBar";
 
 const LandingScreen = () => {
   const [head, setHead] = useState([]);

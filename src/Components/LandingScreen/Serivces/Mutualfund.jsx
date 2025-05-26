@@ -1,0 +1,250 @@
+import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import InsuranceImage from "../../../assets/insurance_set_2-removebg-preview.png";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import sip from "../../../assets/about-sip.png";
+import lumpsum from "../../../assets/lumpsum-removebg-preview.png";
+import swp from "../../../assets/swp-removebg-preview.png";
+
+const SectionWrapper = styled(Box)(({ theme }) => ({
+  backgroundColor: "#f9f3fe",
+  padding: theme.spacing(4),
+  borderRadius: "16px",
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(2),
+  },
+}));
+
+// Styled card
+const InfoCard = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  border: "10px solid #c2b8d1",
+  padding: "40px 40px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "left",
+  justifyContent: "center",
+  "&:hover": {
+    transform: "translateY(-8px)",
+    boxShadow: `0 20px 40px #49326b`,
+    background: `linear-gradient(135deg, #49326b 0%, #rgba(210, 152, 228, 0.25)00%)`,
+    "& .feature-icon": {
+      transform: "scale(1.1)",
+      background: `linear-gradient(45deg, #49326b,rgb(167, 103, 180))`,
+    },
+  },
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(73, 50, 107, 0.3)",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
+
+const SectionTitle = styled(Typography)(({ theme }) => ({
+  fontSize: "2rem",
+  fontWeight: 900,
+  color: "#49326b",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.75rem",
+  },
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "1.5rem",
+  },
+}));
+const SectionTitle1 = styled(Typography)(({ theme }) => ({
+  fontSize: "1.5rem",
+  fontWeight: 900,
+  textAlign: "left",
+  marginBottom: "10px",
+  color: "white",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.5rem",
+  },
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "1.5rem",
+  },
+}));
+const Point = styled(Typography)({
+  color: "#49326b",
+  marginBottom: "6px",
+  fontSize: "1.5rem",
+});
+const Point1 = styled(Typography)({
+  color: "white",
+  marginBottom: "6px",
+  fontSize: "1rem",
+});
+const StyledDivider = styled(Divider)`
+  background-color: #25143f;
+  height: 6px;
+  width: 100%;
+  margin: 0px 50px 50px 0px;
+`;
+const MutualFundsSection = ({ serviceName }) => {
+  return (
+    <SectionWrapper>
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          {/* Key Benefits */}
+          <Grid item xs={12} sm={6} md={6}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flexDirection: "column",
+                alignItems: "left",
+                padding: "20px",
+              }}
+            >
+              <SectionTitle> Key Benefits</SectionTitle>
+              <Box sx={{ p: 3, marginTop: "10px" }}>
+                <Point>- Diversification across sectors/assets.</Point>
+                <Point>- Professional fund management.</Point>
+                <Point>- Suitable for every risk profile.</Point>
+                <Point>- Liquidity and transparency.</Point>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <img
+                src={InsuranceImage}
+                alt="Mutual Funds Illustration"
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+        {/* SIP */}
+        <StyledDivider />
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={6} md={6}>
+            <InfoCard image={aboutImg1}>
+              <SectionTitle1>📌 SIP (Systematic Investment Plan)</SectionTitle1>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ pl: 1 }}>
+                  <Point1>
+                    - Small, regular investments (monthly/weekly).
+                  </Point1>
+                  <Point1>- Builds discipline and long-term wealth.</Point1>
+                  <Point1>- Rupee cost averaging benefit.</Point1>
+                  <Point1>- Great for salaried individuals.</Point1>
+                </Box>
+                <Box>
+                  <img
+                    src={sip}
+                    alt="SIP vs Lumpsum"
+                    style={{ width: "100%", borderRadius: "12px" }}
+                  />
+                </Box>
+              </Box>
+            </InfoCard>
+          </Grid>
+
+          {/* Lumpsum */}
+          <Grid item xs={12} sm={6} md={6}>
+            <InfoCard image={aboutImg1}>
+              <SectionTitle1>📌 Lumpsum Investment</SectionTitle1>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ pl: 1 }}>
+                  <Point1>
+                    - One-time bulk investment (as & when you get surplus).
+                  </Point1>
+                  <Point1>
+                    - Best suited during market dips or windfalls.
+                  </Point1>
+                  <Point1>
+                    - Potential for higher returns in long-term bull phases.
+                  </Point1>
+                </Box>
+                <Box sx={{ mt: 1 }}>
+                  <img
+                    src={lumpsum}
+                    alt="Lumpsum Investment"
+                    style={{ width: "100%", borderRadius: "12px" }}
+                  />
+                </Box>
+              </Box>
+            </InfoCard>
+          </Grid>
+
+          {/* SWP */}
+          <Grid item xs={12} sm={6} md={6}>
+            <InfoCard image={aboutImg1}>
+              <SectionTitle1>📌 SWP (Systematic Withdrawal Plan)</SectionTitle1>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ pl: 1 }}>
+                  <Point1>- Regular income from invested funds.</Point1>
+                  <Point1>
+                    - Ideal for retirees or passive income seekers.
+                  </Point1>
+                  <Point1>
+                    - Capital remains invested while income is generated.
+                  </Point1>
+                </Box>
+                <Box sx={{ mt: 1 }}>
+                  <img
+                    src={swp}
+                    alt="SWP Cash Flow"
+                    style={{ width: "100%", borderRadius: "12px" }}
+                  />
+                </Box>
+              </Box>
+            </InfoCard>
+          </Grid>
+        </Grid>
+      </Container>
+    </SectionWrapper>
+  );
+};
+export default MutualFundsSection;

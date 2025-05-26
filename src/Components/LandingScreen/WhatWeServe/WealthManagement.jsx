@@ -6,7 +6,8 @@ import {
   Step,
   StepLabel,
   Container,
-  Grid
+  Grid,
+  keyframes
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
@@ -14,9 +15,9 @@ import GavelIcon from "@mui/icons-material/Gavel";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
-import {styled, keyframes} from "styled-components";
-import Handshake from "../../../assets/wealth.png";
-import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import { styled } from "styled-components";
+import Handshake from "../../../assets/2303_q894_030_s_m009_c10_tax_pay_flat_illustration-removebg-preview.png";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
   from {
@@ -54,14 +55,14 @@ const GoldText = styled(Typography)({
 
 const WealthManagement = () => {
   return (
-    <MainBox image={backImage}>
+    <MainBox>
       <Container maxWidth="xl">
         <Typography
           sx={{
             padding: "30px 0",
-            textAlign: "center",
+            textAlign: "left",
             fontWeight: 900,
-            color: "#181515",
+            color: "#49326b",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -74,13 +75,13 @@ const WealthManagement = () => {
 
         <Typography
           sx={{
-            textAlign: "center",
-            color: "#5a5757",
+            textAlign: "left",
+            color: "#49326b",
             fontSize: "22px",
             marginBottom: "40px",
             fontWeight: 300,
             "@media (max-width: 600px)": {
-              fontSize: "18px",
+              fontSize: "16px",
               marginBottom: "30px",
             },
           }}
@@ -90,43 +91,46 @@ const WealthManagement = () => {
           {/* <HighlightSpan>independent income opportunities</HighlightSpan> in the
               financial sector? */}
         </Typography>
-        <QualificationBox>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+        <QualificationBox image={aboutImg1}>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6} md={6}>
+                 <Box
+            sx={{
+              border: "2px solid white",
+              padding: "20px",
+              borderRadius: "16px",
+              animation: `${slideIn} 0.5s ease-in-out`,
+            }}
+          >
                 <Stepper orientation="vertical" nonLinear>
                   {steps.map((step, index) => (
                     <Step key={index} active>
                       <StepLabel icon={step.icon} style={{ color: "yellow" }}>
-                        <Typography sx={{ color: "#201f1f",fontWeight:"bold" }}>
+                        <Typography sx={{ color: "white", fontWeight: "bold" }}>
                           {step.label}
                         </Typography>
                       </StepLabel>
                     </Step>
                   ))}
                 </Stepper>
+                </Box>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
+                <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"100%"}}>
                 <img
                   src={Handshake}
                   alt="handshake"
                   style={{
                     width: "100%",
                     maxWidth: "400px",
+                    height: "auto",
                     display: "block",
                     "@media (max-width: 600px)": { display: "none" },
                   }}
                 />
+                </Box>
               </Grid>
             </Grid>
-          </Box>
           <Typography
             sx={{
               textAlign: "center",
@@ -142,8 +146,8 @@ const WealthManagement = () => {
           >
             <HighlightSpan>
               {" "}
-               With a strategic and holistic approach, we protect and grow
-                    your wealth over generations.
+              With a strategic and holistic approach, we protect and grow your
+              wealth over generations.
             </HighlightSpan>
           </Typography>
         </QualificationBox>
@@ -155,26 +159,49 @@ const WealthManagement = () => {
 export default WealthManagement;
 
 const MainBox = styled(Box)`
+  padding: 60px 0;
+  background-color: #f9f3fe;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  animation: ${slideIn} 0.8s ease-in-out;
-  background-attachment: fixed;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    padding: 30px 0;
+  }
 `;
 
-const QualificationBox = styled(Box)`
-  background-color: rgba(12, 12, 12, 0.1);
-  border-radius: 10px;
-  padding: 40px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(10px);
-`;
-
+const QualificationBox = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "40px 40px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(73, 50, 107, 0.3)",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
 const HighlightSpan = styled.span`
-  color: #100842;
+  color: white;
   font-weight: 700;
   &:hover {
     color: #e73ed1;

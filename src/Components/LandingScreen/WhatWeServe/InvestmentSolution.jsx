@@ -11,23 +11,31 @@ import {
   ListItemText,
   Container,
   Button,
+  keyframes,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import SavingsIcon from "@mui/icons-material/Savings";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import AutoGraphIcon from "@mui/icons-material/AutoGraph";
-import { styled, keyframes } from "styled-components";
 import Handshake from "../../../assets/18985-removebg-preview.png";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import styled from "styled-components";
 
 const slideIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 `;
 
@@ -41,19 +49,16 @@ const points = [
 
 const InvestmentSolution = () => {
   return (
-    <MainBox image={backImage}>
+    <MainBox>
       <Container maxWidth="xl">
         <Typography
           sx={{
-            padding: "30px 0",
-            textAlign: "center",
+            padding: { xs: "20px 0", md: "20px 0" },
+            textAlign: "left",
             fontWeight: 900,
-            color: "#181515",
-            fontSize: "50px",
-            "@media (max-width: 600px)": {
-              fontSize: "26px",
-              padding: "20px 0 5px 0",
-            },
+            color: "#49326b",
+            fontSize: { xs: "28px", sm: "36px", md: "48px" },
+            animation: `${fadeIn} 1s ease-in-out`,
           }}
         >
           Investment Solutions
@@ -61,81 +66,107 @@ const InvestmentSolution = () => {
 
         <Typography
           sx={{
-            textAlign: "center",
-            color: "#5a5757",
-            fontSize: "22px",
-            marginBottom: "40px",
-            fontWeight: 300,
-            "@media (max-width: 600px)": {
-              fontSize: "18px",
-              marginBottom: "30px",
-            },
+            textAlign: "left",
+            color: "#49326b",
+            fontSize: { xs: "16px", sm: "16px", md: "16px" },
+            marginBottom: { xs: "20px", md: "40px" },
+            fontWeight: 400,
+            lineHeight: 1.6,
+            animation: `${fadeIn} 1.2s ease-in-out`,
           }}
         >
-          We help you grow and secure your wealth through goal-oriented
-          investment strategies. Our approach includes:
-          {/* <HighlightSpan>independent income opportunities</HighlightSpan> in the
-              financial sector? */}
+          We help you grow and secure your wealth through goal-oriented investment strategies.
         </Typography>
-        <QualificationBox>
-          <Box
+
+        <QualificationBox image={aboutImg1}>
+          <Card
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
+              background: "rgba(255, 255, 255, 0.95)",
+              borderRadius: "16px",
+              border: "10px solid #e4d4fa",
+              boxShadow: "0 8px 24px rgba(73, 50, 107, 0.1)",
+              padding: { xs: "20px", md: "40px" },
+              animation: `${slideIn} 1s ease-in-out`,
             }}
           >
-            <Grid container spacing={6}>
-              <Grid item xs={12} sm={6} md={6}>
+            <Grid container spacing={4} alignItems="center">
+              <Grid item xs={12} sm={6}>
                 <List>
                   {points.map((point, index) => (
-                    <ListItem key={index} sx={{ paddingY: "8px" }}>
+                    <ListItem
+                      key={index}
+                      sx={{
+                        paddingY: "12px",
+                        transition: "transform 0.3s ease",
+                        "&:hover": {
+                          transform: "translateX(8px)",
+                          background: "#e4d4fa",
+                          borderRadius: "8px",
+                        },
+                      }}
+                    >
                       <ListItemIcon sx={{ minWidth: "40px" }}>
                         <CheckCircleIcon
-                          sx={{ color: "#388e3c", mt: "4px", mr: 1 }}
+                          sx={{ color: "#49326b", fontSize: "28px" }}
                         />
                       </ListItemIcon>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        {point}
-                      </Typography>
+                      <ListItemText
+                        primary={point}
+                        primaryTypographyProps={{
+                          fontSize: { xs: "16px", md: "18px" },
+                          fontWeight: 600,
+                          color: "#49326b",
+                        }}
+                      />
                     </ListItem>
                   ))}
                 </List>
               </Grid>
-              <Grid item xs={12} sm={6} md={6}>
-                <img
-                  src={Handshake}
-                  alt="handshake"
-                  style={{
-                    width: "100%",
-                    maxWidth: "400px",
-                    display: "block",
-                    "@media (max-width: 600px)": { display: "none" },
+              <Grid item xs={12} sm={6}>
+                <Box
+                  sx={{
+                    display: { xs: "none", sm: "block" },
+                    textAlign: "center",
                   }}
-                />
+                >
+                  <img
+                    src={Handshake}
+                    alt="Handshake"
+                    style={{
+                      width: "100%",
+                      maxWidth: "400px",
+                      height: "auto",
+                      animation: `${slideIn} 1.2s ease-in-out`,
+                    }}
+                  />
+                </Box>
               </Grid>
             </Grid>
-          </Box>
+          </Card>
+
           <Typography
             sx={{
               textAlign: "center",
-              fontSize: "28px",
-              fontWeight: "900",
-              color: "white",
-              marginTop: "20px",
-              padding: "10px",
-              "@media (max-width: 600px)": {
-                fontSize: "18px",
-              },
+              fontSize: { xs: "20px", sm: "24px", md: "28px" },
+              fontWeight: 700,
+              color: "#ffffff",
+              marginTop: "40px",
+              padding: "20px",
+              animation: `${fadeIn} 1.4s ease-in-out`,
             }}
           >
-            <HighlightSpan>
-              {" "}
-              Whether you’re planning for a home, child’s education, or wealth
-              creation, we ensure your investments work smarter.
-            </HighlightSpan>
+            Whether you’re planning for a home, child’s education, or wealth creation, we ensure your investments work smarter.
           </Typography>
+
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            {/* <StyledButton
+              variant="contained"
+              size="large"
+              onClick={() => alert("Get Started Clicked!")} // Replace with actual navigation or action
+            >
+              Get Started
+            </StyledButton> */}
+          </Box>
         </QualificationBox>
       </Container>
     </MainBox>
@@ -145,28 +176,69 @@ const InvestmentSolution = () => {
 export default InvestmentSolution;
 
 const MainBox = styled(Box)`
+  padding: 60px 0;
+  background-color: #f9f3fe;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  animation: ${slideIn} 0.8s ease-in-out;
-  background-attachment: fixed;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    padding: 30px 0;
+  }
 `;
 
-const QualificationBox = styled(Box)`
-  background-color: rgba(12, 12, 12, 0.1);
-  border-radius: 10px;
-  padding: 40px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(10px);
+const QualificationBox = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "40px 20px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(73, 50, 107, 0.3)",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
+
+const StyledButton = styled(Button)`
+  background-color: #49326b;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-transform: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #e4d4fa;
+    color: #49326b;
+    transform: scale(1.05);
+  }
 `;
 
 const HighlightSpan = styled.span`
-  color: #100842;
+  color: #e4d4fa;
   font-weight: 700;
+  transition: color 0.3s ease;
   &:hover {
-    color: #e73ed1;
+    color: #ffffff;
   }
 `;

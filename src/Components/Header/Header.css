@@ -1,4 +1,26 @@
-.my-topheader a:hover{
-    transition: all .55s ease-in;
-    color: rgb(196, 196, 238);
+.my-topheader a:hover {
+  transition: all 0.55s ease-in;
+  color: rgb(196, 196, 238);
+}
+.nav-dropdown {
+  color: #49326b !important;
+  background-color: #c5c4c7;
+  border-bottom: 5px solid #49326b;
+}
+.nav-dropdown:hover {
+  background-color: #49326b;
+  border-bottom: 2px solid white;
+  color: white;
+}
+.custom-navbar-toggle {
+  background-color: #49326b;
+  border-color: #49326b;
+}
+.nav-link {
+  color: #49326b !important;
+}
+.nav-link:hover {
+  background-color: #c5c4c7 !important;
+  padding: 5px;
+    border-radius: 5px;
 }

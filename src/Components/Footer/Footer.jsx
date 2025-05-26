@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Instagram, Linkedin, Mail, Youtube } from "lucide-react";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import Instagram from "../../../src/assets/instagram_3938036.png";
+import LinkedIn from "../../../src/assets/linkedin_3992606.png";
+import Youtube from "../../../src/assets/play_10090287.png";
+import Mail from "../../../src/assets/mail-icon_11720354.png";
 import { Divider, Typography, Container, Box } from "@mui/material";
+import Deepalogo from "../../assets/EditedLogo-removebg-preview.png";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -49,6 +53,9 @@ export default function Footer() {
     <Footermain>
       <Container maxWidth="xl">
         <Row>
+          <LogoContainer onClick={() => navigate("/")}>
+            <Logo src={Deepalogo} alt="Logo" />
+          </LogoContainer>
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Serve</Foottitle>
             <Links>
@@ -146,14 +153,14 @@ export default function Footer() {
               </li>
             </Links>
           </Col>
-          <Col md={2} lg={2} xl={2} xs={12}>
+          {/* <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>How We Deliver</Foottitle>
             <Links>
               <li>Consulting</li>
               <li>Market Analysis</li>
               <li>Market Updates</li>
             </Links>
-          </Col>
+          </Col> */}
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Think</Foottitle>
             <Links>
@@ -173,48 +180,22 @@ export default function Footer() {
               <li onClick={() => handleNavigation("/#calculator")}>Swap</li>
             </Links>
           </Col>
-          {/* <Col md={2} lg={2} xl={2} xs={12}>
+          <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>Address</Foottitle>
-            <Links> */}
-          {/* <Link to="/adminlogin">
-                <li>Admin LogIn</li> */}
-          {/* No 145, 102, Gollavar Agraharam Rd, above ICICI bank, Kanniyappan
-              Colony, Sanjeevarayanpet, Washermanpet, Chennai, Tamil Nadu 600021 */}
-          {/* </Link> */}
-          {/* </Links>
-          </Col> */}
-        </Row>
-        <StyledDivider />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            marginTop: "20px",
-            width: "100%",
-            gap: 4,
-            flexWrap: "wrap", // ensures responsiveness
-          }}
-        >
-          {/* Address Section */}
-          <Box
-            sx={{ display: "flex", flexDirection: "column", maxWidth: "45%" }}
-          >
-            <Foottitle>Address</Foottitle>
+
+            {/* <Link to="/adminlogin"> */}
+            {/* <li>Admin LogIn</li> */}
             <Links>
-              <p style={{ width: "100%" }}>
+              <p>
                 No 145, 102, Gollavar Agraharam Rd, above ICICI bank,
                 Kanniyappan Colony, Sanjeevarayanpet, Washermanpet, Chennai,
                 Tamil Nadu 600021
               </p>
             </Links>
-          </Box>
-
-          {/* Google Map Section */}
-          <Box sx={{ width: "100%", maxWidth: "50%" }}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62249.37912285897!2d80.2465766!3d13.1145724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f93a8d6f9fd%3A0x3f1c6d83a234b0a7!2sICICI%20Bank%20Chennai%20-%20Washermanpet!5e0!3m2!1sen!2sin!4v1716544359872!5m2!1sen!2sin"
+           
+          </Col>
+           <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6682900232054!2d80.29056200000001!3d13.120187999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52670a343aef1d%3A0x89acc915e36fd6e6!2sFirst%20Choice%20Investment!5e0!3m2!1sen!2sin!4v1748239450808!5m2!1sen!2sin"
               width="100%"
               height="250"
               style={{ border: 0 }}
@@ -223,9 +204,8 @@ export default function Footer() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Deepan India Office Location"
             ></iframe>
-          </Box>
-        </Box>
-
+        </Row>
+        <StyledDivider  style={{marginTop:"20px"}}/>
         <Row style={{ justifyContent: "space-evenly", alignItems: "center" }}>
           <Col md={3}>
             <Bottomlink>
@@ -235,21 +215,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Instagram />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/deepan-india-financial-services-private-limited/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin />
-                </a>
-              </li>
-              <li>
-                <a href="mailto:Deepanindiafinancialservices@gmail.com">
-                  <Mail />
+                  <IconIamge src={Instagram} alt={"img"} />
                 </a>
               </li>
               <li>
@@ -258,7 +224,21 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Youtube />
+                  <IconIamge src={Youtube} alt={"img"} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/deepan-india-financial-services-private-limited/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <IconIamge src={LinkedIn} alt={"img"} />
+                </a>
+              </li>
+              <li>
+                <a href="mailto:Deepanindiafinancialservices@gmail.com">
+                  <IconIamge src={Mail} alt={"img"} />
                 </a>
               </li>
             </Bottomlink>
@@ -320,7 +300,7 @@ const Links = styled.ul`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #23395d;
+      color: #e91313;
     }
   }
 `;
@@ -336,7 +316,7 @@ const Bottomlink = styled.ul`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     &:hover {
-      color: #23395d;
+      color: #df1414;
     }
   }
 `;
@@ -345,4 +325,23 @@ const StyledDivider = styled(Divider)`
   height: 6px;
   margin: 50px;
   width: 100%;
+`;
+const LogoContainer = styled.div`
+  flex: 1;
+`;
+
+const Logo = styled.img`
+  /* width: 0%; */
+  height: 100px;
+  cursor: pointer;
+`;
+const IconIamge = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.2);
+    filter: brightness(0.8);
+  }
 `;

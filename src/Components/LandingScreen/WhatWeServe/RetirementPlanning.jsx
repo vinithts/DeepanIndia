@@ -20,7 +20,7 @@ import UpdateIcon from "@mui/icons-material/Update";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import { styled, keyframes } from "styled-components";
 import Handshake from "../../../assets/wealth.png";
-import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
   from {
@@ -58,14 +58,14 @@ const items = [
 
 const RetirementPlanning = () => {
   return (
-    <MainBox image={backImage}>
+    <MainBox>
       <Container maxWidth="xl">
         <Typography
           sx={{
             padding: "30px 0",
-            textAlign: "center",
+            textAlign: "left",
             fontWeight: 900,
-            color: "#181515",
+            color: "#49326b",
             fontSize: "50px",
             "@media (max-width: 600px)": {
               fontSize: "26px",
@@ -78,13 +78,13 @@ const RetirementPlanning = () => {
 
         <Typography
           sx={{
-            textAlign: "center",
-            color: "#5a5757",
+            textAlign: "left",
+            color: "#49326b",
             fontSize: "22px",
             marginBottom: "40px",
             fontWeight: 300,
             "@media (max-width: 600px)": {
-              fontSize: "18px",
+              fontSize: "16px",
               marginBottom: "30px",
             },
           }}
@@ -94,16 +94,8 @@ const RetirementPlanning = () => {
           {/* <HighlightSpan>independent income opportunities</HighlightSpan> in the
               financial sector? */}
         </Typography>
-        <QualificationBox>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Grid container spacing={6}>
+        <QualificationBox image={aboutImg1}>
+          <Grid container spacing={12}>
               <Grid item xs={12} sm={6} md={6}>
                 <Grid container spacing={3}>
                   {items.map((item, index) => (
@@ -113,14 +105,26 @@ const RetirementPlanning = () => {
                         sx={{
                           display: "flex",
                           alignItems: "center",
+                          flexDirection:"column",
+                          justifyContent: "center",
                           p: 2,
                           borderRadius: 3,
+                          backgroundColor:"#f9f3fe",
+                          borderTop:"10px solid #e4d4fa",
+                          width:"100%",
+                          height: "100%",
+                          transition: "transform 0.3s ease",
+                          "&:hover": {
+                            transform: "translateY(-5px)",
+                            boxShadow: "0 4px 20px rgba(73, 50, 107, 0.2)",
+                          },
                         }}
                       >
-                        <Avatar sx={{ bgcolor: "#8d6e63", mr: 2 }}>
+                        <Avatar sx={{ bgcolor: "#49326b", mr: 2 }}>
                           {item.icon}
                         </Avatar>
-                        <Typography sx={{fontWeight:"bold"}}>{item.text}</Typography>
+                        <br/>
+                        <Typography sx={{fontWeight:"bold", color:"#49326b",textAlign:"center"}}>{item.text}</Typography>
                       </Paper>
                     </Grid>
                   ))}
@@ -139,7 +143,6 @@ const RetirementPlanning = () => {
                 />
               </Grid>
             </Grid>
-          </Box>
           <Typography
             sx={{
               textAlign: "center",
@@ -167,26 +170,48 @@ const RetirementPlanning = () => {
 export default RetirementPlanning;
 
 const MainBox = styled(Box)`
+    padding: 60px 0;
+  background-color: #f9f3fe;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  animation: ${slideIn} 0.8s ease-in-out;
-  background-attachment: fixed;
-`;
+  overflow: hidden;
 
-const QualificationBox = styled(Box)`
-  background-color: rgba(12, 12, 12, 0.1);
-  border-radius: 10px;
-  padding: 40px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(10px);
+  @media screen and (max-width: 600px) {
+    padding: 30px 0;
+  }
 `;
-
+const QualificationBox = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "40px 20px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(73, 50, 107, 0.3)",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
 const HighlightSpan = styled.span`
-  color: #100842;
+  color: white;
   font-weight: 700;
   &:hover {
     color: #e73ed1;

@@ -31,7 +31,7 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import { PiPlugsConnectedFill } from "react-icons/pi";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
-import Deepalogo from "../../assets/Deepan-India Logo.jpg";
+import Deepalogo from "../../assets/EditedLogo-removebg-preview.png";
 import styled from "styled-components";
 import { useTheme, useMediaQuery } from "@mui/material";
 import Cookies from "universal-cookie";
