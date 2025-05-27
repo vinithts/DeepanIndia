@@ -1,10 +1,26 @@
-import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import { Box, Container, Divider, Grid, Typography ,keyframes} from "@mui/material";
 import { styled } from "@mui/system";
 import InsuranceImage from "../../../assets/insurance_set_2-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import sip from "../../../assets/about-sip.png";
 import lumpsum from "../../../assets/lumpsum-removebg-preview.png";
 import swp from "../../../assets/swp-removebg-preview.png";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+
+const fadeIn = keyframes`
+  0% {
+    transform: scale(1.02);
+    /* opacity: 0.7; */
+  }
+  50% {
+    transform: scale(1.03);
+    /* opacity: 0.9; */
+  }
+  100% {
+    transform: scale(1);
+    /* opacity: 1; */
+  }
+`;
 
 const SectionWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: "#f9f3fe",
@@ -20,19 +36,20 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
+  backgroundImage: `url(${image})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
-  border: "10px solid #c2b8d1",
-  padding: "40px 40px",
+  // border: "10px solid #c2b8d1",
+  padding: "20px 20px",
   borderRadius: "16px",
   overflow: "hidden",
   display: "flex",
   flexDirection: "column",
   alignItems: "left",
   justifyContent: "center",
+  animation: `${fadeIn} 6s ease-in-out infinite alternate`,
   "&:hover": {
-    transform: "translateY(-8px)",
+    transition: "all 0.55s ease-in",
     boxShadow: `0 20px 40px #49326b`,
     background: `linear-gradient(135deg, #49326b 0%, #rgba(210, 152, 228, 0.25)00%)`,
     "& .feature-icon": {
@@ -75,7 +92,10 @@ const SectionTitle1 = styled(Typography)(({ theme }) => ({
   fontWeight: 900,
   textAlign: "left",
   marginBottom: "10px",
-  color: "white",
+  backgroundColor: "#f9f3fe",
+  padding: "10px",
+  borderRadius: "8px",
+  color: "#49326b",
   [theme.breakpoints.down("sm")]: {
     fontSize: "1.5rem",
   },
@@ -117,10 +137,22 @@ const MutualFundsSection = ({ serviceName }) => {
             >
               <SectionTitle> Key Benefits</SectionTitle>
               <Box sx={{ p: 3, marginTop: "10px" }}>
-                <Point>- Diversification across sectors/assets.</Point>
-                <Point>- Professional fund management.</Point>
-                <Point>- Suitable for every risk profile.</Point>
-                <Point>- Liquidity and transparency.</Point>
+                <Point>
+                  <RadioButtonCheckedIcon  style={{paddingRight:"10px",fontSize:"35px"}}/>Diversification across
+                  sectors/assets.
+                </Point>
+                <Point>
+                  <RadioButtonCheckedIcon style={{paddingRight:"10px",fontSize:"35px"}}/>
+                  Professional fund management.
+                </Point>
+                <Point>
+                  <RadioButtonCheckedIcon style={{paddingRight:"10px",fontSize:"35px"}}/>
+                  Suitable for every risk profile.
+                </Point>
+                <Point>
+                  <RadioButtonCheckedIcon style={{paddingRight:"10px",fontSize:"35px"}} />
+                  Liquidity and transparency.
+                </Point>
               </Box>
             </Box>
           </Grid>

@@ -1,51 +1,169 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid, keyframes, Container } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
+import RealEstate from "../../../assets/realestate-removebg-preview.png";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+
 
 const RealEstateFund = ({ serviceName }) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#f9fbfc",
-        p: 4,
-        borderRadius: 2,
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-        color: "#424242",
-        maxWidth: "900px",
-      }}
-    >
-      {/* Wise Investor Course */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Pooled investment in commercial/residential property.
-        </Typography>
-      </Box>
-
-      {/* Smart Trading for Wealth */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Offers rental income & capital appreciation.
-        </Typography>
-      </Box>
-
-      {/* Pro Trader for Full-time Career */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Lower ticket size compared to direct real estate.
-        </Typography>
-      </Box>
-      <Box>
-        <Box sx={{ mt: 2, maxWidth: 300 }}>
-          <img
-            src="/images/pro-trader-setup.png"
-            alt="City skyline with coin stacks or REIT tag"
-            style={{ width: "100%", borderRadius: 8 }}
-          />
+  <Container maxWidth="xl">
+      <QualificationBox image={aboutImg1}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "1px solid #f9f3fe",
+            borderRadius: "10px",
+            padding: "20px",
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={6}
+              sx={{
+                alignItems: "left",
+                justifyContent: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "left",
+                }}
+              >
+                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#f9f3fe",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                 Pooled investment in commercial/residential property.
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "left",
+                }}
+              >
+                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#f9f3fe",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  Offers rental income & capital appreciation.
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "left",
+                }}
+              >
+                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#f9f3fe",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  Lower ticket size compared to direct real estate.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6}>
+              <img
+                src={RealEstate}
+                alt="img"
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  display: "block",
+                  "@media (max-width: 600px)": { display: "none" },
+                }}
+              />
+            </Grid>
+          </Grid>
         </Box>
-      </Box>
-    </Box>
+      </QualificationBox>
+    </Container>
   );
 };
 
 export default RealEstateFund;
+
+const fadeIn = keyframes`
+  0% {
+    transform: scale(1.02);
+    /* opacity: 0.7; */
+  }
+  50% {
+    transform: scale(1.03);
+    /* opacity: 0.9; */
+  }
+  100% {
+    transform: scale(1);
+    /* opacity: 1; */
+  }
+`;
+const QualificationBox = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  backgroundImage: `url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "20px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  animation: `${fadeIn} 6s ease-in-out infinite alternate`,
+
+  "&:hover": {
+    transition: "all 0.55s ease-in",
+    boxShadow: `0 20px 40px #49326b`,
+  },
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
+

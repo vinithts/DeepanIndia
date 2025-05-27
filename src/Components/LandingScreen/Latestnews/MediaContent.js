@@ -15,7 +15,7 @@ const fallbackData = [
     description:
       "ABC Corp used our platform to automate financial workflows and cut costs by 30%. Their journey from manual processes to full automation showcases the power of modern fintech solutions.",
     icon: Building2,
-    url: "https://www.youtube.com/watch?v=FFgwSwzSiyw",
+    url: "http://www.youtube.com/@deepanindiafinancialservices",
     metrics: { savings: "30%", time: "60%" },
   },
   {
@@ -24,7 +24,7 @@ const fallbackData = [
     description:
       "XYZ Ltd. improved fund transparency and reduced errors using our analytics suite. Real-time insights transformed their decision-making process completely.",
     icon: TrendingUp,
-    url: "https://www.youtube.com/watch?v=_hqedAS6n3Q",
+    url: "http://www.youtube.com/@deepanindiafinancialservices",
     metrics: { accuracy: "95%", efficiency: "40%" },
   },
   {
@@ -33,7 +33,7 @@ const fallbackData = [
     description:
       "PQR Finance achieved real-time insights and faster decision making with our dashboards. Data visualization became their competitive advantage.",
     icon: BarChart3,
-    url: "https://www.youtube.com/watch?v=NcC7yTBBOe4",
+    url: "http://www.youtube.com/@deepanindiafinancialservices",
     metrics: { speed: "75%", insights: "50%" },
   },
 ];

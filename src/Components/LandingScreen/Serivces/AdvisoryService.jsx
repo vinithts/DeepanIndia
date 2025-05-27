@@ -1,100 +1,243 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Divider,
+  Grid,
+  keyframes,
+  Container,
+} from "@mui/material";
 import React from "react";
+import financial1 from "../../../assets/507334-PHXASZ-445-removebg-preview.png";
+import financial2 from "../../../assets/99192-OLGKX1-414-removebg-preview.png";
+import financial3 from "../../../assets/sl_022321_41020_27-removebg-preview.png";
+import financial4 from "../../../assets/wealth-management.png";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import styled from "styled-components";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+const advisory = [
+  {
+    title:
+      "Short & Medium-Term Stock Bags SIP & Lumpsum options from ₹5,000 to ₹50,000.",
+    description: "Actively managed with averaging & timely churning.",
+    audience: "Ideal for beginners and progressive investors.",
+    img: financial1,
+    alt: "Stock bag with multiple logos and a SIP chart.",
+  },
+  {
+    title: "Long-Term Stock Bags for HNIs Starting from ₹10,000 to any amount.",
+    description: "Blue-chip and growth picks.",
+    audience: " Managed with periodic review and realignment.",
+    img: financial2,
+    alt: "Tree growing from coins with long-term tag.",
+  },
+  {
+    title:
+      "Momentum Delivery-Based Trading (e.g., MTF) Short-term high-potential trades.",
+    description: "Uses margin/leveraged funds with strong risk management.",
+    audience: " Regular alerts and exit strategies.",
+    img: financial4,
+    alt: "Speedometer with “Momentum” label on dial",
+  },
+  {
+    title:
+      "Swing Trading – Index & Futures (With Hedges) 3–10 day trading strategies.",
+    description: " Includes hedge-based risk reduction.",
+    audience: " Suits active traders seeking calculated exposure.",
+    img: financial3,
+    alt: "Swing graph with hedge overlay (put/call icons)",
+  },
+];
 
 const AdvisoryService = ({ serviceName }) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#f9fbfc",
-        p: 4,
-        borderRadius: 2,
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-        color: "#424242",
-        maxWidth: "900px",
-      }}
-    >
-      {/* Wise Investor Course */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Short & Medium-Term Stock Bags SIP & Lumpsum options from ₹5,000 to
-          ₹50,000.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Actively managed with averaging & timely churning.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Ideal for beginners and progressive investors.
-        </Typography>
-        <Box sx={{ mt: 2, maxWidth: 300 }}>
-          <img
-            src="/images/student-learning-finance.png"
-            alt="Stock bag with multiple logos and a SIP chart."
-            style={{ width: "100%", borderRadius: 8 }}
-          />
-        </Box>
-      </Box>
-
-      {/* Smart Trading for Wealth */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Long-Term Stock Bags for HNIs Starting from ₹10,000 to any amount.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>Blue-chip and growth picks.</Typography>
-        <Typography sx={{ mt: 1 }}>
-          Managed with periodic review and realignment.
-        </Typography>
-        <Box sx={{ mt: 2, maxWidth: 300 }}>
-          <img
-            src="/images/candlestick-chart.png"
-            alt="Tree growing from coins with long-term tag."
-            style={{ width: "100%", borderRadius: 8 }}
-          />
-        </Box>
-      </Box>
-
-      {/* Pro Trader for Full-time Career */}
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Momentum Delivery-Based Trading (e.g., MTF) Short-term
-          high-potential trades.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Uses margin/leveraged funds with strong risk management.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Regular alerts and exit strategies.
-        </Typography>
-        <Box sx={{ mt: 2, maxWidth: 300 }}>
-          <img
-            src="/images/pro-trader-setup.png"
-            alt=" Speedometer with “Momentum” label on dial"
-            style={{ width: "100%", borderRadius: 8 }}
-          />
-        </Box>
-      </Box>
-      <Box>
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          📘 Swing Trading – Index & Futures (With Hedges) 3–10 day trading
-          strategies.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Includes hedge-based risk reduction.
-        </Typography>
-        <Typography sx={{ mt: 1 }}>
-          Suits active traders seeking calculated exposure.
-        </Typography>
-        <Box sx={{ mt: 2, maxWidth: 300 }}>
-          <img
-            src="/images/pro-trader-setup.png"
-            alt="Swing graph with hedge overlay (put/call icons)"
-            style={{ width: "100%", borderRadius: 8 }}
-          />
-        </Box>
-      </Box>
+    <Box sx={{ px: 2, py: 4 }}>
+      <Container maxWidth="xl">
+        <Grid container spacing={3}>
+          {advisory.map((course, index) => (
+            <Grid item xs={12} sm={6} md={6} key={index}>
+              <InfoCard image={aboutImg1}>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color="white"
+                  sx={{
+                    mt: 2,
+                    border: "1px solid white",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {course.title}
+                </Typography>
+                <Grid
+                  container
+                  spacing={3}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <Grid item xs={12} sm={6} md={6}>
+                    <ImageWrapper>
+                      <img
+                        style={{
+                          width: "100%",
+                          height: "270px",
+                          borderRadius: "16px",
+                          animation: `${imageFloat} 3s ease-in-out infinite alternate`,
+                          sm: {
+                            width: "100%",
+                            height: "auto",
+                          },
+                        }}
+                        src={course.img}
+                        alt={course.alt}
+                      />
+                    </ImageWrapper>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Box
+                      sx={{
+                        padding: "20px",
+                        flex: 1,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "left",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "left",
+                        }}
+                      >
+                        <ArrowForwardIosIcon
+                          style={{ paddingRight: "10px", color: "white" }}
+                        />
+                        <Typography
+                          sx={{
+                            mt: 1,
+                            color: "white",
+                            fontWeight: "bold",
+                            fontSize: "1.2rem",
+                          }}
+                        >
+                          {course.description}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "left",
+                        }}
+                      >
+                        <ArrowForwardIosIcon
+                          style={{ paddingRight: "10px", color: "white" }}
+                        />
+                        <Typography
+                          sx={{
+                            mt: 1,
+                            color: "white",
+                            fontWeight: "bold",
+                            fontSize: "1.2rem",
+                          }}
+                        >
+                          {course.audience}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </InfoCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
   );
 };
 
 export default AdvisoryService;
+
+const fadeIn = keyframes`
+  0% {
+    transform: scale(1.02);
+    /* opacity: 0.7; */
+  }
+  50% {
+    transform: scale(1.03);
+    /* opacity: 0.9; */
+  }
+  100% {
+    transform: scale(1);
+    /* opacity: 1; */
+  }
+`;
+
+const imageFloat = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+const InfoCard = styled(Box)(({ image }) => ({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  backgroundImage: `url(${image})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "20px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  animation: `${fadeIn} 6s ease-in-out infinite alternate`,
+
+  "&:hover": {
+    transition: "all 0.55s ease-in",
+    boxShadow: `0 20px 40px #49326b`,
+  },
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1,
+  },
+  "& > *": {
+    position: "relative",
+    zIndex: 2,
+  },
+  "@media (max-width: 600px)": {
+    padding: "20px 10px",
+  },
+}));
+
+const ImageWrapper = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+`;
+
+const StyledDivider = styled(Divider)`
+  background-color: #ffffff;
+  height: 6px;
+  /* margin: 50px; */
+  width: 100%;
+`;
