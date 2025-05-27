@@ -77,22 +77,6 @@ const Choose = ({ data }) => {
         py: { xs: 4, md: 8 },
       }}
     >
-      {/* <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: `
-        radial-gradient(circle at 20% 50%, #f33d2510 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, #f3f1f120 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, #f33d2508 0%, transparent 50%)
-      `,
-          zIndex: 0,
-        }}
-      /> */}
-
       <Container
         maxWidth="xl"
         sx={{
