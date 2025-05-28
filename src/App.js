@@ -27,6 +27,9 @@ import InvestmentSolution from "./Components/LandingScreen/WhatWeServe/Investmen
 import RetirementPlanning from "./Components/LandingScreen/WhatWeServe/RetirementPlanning";
 import WealthManagement from "./Components/LandingScreen/WhatWeServe/WealthManagement";
 import EducationalResource from "./Components/LandingScreen/WhatWeServe/EducationalResource";
+import SipCalculator from "./Components/LandingScreen/Calculator/SipCalculator";
+import LumpsumCalculator from "./Components/LandingScreen/Calculator/LumpsumCalculator";
+import SWPCalculator from "./Components/LandingScreen/Calculator/SwpCalculator";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -60,6 +63,9 @@ export default function App() {
         <Route path="/educational-resource" element={<EducationalResource />} />
         <Route path="/service/:serviceName" element={<ServiceDetails />} />
         <Route path="/details/:id" element={<CardDetails />} />
+        <Route path="/sip-calculator" element={<SipCalculator />} />
+        <Route path="/swp-calculator" element={<SWPCalculator />} />
+        <Route path="/lumpsum-calculator" element={<LumpsumCalculator />} />
         <Route path="/adminlogin" element={<Loginform />} />
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Instruction />} />

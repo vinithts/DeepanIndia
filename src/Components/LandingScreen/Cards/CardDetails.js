@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  CircularProgress,
-  Container,
-  Divider,
-} from "@mui/material";
+import { Box, Typography, Container, Skeleton } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
-import blogImage from "../../../assets/blog.jpg";
 import { instance } from "../../../utils/api";
 import { Url } from "../../../utils/api";
 import { defaultCards } from "./DefaultCard";
@@ -75,19 +68,92 @@ const CardDetails = () => {
     fetchDetails();
   }, [id]);
 
-  if (loading) return <CircularProgress sx={{ color: "#49326b" }} />;
-  if (error)
+  if (loading) {
+    return (
+      <>
+        <MainBox image={aboutImg1}>
+          <ContentBox>
+            <Skeleton
+              variant="text"
+              width="60%"
+              height={60}
+              sx={{ bgcolor: "rgba(255, 255, 255, 0.3)", mx: "auto" }}
+            />
+            <Skeleton
+              variant="text"
+              width="80%"
+              height={30}
+              sx={{ bgcolor: "rgba(255, 255, 255, 0.3)", mx: "auto" }}
+            />
+          </ContentBox>
+        </MainBox>
+        <Main2Box>
+          <Container maxWidth="xl">
+            <Content1Box>
+              <ImageBox>
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height={400}
+                  sx={{ borderRadius: "12px" }}
+                />
+              </ImageBox>
+              <Skeleton variant="text" width="90%" height={80} />
+              <ContentSection>
+                <Skeleton variant="text" width="40%" height={40} />
+                <Skeleton variant="text" width="100%" height={100} />
+                <StyledList>
+                  {[...Array(3)].map((_, idx) => (
+                    <li key={idx}>
+                      <Skeleton variant="text" width="80%" height={30} />
+                    </li>
+                  ))}
+                </StyledList>
+              </ContentSection>
+              <AuthorBox image={aboutImg1}>
+                <Box>
+                  <Skeleton
+                    variant="text"
+                    width={150}
+                    height={30}
+                    sx={{ bgcolor: "rgba(255, 255, 255, 0.3)" }}
+                  />
+                  <Skeleton
+                    variant="text"
+                    width={100}
+                    height={30}
+                    sx={{ bgcolor: "rgba(255, 255, 255, 0.3)" }}
+                  />
+                  <Skeleton
+                    variant="text"
+                    width={120}
+                    height={30}
+                    sx={{ bgcolor: "rgba(255, 255, 255, 0.3)" }}
+                  />
+                </Box>
+              </AuthorBox>
+            </Content1Box>
+          </Container>
+        </Main2Box>
+      </>
+    );
+  }
+
+  if (error) {
     return (
       <Typography variant="h5" color="#49326b">
         {error}
       </Typography>
     );
-  if (!data)
+  }
+
+  if (!data) {
     return (
       <Typography variant="h5" color="#49326b">
         No details found!
       </Typography>
     );
+  }
 
   const imageSrc =
     typeof data?.image === "object"
@@ -120,7 +186,7 @@ const CardDetails = () => {
         </ContentBox>
       </MainBox>
       <Main2Box>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Content1Box>
             <ImageBox>
               <StyledImage src={imageSrc} alt="blog" />
@@ -164,19 +230,17 @@ const CardDetails = () => {
             {data.author && (
               <AuthorBox image={aboutImg1}>
                 <Box>
-                <Typography variant="h6" sx={{ color: "#e4d4fa" }}>
-                  Written by {data?.author?.name}
-                </Typography>
-                 <Typography sx={{ color: "#e4d4fa", fontSize: "1.5rem" }}>
-                  {data?.author?.company}
-                </Typography>
-                <Typography variant="h6" sx={{ color: "#e4d4fa" }}>
-                   {data?.author?.code}
-                </Typography>
+                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
+                    Written by {data?.author?.name}
+                  </Typography>
+                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
+                    {data?.author?.company}
+                  </Typography>
+                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
+                    {data?.author?.code}
+                  </Typography>
                 </Box>
-               
-
-                <ul
+                {/* <ul
                   style={{
                     listStyleType: "none",
                     padding: 0,
@@ -245,7 +309,7 @@ const CardDetails = () => {
                       />
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </AuthorBox>
             )}
           </Content1Box>
@@ -255,6 +319,7 @@ const CardDetails = () => {
   );
 };
 
+// Styled components remain unchanged
 const MainBox = styled(Box)`
   position: relative;
   width: 100%;
@@ -330,7 +395,7 @@ const Content1Box = styled(Box)`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 40px 20px;
+  padding: 40px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

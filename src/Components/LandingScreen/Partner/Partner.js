@@ -16,7 +16,7 @@ import React from "react";
 import styled from "styled-components";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import SchoolIcon from "@mui/icons-material/School";
 import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -31,7 +31,7 @@ const Partner = () => {
       description: "Work independently, from anywhere.",
     },
     {
-      icon: <MonetizationOnIcon fontSize="large" />,
+      icon: <CurrencyRupeeIcon fontSize="large" />,
       title: "High Revenue Sharing",
       description: "Earn a substantial commission on referrals.",
     },

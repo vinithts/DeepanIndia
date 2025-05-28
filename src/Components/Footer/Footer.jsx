@@ -172,12 +172,12 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>Calculator</Foottitle>
             <Links>
-              <li onClick={() => handleNavigation("/#calculator")}>Sip</li>
-              <li onClick={() => handleNavigation("/#calculator")}>Lumpsum</li>
-              <li onClick={() => handleNavigation("/#calculator")}>
+              <li onClick={() => navigate("/sip-calculator")}>Sip</li>
+              <li onClick={() => navigate("/lumpsum-calculator")}>Lumpsum</li>
+              <li onClick={() => navigate("/swp-calculator")}>
                 Sip combined with lumbsum
               </li>
-              <li onClick={() => handleNavigation("/#calculator")}>Swap</li>
+              <li onClick={() => navigate("/swp-calculator")}>Swap</li>
             </Links>
           </Col>
           <Col md={2} lg={2} xl={2} xs={12}>
