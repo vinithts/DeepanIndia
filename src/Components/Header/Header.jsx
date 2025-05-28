@@ -253,16 +253,16 @@ export default function Header() {
                   Calculator <FaAngleDown />
                   <Dropdown show={visibleDropdown === 2}>
                     <ul>
-                      <li onClick={() => handleNavigation("/#calculator")}>
+                      <li onClick={() => navigate("/sip-calculator")}>
                         SIP Calculator
                       </li>
-                      <li onClick={() => handleNavigation("/#calculator")}>
+                      <li onClick={() => navigate("/lumpsum-calculator")}>
                         Lumpsum
                       </li>
-                      <li onClick={() => handleNavigation("/#calculator")}>
+                      <li onClick={() => navigate("/swp-calculator")}>
                         SIP combined with Lumpsum
                       </li>
-                      <li onClick={() => handleNavigation("/#calculator")}>
+                      <li onClick={() => navigate("/swp-calculator")}>
                         SWP
                       </li>
                     </ul>
@@ -283,7 +283,7 @@ export default function Header() {
                 </LogoContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-navbar-toggle"/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="">
+                  <Nav className="custom-navbar-links">
                     <NavDropdown
                       title="Who We Are"
                       id="basic-nav-dropdown"
@@ -398,25 +398,25 @@ export default function Header() {
                     <NavDropdown title="Calculator" id="basic-nav-dropdown">
                       <NavDropdown.Item
                         className="nav-dropdown"
-                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
+                        onClick={() => {navigate("/sip-calculator"); setExpanded(false);}}
                       >
                         SIP Calculator
                       </NavDropdown.Item>
                       <NavDropdown.Item
                         className="nav-dropdown"
-                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
+                        onClick={() => {navigate("/lumpsum-calculator"); setExpanded(false);}}
                       >
                         Lumpsum
                       </NavDropdown.Item>
                       <NavDropdown.Item
                         className="nav-dropdown"
-                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
+                        onClick={() => {navigate("/swp-calculator"); setExpanded(false);}}
                       >
                         SIP combined with Lumpsum
                       </NavDropdown.Item>
                       <NavDropdown.Item
                         className="nav-dropdown"
-                        onClick={() => {handleNavigation("/#calculator"); setExpanded(false);}}
+                        onClick={() => {navigate("/swp-calculator"); setExpanded(false);}}
                       >
                         SWP
                       </NavDropdown.Item>
@@ -572,7 +572,6 @@ const Hamburger = styled.div`
 const StyledNavLink = styled(Nav.Link)`
   color: white !important;
   transition: color 0.3s ease;
-
   &:hover {
     color: red !important;
   }

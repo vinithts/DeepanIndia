@@ -3,9 +3,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Url } from "../../../utils/api";
 import BlogImg from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
-import solar1 from "../../../assets/wealth icon.png";
-import solar2 from "../../../assets/credit_12532412.png";
-import solar3 from "../../../assets/wealth icon.png";
+import solar1 from "../../../assets/wealthyIcons.png";
 
 const slideIn = keyframes`
   from {
@@ -30,7 +28,7 @@ const products = [
   {
     title:
       "Leverage Your Assets – Pledge your holding for addtional income using automated rule-based option trading strategies.",
-    icon: solar3,
+    icon: solar1,
   },
 ];
 const Wealthy = ({ data }) => {
@@ -165,7 +163,7 @@ const ProductCard = styled(Box)`
   align-items: center;
   border-radius: 20px;
   border-top: 10px solid #e4d4fa;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   text-align: center;
   overflow: hidden;
   transition: 0.3s;
@@ -189,9 +187,13 @@ const IconWrapper = styled.img`
 
 const ProductTitle = styled(Typography)`
   && {
-    font-size: 20px;
+    font-size: 18px;
     color:  #49326b;
     font-weight: bold;
+    /* border:2px solidrgb(253, 252, 253); */
+    border-radius: 10px;
+    padding:10px 10px 5px 10px;
+    background-color:rgb(248, 248, 248);
     /* display: -webkit-box; */
     /* -webkit-line-clamp: 4; */
     /* -webkit-box-orient: vertical; */

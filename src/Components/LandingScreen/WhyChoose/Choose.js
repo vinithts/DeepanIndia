@@ -18,7 +18,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import back1Image from "../../../assets/website-faq-section-user-helpdesk-customer-support-frequently-asked-questions-problem-solution-quiz-game-confused-man-cartoon-character.png";
 
 const Choose = ({ data }) => {
@@ -28,7 +28,7 @@ const Choose = ({ data }) => {
 
   const iconMap = {
     0: TrendingUpIcon,
-    1: MonetizationOnIcon,
+    1: CurrencyRupeeIcon,
     2: SpeedIcon,
     3: SecurityIcon,
     4: VisibilityIcon,

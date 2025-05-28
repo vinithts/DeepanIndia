@@ -1,7 +1,7 @@
  import LandingImage1 from "../../../assets/Blog1.jpeg";
 import LandingImage2 from "../../../assets/Blog2.jpeg";
-import LandingImage3 from "../../../assets/landingImage3.jpg";
-import LandingImage4 from "../../../assets/Blog2.jpeg";
+import LandingImage3 from "../../../assets/blog5.jpg";
+import LandingImage4 from "../../../assets/blog4.jpg";
 import LandingImage5 from "../../../assets/landingImage3.jpg";
  
  export const defaultCards = [
@@ -276,7 +276,7 @@ import LandingImage5 from "../../../assets/landingImage3.jpg";
     ],
     author: {
       name: "Raja Yogi",
-      linkedin: "https://www.linkedin.com/in/RAJA-YOGI-LINKEDIN-ID", // Replace with actual link
+      linkedin: "https://www.linkedin.com/in/RAJA-YOGI-LINKEDIN-ID", 
       company: "Deepan India Financial Services Pvt Ltd",
       code:"Everything for Everyone"
     }
