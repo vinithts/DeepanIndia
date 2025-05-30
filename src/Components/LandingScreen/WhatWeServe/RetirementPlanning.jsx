@@ -19,7 +19,7 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import UpdateIcon from "@mui/icons-material/Update";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import { styled, keyframes } from "styled-components";
-import Handshake from "../../../assets/wealth.png";
+import Handshake from "../../../assets/8-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
@@ -59,7 +59,7 @@ const items = [
 const RetirementPlanning = () => {
   return (
     <MainBox>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: "30px 0",

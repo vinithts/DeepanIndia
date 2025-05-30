@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import Instagram from "../../../src/assets/instagram_3938036.png";
-import LinkedIn from "../../../src/assets/linkedin_3992606.png";
-import Youtube from "../../../src/assets/play_10090287.png";
-import Mail from "../../../src/assets/mail-icon_11720354.png";
+import Instagram from "../../../src/assets/4-removebg-preview.png";
+import LinkedIn from "../../../src/assets/5-removebg-preview.png";
+import Youtube from "../../../src/assets/6-removebg-preview.png";
+import Mail from "../../../src/assets/7-removebg-preview.png";
 import { Divider, Typography, Container, Box } from "@mui/material";
 import Deepalogo from "../../assets/EditedLogo-removebg-preview.png";
 
@@ -76,48 +76,6 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Do</Foottitle>
             <Links>
-              {/* <ul style={{ listStyle: "none" }}>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Mutual Funds
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Training
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Advisory Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Algo Trading Solutions
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Alternative Investment funds
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Fixed Deposits & Bonds
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Real Estate funds
-                  </a>
-                </li>
-                <li>
-                  <a href="#offering" style={{ color: "white" }}>
-                    Insurances{" "}
-                  </a>
-                </li>
-              </ul> */}
               <li onClick={() => navigate("/service/mutual-funds")}>
                 Mutual Funds
               </li>
@@ -153,14 +111,6 @@ export default function Footer() {
               </li>
             </Links>
           </Col>
-          {/* <Col md={2} lg={2} xl={2} xs={12}>
-            <Foottitle>How We Deliver</Foottitle>
-            <Links>
-              <li>Consulting</li>
-              <li>Market Analysis</li>
-              <li>Market Updates</li>
-            </Links>
-          </Col> */}
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Think</Foottitle>
             <Links>
@@ -208,7 +158,7 @@ export default function Footer() {
         <StyledDivider  style={{marginTop:"20px"}}/>
         <Row style={{ justifyContent: "space-evenly", alignItems: "center" }}>
           <Col md={3}>
-            <Bottomlink>
+            <Bottomlink1>
               <li>
                 <a
                   href="https://www.instagram.com/deepanindia?igsh=MXNyNXh3a256NGNneg=="
@@ -241,7 +191,7 @@ export default function Footer() {
                   <IconIamge src={Mail} alt={"img"} />
                 </a>
               </li>
-            </Bottomlink>
+            </Bottomlink1>
           </Col>
 
           <Col md={6}>
@@ -320,6 +270,22 @@ const Bottomlink = styled.ul`
     }
   }
 `;
+const Bottomlink1 = styled.ul`
+  margin: 10px 0 0 0;
+  list-style-type: none;
+  padding: 0;
+  color: #49326b;
+  li {
+    /* padding: 5px 10px; */
+    font-size: 13px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      color: #df1414;
+    }
+  }
+`;
 const StyledDivider = styled(Divider)`
   background-color: #49326b;
   height: 6px;
@@ -336,8 +302,8 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 const IconIamge = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 70px;
+  height: 45px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   &:hover {

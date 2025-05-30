@@ -1,7 +1,8 @@
 import { Box, keyframes, Typography, Grid, Divider, Container } from "@mui/material";
 import styled from "styled-components";
-import financial1 from "../../../assets/19460-removebg-preview.png";
-import financial2 from "../../../assets/3997146-removebg-preview.png";
+import financial1 from "../../../assets/18-removebg-preview.png";
+import financial2 from "../../../assets/19-removebg-preview.png";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import AlbumIcon from "@mui/icons-material/Album";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -26,33 +27,12 @@ const AlgoTrading = ({ serviceName }) => {
   ];
   return (
     <Box sx={{ px: 2, py: 4 }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
       <Grid container spacing={3}>
         {algos.map((course, index) => (
           <Grid item xs={12} sm={6} md={6} key={index}>
-            <InfoCard image={aboutImg1}>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                color="white"
-                sx={{
-                  mt: 2,
-                  border: "1px solid white",
-                  borderRadius: "10px",
-                  padding: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {course.title}
-              </Typography>
-              <Grid
-                container
-                spacing={3}
-                sx={{ display: "flex", alignItems: "center" }}
-              >
-                <Grid item xs={12} sm={6} md={6}>
-                  <ImageWrapper>
+            <InfoCard>
+                <ImageWrapper>
                     <img
                       style={{
                         width: "100%",
@@ -68,8 +48,20 @@ const AlgoTrading = ({ serviceName }) => {
                       alt={course.alt}
                     />
                   </ImageWrapper>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color="#49326b"
+                sx={{
+                  mt: 2,
+                  borderRadius: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                {course.title}
+              </Typography>
+
                   <Box
                     sx={{
                       padding: "20px",
@@ -88,13 +80,13 @@ const AlgoTrading = ({ serviceName }) => {
                         justifyContent: "left",
                       }}
                     >
-                      <ArrowForwardIosIcon
-                        style={{ paddingRight: "10px", color: "white" }}
+                      <FiberManualRecordIcon
+                        style={{ paddingRight: "10px", color: "#49326b" }}
                       />
                       <Typography
                         sx={{
                           mt: 1,
-                          color: "white",
+                          color: "#49326b",
                           fontWeight: "bold",
                           fontSize: "1.2rem",
                         }}
@@ -110,13 +102,13 @@ const AlgoTrading = ({ serviceName }) => {
                         justifyContent: "left",
                       }}
                     >
-                      <ArrowForwardIosIcon
-                        style={{ paddingRight: "10px", color: "white" }}
+                      <FiberManualRecordIcon
+                        style={{ paddingRight: "10px", color: "#49326b" }}
                       />
                       <Typography
                         sx={{
                           mt: 1,
-                          color: "white",
+                          color: "#49326b",
                           fontWeight: "bold",
                           fontSize: "1.2rem",
                         }}
@@ -125,8 +117,6 @@ const AlgoTrading = ({ serviceName }) => {
                       </Typography>
                     </Box>
                   </Box>
-                </Grid>
-              </Grid>
             </InfoCard>
           </Grid>
         ))}
@@ -168,9 +158,7 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+  border:"10px solid #e4d4fa",
   padding: "20px",
   borderRadius: "16px",
   overflow: "hidden",
@@ -209,7 +197,6 @@ const ImageWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
 `;
 
 const StyledDivider = styled(Divider)`

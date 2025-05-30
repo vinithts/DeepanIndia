@@ -1,6 +1,6 @@
 import { Box, Container, Divider, Grid, Typography ,keyframes} from "@mui/material";
 import { styled } from "@mui/system";
-import InsuranceImage from "../../../assets/insurance_set_2-removebg-preview.png";
+import InsuranceImage from "../../../assets/23-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import sip from "../../../assets/about-sip.png";
 import lumpsum from "../../../assets/lumpsum-removebg-preview.png";
@@ -36,10 +36,7 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  // border: "10px solid #c2b8d1",
+  border:"10px solid #e4d4fa",
   padding: "20px 20px",
   borderRadius: "16px",
   overflow: "hidden",
@@ -64,7 +61,6 @@ const InfoCard = styled(Box)(({ image }) => ({
     left: 0,
     width: "100%",
     height: "100%",
-    background: "rgba(73, 50, 107, 0.3)",
     zIndex: 1,
   },
   "& > *": {
@@ -88,9 +84,9 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 const SectionTitle1 = styled(Typography)(({ theme }) => ({
-  fontSize: "1.5rem",
+  fontSize: "1.3rem",
   fontWeight: 900,
-  textAlign: "left",
+  textAlign: "center",
   marginBottom: "10px",
   backgroundColor: "#f9f3fe",
   padding: "10px",
@@ -109,7 +105,7 @@ const Point = styled(Typography)({
   fontSize: "1.5rem",
 });
 const Point1 = styled(Typography)({
-  color: "white",
+  color: "#49326b",
   marginBottom: "6px",
   fontSize: "1rem",
 });
@@ -122,7 +118,7 @@ const StyledDivider = styled(Divider)`
 const MutualFundsSection = ({ serviceName }) => {
   return (
     <SectionWrapper>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Key Benefits */}
           <Grid item xs={12} sm={6} md={6}>
@@ -179,9 +175,9 @@ const MutualFundsSection = ({ serviceName }) => {
         {/* SIP */}
         <StyledDivider />
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={6}>
-            <InfoCard image={aboutImg1}>
-              <SectionTitle1>📌 SIP (Systematic Investment Plan)</SectionTitle1>
+          <Grid item xs={12} sm={6} md={4}>
+            <InfoCard >
+              <SectionTitle1>SIP (Systematic Investment Plan)</SectionTitle1>
               <Box
                 sx={{
                   display: "flex",
@@ -198,20 +194,13 @@ const MutualFundsSection = ({ serviceName }) => {
                   <Point1>- Rupee cost averaging benefit.</Point1>
                   <Point1>- Great for salaried individuals.</Point1>
                 </Box>
-                <Box>
-                  <img
-                    src={sip}
-                    alt="SIP vs Lumpsum"
-                    style={{ width: "100%", borderRadius: "12px" }}
-                  />
-                </Box>
               </Box>
             </InfoCard>
           </Grid>
 
           {/* Lumpsum */}
-          <Grid item xs={12} sm={6} md={6}>
-            <InfoCard image={aboutImg1}>
+          <Grid item xs={12} sm={6} md={4}>
+            <InfoCard>
               <SectionTitle1>📌 Lumpsum Investment</SectionTitle1>
               <Box
                 sx={{
@@ -232,19 +221,12 @@ const MutualFundsSection = ({ serviceName }) => {
                     - Potential for higher returns in long-term bull phases.
                   </Point1>
                 </Box>
-                <Box sx={{ mt: 1 }}>
-                  <img
-                    src={lumpsum}
-                    alt="Lumpsum Investment"
-                    style={{ width: "100%", borderRadius: "12px" }}
-                  />
-                </Box>
               </Box>
             </InfoCard>
           </Grid>
 
           {/* SWP */}
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <InfoCard image={aboutImg1}>
               <SectionTitle1>📌 SWP (Systematic Withdrawal Plan)</SectionTitle1>
               <Box
@@ -263,13 +245,6 @@ const MutualFundsSection = ({ serviceName }) => {
                   <Point1>
                     - Capital remains invested while income is generated.
                   </Point1>
-                </Box>
-                <Box sx={{ mt: 1 }}>
-                  <img
-                    src={swp}
-                    alt="SWP Cash Flow"
-                    style={{ width: "100%", borderRadius: "12px" }}
-                  />
                 </Box>
               </Box>
             </InfoCard>

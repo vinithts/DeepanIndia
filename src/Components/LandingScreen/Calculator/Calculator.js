@@ -36,7 +36,7 @@ const calculators = [
 const FinancialCalculatorsMUI = () => {
   return (
     <MainBox id="calculator" image={background}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           align="center"
           gutterBottom

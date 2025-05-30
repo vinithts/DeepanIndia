@@ -2,10 +2,11 @@ import { Box, Typography, Grid, Divider, Container } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
 import AlbumIcon from '@mui/icons-material/Album';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
-import financial1 from "../../../assets/sl_022321_41020_27-removebg-preview.png";
-import financial2 from "../../../assets/f57b10ed-08f4-4064-a94f-5ba2d10792d8-removebg-preview.png";
-import financial3 from "../../../assets/4012590-removebg-preview.png";
+import financial1 from "../../../assets/20-removebg-preview.png";
+import financial2 from "../../../assets/21-removebg-preview.png";
+import financial3 from "../../../assets/22-removebg-preview.png";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 
 const TrainingInFinancialMarketing = ({ serviceName }) => {
@@ -39,16 +40,16 @@ const TrainingInFinancialMarketing = ({ serviceName }) => {
 
   return (
     <Box sx={{ px: 2, py: 4 }}>
-       <Container maxWidth="xl">
+       <Container maxWidth="lg">
       <Grid container spacing={3}>
         {courses.map((course, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <InfoCard image={aboutImg1}>
+            <InfoCard>
               <ImageWrapper>
                 <img style={
                   {
                     width: "100%",
-                    height: "300px",
+                    height: "100%",
                     borderRadius: "16px",
                     animation: `${imageFloat} 3s ease-in-out infinite alternate`,
                     sm: {
@@ -60,17 +61,17 @@ const TrainingInFinancialMarketing = ({ serviceName }) => {
                   alt={course.alt}
                 />
               </ImageWrapper>
-                <StyledDivider  style={{marginTop:"20px"}}/>
-              <Typography variant="h5" fontWeight="bold" color="white" sx={{ mt: 2 }}>
-                <AlbumIcon style={{paddingRight:"10px"}}/>{course.title}
+                {/* <StyledDivider  style={{marginTop:"20px"}}/> */}
+              <Typography variant="h5" fontWeight="bold" color="#49326b" sx={{ mt: 2 }}>
+                <AlbumIcon style={{paddingRight:"10px",color:"#49326b"}}/>{course.title}
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "left" }}>
-                <ArrowForwardIosIcon style={{paddingRight:"10px",color:"white"}}/>
-              <Typography sx={{ mt: 1,color:"white" }}>{course.description}</Typography>
+                <FiberManualRecordIcon style={{paddingRight:"10px",color:"#49326b"}}/>
+              <Typography sx={{ mt: 1,color:"#49326b", }}>{course.description}</Typography>
               </Box>
                <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "left" }}>
-                <ArrowForwardIosIcon style={{paddingRight:"10px",color:"white"}}/>
-              <Typography sx={{ mt: 1,color:"white" }}>{course.audience}</Typography>
+                <FiberManualRecordIcon style={{paddingRight:"10px",color:"#49326b"}}/>
+              <Typography sx={{ mt: 1,color:"#49326b" }}>{course.audience}</Typography>
                </Box>
             </InfoCard>
           </Grid>
@@ -114,9 +115,7 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+ border:"10px solid #e4d4fa",
   padding: "30px",
   borderRadius: "16px",
   overflow: "hidden",
@@ -151,7 +150,6 @@ const ImageWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
 `;
 
 const StyledDivider = styled(Divider)`

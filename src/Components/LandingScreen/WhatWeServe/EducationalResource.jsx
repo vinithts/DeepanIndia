@@ -20,7 +20,7 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 import DownloadIcon from "@mui/icons-material/Download";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { styled, keyframes } from "styled-components";
-import Handshake from "../../../assets/2466548-removebg-preview.png";
+import Handshake from "../../../assets/10-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
@@ -60,7 +60,7 @@ const resources = [
 const EducationalResource = () => {
   return (
     <MainBox>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: "30px 0",

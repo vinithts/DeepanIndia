@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography, Container } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import pig from "../../../assets/pig.jpeg";
@@ -61,6 +61,7 @@ const Services = () => {
   return (
     <MainBox id="offering" image={Algo}>
       <BackgroundPattern/>
+        <Container maxWidth="lg">
       <ContentBox>
         <Typography
           sx={{
@@ -100,6 +101,7 @@ const Services = () => {
           ))}
         </Grid>
       </ContentBox>
+      </Container>
     </MainBox>
   );
 };

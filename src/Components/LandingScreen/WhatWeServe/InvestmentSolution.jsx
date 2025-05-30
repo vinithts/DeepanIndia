@@ -14,8 +14,7 @@ import {
   keyframes,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Handshake from "../../../assets/18985-removebg-preview.png";
-import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
+import Handshake from "../../../assets/3-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import styled from "styled-components";
 
@@ -50,7 +49,7 @@ const points = [
 const InvestmentSolution = () => {
   return (
     <MainBox>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: { xs: "20px 0", md: "20px 0" },

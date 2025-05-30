@@ -277,7 +277,7 @@ export default function Header() {
 
           <div className="mobile-menus">
             <Navbar expand="lg"  expanded={expanded} onToggle={() => setExpanded(!expanded)} className="my-topheader">
-              <Container maxWidth={"xl"}>
+              <Container maxWidth={"lg"}>
                 <LogoContainer>
                   <Logo src={Deepalogo} alt="Logo" />
                 </LogoContainer>
@@ -638,7 +638,7 @@ const Dropdown = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
-  width: 20rem;
+  width: 12rem;
   background-color: #fff;
   opacity: 0;
   transform: translateY(10px);

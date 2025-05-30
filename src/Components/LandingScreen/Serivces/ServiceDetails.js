@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Box, Grid, Typography } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
-import aboutImage from "../../../assets/about-us.jpg";
+import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import MutualFundsSection from "./Mutualfund";
 import FixedDepost from "./FixedDepost";
 import TrainingInFinancialMarketing from "./TrainingInFinancialMarketing";
@@ -28,7 +28,7 @@ const ServiceDetails = () => {
 
   return (
     <>
-      <MainBox image={aboutImage}>
+      <MainBox image={aboutImg1}>
         {/* Slide Content */}
         <ContentBox>
           <Typography variant="h2" className="subTitle">
@@ -107,7 +107,7 @@ const ContentBox = styled(Box)`
     font-size: 50px;
     font-weight: 900;
     margin-bottom: 8px;
-    color: #49326b;
+    color:rgb(255, 255, 255);
     @media (max-width: 600px) {
       font-size: 20px;
     }
