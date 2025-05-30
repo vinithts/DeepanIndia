@@ -20,7 +20,8 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import SchoolIcon from "@mui/icons-material/School";
 import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import Handshake from "../../../assets/5454062-removebg-preview.png";
+// import Handshake from "../../../assets/5454062-removebg-preview.png";
+import Handshake from "../../../assets/2-removebg-preview.png";
 import Handshake1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const Partner = () => {
@@ -55,7 +56,7 @@ const Partner = () => {
 
   return (
     <MainBox id="partner" image={Handshake1}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: "30px 0",

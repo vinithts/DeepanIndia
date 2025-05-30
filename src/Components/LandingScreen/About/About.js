@@ -88,7 +88,7 @@ export const About = ({ data }) => {
       {/* <BackgroundPattern /> */}
 
       <Container
-        maxWidth="xl"
+        maxWidth="lg"
         sx={{
           position: "relative",
           zIndex: 1,

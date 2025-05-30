@@ -1,15 +1,15 @@
 import { Box, Container, Grid, Typography, keyframes } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
-import AlternativeImage from "../../../assets/alternativ-removebg-preview.png";
+import AlternativeImage from "../../../assets/11-removebg-preview.png";
 
 const AlternativeInvestMentFunt = ({ serviceName }) => {
   return (
     <Box sx={{ px: 2, py: 4 }}>
-      <Container maxWidth="xl">
-        <InfoCard image={aboutImg1}>
+      <Container maxWidth="lg">
+        <InfoCard>
           <Box
             sx={{
               width: "100%",
@@ -41,10 +41,10 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                     justifyContent: "left",
                   }}
                 >
-                  <CheckCircleIcon
-                    sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }}
+                  <FiberManualRecordIcon
+                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
                   />
-                  <Typography variant="h5" fontWeight="bold" color="white">
+                  <Typography variant="h5" fontWeight="bold" color="#49326b">
                     {" "}
                     Structured funds for HNIs.
                   </Typography>
@@ -59,10 +59,10 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                     justifyContent: "left",
                   }}
                 >
-                  <CheckCircleIcon
-                    sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }}
+                  <FiberManualRecordIcon
+                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
                   />
-                  <Typography variant="h5" fontWeight="bold" color="white">
+                  <Typography variant="h5" fontWeight="bold"color="#49326b">
                     {" "}
                     Diversification beyond traditional assets.
                   </Typography>
@@ -76,10 +76,10 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                     justifyContent: "left",
                   }}
                 >
-                  <CheckCircleIcon
-                    sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }}
+                  <FiberManualRecordIcon
+                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
                   />
-                  <Typography variant="h5" fontWeight="bold" color="white">
+                  <Typography variant="h5" fontWeight="bold" color="#49326b">
                     {" "}
                     Includes private equity, venture capital, hedge funds.
                   </Typography>
@@ -135,9 +135,7 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+  border:"10px solid #e4d4fa",
   padding: "40px",
   borderRadius: "16px",
   overflow: "hidden",

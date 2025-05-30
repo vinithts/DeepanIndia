@@ -99,16 +99,25 @@ const MediaContent = ({ data }) => {
               <Slide key={index} active={index === slideIndex}>
                 <SlideContent>
                   <VisualSection>
-                    <VideoPreview>
-                      <PlayButton
+                    {/* <VideoPreview> */}
+                      {/* <PlayButton
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                      >
-                        <Play size={32} />
-                      </PlayButton>
-                      <VideoOverlay />
-                    </VideoPreview>
+                      > */}
+                      {/* <Play size={32} /> */}
+                      {/* </PlayButton> */}
+                      <VideoBox>
+                        <iframe
+                          src={item.url}
+                          title="YouTube Video"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </VideoBox>
+                      {/* <VideoOverlay /> */}
+                    {/* </VideoPreview> */}
                   </VisualSection>
                   <ContentSection>
                     <IconWrapper>
@@ -118,7 +127,7 @@ const MediaContent = ({ data }) => {
                       <SubTitle>{item.subTitle}</SubTitle>
                       <Title>{item.title}</Title>
                       <Description>{item.description}</Description>
-
+{/* 
                       {item.metrics && (
                         <MetricsContainer>
                           {Object.entries(item.metrics).map(([key, value]) => (
@@ -128,7 +137,7 @@ const MediaContent = ({ data }) => {
                             </Metric>
                           ))}
                         </MetricsContainer>
-                      )}
+                      )} */}
 
                       <ActionButton
                         href={item.url}
@@ -198,6 +207,26 @@ const slideIn = keyframes`
   }
 `;
 
+const VideoBox = styled.div`
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  /* background: red; */
+  border: 5px solid red;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+`;
 // Styled Components
 const StyledSection = styled.section`
   background-color: #f9f3fe;
@@ -253,7 +282,7 @@ const HeaderSection = styled.div`
 const MainTitle = styled.h1`
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   font-weight: 900;
-  color:#49326b;
+  color: #49326b;
   margin-bottom: clamp(8px, 1.5vw, 12px);
   line-height: 1.2;
 
@@ -333,7 +362,7 @@ const SlideContent = styled.div`
 `;
 
 const ContentSection = styled.div`
- /* order: 1; */
+  /* order: 1; */
   flex: 1;
   animation: ${slideIn} 0.6s ease-out;
 `;
@@ -444,7 +473,7 @@ const ActionButton = styled.a`
   align-items: center;
   gap: clamp(6px, 1vw, 8px);
   background: linear-gradient(135deg, #49326b, #e4d4fa);
-  color:#49326b;
+  color: #49326b;
   padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
   border-radius: 8px;
   text-decoration: none;
@@ -474,7 +503,7 @@ const VisualSection = styled.div`
   align-items: center;
   width: 100%;
   max-width: 100%;
-  order: 1; 
+  order: 1;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -488,7 +517,7 @@ const VideoPreview = styled.div`
   aspect-ratio: 16 / 9;
   height: 100%;
   /* max-height: clamp(150px, 35vh, 220px); */
-  background: linear-gradient(135deg, #f9f3fe,#e4d4fa);
+  background: linear-gradient(135deg, #f9f3fe, #e4d4fa);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 16px #49326b;
@@ -508,11 +537,7 @@ const VideoOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    45deg,
-    #49326b,
-rgb(169, 144, 206)
-  );
+  background: linear-gradient(45deg, #49326b, rgb(169, 144, 206));
 `;
 
 const PlayButton = styled.a`
@@ -589,7 +614,7 @@ const ProgressContainer = styled.div`
 const ProgressBar = styled.div`
   width: clamp(25px, 5vw, 40px);
   height: 4px;
-  background:  #49326b;
+  background: #49326b;
   border-radius: 2px;
   cursor: pointer;
   position: relative;
@@ -607,7 +632,7 @@ const ProgressBar = styled.div`
     left: 0;
     height: 100%;
     width: ${(props) => props.progress}%;
-    background: linear-gradient(90deg,  #49326b, #e4d4fa);
+    background: linear-gradient(90deg, #49326b, #e4d4fa);
     border-radius: 2px;
     transition: width 0.1s linear;
   }
@@ -619,8 +644,8 @@ const ProgressBar = styled.div`
 
 const PlayPauseButton = styled.button`
   background: transparent;
-  border: 2px solid  #49326b;
-  color:  #49326b;
+  border: 2px solid #49326b;
+  color: #49326b;
   padding: clamp(6px, 1vw, 8px) clamp(8px, 1.2vw, 10px);
   border-radius: 16px;
   cursor: pointer;
@@ -631,7 +656,7 @@ const PlayPauseButton = styled.button`
   min-height: 36px;
 
   &:hover {
-    background:  #49326b;
+    background: #49326b;
     color: #f9f3fe;
   }
 

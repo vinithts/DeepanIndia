@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
 import { styled } from "@mui/material/styles";
 import { Box, Button, Typography, IconButton } from "@mui/material";
 import Link from "@mui/material/Link";
-import BackGroundImage2 from "../../../assets/increase-coins-stacking-with-pink-piggy-bank-web-banner-design-growth-deposit-money-saving-business-investment-concept-by-3d-render-illustration.jpg";
 import BackGroundImage1 from "../../../assets/tree-grows-coin-glass-jar-with-copy-space.jpg";
+// import BackGroundImage2 from "../../../assets/increase-coins-stacking-with-pink-piggy-bank-web-banner-design-growth-deposit-money-saving-business-investment-concept-by-3d-render-illustration.jpg";
+import BackGroundImage2 from "../../../assets/home pg option 2.jpg";
 
 const backgroundImages = [BackGroundImage1, BackGroundImage2];
 
@@ -12,7 +13,11 @@ const SlideShowBar = ({ data = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [showButton, setShowButton] = useState(false);
-  const [direction, setDirection] = useState("next")
+  const [direction, setDirection] = useState("next");
+  const [animationType, setAnimationType] = useState("typewriter"); // "typewriter" or "fade"
+  const isManualNavigation = useRef(false);
+  const [hover, setIsHover] = useState(false); // Fixed: consistent naming
+  const typewriterTimeouts = useRef([]); // Fixed: track timeouts for cleanup
 
   const currentSlide = data.length > 0 ? data[currentIndex] : {};
   const {
@@ -23,72 +28,121 @@ const SlideShowBar = ({ data = [] }) => {
   } = currentSlide;
 
   useEffect(() => {
-    setDisplayText("");
-    setShowButton(false);
+    // Clear any existing timeouts
+    typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
+    typewriterTimeouts.current = [];
 
-    const buttonTimer = setTimeout(() => {
-      setShowButton(true);
-    }, 300);
+    if (animationType === "typewriter") {
+      // Typewriter animation (for auto-slide or initial load)
+      setDisplayText("");
+      setShowButton(false);
 
-    const textTimer = setTimeout(() => {
-      title.split("").forEach((char, index) => {
-        setTimeout(() => {
+      const buttonTimer = setTimeout(() => {
+        setShowButton(true);
+      }, 300);
+      typewriterTimeouts.current.push(buttonTimer);
+
+      const chars = title.split("");
+      chars.forEach((char, index) => {
+        const timeout = setTimeout(() => {
           setDisplayText((prev) => prev + char);
         }, index * 100);
+        typewriterTimeouts.current.push(timeout);
       });
-    }, 1000);
+    } else {
+      // Fade animation (for manual navigation)
+      setDisplayText(title);
+      setShowButton(true);
+    }
 
+    // Cleanup function
     return () => {
-      clearTimeout(buttonTimer);
-      clearTimeout(textTimer);
+      typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
+      typewriterTimeouts.current = [];
     };
-  }, [currentIndex, title]);
+  }, [currentIndex, title, animationType]);
 
   // Auto-slide interval
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
+      if (!isManualNavigation.current) {
+        setAnimationType("typewriter");
+        setDirection("next");
+        setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
+      }
+      isManualNavigation.current = false; // Reset flag
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   const handlePrev = () => {
+    isManualNavigation.current = true;
+    setAnimationType("fade");
+    setDirection("prev");
     setCurrentIndex((prev) =>
       prev === 0 ? backgroundImages.length - 1 : prev - 1
     );
   };
 
   const handleNext = () => {
+    isManualNavigation.current = true;
+    setAnimationType("fade");
     setDirection("next");
     setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
   };
 
   return (
-    <MainBox>
-      <BackgroundImage backgroundImage={backgroundImages[currentIndex]} direction={direction}/>
+    <MainBox
+      onMouseEnter={() => setIsHover(true)} // Fixed: consistent naming
+      onMouseLeave={() => setIsHover(false)} // Fixed: consistent naming
+    >
+      <BackgroundImage
+        backgroundImage={backgroundImages[currentIndex]}
+        direction={direction}
+      />
       <Overlay />
-      <HoverWrapper>
+      {hover && ( // Fixed: Show navigation when hovering
         <NavigationBox>
-          <IconButton onClick={handlePrev} className="navButton">
+          <IconButton
+            onClick={handlePrev}
+            sx={{
+              borderRadius: "50px",
+              padding: "30px",
+              color: "white",
+              marginLeft: "50px",
+              backgroundColor: "rgba(249, 243, 252, 0.5)",
+              "&:hover": {
+                backgroundColor: "rgba(241, 229, 243, 0.7)",
+              },
+            }}
+          >
             <IoArrowBackSharp />
           </IconButton>
-          <IconButton onClick={handleNext} className="navButton">
+          <IconButton
+            onClick={handleNext}
+            sx={{
+              borderRadius: "50px",
+              padding: "30px",
+              color: "white",
+              marginRight: "100px",
+               backgroundColor: "rgba(249, 243, 252, 0.5)",
+              "&:hover": {
+                backgroundColor: "rgba(241, 229, 243, 0.7)",
+              },
+            }}
+          >
             <IoArrowForwardSharp />
           </IconButton>
         </NavigationBox>
-      </HoverWrapper>
+      )}
       <ContentBox>
         <Typography variant="h6" className="subTitle">
           {subTitle}
         </Typography>
-        <Typography
-          className="title"
-          dangerouslySetInnerHTML={{ __html: displayText }}
-        />
-        <Typography
-          className="description"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        <Typography className="title" component="h1">
+          {displayText}
+        </Typography>
+        <Typography className="description">{description}</Typography>
         {showButton && (
           <Link href="#contact" passHref>
             <Button
@@ -100,7 +154,6 @@ const SlideShowBar = ({ data = [] }) => {
             </Button>
           </Link>
         )}
-       
       </ContentBox>
     </MainBox>
   );
@@ -117,16 +170,6 @@ const slideIn = `
       opacity: 1;
     }
   }
-  @keyframes slideOutToLeft {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-100%);
-      opacity: 0.8;
-    }
-  }
   @keyframes slideInFromLeft {
     from {
       transform: translateX(-100%);
@@ -137,16 +180,6 @@ const slideIn = `
       opacity: 1;
     }
   }
-  @keyframes slideOutToRight {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0.8;
-    }
-  }
 `;
 
 const MainBox = styled(Box)(({ theme }) => ({
@@ -154,25 +187,18 @@ const MainBox = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "600px",
   display: "flex",
-  justifyContent: "flex-start", 
+  justifyContent: "flex-start",
   alignItems: "center",
   paddingLeft: theme.spacing(4),
   overflow: "hidden",
+  boxSizing: "border-box",
   [theme.breakpoints.down("md")]: {
-    height: "400px",
+    height: "450px",
+    paddingLeft: theme.spacing(2),
   },
   [theme.breakpoints.down("sm")]: {
-    height: "300px",
-  },
-}));
-const HoverWrapper = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  top: 0,
-  left: 0,
-  "&:hover .navButton": {
-    opacity: 1,
+    height: "350px",
+    paddingLeft: theme.spacing(1),
   },
 }));
 
@@ -191,48 +217,62 @@ const BackgroundImage = styled(Box)(({ backgroundImage, direction }) => ({
       ? "slideInFromRight 0.6s ease-in-out forwards"
       : "slideInFromLeft 0.6s ease-in-out forwards",
 }));
+
 const Overlay = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: 0,
   left: 0,
   width: "100%",
   height: "100%",
-  // background: "rgba(0, 0, 0, 0.5)",
-  zIndex: 1,
+  background:
+    "linear-gradient(to right, rgba(73, 50, 107, 0.8), rgba(73, 50, 107, 0.4))",
+  zIndex: 2,
 }));
 
 const ContentBox = styled(Box)(({ theme }) => ({
   position: "relative",
-  zIndex: 2,
-  textAlign: "left",
-  color: "#49326b",
-  maxWidth: "800px",
-  padding: theme.spacing(2),
+  zIndex: 4,
+  textAlign: "center",
+  color: "#fff",
+  padding: theme.spacing(4),
+  boxSizing: "border-box",
+  "& .title": {
+    fontSize: "3.5rem",
+    fontWeight: 700,
+    lineHeight: 1.2,
+    color:"#e4d4fa",
+    marginBottom: theme.spacing(2),
+    position: "relative",
+    zIndex: 5,
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "2.8rem",
+    },
+    [theme.breakpoints.down("md")]: {
+      fontSize: "2.2rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.6rem",
+    },
+  },
   "& .subTitle": {
     fontSize: "1.5rem",
-    fontWeight: "bold",
-    marginBottom: theme.spacing(1),
-    // textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-    animation: `float 3s ease-in-out infinite`,
+    fontWeight: 600,
+    marginBottom: theme.spacing(1.5),
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "1.25rem",
+    },
     [theme.breakpoints.down("sm")]: {
       fontSize: "1rem",
     },
   },
-  "& .title": {
-    fontSize: "3rem",
-    fontWeight: 900,
-    marginBottom: theme.spacing(1),
-    // textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-    animation: `float 3s ease-in-out infinite`,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.5rem",
-    },
-  },
   "& .description": {
     fontSize: "1.25rem",
-    marginBottom: theme.spacing(2),
-    // textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-    animation: `float 3s ease-in-out infinite`,
+    marginBottom: theme.spacing(3),
+    lineHeight: 1.6,
+     fontWeight: 600,
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "1.1rem",
+    },
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.875rem",
     },
@@ -240,15 +280,18 @@ const ContentBox = styled(Box)(({ theme }) => ({
   "& .ctaButton": {
     padding: theme.spacing(1.5, 4),
     fontSize: "1.25rem",
-    fontWeight: "bold",
-    backgroundColor: "red",
+    fontWeight: 600,
+    backgroundColor: "#ff4d4f",
     textTransform: "none",
-    borderRadius: "10px",
+    borderRadius: "8px",
     transition: "all 0.3s ease",
-    animation: `float 3s ease-in-out infinite`,
     "&:hover": {
-      backgroundColor: "#49326b",
+      backgroundColor: "#e63946",
       transform: "scale(1.05)",
+    },
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "1.1rem",
+      padding: theme.spacing(1.2, 3),
     },
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.875rem",
@@ -256,32 +299,23 @@ const ContentBox = styled(Box)(({ theme }) => ({
     },
   },
   "& .arrowIcon": {
-    fontSize: "1rem",
-  },
-}));
-
-const NavigationBox = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: 0,
-  left: 0,
-  height: "100%",
-  width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  zIndex: 3,
-  padding: theme.spacing(0, 2),
-  pointerEvents: "none", 
-  "& .navButton": {
-    pointerEvents: "auto",
-    opacity: 0,
-    transition: "opacity 0.3s ease",
-    color: "#fff",
-    backgroundColor: "rgba(189, 185, 185, 0.5)",
-    "&:hover": {
-      backgroundColor: "rgba(189, 185, 185, 0.5)",
+    fontSize: "1.25rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.875rem",
     },
   },
 }));
+
+const NavigationBox = styled(Box)({
+  display: "flex",
+  position: "absolute",
+  justifyContent: "space-between",
+  width: "100%",
+  top: "50%",
+  transform: "translateY(-50%)",
+  alignItems: "center",
+  padding: "0 20px",
+  zIndex: 5, // Fixed: Higher z-index to ensure buttons are clickable
+});
 
 export default SlideShowBar;

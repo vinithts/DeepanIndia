@@ -1,30 +1,41 @@
-import * as React from "react";
+import React from "react";
+import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import { Url } from "../../../utils/api";
 import { Divider } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useNavigate } from "react-router-dom";
+import { Url } from "../../../utils/api";
 
-// Styled Components (Optional)
 const StyledCard = styled(Card)(({ theme }) => ({
-  maxWidth: 345,
+  width: "100%",
+  maxWidth: 400,
   margin: "15px auto",
-  borderRadius: "20px",
-  borderBottom: "10px solid #49326b",
-  transition: "transform 0.3s ease-in-out",
+  borderRadius: "16px",
+  boxShadow: "0 8px 24px rgba(73, 50, 107, 0.15)",
+  overflow: "hidden",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  backgroundColor: "#fff",
   "&:hover": {
-    transform: "scale(1.02)",
+    transform: "translateY(-5px)",
+    boxShadow: "0 12px 32px rgba(73, 50, 107, 0.25)",
   },
   [theme.breakpoints.down("sm")]: {
-    maxWidth: "100%",
+    maxWidth: "90%",
   },
 }));
+
+const StyledDivider = styled(Divider)`
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e6e0fa;
+  background-color: #e6e0fa;
+  width: 100%;
+`;
 
 export default function Cards({ e }) {
   const { title, metaDescription, intro, image } = e || {};
@@ -33,65 +44,76 @@ export default function Cards({ e }) {
     typeof image === "object"
       ? URL.createObjectURL(image)
       : image?.includes("static") || image?.includes("assets")
-        ? image
-        : `${Url}${image}`;
+      ? image
+      : `${Url}${image}`;
 
   const handleReadMore = () => {
     navigate(`/details/${e?.id || "default"}`);
   };
 
   return (
-    <StyledCard>
+    <StyledCard role="article" aria-labelledby={`card-title-${e?.id}`}>
       <CardMedia
         component="img"
-        height="180"
+        height="200"
         image={imageSrc}
-        alt={title || "Card Image"}
+        alt={title || "Blog Image"}
         sx={{
           objectFit: "cover",
+          borderTopLeftRadius: "16px",
+          borderTopRightRadius: "16px",
         }}
       />
-      <CardContent style={{ backgroundColor: "#f9f3fe" }}>
+      <CardContent sx={{ backgroundColor: "#fff", padding: "20px" }}>
         <Typography
+          id={`card-title-${e?.id}`}
           sx={{
-            fontSize: "26px",
-            fontWeight: 600,
+            fontSize: "24px",
+            fontWeight: 700,
             color: "#49326b",
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 1,
+            WebkitLineClamp: 2,
             overflow: "hidden",
+            marginBottom: "12px",
           }}
         >
           {title || "Default Title"}
         </Typography>
-        {/* <StyledDivider /> */}
         <Typography
           sx={{
             fontSize: "16px",
             fontWeight: 400,
-            color: "#49326b",
+            color: "#6b5b95",
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 3,
             overflow: "hidden",
+            lineHeight: 1.6,
           }}
         >
           {metaDescription || "No description available."}
         </Typography>
       </CardContent>
       <StyledDivider />
-      <CardActions>
+      <CardActions sx={{ padding: "16px", justifyContent: "flex-end" }}>
         <Button
-          size="small"
+          size="medium"
           sx={{
             textTransform: "none",
             color: "#49326b",
-            fontWeight: 700,
-            "&:hover": { color: "rgba(58, 57, 59, 1)" },
+            fontWeight: 600,
+            fontSize: "16px",
+            "&:hover": {
+              color: "#fff",
+              backgroundColor: "#49326b",
+              borderRadius: "8px",
+            },
+            padding: "8px 16px",
           }}
-          endIcon={<ArrowRightAltIcon style={{ fontSize: "20px" }} />}
+          endIcon={<ArrowRightAltIcon sx={{ fontSize: "20px" }} />}
           onClick={handleReadMore}
+          aria-label={`Read more about ${title || "this blog"}`}
         >
           Read More
         </Button>
@@ -99,11 +121,3 @@ export default function Cards({ e }) {
     </StyledCard>
   );
 }
-
-const StyledDivider = styled(Divider)`
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray;
-  background-color: rgba(50, 8, 99, 0.12);
-  width: 100%;
-`;

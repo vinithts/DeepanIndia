@@ -16,7 +16,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import { styled } from "styled-components";
-import Handshake from "../../../assets/2303_q894_030_s_m009_c10_tax_pay_flat_illustration-removebg-preview.png";
+import Handshake from "../../../assets/9-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
@@ -56,7 +56,7 @@ const GoldText = styled(Typography)({
 const WealthManagement = () => {
   return (
     <MainBox>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: "30px 0",

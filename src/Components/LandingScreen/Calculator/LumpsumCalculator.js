@@ -136,7 +136,7 @@ const LumpsumCalculator = () => {
 
   return (
     <Main2Box>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box
           sx={{
             padding: { xs: "20px 0", md: "10px 0 10px 0" },

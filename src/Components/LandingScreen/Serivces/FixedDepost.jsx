@@ -1,22 +1,21 @@
 import { Box, Typography, Grid, keyframes, Container } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import fixed from "../../../assets/swp-removebg-preview.png";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import fixed from "../../../assets/13-removebg-preview.png";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 
 const FixedDepost = ({ serviceName }) => {
   return (
-    <Container maxWidth="xl">
-      <QualificationBox image={aboutImg1}>
+    <Container maxWidth="lg">
+      <QualificationBox >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            border: "1px solid #f9f3fe",
             borderRadius: "10px",
             padding: "20px",
           }}
@@ -42,13 +41,12 @@ const FixedDepost = ({ serviceName }) => {
                   justifyContent: "left",
                 }}
               >
-                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
                 <Typography
-                  variant="h6"
                   sx={{
                     fontWeight: "bold",
-                    color: "#f9f3fe",
-                    fontSize: "1.5rem",
+                    color: "#49326b",
+                    fontSize: "1.3rem",
                   }}
                 >
                   Safe, stable returns.
@@ -62,13 +60,12 @@ const FixedDepost = ({ serviceName }) => {
                   justifyContent: "left",
                 }}
               >
-                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
                 <Typography
-                  variant="h6"
                   sx={{
                     fontWeight: "bold",
-                    color: "#f9f3fe",
-                    fontSize: "1.5rem",
+                    color: "#49326b",
+                    fontSize: "1.3rem",
                   }}
                 >
                   Ideal for conservative investors.
@@ -82,13 +79,12 @@ const FixedDepost = ({ serviceName }) => {
                   justifyContent: "left",
                 }}
               >
-                <CheckCircleIcon sx={{ color: "#f9f3fe", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
                 <Typography
-                  variant="h6"
                   sx={{
                     fontWeight: "bold",
-                    color: "#f9f3fe",
-                    fontSize: "1.5rem",
+                    color: "#49326b",
+                    fontSize: "1.3rem",
                   }}
                 >
                   Includes corporate FDs, government & tax-saving bonds.
@@ -134,9 +130,7 @@ const QualificationBox = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+  border:"10px solid #e4d4fa",
   padding: "20px",
   borderRadius: "16px",
   overflow: "hidden",

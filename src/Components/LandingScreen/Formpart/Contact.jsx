@@ -17,7 +17,9 @@ import {
   Container,
 } from "@mui/material";
 import backImage from "../../../assets/top-view-piggy-bank-money.jpg";
-import Joinus from "../../../assets/joinus.png";
+// import Joinus from "../../../assets/joinus.png";
+import Joinus from "../../../assets/1-removebg-preview.png";
+
 import { instance } from "../../../utils/api";
 
 export default function Contact() {
@@ -84,7 +86,7 @@ export default function Contact() {
 
   return (
     <MainDiv image={backImage} id="contact">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             padding: "30px",
@@ -139,7 +141,7 @@ export default function Contact() {
               alt="joinus"
               sx={{
                 width: "100%",
-                maxWidth: 400,
+                maxWidth: 500,
                 display: { xs: "none", md: "block" },
               }}
             />

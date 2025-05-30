@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet"; 
 import { Box, Typography, Container, Skeleton } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
 import { instance } from "../../../utils/api";
@@ -7,11 +8,10 @@ import { Url } from "../../../utils/api";
 import { defaultCards } from "./DefaultCard";
 import Instagram from "../../../assets/instagram_3938036.png";
 import LinkedIn from "../../../assets/linkedin_3992606.png";
-import Youtube from "../../../assets/play_10090287.png";
-import Mail from "../../../assets/mail-icon_11720354.png";
 import Whatsapp from "../../../assets/whatsapp-removebg-preview.png";
 import facebook from "../../../assets/Facebook_icon.svg.png";
-import twitter from "../../../assets/twitter.png";
+import { Twitter } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
 const slideIn = keyframes`
@@ -34,6 +34,7 @@ const CardDetails = () => {
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   const [hovered3, setHovered3] = useState(false);
+  const [hovered4, setHovered4] = useState(false);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -68,6 +69,29 @@ const CardDetails = () => {
     fetchDetails();
   }, [id]);
 
+  // Share functionality
+  const handleShare = async () => {
+    const shareUrl = window.location.href;
+    const shareData = {
+      title: data?.title || "Check out this blog!",
+      text: data?.metaDescription || "An interesting blog post!",
+      url: shareUrl,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareUrl);
+        alert("Blog URL copied to clipboard! Share it on your favorite platform.");
+      }
+    } catch (err) {
+      console.error("Share failed:", err);
+      alert("Failed to share. URL copied to clipboard!");
+      await navigator.clipboard.writeText(shareUrl);
+    }
+  };
+
   if (loading) {
     return (
       <>
@@ -88,7 +112,7 @@ const CardDetails = () => {
           </ContentBox>
         </MainBox>
         <Main2Box>
-          <Container maxWidth="xl">
+          <Container maxWidth="lg">
             <Content1Box>
               <ImageBox>
                 <Skeleton
@@ -173,145 +197,254 @@ const CardDetails = () => {
     filter: isHovered ? "brightness(0.8)" : "brightness(1)",
   });
 
+  // 👈 SEO-optimized meta description (truncate to 160 characters)
+  const metaDescription = data.metaDescription
+    ? data.metaDescription.length > 160
+      ? `${data.metaDescription.substring(0, 157)}...`
+      : data.metaDescription
+    : "Discover insightful financial tips and updates from Deepan India Financial Services.";
+
+  // 👈 SEO-optimized title (truncate to 70 characters)
+  const seoTitle = data.title
+    ? data.title.length > 60
+      ? `${data.title.substring(0, 57)}... | Deepan India`
+      : `${data.title} | Deepan India`
+    : "Blog Post | Deepan India Financial Services";
+
   return (
     <>
+      {/* 👈 Manage <head> tags with React Helmet */}
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta
+          name="keywords"
+          content={
+            data.keywords ||
+            "finance, investment, financial services, deepan india, blog"
+          }
+        />
+        <meta name="author" content={data.author || "Deepan India"} />
+        <meta name="robots" content="index, follow" />
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta
+          property="og:image"
+          content={imageSrc || aboutImg1}
+        />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta
+          name="twitter:image"
+          content={imageSrc || aboutImg1}
+        />
+        {/* Canonical URL */}
+        <link rel="canonical" href={window.location.href} />
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: data.title,
+            description: metaDescription,
+            author: {
+              "@type": "Person",
+              name: data.author || "Deepan India",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: data.company || "Deepan India Financial Services",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://yourdomain.com/logo.png", // Replace with your logo URL
+              },
+            },
+            datePublished: data.createdAt || new Date().toISOString(),
+            image: imageSrc || aboutImg1,
+            url: window.location.href,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": window.location.href,
+            },
+          })}
+        </script>
+      </Helmet>
       <MainBox image={aboutImg1}>
         <ContentBox>
           <Typography variant="h3" className="title">
             {data.title.toUpperCase()}
           </Typography>
-          <Typography variant="subtitle1" className="subtitle">
-            {data.intro}
-          </Typography>
+          <Typography
+            component="div"
+            dangerouslySetInnerHTML={{ __html: data.subTitle }}
+            className="subtitle"
+          />
         </ContentBox>
       </MainBox>
       <Main2Box>
         <Container maxWidth="lg">
           <Content1Box>
             <ImageBox>
-              <StyledImage src={imageSrc} alt="blog" />
+              <StyledImage
+                src={imageSrc}
+                alt={data.title}
+                loading="lazy"
+              />
             </ImageBox>
             <Typography variant="body1" className="metaDescription">
               {data.metaDescription}
             </Typography>
-            {Array.isArray(data.content) && data.content.length > 0 ? (
-              data.content.map((section, index) => (
-                <ContentSection key={index}>
-                  <Typography variant="h4" className="sectionHeading">
-                    {section.heading}
-                  </Typography>
-                  {section.paragraph && (
-                    <Typography variant="body2" className="sectionParagraph">
-                      {section.paragraph}
-                    </Typography>
-                  )}
-                  {section.items && (
-                    <StyledList>
-                      {section.items.map((item, idx) => (
-                        <li key={idx}>
-                          {typeof item === "string" ? (
-                            item
-                          ) : (
-                            <>
-                              <strong>{item.title}</strong>: {item.description}
-                            </>
-                          )}
-                        </li>
-                      ))}
-                    </StyledList>
-                  )}
-                </ContentSection>
-              ))
-            ) : (
-              <Typography variant="body2" sx={{ color: "#616161", mt: 2 }}>
-                No additional content available.
-              </Typography>
-            )}
-            {data.author && (
-              <AuthorBox image={aboutImg1}>
-                <Box>
-                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
-                    Written by {data?.author?.name}
-                  </Typography>
-                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
-                    {data?.author?.company}
-                  </Typography>
-                  <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
-                    {data?.author?.code}
-                  </Typography>
-                </Box>
-                {/* <ul
-                  style={{
-                    listStyleType: "none",
-                    padding: 0,
-                    margin: "20px 0 0 0",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "20px",
-                    justifyContent: "flex-start",
+            <Typography
+              component="div"
+              dangerouslySetInnerHTML={{ __html: data.content }}
+              color="#49326b"
+            />
+            <Typography
+              variant="subtitle1"
+              sx={{ color: "#49326b", mt: 2, fontWeight: 500 }}
+            >
+              Share this blog with your network:
+            </Typography>
+            <AuthorBox image={aboutImg1}>
+              <Box>
+                <Typography
+                  sx={{ color: "#e4d4fa", fontSize: "1rem" }}
+                  component="div"
+                  dangerouslySetInnerHTML={{
+                    __html: `Written by ${data?.author}`,
                   }}
-                >
-                  <li>
-                    <a
-                      // href="https://www.instagram.com/deepanindia?igsh=MXNyNXh3a256NGNneg=="
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        src={facebook}
-                        alt="facebook"
-                        onMouseEnter={() => setHovered(true)}
-                        onMouseLeave={() => setHovered(false)}
-                        style={getIconStyle(hovered)}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      // href="http://www.youtube.com/@deepanindiafinancialservices"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        src={Whatsapp}
-                        alt="Whatsapp"
-                        onMouseEnter={() => setHovered1(true)}
-                        onMouseLeave={() => setHovered1(false)}
-                        style={getIconStyle(hovered1)}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.linkedin.com/in/vidya-shree-sr-b9102b302"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        src={LinkedIn}
-                        alt="LinkedIn"
-                        onMouseEnter={() => setHovered2(true)}
-                        onMouseLeave={() => setHovered2(false)}
-                        style={getIconStyle(hovered2)}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                     <a 
-                    // href="mailto:Deepanindiafinancialservices@gmail.com"
-                    > 
-                      <img
-                        src={twitter}
-                        alt="twitter"
-                        onMouseEnter={() => setHovered3(true)}
-                        onMouseLeave={() => setHovered3(false)}
-                        style={getIconStyle(hovered3)}
-                      />
-                    </a>
-                  </li>
-                </ul> */}
-              </AuthorBox>
-            )}
+                />
+                <Typography
+                  sx={{ color: "#e4d4fa", fontSize: "1rem" }}
+                  component="div"
+                  dangerouslySetInnerHTML={{
+                    __html: data?.company,
+                  }}
+                />
+                <Typography sx={{ color: "#e4d4fa", fontSize: "1rem" }}>
+                  {data?.code}
+                </Typography>
+              </Box>
+              {/* <ul
+                style={{
+                  listStyleType: "none",
+                  padding: 0,
+                  margin: "20px 0 0 0",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "20px",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <li>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      window.location.href
+                    )}`}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="Share on Facebook"
+                  >
+                    <img
+                      src={facebook}
+                      alt="Share on Facebook"
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                      style={getIconStyle(hovered)}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                      `${data?.title} ${window.location.href}`
+                    )}`}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="Share on WhatsApp"
+                  >
+                    <img
+                      src={Whatsapp}
+                      alt="Share on WhatsApp"
+                      onMouseEnter={() => setHovered1(true)}
+                      onMouseLeave={() => setHovered1(false)}
+                      style={getIconStyle(hovered1)}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                      window.location.href
+                    )}`}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="Share on LinkedIn"
+                  >
+                    <img
+                      src={LinkedIn}
+                      alt="Share on LinkedIn"
+                      onMouseEnter={() => setHovered2(true)}
+                      onMouseLeave={() => setHovered2(false)}
+                      style={getIconStyle(hovered2)}
+                    />
+                  </a>
+                 </li>
+                <li>
+                  <a
+                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                      window.location.href
+                    )}&text=${encodeURIComponent(data?.title)}`}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="Share on Twitter"
+                  >
+                    <img
+                      src={twitter}
+                      alt="Share on Twitter"
+                      onMouseEnter={() => setHovered3(true)}
+                      onMouseLeave={() => setHovered3(false)}
+                      style={getIconStyle(hovered3)}
+                    />
+                  </a>
+                </li> 
+                <li>
+                  <Share2
+                    onMouseEnter={() => setHovered4(true)}
+                    onMouseLeave={() => setHovered4(false)}
+                    onClick={handleShare}
+                    style={getIconStyle(hovered4)}
+                    aria-label="Share this blog"
+                  />
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="Share on Instagram"
+                    onClick={() =>
+                      alert(
+                        "To share on Instagram, screenshot this page and post it to your Instagram feed or story!"
+                      )
+                    }
+                  >
+                    <img
+                      src={Instagram}
+                      alt="Share on Instagram"
+                      onMouseEnter={() => setHovered4(true)}
+                      onMouseLeave={() => setHovered4(false)}
+                      style={getIconStyle(hovered4)}
+                    />
+                  </a>
+                </li>
+              </ul> */}
+            </AuthorBox>
           </Content1Box>
         </Container>
       </Main2Box>
@@ -319,7 +452,7 @@ const CardDetails = () => {
   );
 };
 
-// Styled components remain unchanged
+// Styled components (unchanged)
 const MainBox = styled(Box)`
   position: relative;
   width: 100%;
@@ -403,7 +536,7 @@ const Content1Box = styled(Box)`
   .metaDescription {
     font-size: 1.1rem;
     font-weight: 500;
-    color: #616161;
+    color: #49326b;
     line-height: 1.6;
   }
 
@@ -499,6 +632,12 @@ const AuthorBox = styled(Box)`
     right: 0;
     bottom: 0;
     z-index: 0;
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 `;
 

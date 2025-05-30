@@ -27,7 +27,7 @@ const OurStory = ({ data }) => {
       }}
     >
       <Container
-        maxWidth="xl"
+        maxWidth="lg"
         sx={{
           position: "relative",
           zIndex: 1,

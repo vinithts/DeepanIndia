@@ -78,7 +78,7 @@ const Choose = ({ data }) => {
       }}
     >
       <Container
-        maxWidth="xl"
+        maxWidth="lg"
         sx={{
           position: "relative",
           zIndex: 1,
@@ -253,10 +253,10 @@ const Choose = ({ data }) => {
               width: "100%",
               alignItems: "center",
               justifyContent: "center",
-              marginTop: "20px",
+              marginTop: "50px",
             }}
           >
-            <Grid container spacing={{ xs: 2, md: 3 }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} alignItems={"stretch"}>
               {reviewData.map((item, index) => {
                 const IconComponent = iconMap[index] || AdsClickIcon;
                 return (
@@ -351,7 +351,7 @@ const Choose = ({ data }) => {
                               {item.subTitle.split(" ").map((word, index) => (
                                 <React.Fragment key={index}>
                                   {word}
-                                  {(index + 1) % 8 === 0 ? <br /> : " "}
+                                  {(index + 1) % 4 === 0 ? <br /> : " "}
                                 </React.Fragment>
                               ))}
                             </Typography>
