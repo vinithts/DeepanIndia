@@ -86,7 +86,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 const SectionTitle1 = styled(Typography)(({ theme }) => ({
   fontSize: "1.3rem",
   fontWeight: 900,
-  textAlign: "center",
+  textAlign: "left",
   marginBottom: "10px",
   backgroundColor: "#f9f3fe",
   padding: "10px",
@@ -110,7 +110,7 @@ const Point1 = styled(Typography)({
   fontSize: "1rem",
 });
 const StyledDivider = styled(Divider)`
-  background-color: #25143f;
+  background-color: #e4d4fa;
   height: 6px;
   width: 100%;
   margin: 0px 50px 50px 0px;
@@ -201,7 +201,7 @@ const MutualFundsSection = ({ serviceName }) => {
           {/* Lumpsum */}
           <Grid item xs={12} sm={6} md={4}>
             <InfoCard>
-              <SectionTitle1>📌 Lumpsum Investment</SectionTitle1>
+              <SectionTitle1>Lumpsum Investment</SectionTitle1>
               <Box
                 sx={{
                   display: "flex",
@@ -228,7 +228,7 @@ const MutualFundsSection = ({ serviceName }) => {
           {/* SWP */}
           <Grid item xs={12} sm={6} md={4}>
             <InfoCard image={aboutImg1}>
-              <SectionTitle1>📌 SWP (Systematic Withdrawal Plan)</SectionTitle1>
+              <SectionTitle1>SWP (Systematic Withdrawal Plan)</SectionTitle1>
               <Box
                 sx={{
                   display: "flex",

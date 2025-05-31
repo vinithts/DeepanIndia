@@ -37,11 +37,12 @@ const RealEstateFund = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",
@@ -56,11 +57,12 @@ const RealEstateFund = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",
@@ -75,11 +77,12 @@ const RealEstateFund = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",
@@ -88,6 +91,26 @@ const RealEstateFund = ({ serviceName }) => {
                   }}
                 >
                   Lower ticket size compared to direct real estate.
+                </Typography>
+              </Box>
+               <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "self-start",
+                  justifyContent: "left",
+                  marginBottom:"8px"
+                }}
+              >
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#49326b",
+                    fontSize: "1.3rem",
+                  }}
+                >
+                Minimum 10,000.
                 </Typography>
               </Box>
             </Grid>

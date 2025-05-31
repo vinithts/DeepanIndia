@@ -37,11 +37,12 @@ const Insurance = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   variant="h6"
                   sx={{
@@ -57,11 +58,12 @@ const Insurance = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   variant="h6"
                   sx={{
@@ -77,11 +79,11 @@ const Insurance = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   variant="h6"
                   sx={{

@@ -12,14 +12,16 @@ import {
   ListItemIcon,
   ListItemText,
   Container,
+  keyframes,
   Button,
 } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CalculateIcon from "@mui/icons-material/Calculate";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import DownloadIcon from "@mui/icons-material/Download";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { styled, keyframes } from "styled-components";
+import { styled } from "styled-components";
 import Handshake from "../../../assets/10-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
@@ -96,10 +98,15 @@ const EducationalResource = () => {
               financial sector? */}
         </Typography>
         <QualificationBox image={aboutImg1}>
-          <Box
+          <Card
             sx={{
+              background: "rgba(255, 255, 255, 0.95)",
+              borderRadius: "16px",
+              border: "10px solid #e4d4fa",
+              boxShadow: "0 8px 24px rgba(73, 50, 107, 0.1)",
+              padding: { xs: "20px", md: "20px" },
+              animation: `${slideIn} 1s ease-in-out`,
               display: "flex",
-              flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -108,63 +115,61 @@ const EducationalResource = () => {
               <Grid item xs={12} sm={6} md={6}>
                 <List>
                   {resources.map((res, index) => (
-                    <ListItem key={index} sx={{ paddingY: "8px" }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "10px",
-                          marginRight: "10px",
+                    <ListItem
+                      key={index}
+                      sx={{
+                        // paddingY: "12px",
+                        transition: "transform 0.3s ease",
+                        "&:hover": {
+                          transform: "translateX(8px)",
+                          background: "#e4d4fa",
+                          borderRadius: "8px",
+                        },
+                      }}
+                    >
+                      <ListItemIcon sx={{ minWidth: "40px" }}>
+                        <CheckCircleIcon
+                          sx={{ color: "#49326b", fontSize: "22px" }}
+                        />
+                      </ListItemIcon>
+                      <Box sx={{display:"flex", flexDirection:"column"}}>
+                      <ListItemText
+                        primary={res.title}
+                        primaryTypographyProps={{
+                          fontSize: "16px",
+                          fontWeight: 600,
+                          color: "#49326b",
                         }}
-                      >
-                        <ListItemIcon sx={{ minWidth: "40px" }}>
-                          <Avatar
-                            sx={{ bgcolor: "#f9f3fe", color: "#49326b", mr: 2 }}
-                          >
-                            {res.icon}
-                          </Avatar>
-                        </ListItemIcon>
-                      </Box>
-
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          backgroundColor: "white",
-                          width: "100%",
-                          borderbottom: "1px solid #49326b",
-                          padding: "10px",
-                          borderRadius: "10px",
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          sx={{ fontWeight: "bold", color: "#49326b" }}
-                        >
-                          {res.title}
-                        </Typography>
-                        <Typography variant="body2" color="#49326b">
-                          {res.desc}
-                        </Typography>
+                      />
+                      <p>{res.desc}</p>
                       </Box>
                     </ListItem>
                   ))}
                 </List>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
-                <img
-                  src={Handshake}
-                  alt="handshake"
-                  style={{
-                    width: "100%",
-                    maxWidth: "400px",
-                    display: "block",
-                    "@media (max-width: 600px)": { display: "none" },
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
                   }}
-                />
+                >
+                  <img
+                    src={Handshake}
+                    alt="handshake"
+                    style={{
+                      width: "100%",
+                      maxWidth: "400px",
+                      display: "block",
+                      height: "auto",
+                    }}
+                  />
+                </Box>
               </Grid>
             </Grid>
-          </Box>
+          </Card>
           <Typography
             sx={{
               textAlign: "center",

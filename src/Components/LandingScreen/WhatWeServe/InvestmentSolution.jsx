@@ -74,7 +74,8 @@ const InvestmentSolution = () => {
             animation: `${fadeIn} 1.2s ease-in-out`,
           }}
         >
-          We help you grow and secure your wealth through goal-oriented investment strategies.
+          We help you grow and secure your wealth through goal-oriented
+          investment strategies.
         </Typography>
 
         <QualificationBox image={aboutImg1}>
@@ -84,18 +85,21 @@ const InvestmentSolution = () => {
               borderRadius: "16px",
               border: "10px solid #e4d4fa",
               boxShadow: "0 8px 24px rgba(73, 50, 107, 0.1)",
-              padding: { xs: "20px", md: "40px" },
+              padding: { xs: "20px", md: "20px" },
               animation: `${slideIn} 1s ease-in-out`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} sm={6}>
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={8} md={8}>
                 <List>
                   {points.map((point, index) => (
                     <ListItem
                       key={index}
                       sx={{
-                        paddingY: "12px",
+                        // paddingY: "12px",
                         transition: "transform 0.3s ease",
                         "&:hover": {
                           transform: "translateX(8px)",
@@ -106,13 +110,13 @@ const InvestmentSolution = () => {
                     >
                       <ListItemIcon sx={{ minWidth: "40px" }}>
                         <CheckCircleIcon
-                          sx={{ color: "#49326b", fontSize: "28px" }}
+                          sx={{ color: "#49326b", fontSize: "22px" }}
                         />
                       </ListItemIcon>
                       <ListItemText
                         primary={point}
                         primaryTypographyProps={{
-                          fontSize: { xs: "16px", md: "18px" },
+                          fontSize: "16px",
                           fontWeight: 600,
                           color: "#49326b",
                         }}
@@ -121,11 +125,13 @@ const InvestmentSolution = () => {
                   ))}
                 </List>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Box
                   sx={{
-                    display: { xs: "none", sm: "block" },
-                    textAlign: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
                   }}
                 >
                   <img
@@ -133,8 +139,9 @@ const InvestmentSolution = () => {
                     alt="Handshake"
                     style={{
                       width: "100%",
-                      maxWidth: "400px",
-                      height: "auto",
+                      maxWidth: "600px",
+                      height: "100%",
+                      maxHeight:"600px",
                       animation: `${slideIn} 1.2s ease-in-out`,
                     }}
                   />
@@ -154,7 +161,8 @@ const InvestmentSolution = () => {
               animation: `${fadeIn} 1.4s ease-in-out`,
             }}
           >
-            Whether you’re planning for a home, child’s education, or wealth creation, we ensure your investments work smarter.
+            Whether you’re planning for a home, child’s education, or wealth
+            creation, we ensure your investments work smarter.
           </Typography>
 
           <Box sx={{ textAlign: "center", mt: 4 }}>
@@ -191,7 +199,7 @@ const QualificationBox = styled(Box)(({ image }) => ({
   backgroundImage: `linear-gradient(rgba(73, 50, 107, 0.7), rgba(73, 50, 107, 0.7)), url(${image})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
-  padding: "40px 20px",
+  padding: "20px",
   borderRadius: "16px",
   overflow: "hidden",
   display: "flex",

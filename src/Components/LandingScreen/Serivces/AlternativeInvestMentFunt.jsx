@@ -39,10 +39,11 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "left",
+                     marginBottom:"8px"
                   }}
                 >
                   <FiberManualRecordIcon
-                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
+                    sx={{ color: "#49326b", mt: "6px", mr: 1 }}
                   />
                   <Typography variant="h5" fontWeight="bold" color="#49326b">
                     {" "}
@@ -55,12 +56,13 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    alignItems: "center",
+                    alignItems: "self-start",
                     justifyContent: "left",
+                     marginBottom:"8px"
                   }}
                 >
                   <FiberManualRecordIcon
-                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
+                    sx={{ color: "#49326b", mt: "6px", mr: 1 }}
                   />
                   <Typography variant="h5" fontWeight="bold"color="#49326b">
                     {" "}
@@ -72,16 +74,34 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    alignItems: "center",
+                    alignItems: "self-start",
                     justifyContent: "left",
+                     marginBottom:"8px"
                   }}
                 >
                   <FiberManualRecordIcon
-                    sx={{ color: "#49326b", mt: "4px", mr: 1 }}
+                    sx={{ color: "#49326b", mt: "6px", mr: 1 }}
                   />
                   <Typography variant="h5" fontWeight="bold" color="#49326b">
                     {" "}
                     Includes private equity, venture capital, hedge funds.
+                  </Typography>
+                </Box>
+                 <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "self-start",
+                    justifyContent: "left",
+                     marginBottom:"8px"
+                  }}
+                >
+                  <FiberManualRecordIcon
+                    sx={{ color: "#49326b", mt: "6px", mr: 1 }}
+                  />
+                  <Typography variant="h5" fontWeight="bold" color="#49326b">
+                    {" "}
+                    Minimum 1 Crore.
                   </Typography>
                 </Box>
                 </Box>

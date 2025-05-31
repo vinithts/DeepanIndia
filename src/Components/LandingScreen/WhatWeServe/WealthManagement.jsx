@@ -2,14 +2,19 @@ import React from "react";
 import {
   Box,
   Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  Container,
+  Card,
+  CardContent,
   Grid,
-  keyframes
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Container,
+  Button,
+  keyframes,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import GavelIcon from "@mui/icons-material/Gavel";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -92,45 +97,75 @@ const WealthManagement = () => {
               financial sector? */}
         </Typography>
         <QualificationBox image={aboutImg1}>
-            <Grid container spacing={6}>
-              <Grid item xs={12} sm={6} md={6}>
-                 <Box
+          <Card
             sx={{
-              border: "2px solid white",
-              padding: "20px",
+              background: "rgba(255, 255, 255, 0.95)",
               borderRadius: "16px",
-              animation: `${slideIn} 0.5s ease-in-out`,
+              border: "10px solid #e4d4fa",
+              boxShadow: "0 8px 24px rgba(73, 50, 107, 0.1)",
+              padding: { xs: "20px", md: "20px" },
+              animation: `${slideIn} 1s ease-in-out`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-                <Stepper orientation="vertical" nonLinear>
+            <Grid container spacing={6}>
+              <Grid item xs={12} sm={6} md={6}>
+                <List>
                   {steps.map((step, index) => (
-                    <Step key={index} active>
-                      <StepLabel icon={step.icon} style={{ color: "yellow" }}>
-                        <Typography sx={{ color: "white", fontWeight: "bold" }}>
-                          {step.label}
-                        </Typography>
-                      </StepLabel>
-                    </Step>
+                    <ListItem
+                      key={index}
+                      sx={{
+                        // paddingY: "12px",
+                        transition: "transform 0.3s ease",
+                        "&:hover": {
+                          transform: "translateX(8px)",
+                          background: "#e4d4fa",
+                          borderRadius: "8px",
+                        },
+                      }}
+                    >
+                      <ListItemIcon sx={{ minWidth: "40px" }}>
+                        <CheckCircleIcon
+                          sx={{ color: "#49326b", fontSize: "22px" }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={step.label}
+                        primaryTypographyProps={{
+                          fontSize: "16px",
+                          fontWeight: 600,
+                          color: "#49326b",
+                        }}
+                      />
+                    </ListItem>
                   ))}
-                </Stepper>
-                </Box>
+                </List>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
-                <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"100%"}}>
-                <img
-                  src={Handshake}
-                  alt="handshake"
-                  style={{
-                    width: "100%",
-                    maxWidth: "400px",
-                    height: "auto",
-                    display: "block",
-                    "@media (max-width: 600px)": { display: "none" },
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
                   }}
-                />
+                >
+                  <img
+                    src={Handshake}
+                    alt="handshake"
+                    style={{
+                      width: "100%",
+                      maxWidth: "400px",
+                      height: "auto",
+                      display: "block",
+                    }}
+                  />
                 </Box>
               </Grid>
             </Grid>
+          </Card>
           <Typography
             sx={{
               textAlign: "center",

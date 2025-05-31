@@ -14,19 +14,21 @@ import financial4 from "../../../assets/17-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import styled from "styled-components";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 const advisory = [
   {
     title:
-      "Short & Medium-Term Stock Bags SIP & Lumpsum options from ₹5,000 to ₹50,000.",
+      "Short & Medium-Term Stock Bags",
+    subtitle:"SIP & Lumpsum options from ₹5,000 to ₹50,000.",
     description: "Actively managed with averaging & timely churning.",
     audience: "Ideal for beginners and progressive investors.",
     img: financial1,
     alt: "Stock bag with multiple logos and a SIP chart.",
   },
   {
-    title: "Long-Term Stock Bags for HNIs Starting from ₹10,000 to any amount.",
+    title: "Long-Term Stock Bags for HNIs",
+    subtitle:"Starting from ₹1,00,000 to any amount.",
     description: "Blue-chip and growth picks.",
     audience: " Managed with periodic review and realignment.",
     img: financial2,
@@ -34,15 +36,17 @@ const advisory = [
   },
   {
     title:
-      "Momentum Delivery-Based Trading (e.g., MTF) Short-term high-potential trades.",
+      "Momentum Delivery-Based Trading",
+    subtitle:"Short-term high-potential trades.",
     description: "Uses margin/leveraged funds with strong risk management.",
-    audience: " Regular alerts and exit strategies.",
+    audience: " Regular alerts and exits on time.",
     img: financial4,
     alt: "Speedometer with “Momentum” label on dial",
   },
   {
     title:
-      "Swing Trading – Index & Futures (With Hedges) 3–10 day trading strategies.",
+      "Swing Trading – Index, Futures & options",
+    subtitle:"3 days to 1 month hold",
     description: " Includes hedge-based risk reduction.",
     audience: " Suits active traders seeking calculated exposure.",
     img: financial3,
@@ -57,93 +61,107 @@ const AdvisoryService = ({ serviceName }) => {
         <Grid container spacing={3}>
           {advisory.map((course, index) => (
             <Grid item xs={12} sm={6} md={6} key={index}>
-              <InfoCard >
-             
-                    <ImageWrapper>
-                      <img
-                        style={{
-                          width: "100%",
-                          height: "270px",
-                          borderRadius: "16px",
-                          animation: `${imageFloat} 3s ease-in-out infinite alternate`,
-                          sm: {
-                            width: "100%",
-                            height: "auto",
-                          },
-                        }}
-                        src={course.img}
-                        alt={course.alt}
-                      />
-                    </ImageWrapper>
-                    <Typography
+              <InfoCard>
+                <ImageWrapper>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "270px",
+                      borderRadius: "16px",
+                      animation: `${imageFloat} 3s ease-in-out infinite alternate`,
+                      sm: {
+                        width: "100%",
+                        height: "auto",
+                      },
+                    }}
+                    src={course.img}
+                    alt={course.alt}
+                  />
+                </ImageWrapper>
+                <Typography
                   variant="h5"
                   fontWeight="bold"
                   color="#49326b"
                   sx={{
                     mt: 2,
-                   borderRadius: "10px",
-                    display: "flex",
-                    alignItems: "center",
+                    borderRadius: "10px",
+                    textAlign:"center"
                   }}
                 >
                   {course.title}
                 </Typography>
-                 
-                    <Box
+
+                <Box
+                  sx={{
+                    padding: "20px",
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "left",
+                    justifyContent: "center",
+                  }}
+                >
+                     <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "self-start",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <FiberManualRecordIcon
+                      style={{ paddingRight: "10px", color: "#49326b",marginTop:"10px" }}
+                    />
+                    <Typography
                       sx={{
-                        padding: "20px",
-                        flex: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "left",
-                        justifyContent: "center",
+                        mt: 1,
+                        color: "#49326b",
                       }}
                     >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          justifyContent: "left",
-                        }}
-                      >
-                        <FiberManualRecordIcon
-                          style={{ paddingRight: "10px", color: "#49326b" }}
-                        />
-                        <Typography
-                          sx={{
-                            mt: 1,
-                            color: "#49326b",
-                            fontWeight: "bold",
-                            fontSize: "1.2rem",
-                          }}
-                        >
-                          {course.description}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          justifyContent: "left",
-                        }}
-                      >
-                        <FiberManualRecordIcon
-                          style={{ paddingRight: "10px", color: "#49326b" }}
-                        />
-                        <Typography
-                          sx={{
-                            mt: 1,
-                            color: "#49326b",
-                            fontWeight: "bold",
-                            fontSize: "1.2rem",
-                          }}
-                        >
-                          {course.audience}
-                        </Typography>
-                      </Box>
-                    </Box>
+                      {course.subtitle}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "self-start",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <FiberManualRecordIcon
+                      style={{ paddingRight: "10px", color: "#49326b",marginTop:"10px" }}
+                    />
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        color: "#49326b",
+                      }}
+                    >
+                      {course.description}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "self-start",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <FiberManualRecordIcon
+                      style={{ paddingRight: "10px", color: "#49326b",marginTop:"10px" }}
+                    />
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        color: "#49326b",
+                      }}
+                    >
+                      {course.audience}
+                    </Typography>
+                  </Box>
+                </Box>
               </InfoCard>
             </Grid>
           ))}
@@ -186,7 +204,7 @@ const InfoCard = styled(Box)(({ image }) => ({
   position: "relative",
   width: "100%",
   height: "100%",
-  border:"10px solid #e4d4fa",
+  border: "10px solid #e4d4fa",
   padding: "20px",
   borderRadius: "16px",
   overflow: "hidden",
