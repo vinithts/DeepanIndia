@@ -22,45 +22,45 @@ const SlideShowBar = ({ data = [] }) => {
   const currentSlide = data.length > 0 ? data[currentIndex] : {};
   const {
     subTitle = "Your Trusted Wealth Creation Partner",
-    title = "Dream Big, Achieve More!",
+    title = "Dream Rich, Dare to Reach!",
     description = "Empower your future with smart investments.",
     button_name = "Get Started",
   } = currentSlide;
 
-  useEffect(() => {
-    // Clear any existing timeouts
-    typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
-    typewriterTimeouts.current = [];
+  // useEffect(() => {
+  //   // Clear any existing timeouts
+  //   typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
+  //   typewriterTimeouts.current = [];
 
-    if (animationType === "typewriter") {
-      // Typewriter animation (for auto-slide or initial load)
-      setDisplayText("");
-      setShowButton(false);
+  //   if (animationType === "typewriter") {
+  //     // Typewriter animation (for auto-slide or initial load)
+  //     setDisplayText("");
+  //     setShowButton(false);
 
-      const buttonTimer = setTimeout(() => {
-        setShowButton(true);
-      }, 300);
-      typewriterTimeouts.current.push(buttonTimer);
+  //     const buttonTimer = setTimeout(() => {
+  //       setShowButton(true);
+  //     }, 300);
+  //     typewriterTimeouts.current.push(buttonTimer);
 
-      const chars = title.split("");
-      chars.forEach((char, index) => {
-        const timeout = setTimeout(() => {
-          setDisplayText((prev) => prev + char);
-        }, index * 100);
-        typewriterTimeouts.current.push(timeout);
-      });
-    } else {
-      // Fade animation (for manual navigation)
-      setDisplayText(title);
-      setShowButton(true);
-    }
+  //     const chars = title.split("");
+  //     chars.forEach((char, index) => {
+  //       const timeout = setTimeout(() => {
+  //         setDisplayText((prev) => prev + char);
+  //       }, index * 100);
+  //       typewriterTimeouts.current.push(timeout);
+  //     });
+  //   } else {
+  //     // Fade animation (for manual navigation)
+  //     setDisplayText(title);
+  //     setShowButton(true);
+  //   }
 
     // Cleanup function
-    return () => {
-      typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
-      typewriterTimeouts.current = [];
-    };
-  }, [currentIndex, title, animationType]);
+  //   return () => {
+  //     typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
+  //     typewriterTimeouts.current = [];
+  //   };
+  // }, [currentIndex, title, animationType]);
 
   // Auto-slide interval
   useEffect(() => {
@@ -140,10 +140,10 @@ const SlideShowBar = ({ data = [] }) => {
           {subTitle}
         </Typography>
         <Typography className="title" component="h1">
-          {displayText}
+          {title}
         </Typography>
         <Typography className="description">{description}</Typography>
-        {showButton && (
+     
           <Link href="#contact" passHref>
             <Button
               variant="contained"
@@ -153,7 +153,7 @@ const SlideShowBar = ({ data = [] }) => {
               {button_name}
             </Button>
           </Link>
-        )}
+
       </ContentBox>
     </MainBox>
   );
@@ -232,7 +232,7 @@ const Overlay = styled(Box)(({ theme }) => ({
 const ContentBox = styled(Box)(({ theme }) => ({
   position: "relative",
   zIndex: 4,
-  textAlign: "center",
+  textAlign: "left",
   color: "#fff",
   padding: theme.spacing(4),
   boxSizing: "border-box",

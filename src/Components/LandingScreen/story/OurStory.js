@@ -17,7 +17,7 @@ import { Url } from "../../../utils/api";
 const OurStory = ({ data }) => {
   const theme = useTheme();
   return (
-    <Box
+    <Box id="ourstory"
       sx={{
         // minHeight: "100vh",
         backgroundColor: "#f9f3fe",

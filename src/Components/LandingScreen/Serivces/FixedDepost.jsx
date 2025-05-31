@@ -37,11 +37,12 @@ const FixedDepost = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                  marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",
@@ -56,11 +57,12 @@ const FixedDepost = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                   marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",
@@ -75,11 +77,12 @@ const FixedDepost = ({ serviceName }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
+                  alignItems: "self-start",
                   justifyContent: "left",
+                   marginBottom:"8px"
                 }}
               >
-                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "4px", mr: 1 }} />
+                <FiberManualRecordIcon sx={{ color: "#49326b", mt: "6px", mr: 1 }} />
                 <Typography
                   sx={{
                     fontWeight: "bold",

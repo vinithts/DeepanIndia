@@ -11,6 +11,8 @@ import {
   ListItemText,
   Container,
   Button,
+  Card,
+  keyframes
 } from "@mui/material";
 import ElderlyIcon from "@mui/icons-material/Elderly";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
@@ -18,7 +20,8 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import UpdateIcon from "@mui/icons-material/Update";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import { styled, keyframes } from "styled-components";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { styled } from "styled-components";
 import Handshake from "../../../assets/8-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 
@@ -95,54 +98,75 @@ const RetirementPlanning = () => {
               financial sector? */}
         </Typography>
         <QualificationBox image={aboutImg1}>
-          <Grid container spacing={12}>
+          <Card
+            sx={{
+              background: "rgba(255, 255, 255, 0.95)",
+              borderRadius: "16px",
+              border: "10px solid #e4d4fa",
+              boxShadow: "0 8px 24px rgba(73, 50, 107, 0.1)",
+              padding: { xs: "20px", md: "20px" },
+              animation: `${slideIn} 1s ease-in-out`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Grid container spacing={6}>
               <Grid item xs={12} sm={6} md={6}>
-                <Grid container spacing={3}>
+                <List>
                   {items.map((item, index) => (
-                    <Grid item xs={12} sm={6} key={index}>
-                      <Paper
-                        elevation={3}
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          flexDirection:"column",
-                          justifyContent: "center",
-                          p: 2,
-                          borderRadius: 3,
-                          backgroundColor:"#f9f3fe",
-                          borderTop:"10px solid #e4d4fa",
-                          width:"100%",
-                          height: "100%",
-                          transition: "transform 0.3s ease",
-                          "&:hover": {
-                            transform: "translateY(-5px)",
-                            boxShadow: "0 4px 20px rgba(73, 50, 107, 0.2)",
-                          },
+                    <ListItem
+                      key={index}
+                      sx={{
+                        // paddingY: "12px",
+                        transition: "transform 0.3s ease",
+                        "&:hover": {
+                          transform: "translateX(8px)",
+                          background: "#e4d4fa",
+                          borderRadius: "8px",
+                        },
+                      }}
+                    >
+                      <ListItemIcon sx={{ minWidth: "40px" }}>
+                        <CheckCircleIcon
+                          sx={{ color: "#49326b", fontSize: "22px" }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={item.text}
+                        primaryTypographyProps={{
+                          fontSize: "16px",
+                          fontWeight: 600,
+                          color: "#49326b",
                         }}
-                      >
-                        <Avatar sx={{ bgcolor: "#49326b", mr: 2 }}>
-                          {item.icon}
-                        </Avatar>
-                        <br/>
-                        <Typography sx={{fontWeight:"bold", color:"#49326b",textAlign:"center"}}>{item.text}</Typography>
-                      </Paper>
-                    </Grid>
+                      />
+                    </ListItem>
                   ))}
-                </Grid>
+                </List>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
-                <img
-                  src={Handshake}
-                  alt="handshake"
-                  style={{
-                    width: "100%",
-                    maxWidth: "400px",
-                    display: "block",
-                    "@media (max-width: 600px)": { display: "none" },
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
                   }}
-                />
+                >
+                  <img
+                    src={Handshake}
+                    alt="handshake"
+                    style={{
+                      width: "100%",
+                      maxWidth: "400px",
+                      height: "auto",
+                      display: "block",
+                    }}
+                  />
+                </Box>
               </Grid>
             </Grid>
+          </Card>
           <Typography
             sx={{
               textAlign: "center",
@@ -170,7 +194,7 @@ const RetirementPlanning = () => {
 export default RetirementPlanning;
 
 const MainBox = styled(Box)`
-    padding: 60px 0;
+  padding: 60px 0;
   background-color: #f9f3fe;
   position: relative;
   overflow: hidden;

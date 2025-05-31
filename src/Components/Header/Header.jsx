@@ -67,8 +67,8 @@ export default function Header() {
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
-                  <StyledNavLink onClick={() => handleNavigation("/#ourstory")}>
-                    Profile
+                  <StyledNavLink onClick={() => navigate("/")}>
+                    Home
                   </StyledNavLink>
                   <StyledNavLink onClick={() => handleNavigation("/#About")}>
                     Who We Are
@@ -110,9 +110,9 @@ export default function Header() {
                   <StyledNavLink onClick={() => handleNavigation("/#partner")}>
                     Partner with us
                   </StyledNavLink>
-                  <StyledNavLink onClick={() => handleNavigation("/#media")}>
+                  {/* <StyledNavLink onClick={() => handleNavigation("/#media")}>
                     News
-                  </StyledNavLink>
+                  </StyledNavLink> */}
                   <Nav.Link onClick={() => handleNavigation("/#contact")}>
                     <Btntopheader>Contact</Btntopheader>
                   </Nav.Link>

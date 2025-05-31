@@ -62,15 +62,15 @@ const TrainingInFinancialMarketing = ({ serviceName }) => {
                 />
               </ImageWrapper>
                 {/* <StyledDivider  style={{marginTop:"20px"}}/> */}
-              <Typography variant="h5" fontWeight="bold" color="#49326b" sx={{ mt: 2 }}>
-                <AlbumIcon style={{paddingRight:"10px",color:"#49326b"}}/>{course.title}
+              <Typography  fontWeight="bold" color="#49326b" sx={{ mt: 2,fontSize:"1.2rem",textAlign:"center" }}>
+                {course.title}
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "left" }}>
-                <FiberManualRecordIcon style={{paddingRight:"10px",color:"#49326b"}}/>
+              <Box sx={{ display: "flex", flexDirection: "row", alignItems: "self-start", justifyContent: "center" }}>
+                <FiberManualRecordIcon style={{paddingRight:"10px",marginTop:"10px",color:"#49326b"}}/>
               <Typography sx={{ mt: 1,color:"#49326b", }}>{course.description}</Typography>
               </Box>
-               <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "left" }}>
-                <FiberManualRecordIcon style={{paddingRight:"10px",color:"#49326b"}}/>
+               <Box sx={{ display: "flex", flexDirection: "row",alignItems: "self-start", justifyContent: "center" }}>
+                <FiberManualRecordIcon style={{paddingRight:"10px",marginTop:"10px",color:"#49326b"}}/>
               <Typography sx={{ mt: 1,color:"#49326b" }}>{course.audience}</Typography>
                </Box>
             </InfoCard>
