@@ -4,6 +4,9 @@ import styled, { keyframes } from "styled-components";
 import { Url } from "../../../utils/api";
 import BlogImg from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import solar1 from "../../../assets/wealthyIcons.png";
+import solar2 from "../../../assets/chart_11540646.png";
+import solar3 from "../../../assets/house-price_7106424.png";
+
 
 const slideIn = keyframes`
   from {
@@ -23,12 +26,12 @@ const products = [
   {
     title:
       "Short-Term Trading – Trade in qualified short-term equity delivery-based recommendations",
-    icon: solar1,
+    icon: solar2,
   },
   {
     title:
       "Leverage Your Assets – Pledge your holding for addtional income using automated rule-based option trading strategies.",
-    icon: solar1,
+    icon: solar3,
   },
 ];
 const Wealthy = ({ data }) => {

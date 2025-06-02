@@ -24,6 +24,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { styled } from "styled-components";
 import Handshake from "../../../assets/10-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const slideIn = keyframes`
   from {
@@ -132,16 +133,16 @@ const EducationalResource = () => {
                           sx={{ color: "#49326b", fontSize: "22px" }}
                         />
                       </ListItemIcon>
-                      <Box sx={{display:"flex", flexDirection:"column"}}>
-                      <ListItemText
-                        primary={res.title}
-                        primaryTypographyProps={{
-                          fontSize: "16px",
-                          fontWeight: 600,
-                          color: "#49326b",
-                        }}
-                      />
-                      <p>{res.desc}</p>
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        <ListItemText
+                          primary={res.title}
+                          primaryTypographyProps={{
+                            fontSize: "16px",
+                            fontWeight: 600,
+                            color: "#49326b",
+                          }}
+                        />
+                        <p>{res.desc}</p>
                       </Box>
                     </ListItem>
                   ))}
@@ -190,6 +191,15 @@ const EducationalResource = () => {
             </HighlightSpan>
           </Typography>
         </QualificationBox>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <GetMoreButton />
+        </Box>
       </Container>
     </MainBox>
   );

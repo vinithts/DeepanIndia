@@ -18,7 +18,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import back1Image from "../../../assets/website-faq-section-user-helpdesk-customer-support-frequently-asked-questions-problem-solution-quiz-game-confused-man-cartoon-character.png";
 
 const Choose = ({ data }) => {
@@ -195,8 +195,7 @@ const Choose = ({ data }) => {
                       transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                       "&:hover": {
                         transform: "scale(1.02) translateY(-5px)",
-                        filter:
-                          "drop-shadow(0 30px 60px #49326b)",
+                        filter: "drop-shadow(0 30px 60px #49326b)",
                       },
                     },
                   }}
@@ -256,29 +255,32 @@ const Choose = ({ data }) => {
               marginTop: "50px",
             }}
           >
-            <Grid container spacing={{ xs: 2, md: 3 }} alignItems={"stretch"}>
+            <Grid container spacing={{ xs: 2, md:2 }} >
               {reviewData.map((item, index) => {
                 const IconComponent = iconMap[index] || AdsClickIcon;
                 return (
                   <Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-                    {/* <Slide in timeout={1000 + index * 100}> */}
                     <Card
                       sx={{
+                        display: "flex",
+                        flexDirection: "column",
                         height: "100%",
-                        width: "100%",
+                        width:"330px",
                         backgroundColor: "#ffffff",
                         borderRadius: "10px",
                         borderTop: "10px solid #49326b",
                         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         position: "relative",
                         overflow: "hidden",
+                        // padding: "20px",
+                        boxSizing: "border-box",
                         "&:hover": {
                           transform: "translateY(-8px)",
                           boxShadow: `0 20px 40px #49326b`,
-                          background: `linear-gradient(135deg, #49326b 0%, #rgba(210, 152, 228, 0.25)00%)`,
+                          // background: `linear-gradient(135deg, #49326b 0%, rgba(210, 152, 228, 0.25) 100%)`,
                           "& .feature-icon": {
                             transform: "scale(1.1)",
-                            background: `linear-gradient(45deg, #49326b,rgb(167, 103, 180))`,
+                            background: `linear-gradient(45deg, #49326b, rgb(167, 103, 180))`,
                           },
                         },
                         "&::before": {
@@ -288,25 +290,25 @@ const Choose = ({ data }) => {
                           left: 0,
                           right: 0,
                           height: "3px",
-                          // background: `linear-gradient(90deg, #f33d25, #ff6b4a)`,
                         },
                       }}
                     >
-                      <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "flex-start",
-                            // mb: 2,
-                          }}
-                        >
+                      <CardContent
+                        sx={{
+                          p: { xs: 2.5, md: 3 },
+                          flexGrow: 1, // fill remaining height
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <Box sx={{ display: "flex", alignItems: "flex-start" }}>
                           <Box
                             className="feature-icon"
                             sx={{
                               width: 48,
                               height: 48,
                               borderRadius: "50px",
-                              backgroundColor: " #49326b",
+                              backgroundColor: "#49326b",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -331,7 +333,7 @@ const Choose = ({ data }) => {
                               sx={{
                                 fontWeight: "bold",
                                 fontSize: { xs: "1rem", md: "1.1rem" },
-                                color: " #49326b",
+                                color: "#49326b",
                                 mb: 1,
                                 transition: "color 0.3s ease",
                                 lineHeight: 1.3,
@@ -348,18 +350,17 @@ const Choose = ({ data }) => {
                                 fontSize: "0.9rem",
                               }}
                             >
-                              {item.subTitle.split(" ").map((word, index) => (
-                                <React.Fragment key={index}>
-                                  {word}
-                                  {(index + 1) % 4 === 0 ? <br /> : " "}
-                                </React.Fragment>
-                              ))}
+                              {/* {item.subTitle.split(" ").map((word, index) => ( */}
+                                {/* // <React.Fragment key={index}> */}
+                                  {item.subTitle}
+                                  {/* {(index + 1) % 4 === 0 ? <br /> : " "} */}
+                                {/* </React.Fragment> */}
+                              {/* ))} */}
                             </Typography>
                           </Box>
                         </Box>
                       </CardContent>
                     </Card>
-                    {/* </Slide> */}
                   </Grid>
                 );
               })}

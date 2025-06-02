@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Insurence from "../../../assets/insurancefromcanva.png";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const Insurance = ({ serviceName }) => {
   return (
@@ -111,6 +112,7 @@ const Insurance = ({ serviceName }) => {
           </Grid>
         </Box>
       </QualificationBox>
+       <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
     </Container>
   );
 };

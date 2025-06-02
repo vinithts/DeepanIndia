@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
 import { styled } from "@mui/material/styles";
-import { Box, Button, Typography, IconButton } from "@mui/material";
-import Link from "@mui/material/Link";
+import { Box, Button, Typography, Link } from "@mui/material";
+import { IoArrowForwardSharp } from "react-icons/io5";
 import BackGroundImage1 from "../../../assets/tree-grows-coin-glass-jar-with-copy-space.jpg";
-// import BackGroundImage2 from "../../../assets/increase-coins-stacking-with-pink-piggy-bank-web-banner-design-growth-deposit-money-saving-business-investment-concept-by-3d-render-illustration.jpg";
-import BackGroundImage2 from "../../../assets/home pg option 2.jpg";
+import BackGroundImage2 from "../../../assets/still-life-green-grapes-vineyard.jpg";
 
 const backgroundImages = [BackGroundImage1, BackGroundImage2];
 
@@ -14,10 +12,10 @@ const SlideShowBar = ({ data = [] }) => {
   const [displayText, setDisplayText] = useState("");
   const [showButton, setShowButton] = useState(false);
   const [direction, setDirection] = useState("next");
-  const [animationType, setAnimationType] = useState("typewriter"); // "typewriter" or "fade"
+  const [animationType, setAnimationType] = useState("typewriter");
   const isManualNavigation = useRef(false);
-  const [hover, setIsHover] = useState(false); // Fixed: consistent naming
-  const typewriterTimeouts = useRef([]); // Fixed: track timeouts for cleanup
+  const [hover, setIsHover] = useState(false);
+  const typewriterTimeouts = useRef([]);
 
   const currentSlide = data.length > 0 ? data[currentIndex] : {};
   const {
@@ -27,42 +25,6 @@ const SlideShowBar = ({ data = [] }) => {
     button_name = "Get Started",
   } = currentSlide;
 
-  // useEffect(() => {
-  //   // Clear any existing timeouts
-  //   typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
-  //   typewriterTimeouts.current = [];
-
-  //   if (animationType === "typewriter") {
-  //     // Typewriter animation (for auto-slide or initial load)
-  //     setDisplayText("");
-  //     setShowButton(false);
-
-  //     const buttonTimer = setTimeout(() => {
-  //       setShowButton(true);
-  //     }, 300);
-  //     typewriterTimeouts.current.push(buttonTimer);
-
-  //     const chars = title.split("");
-  //     chars.forEach((char, index) => {
-  //       const timeout = setTimeout(() => {
-  //         setDisplayText((prev) => prev + char);
-  //       }, index * 100);
-  //       typewriterTimeouts.current.push(timeout);
-  //     });
-  //   } else {
-  //     // Fade animation (for manual navigation)
-  //     setDisplayText(title);
-  //     setShowButton(true);
-  //   }
-
-    // Cleanup function
-  //   return () => {
-  //     typewriterTimeouts.current.forEach(timeout => clearTimeout(timeout));
-  //     typewriterTimeouts.current = [];
-  //   };
-  // }, [currentIndex, title, animationType]);
-
-  // Auto-slide interval
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isManualNavigation.current) {
@@ -70,71 +32,37 @@ const SlideShowBar = ({ data = [] }) => {
         setDirection("next");
         setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
       }
-      isManualNavigation.current = false; // Reset flag
+      isManualNavigation.current = false;
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  const handlePrev = () => {
+  const handleDotClick = (index) => {
     isManualNavigation.current = true;
     setAnimationType("fade");
-    setDirection("prev");
-    setCurrentIndex((prev) =>
-      prev === 0 ? backgroundImages.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    isManualNavigation.current = true;
-    setAnimationType("fade");
-    setDirection("next");
-    setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
+    setDirection(index > currentIndex ? "next" : "prev");
+    setCurrentIndex(index);
   };
 
   return (
     <MainBox
-      onMouseEnter={() => setIsHover(true)} // Fixed: consistent naming
-      onMouseLeave={() => setIsHover(false)} // Fixed: consistent naming
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <BackgroundImage
         backgroundImage={backgroundImages[currentIndex]}
         direction={direction}
       />
       <Overlay />
-      {hover && ( // Fixed: Show navigation when hovering
-        <NavigationBox>
-          <IconButton
-            onClick={handlePrev}
-            sx={{
-              borderRadius: "50px",
-              padding: "30px",
-              color: "white",
-              marginLeft: "50px",
-              backgroundColor: "rgba(249, 243, 252, 0.5)",
-              "&:hover": {
-                backgroundColor: "rgba(241, 229, 243, 0.7)",
-              },
-            }}
-          >
-            <IoArrowBackSharp />
-          </IconButton>
-          <IconButton
-            onClick={handleNext}
-            sx={{
-              borderRadius: "50px",
-              padding: "30px",
-              color: "white",
-              marginRight: "100px",
-               backgroundColor: "rgba(249, 243, 252, 0.5)",
-              "&:hover": {
-                backgroundColor: "rgba(241, 229, 243, 0.7)",
-              },
-            }}
-          >
-            <IoArrowForwardSharp />
-          </IconButton>
-        </NavigationBox>
-      )}
+      <NavigationDots>
+        {backgroundImages.map((_, index) => (
+          <Dot
+            key={index}
+            active={index === currentIndex}
+            onClick={() => handleDotClick(index)}
+          />
+        ))}
+      </NavigationDots>
       <ContentBox>
         <Typography variant="h6" className="subTitle">
           {subTitle}
@@ -143,17 +71,15 @@ const SlideShowBar = ({ data = [] }) => {
           {title}
         </Typography>
         <Typography className="description">{description}</Typography>
-     
-          <Link href="#contact" passHref>
-            <Button
-              variant="contained"
-              className="ctaButton"
-              endIcon={<IoArrowForwardSharp className="arrowIcon" />}
-            >
-              {button_name}
-            </Button>
-          </Link>
-
+        <Link href="#contact" passHref>
+          <Button
+            variant="contained"
+            className="ctaButton"
+            endIcon={<IoArrowForwardSharp className="arrowIcon" />}
+          >
+            {button_name}
+          </Button>
+        </Link>
       </ContentBox>
     </MainBox>
   );
@@ -240,7 +166,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
     fontSize: "3.5rem",
     fontWeight: 700,
     lineHeight: 1.2,
-    color:"#e4d4fa",
+    color: "#e4d4fa",
     marginBottom: theme.spacing(2),
     position: "relative",
     zIndex: 5,
@@ -269,7 +195,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
     fontSize: "1.25rem",
     marginBottom: theme.spacing(3),
     lineHeight: 1.6,
-     fontWeight: 600,
+    fontWeight: 600,
     [theme.breakpoints.down("lg")]: {
       fontSize: "1.1rem",
     },
@@ -306,16 +232,26 @@ const ContentBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const NavigationBox = styled(Box)({
-  display: "flex",
+const NavigationDots = styled(Box)(({ theme }) => ({
   position: "absolute",
-  justifyContent: "space-between",
-  width: "100%",
-  top: "50%",
-  transform: "translateY(-50%)",
-  alignItems: "center",
-  padding: "0 20px",
-  zIndex: 5, // Fixed: Higher z-index to ensure buttons are clickable
-});
+  bottom: theme.spacing(2),
+  left: "50%",
+  transform: "translateX(-50%)",
+  display: "flex",
+  gap: theme.spacing(1),
+  zIndex: 5,
+}));
+
+const Dot = styled(Box)(({ theme, active }) => ({
+  width:"40px",
+  height: "4px",
+  backgroundColor: active ? "white" : "rgba(255, 255, 255, 0.5)",
+  // borderRadius: active ? "12px" : "50%",
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    backgroundColor: active ? "#e63946" : "rgba(255, 255, 255, 0.8)",
+  },
+}));
 
 export default SlideShowBar;

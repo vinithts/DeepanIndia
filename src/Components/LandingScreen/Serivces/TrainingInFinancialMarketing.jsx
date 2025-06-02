@@ -7,6 +7,7 @@ import financial2 from "../../../assets/21-removebg-preview.png";
 import financial3 from "../../../assets/22-removebg-preview.png";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import GetMoreButton from "../../Button/GetMoreButton";
 
 
 const TrainingInFinancialMarketing = ({ serviceName }) => {
@@ -77,6 +78,7 @@ const TrainingInFinancialMarketing = ({ serviceName }) => {
           </Grid>
         ))}
       </Grid>
+       <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
       </Container>
     </Box>
   );

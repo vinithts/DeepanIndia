@@ -23,6 +23,7 @@ import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import { styled } from "styled-components";
 import Handshake from "../../../assets/9-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const slideIn = keyframes`
   from {
@@ -186,6 +187,15 @@ const WealthManagement = () => {
             </HighlightSpan>
           </Typography>
         </QualificationBox>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <GetMoreButton />
+        </Box>
       </Container>
     </MainBox>
   );

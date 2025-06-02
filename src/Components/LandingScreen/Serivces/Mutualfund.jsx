@@ -6,6 +6,7 @@ import sip from "../../../assets/about-sip.png";
 import lumpsum from "../../../assets/lumpsum-removebg-preview.png";
 import swp from "../../../assets/swp-removebg-preview.png";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const fadeIn = keyframes`
   0% {
@@ -250,6 +251,7 @@ const MutualFundsSection = ({ serviceName }) => {
             </InfoCard>
           </Grid>
         </Grid>
+         <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
       </Container>
     </SectionWrapper>
   );

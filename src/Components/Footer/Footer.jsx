@@ -9,10 +9,21 @@ import Youtube from "../../../src/assets/6-removebg-preview.png";
 import Mail from "../../../src/assets/7-removebg-preview.png";
 import { Divider, Typography, Container, Box } from "@mui/material";
 import Deepalogo from "../../assets/EditedLogo-removebg-preview.png";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import EmailIcon from "@mui/icons-material/Email";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useState } from "react";
 
 export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [hovered, setHovered] = useState(false);
+  const [hovered1, setHovered1] = useState(false);
+  const [hovered2, setHovered2] = useState(false);
+  const [hovered3, setHovered3] = useState(false);
+  const [hovered4, setHovered4] = useState(false);
 
   const handleNavigation = (href) => {
     if (href.startsWith("#")) {
@@ -49,13 +60,29 @@ export default function Footer() {
     }
   };
 
+  const getIconStyle = (isHovered) => ({
+    width: "32px",
+    height: "32px",
+    cursor: "pointer",
+    transition: "transform 0.3s ease-in-out",
+    transform: isHovered ? "scale(1.2)" : "scale(1)",
+    filter: isHovered ? "brightness(0.8)" : "brightness(1)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#49326b",
+    marginRight:"20px",
+    padding: "10px",
+    borderRadius: "50%",
+  });
+
   return (
     <Footermain>
       <Container maxWidth="xl">
         <Row>
-          <LogoContainer onClick={() => navigate("/")}>
+          {/* <LogoContainer onClick={() => navigate("/")}>
             <Logo src={Deepalogo} alt="Logo" />
-          </LogoContainer>
+          </LogoContainer> */}
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Serve</Foottitle>
             <Links>
@@ -114,7 +141,7 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>What We Think</Foottitle>
             <Links>
-              <li onClick={() => handleNavigation("/#card")}>Blogs</li>
+              <li onClick={() => navigate("/blogs-list")}>Blogs</li>
               <li onClick={() => handleNavigation("/#media")}>Videos</li>
               <li onClick={() => handleNavigation("/#media")}>Reports</li>
             </Links>
@@ -127,7 +154,7 @@ export default function Footer() {
               <li onClick={() => navigate("/swp-calculator")}>
                 Sip combined with lumbsum
               </li>
-              <li onClick={() => navigate("/swp-calculator")}>Swap</li>
+              {/* <li onClick={() => navigate("/swp-calculator")}>Swap</li> */}
             </Links>
           </Col>
           <Col md={2} lg={2} xl={2} xs={12}>
@@ -142,20 +169,64 @@ export default function Footer() {
                 Tamil Nadu 600021
               </p>
             </Links>
-           
           </Col>
-           <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6682900232054!2d80.29056200000001!3d13.120187999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52670a343aef1d%3A0x89acc915e36fd6e6!2sFirst%20Choice%20Investment!5e0!3m2!1sen!2sin!4v1748239450808!5m2!1sen!2sin"
-              width="100%"
-              height="250"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Deepan India Office Location"
-            ></iframe>
+          <Col md={2} lg={2} xl={2} xs={12}>
+            <Foottitle>Contact</Foottitle>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "normal",
+                justifyContent: "flex-start",
+                flexDirection: "row",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // backgroundColor: "#49326b",
+                  // padding: "5px",
+                  mr: "10px",
+                  // borderRadius: "50%",
+                  width: "28px",
+                  height: "28px",
+                }}
+              >
+                <LocalPhoneIcon style={{ color: "#49326b" }} />
+              </Box>
+              <p>+91-9884411611</p>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "normal",
+                justifyContent: "flex-start",
+                flexDirection: "row",
+              }}
+            >
+              <Box
+                sx={{
+                  mr: "10px",
+                }}
+              >
+                <EmailIcon style={{ color: "#49326b" }} />{" "}
+              </Box>
+              <p>enquiry@deepanindia.com</p>
+            </Box>
+          </Col>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6682900232054!2d80.29056200000001!3d13.120187999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52670a343aef1d%3A0x89acc915e36fd6e6!2sFirst%20Choice%20Investment!5e0!3m2!1sen!2sin!4v1748239450808!5m2!1sen!2sin"
+            width="100%"
+            height="250"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Deepan India Office Location"
+          ></iframe>
         </Row>
-        <StyledDivider  style={{marginTop:"20px"}}/>
+        <StyledDivider style={{ marginTop: "20px" }} />
         <Row style={{ justifyContent: "space-evenly", alignItems: "center" }}>
           <Col md={3}>
             <Bottomlink1>
@@ -165,7 +236,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IconIamge src={Instagram} alt={"img"} />
+                  <Box
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    style={getIconStyle(hovered)}
+                  >
+                    <InstagramIcon style={{ color: "white" }} />
+                  </Box>
                 </a>
               </li>
               <li>
@@ -174,7 +251,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IconIamge src={Youtube} alt={"img"} />
+                  <Box
+                    onMouseEnter={() => setHovered1(true)}
+                    onMouseLeave={() => setHovered1(false)}
+                    style={getIconStyle(hovered1)}
+                  >
+                    <YouTubeIcon style={{ color: "white" }} />
+                  </Box>
                 </a>
               </li>
               <li>
@@ -183,12 +266,24 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IconIamge src={LinkedIn} alt={"img"} />
+                  <Box
+                    onMouseEnter={() => setHovered2(true)}
+                    onMouseLeave={() => setHovered2(false)}
+                    style={getIconStyle(hovered2)}
+                  >
+                    <LinkedInIcon style={{ color: "white" }} />
+                  </Box>
                 </a>
               </li>
               <li>
                 <a href="mailto:Deepanindiafinancialservices@gmail.com">
-                  <IconIamge src={Mail} alt={"img"} />
+                  <Box
+                    onMouseEnter={() => setHovered3(true)}
+                    onMouseLeave={() => setHovered3(false)}
+                    style={getIconStyle(hovered3)}
+                  >
+                    <EmailIcon style={{ color: "white" }} />
+                  </Box>
                 </a>
               </li>
             </Bottomlink1>
