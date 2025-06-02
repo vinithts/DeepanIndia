@@ -15,6 +15,7 @@ import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-
 import styled from "styled-components";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const advisory = [
   {
@@ -166,6 +167,7 @@ const AdvisoryService = ({ serviceName }) => {
             </Grid>
           ))}
         </Grid>
+        <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
       </Container>
     </Box>
   );

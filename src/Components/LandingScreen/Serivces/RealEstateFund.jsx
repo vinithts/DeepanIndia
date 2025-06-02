@@ -4,6 +4,7 @@ import styled from "styled-components";
 import RealEstate from "../../../assets/12-removebg-preview.png";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 
 const RealEstateFund = ({ serviceName }) => {
@@ -129,6 +130,7 @@ const RealEstateFund = ({ serviceName }) => {
           </Grid>
         </Box>
       </QualificationBox>
+       <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
     </Container>
   );
 };

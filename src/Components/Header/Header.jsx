@@ -63,7 +63,7 @@ export default function Header() {
       <Topheader>
         <Navbar expand="lg" className="my-topheader">
           <Container>
-            <h6 style={{ color: "#ffffff" }}>#Deepan India</h6>
+            {/* <h6 style={{ color: "#ffffff" }}>#Deepan India</h6> */}
             <Topmenuitem>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto d-flex align-items-center">
@@ -113,9 +113,9 @@ export default function Header() {
                   {/* <StyledNavLink onClick={() => handleNavigation("/#media")}>
                     News
                   </StyledNavLink> */}
-                  <Nav.Link onClick={() => handleNavigation("/#contact")}>
-                    <Btntopheader>Contact</Btntopheader>
-                  </Nav.Link>
+                  <StyledNavLink onClick={() => handleNavigation("/#contact")}>
+                    Contact
+                  </StyledNavLink>
                 </Nav>
               </Navbar.Collapse>
             </Topmenuitem>
@@ -236,7 +236,7 @@ export default function Header() {
                   What We Think <FaAngleDown />
                   <Dropdown show={visibleDropdown === 3}>
                     <ul>
-                      <li onClick={() => handleNavigation("/#card")}>Blogs</li>
+                      <li onClick={() => navigate("/blogs-list")}>Blogs</li>
                       <li onClick={() => handleNavigation("/#media")}>
                         Videos
                       </li>
@@ -262,9 +262,9 @@ export default function Header() {
                       <li onClick={() => navigate("/swp-calculator")}>
                         SIP combined with Lumpsum
                       </li>
-                      <li onClick={() => navigate("/swp-calculator")}>
+                      {/* <li onClick={() => navigate("/swp-calculator")}>
                         SWP
-                      </li>
+                      </li> */}
                     </ul>
                   </Dropdown>
                 </NavLink>
@@ -378,7 +378,7 @@ export default function Header() {
                     <NavDropdown title="What We Think" id="basic-nav-dropdown">
                       <NavDropdown.Item
                         className="nav-dropdown"
-                        onClick={() => {handleNavigation("/#card"); setExpanded(false);}}
+                        onClick={() => {navigate("/blogs-list"); setExpanded(false);}}
                       >
                         Blogs
                       </NavDropdown.Item>
@@ -478,6 +478,10 @@ const Topmenuitem = styled.div``;
 const Topheader = styled.div`
   background-color: #49326b;
   border-bottom: #16151553;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   h6 {
     font-weight: 800;
     margin: 0;

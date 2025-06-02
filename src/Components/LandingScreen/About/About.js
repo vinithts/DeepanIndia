@@ -343,8 +343,9 @@ const SubTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const DescriptionBox = styled(Box)(({ theme }) => ({
-  // background: `linear-gradient(135deg, #e4d4fa, #f9f3fe)`,
-  border: `2px solid white`,
+  background: `linear-gradient(135deg,rgb(170, 137, 216),rgb(194, 141, 238))`,
+  // backgroundColor:"green",
+  border: `5px solid white`,
   borderRadius: "15px",
   padding: "25px",
   position: "relative",

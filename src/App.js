@@ -30,6 +30,8 @@ import EducationalResource from "./Components/LandingScreen/WhatWeServe/Educatio
 import SipCalculator from "./Components/LandingScreen/Calculator/SipCalculator";
 import LumpsumCalculator from "./Components/LandingScreen/Calculator/LumpsumCalculator";
 import SWPCalculator from "./Components/LandingScreen/Calculator/SwpCalculator";
+import Blogs from "./Components/LandingScreen/Cards/Blogs";
+import Whatsapp from "./Components/Scroll/Whatsapp";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -44,6 +46,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Whatsapp/>
       {!isAdminRoute && <Header />}
       <Routes>
         <Route
@@ -66,6 +69,7 @@ export default function App() {
         <Route path="/sip-calculator" element={<SipCalculator />} />
         <Route path="/swp-calculator" element={<SWPCalculator />} />
         <Route path="/lumpsum-calculator" element={<LumpsumCalculator />} />
+        <Route path="blogs-list" element={<Blogs/>}/>
         <Route path="/adminlogin" element={<Loginform />} />
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Instruction />} />

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import AlternativeImage from "../../../assets/11-removebg-preview.png";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const AlternativeInvestMentFunt = ({ serviceName }) => {
   return (
@@ -118,6 +119,7 @@ const AlternativeInvestMentFunt = ({ serviceName }) => {
             </Grid>
           </Box>
         </InfoCard>
+         <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
       </Container>
     </Box>
   );

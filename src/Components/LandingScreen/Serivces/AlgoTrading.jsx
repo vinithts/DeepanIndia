@@ -11,6 +11,7 @@ import financial1 from "../../../assets/18-removebg-preview.png";
 import financial2 from "../../../assets/19-removebg-preview.png";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const AlgoTrading = ({ serviceName }) => {
   const algos = [
@@ -215,6 +216,7 @@ const AlgoTrading = ({ serviceName }) => {
             </Grid>
           ))}
         </Grid>
+         <Box sx={{display:"flex", alignItems:"center",justifyContent:"center", marginTop:"30px"}}><GetMoreButton/></Box>
       </Container>
     </Box>
   );

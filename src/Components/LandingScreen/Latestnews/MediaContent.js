@@ -83,7 +83,7 @@ const MediaContent = ({ data }) => {
   };
 
   return (
-    <StyledSection>
+    <StyledSection id="media">
       <Container>
         <HeaderSection>
           <MainTitle>Finance Leaders Trust Us</MainTitle>

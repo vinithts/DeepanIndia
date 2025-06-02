@@ -17,6 +17,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Handshake from "../../../assets/3-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
 import styled from "styled-components";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const slideIn = keyframes`
   from {
@@ -141,7 +142,7 @@ const InvestmentSolution = () => {
                       width: "100%",
                       maxWidth: "600px",
                       height: "100%",
-                      maxHeight:"600px",
+                      maxHeight: "600px",
                       animation: `${slideIn} 1.2s ease-in-out`,
                     }}
                   />
@@ -175,6 +176,15 @@ const InvestmentSolution = () => {
             </StyledButton> */}
           </Box>
         </QualificationBox>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <GetMoreButton />
+        </Box>
       </Container>
     </MainBox>
   );

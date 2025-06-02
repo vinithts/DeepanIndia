@@ -4,6 +4,7 @@ import styled from "styled-components";
 import fixed from "../../../assets/13-removebg-preview.png";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 
 const FixedDepost = ({ serviceName }) => {
@@ -109,6 +110,7 @@ const FixedDepost = ({ serviceName }) => {
           </Grid>
         </Box>
       </QualificationBox>
+       <Box sx={{display:"flex", alignItems:"center",justifyContent:"center"}}><GetMoreButton/></Box>
     </Container>
   );
 };

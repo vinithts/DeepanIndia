@@ -12,7 +12,7 @@ import {
   Container,
   Button,
   Card,
-  keyframes
+  keyframes,
 } from "@mui/material";
 import ElderlyIcon from "@mui/icons-material/Elderly";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
@@ -24,6 +24,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { styled } from "styled-components";
 import Handshake from "../../../assets/8-removebg-preview.png";
 import aboutImg1 from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
+import GetMoreButton from "../../Button/GetMoreButton";
 
 const slideIn = keyframes`
   from {
@@ -186,6 +187,15 @@ const RetirementPlanning = () => {
             </HighlightSpan>
           </Typography>
         </QualificationBox>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <GetMoreButton />
+        </Box>
       </Container>
     </MainBox>
   );
