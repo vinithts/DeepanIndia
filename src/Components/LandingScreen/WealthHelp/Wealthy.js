@@ -3,9 +3,9 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Url } from "../../../utils/api";
 import BlogImg from "../../../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product.jpg";
-import solar1 from "../../../assets/wealthyIcons.png";
-import solar2 from "../../../assets/chart_11540646.png";
-import solar3 from "../../../assets/house-price_7106424.png";
+import solar3 from "../../../assets/Images2.png";
+import solar2 from "../../../assets/Images3.png";
+import solar1 from "../../../assets/27.png";
 
 
 const slideIn = keyframes`

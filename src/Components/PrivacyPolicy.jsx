@@ -298,9 +298,9 @@ const PrivacyPolicy = () => {
                   <div>
                     <h4 className="font-medium mb-1">Address</h4>
                     <p>
-                      No 145, 102, Gollavar Agraharam Rd, above ICICI bank,
-                      Kanniyappan Colony, Sanjeevarayanpet, Washermanpet,
-                      Chennai, Tamil Nadu 600021
+                      145/102, G.A.Road 1st floor Old Washermenpet, Chennai 600021.
+                <br/>
+                Landmark : Above ICICI Bank
                     </p>
                   </div>
                 </div>

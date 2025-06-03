@@ -71,7 +71,7 @@ export default function Footer() {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#49326b",
-    marginRight:"20px",
+    marginRight: "20px",
     padding: "10px",
     borderRadius: "50%",
   });
@@ -149,11 +149,9 @@ export default function Footer() {
           <Col md={2} lg={2} xl={2} xs={12}>
             <Foottitle>Calculator</Foottitle>
             <Links>
-              <li onClick={() => navigate("/sip-calculator")}>Sip</li>
+              <li onClick={() => navigate("/sip-calculator")}>SIP</li>
               <li onClick={() => navigate("/lumpsum-calculator")}>Lumpsum</li>
-              <li onClick={() => navigate("/swp-calculator")}>
-                Sip combined with lumbsum
-              </li>
+              <li onClick={() => navigate("/swp-calculator")}>SWP</li>
               {/* <li onClick={() => navigate("/swp-calculator")}>Swap</li> */}
             </Links>
           </Col>
@@ -164,9 +162,9 @@ export default function Footer() {
             {/* <li>Admin LogIn</li> */}
             <Links>
               <p>
-                No 145, 102, Gollavar Agraharam Rd, above ICICI bank,
-                Kanniyappan Colony, Sanjeevarayanpet, Washermanpet, Chennai,
-                Tamil Nadu 600021
+                145/102, G.A.Road 1st floor Old Washermenpet, Chennai 600021.
+                <br/>
+                Landmark : Above ICICI Bank
               </p>
             </Links>
           </Col>

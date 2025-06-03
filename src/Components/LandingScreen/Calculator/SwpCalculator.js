@@ -18,7 +18,12 @@ import {
   Tooltip,
 } from "@mui/material";
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip as ChartTooltip,
+  Legend,
+} from "chart.js";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
@@ -102,12 +107,16 @@ const SWPCalculator = () => {
   // Calculate remaining balance using the formula for future value with withdrawals
   // FV = P * (1 + r)^n - W * [((1 + r)^n - 1) / r]
   const remainingBalance =
-    investment === 0 || years === 0 || withdrawalAmount === 0 || interestRate === 0
+    investment === 0 ||
+    years === 0 ||
+    withdrawalAmount === 0 ||
+    interestRate === 0
       ? 0
       : periodicRate === 0
-      ? investment - totalWithdrawn
-      : investment * Math.pow(1 + periodicRate, n) -
-        (withdrawalAmount * (Math.pow(1 + periodicRate, n) - 1)) / periodicRate;
+        ? investment - totalWithdrawn
+        : investment * Math.pow(1 + periodicRate, n) -
+          (withdrawalAmount * (Math.pow(1 + periodicRate, n) - 1)) /
+            periodicRate;
 
   // Chart data for visualization
   const chartData = useMemo(
@@ -142,8 +151,12 @@ const SWPCalculator = () => {
             const label = context.label || "";
             const value = context.raw || 0;
             const total = context.dataset.data.reduce((a, b) => a + b, 0);
-            const percentage = total === 0 ? 0 : ((value / total) * 100).toFixed(0);
-            return `${label}: ₹${value.toLocaleString()} (${percentage}%)`;
+            const percentage =
+              total === 0 ? 0 : ((value / total) * 100).toFixed(0);
+            return `${label}: ₹${value.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} (${percentage}%)`;
           },
         },
       },
@@ -176,14 +189,15 @@ const SWPCalculator = () => {
       <Container maxWidth="lg">
         <Box
           sx={{
-            padding: { xs: "20px 0", md: "10px 0 10px 0" },
+            padding: { xs: "20px 0", md: "10px 0 10px" },
             display: "flex",
             flexDirection: "row",
             alignItems: "baseline",
           }}
         >
           <ArrowBackIosIcon
-            style={{ cursor: "pointer", marginRight: "15px" }}
+            value={frequency}
+            style={{ cursor: "pointer", marginRight: "20px" }}
             onClick={() => handleNavigation("/#calculator")}
           />
           <Typography
@@ -192,10 +206,10 @@ const SWPCalculator = () => {
               color: "#49326b",
               fontSize: { xs: "28px", sm: "36px", md: "48px" },
               animation: `${fadeIn} 1s ease-in-out`,
-              mb: "20px",
+              marginBottom: "20px",
             }}
           >
-            SIP Combined with Lumpsum
+            Systematic Withdrawal Plan
           </Typography>
         </Box>
         <StyledDivider style={{ marginBottom: "40px" }} />
@@ -212,27 +226,27 @@ const SWPCalculator = () => {
             {/* Controls */}
             <Grid item xs={12} md={6}>
               <CardContent sx={{ backgroundColor: "#f9f3fe", p: "20px" }}>
-                {/* Investment Input */}
+                {/* Investment Amount Input */}
                 <Box
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: "20px",
+                    mb: 2,
                   }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: 600, color: "#49326b" }}
                   >
-                    Initial Investment (₹)
+                    Investment Amount
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <TextField
                       value={investment}
                       onChange={handleInvestmentChange}
-                      variant="outlined"
-                      size="small"
+                     size="small"
                       sx={{
                         width: "120px",
                         bgcolor: "#e4d4fa",
@@ -241,12 +255,13 @@ const SWPCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
-                        startAdornment: <Typography sx={{ color: "#49326b", mr: 0.5 }}>₹</Typography>,
+                        startAdornment: (
+                          <Typography sx={{ color: "#49326b", mr: 0.5 }}>
+                            ₹
+                          </Typography>
+                        ),
                       }}
                     />
                     {investment === 0 && (
@@ -263,7 +278,9 @@ const SWPCalculator = () => {
                   max={10000000}
                   step={10000}
                   valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => `₹${value.toLocaleString()}`}
+                  valueLabelFormat={(value) =>
+                    `₹${value.toLocaleString("en-IN")}`
+                  }
                 />
 
                 {/* Withdrawal Amount Input */}
@@ -273,19 +290,20 @@ const SWPCalculator = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: "20px",
+                    mb: 2,
                   }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: 600, color: "#49326b" }}
                   >
-                    {frequency.charAt(0).toUpperCase() + frequency.slice(1)} Withdrawal (₹)
+                    {frequency.charAt(0).toUpperCase() + frequency.slice(1)}{" "}
+                    Withdrawal
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <TextField
                       value={withdrawalAmount}
                       onChange={handleWithdrawalAmountChange}
-                      variant="outlined"
                       size="small"
                       sx={{
                         width: "120px",
@@ -295,12 +313,13 @@ const SWPCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
-                        startAdornment: <Typography sx={{ color: "#49326b", mr: 0.5 }}>₹</Typography>,
+                        startAdornment: (
+                          <Typography sx={{ color: "#49326b", mr: 0.5 }}>
+                            ₹
+                          </Typography>
+                        ),
                       }}
                     />
                     {withdrawalAmount === 0 && (
@@ -317,7 +336,9 @@ const SWPCalculator = () => {
                   max={100000}
                   step={100}
                   valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => `₹${value.toLocaleString()}`}
+                  valueLabelFormat={(value) =>
+                    `₹${value.toLocaleString("en-IN")}`
+                  }
                 />
 
                 {/* Interest Rate Input */}
@@ -327,20 +348,20 @@ const SWPCalculator = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: "20px",
+                    mb: 2,
                   }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: 600, color: "#49326b" }}
                   >
-                    Expected Return Rate (%)
+                    Expected Return Rate
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <TextField
                       value={interestRate}
                       onChange={handleInterestRateChange}
-                      variant="outlined"
-                      size="small"
+                     size="small"
                       sx={{
                         width: "120px",
                         bgcolor: "#e4d4fa",
@@ -349,12 +370,13 @@ const SWPCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
-                        endAdornment: <Typography sx={{ color: "#49326b", ml: 0.5 }}>%</Typography>,
+                        startAdornment: (
+                          <Typography sx={{ color: "#49326b", ml: 0.5 }}>
+                            %
+                          </Typography>
+                        ),
                       }}
                     />
                     {interestRate === 0 && (
@@ -380,20 +402,20 @@ const SWPCalculator = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: "20px",
+                    mb: 2,
                   }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: 600, color: "#49326b" }}
                   >
-                    Withdrawal Period (Years)
+                    Withdrawal Period
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <TextField
                       value={years}
                       onChange={handleYearsChange}
-                      variant="outlined"
-                      size="small"
+                     size="small"
                       sx={{
                         width: "120px",
                         bgcolor: "#e4d4fa",
@@ -402,12 +424,13 @@ const SWPCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
-                        endAdornment: <Typography sx={{ color: "#49326b", ml: 0.5 }}>years</Typography>,
+                        startAdornment: (
+                          <Typography sx={{ color: "#49326b", ml: 0.5 }}>
+                            years
+                          </Typography>
+                        ),
                       }}
                     />
                     {years === 0 && (
@@ -434,6 +457,7 @@ const SWPCalculator = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: "20px",
+                    mb: 2,
                   }}
                 >
                   <Typography
@@ -446,7 +470,7 @@ const SWPCalculator = () => {
                     <Select
                       value={frequency}
                       onChange={(e) => setFrequency(e.target.value)}
-                      variant="outlined"
+                      variant="standard"
                       sx={{
                         bgcolor: "#e4d4fa",
                         color: "#49326b",
@@ -455,9 +479,6 @@ const SWPCalculator = () => {
                           textAlign: "center",
                           py: 0.5,
                         },
-                        // "& .MuiOutlinedInput-notchedOutline": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                     >
                       <MenuItem value="monthly">Monthly</MenuItem>
@@ -508,14 +529,19 @@ const SWPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 600, color: "#49326b" }}
                       >
-                        {frequency.charAt(0).toUpperCase() + frequency.slice(1)} Withdrawal
+                        {frequency.charAt(0).toUpperCase() + frequency.slice(1)}{" "}
+                        Withdrawal
                       </Typography>
                       <Typography
                         variant="h5"
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Math.round(withdrawalAmount).toLocaleString()}
+                        ₹
+                        {Number(withdrawalAmount).toLocaleString("en-IN", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -541,7 +567,11 @@ const SWPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Math.round(totalWithdrawn).toLocaleString()}
+                        ₹
+                        {Number(totalWithdrawn).toLocaleString("en-IN", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -567,7 +597,11 @@ const SWPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Math.round(remainingBalance).toLocaleString()}
+                        ₹
+                        {Number(remainingBalance).toLocaleString("en-IN", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>

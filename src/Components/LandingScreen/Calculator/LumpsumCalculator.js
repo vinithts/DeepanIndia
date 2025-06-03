@@ -136,7 +136,10 @@ const LumpsumCalculator = () => {
             const value = context.raw || 0;
             const total = context.dataset.data.reduce((a, b) => a + b, 0);
             const percentage = total === 0 ? 0 : ((value / total) * 100).toFixed(0);
-            return `${label}: ₹${value.toLocaleString()} (${percentage}%)`;
+            return `${label}: ₹${value.toLocaleString('en-IN', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} (${percentage}%)`;
           },
         },
       },
@@ -232,9 +235,6 @@ const LumpsumCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
                         startAdornment: <Typography sx={{ color: "#49326b", mr: 0.5 }}>₹</Typography>,
@@ -254,7 +254,7 @@ const LumpsumCalculator = () => {
                   max={10000000}
                   step={10000}
                   valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => `₹${value.toLocaleString()}`}
+                  valueLabelFormat={(value) => `₹${value.toLocaleString('en-IN')}`}
                 />
                 <Box
                   sx={{
@@ -287,9 +287,6 @@ const LumpsumCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
                         endAdornment: <Typography sx={{ color: "#49326b", ml: 0.5 }}>%</Typography>,
@@ -341,9 +338,6 @@ const LumpsumCalculator = () => {
                           fontWeight: 900,
                           textAlign: "center",
                         },
-                        // "& .MuiOutlinedInput-root": {
-                        //   borderRadius: "16px",
-                        // },
                       }}
                       InputProps={{
                         endAdornment: <Typography sx={{ color: "#49326b", ml: 0.5 }}>years</Typography>,
@@ -415,7 +409,10 @@ const LumpsumCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Number(totalInvested).toLocaleString()}
+                        ₹{Number(totalInvested).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -443,7 +440,10 @@ const LumpsumCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Number(totalReturns).toLocaleString()}
+                        ₹{Number(totalReturns).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -471,7 +471,10 @@ const LumpsumCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Number(maturityAmount).toLocaleString()}
+                        ₹{Number(maturityAmount).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
