@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Box,
   Container,
@@ -36,6 +36,23 @@ const fadeIn = keyframes`
   to {
     opacity: 1;
   }
+`;
+
+const Main2Box = styled(Box)`
+  padding: 60px 0;
+  background-color: #f9f3fe;
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    padding: 30px 0;
+  }
+`;
+
+const StyledDivider = styled(Divider)`
+  background-color: rgb(39, 20, 68);
+  height: 6px;
+  width: 100%;
 `;
 
 const SIPCalculator = () => {
@@ -93,18 +110,21 @@ const SIPCalculator = () => {
       ? 0
       : (maturityAmount - totalInvested).toFixed(2);
 
-  // Chart.js data configuration
-  const chartData = {
-    labels: ["Invested", "Returns"],
-    datasets: [
-      {
-        data: [totalInvested, Number(totalReturns)],
-        backgroundColor: ["#d32f2f", "#17307a"],
-        borderColor: ["#ffffff", "#ffffff"],
-        borderWidth: 2,
-      },
-    ],
-  };
+  // Memoized chart data to prevent unnecessary re-renders
+  const chartData = useMemo(
+    () => ({
+      labels: ["Invested", "Returns"],
+      datasets: [
+        {
+          data: [totalInvested, Number(totalReturns)],
+          backgroundColor: ["#d32f2f", "#17307a"],
+          borderColor: ["#ffffff", "#ffffff"],
+          borderWidth: 2,
+        },
+      ],
+    }),
+    [totalInvested, totalReturns]
+  );
 
   const chartOptions = {
     responsive: true,
@@ -127,7 +147,10 @@ const SIPCalculator = () => {
             const total = context.dataset.data.reduce((a, b) => a + b, 0);
             const percentage =
               total === 0 ? 0 : ((value / total) * 100).toFixed(0);
-            return `${label}: ₹${value.toLocaleString()} (${percentage}%)`;
+            return `${label}: ₹${value.toLocaleString('en-IN', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} (${percentage}%)`;
           },
         },
       },
@@ -213,7 +236,6 @@ const SIPCalculator = () => {
                   <TextField
                     value={monthlyInvestment}
                     onChange={handleMonthlyInvestmentChange}
-                    // variant="outlined"
                     size="small"
                     sx={{
                       width: "120px",
@@ -223,9 +245,6 @@ const SIPCalculator = () => {
                         fontWeight: 900,
                         textAlign: "center",
                       },
-                      // "& .MuiOutlinedInput-root": {
-                      //   borderRadius: "16px",
-                      // },
                     }}
                     InputProps={{
                       startAdornment: (
@@ -249,7 +268,7 @@ const SIPCalculator = () => {
                 max={200000}
                 step={1000}
                 valueLabelDisplay="auto"
-                valueLabelFormat={(value) => `₹${value.toLocaleString()}`}
+                valueLabelFormat={(value) => `₹${value.toLocaleString('en-IN')}`}
               />
               <Box
                 sx={{
@@ -283,9 +302,6 @@ const SIPCalculator = () => {
                         fontWeight: 900,
                         textAlign: "center",
                       },
-                      // "& .MuiOutlinedInput-root": {
-                      //   borderRadius: "16px",
-                      // },
                     }}
                     InputProps={{
                       endAdornment: (
@@ -342,9 +358,6 @@ const SIPCalculator = () => {
                         fontWeight: 900,
                         textAlign: "center",
                       },
-                      // "& .MuiOutlinedInput-root": {
-                      //   borderRadius: "16px",
-                      // },
                     }}
                     InputProps={{
                       endAdornment: (
@@ -417,7 +430,10 @@ const SIPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{totalInvested.toLocaleString()}
+                        ₹{Number(totalInvested).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -444,7 +460,10 @@ const SIPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Number(totalReturns).toLocaleString()}
+                        ₹{Number(totalReturns).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -471,7 +490,10 @@ const SIPCalculator = () => {
                         align="center"
                         sx={{ fontWeight: 700, color: "#49326b" }}
                       >
-                        ₹{Number(maturityAmount).toLocaleString()}
+                        ₹{Number(maturityAmount).toLocaleString('en-IN', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -486,20 +508,3 @@ const SIPCalculator = () => {
 };
 
 export default SIPCalculator;
-
-const Main2Box = styled(Box)`
-  padding: 60px 0;
-  background-color: #f9f3fe;
-  position: relative;
-  overflow: hidden;
-
-  @media screen and (max-width: 600px) {
-    padding: 30px 0;
-  }
-`;
-
-const StyledDivider = styled(Divider)`
-  background-color: rgb(39, 20, 68);
-  height: 6px;
-  width: 100%;
-`;

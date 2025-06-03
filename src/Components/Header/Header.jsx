@@ -254,13 +254,13 @@ export default function Header() {
                   <Dropdown show={visibleDropdown === 2}>
                     <ul>
                       <li onClick={() => navigate("/sip-calculator")}>
-                        SIP Calculator
+                        SIP 
                       </li>
                       <li onClick={() => navigate("/lumpsum-calculator")}>
                         Lumpsum
                       </li>
                       <li onClick={() => navigate("/swp-calculator")}>
-                        SIP combined with Lumpsum
+                        SWP
                       </li>
                       {/* <li onClick={() => navigate("/swp-calculator")}>
                         SWP
@@ -400,7 +400,7 @@ export default function Header() {
                         className="nav-dropdown"
                         onClick={() => {navigate("/sip-calculator"); setExpanded(false);}}
                       >
-                        SIP Calculator
+                        SIP 
                       </NavDropdown.Item>
                       <NavDropdown.Item
                         className="nav-dropdown"
@@ -408,12 +408,12 @@ export default function Header() {
                       >
                         Lumpsum
                       </NavDropdown.Item>
-                      <NavDropdown.Item
+                      {/* <NavDropdown.Item
                         className="nav-dropdown"
                         onClick={() => {navigate("/swp-calculator"); setExpanded(false);}}
                       >
                         SIP combined with Lumpsum
-                      </NavDropdown.Item>
+                      </NavDropdown.Item> */}
                       <NavDropdown.Item
                         className="nav-dropdown"
                         onClick={() => {navigate("/swp-calculator"); setExpanded(false);}}
