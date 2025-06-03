@@ -5,22 +5,29 @@ import {
   Typography,
   Slider,
   Grid,
-  Chip,
+  TextField,
   useMediaQuery,
   useTheme,
   Card,
   CardContent,
-  Divider
+  Divider,
+  Tooltip,
 } from "@mui/material";
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip as ChartTooltip,
+  Legend,
+} from "chart.js";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { keyframes } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Register Chart.js components
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, ChartTooltip, Legend);
 
 const fadeIn = keyframes`
   from {
@@ -33,14 +40,14 @@ const fadeIn = keyframes`
 
 const SIPCalculator = () => {
   const navigate = useNavigate();
- const location = useLocation();
+  const location = useLocation();
   const [monthlyInvestment, setMonthlyInvestment] = useState(10000);
   const [interestRate, setInterestRate] = useState(12);
   const [years, setYears] = useState(10);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
- const handleNavigation = (href) => {
+  const handleNavigation = (href) => {
     if (href.startsWith("#")) {
       const element = document.querySelector(href);
       if (element) {
@@ -48,7 +55,6 @@ const SIPCalculator = () => {
       }
     } else if (href.startsWith("/#")) {
       const currentPath = location.pathname;
-
       if (currentPath === "/") {
         const anchorId = href.substring(2);
         const element = document.querySelector(`#${anchorId}`);
@@ -69,15 +75,23 @@ const SIPCalculator = () => {
       navigate(href);
     }
   };
+
   const months = years * 12;
   const rate = interestRate / 100 / 12;
+  // Handle zero cases to avoid division by zero
   const totalInvested = monthlyInvestment * months;
-  const maturityAmount = (
-    monthlyInvestment *
-    ((Math.pow(1 + rate, months) - 1) / rate) *
-    (1 + rate)
-  ).toFixed(2);
-  const totalReturns = (maturityAmount - totalInvested).toFixed(2);
+  const maturityAmount =
+    years === 0 || monthlyInvestment === 0 || interestRate === 0
+      ? 0
+      : (
+          monthlyInvestment *
+          ((Math.pow(1 + rate, months) - 1) / rate) *
+          (1 + rate)
+        ).toFixed(2);
+  const totalReturns =
+    years === 0 || monthlyInvestment === 0 || interestRate === 0
+      ? 0
+      : (maturityAmount - totalInvested).toFixed(2);
 
   // Chart.js data configuration
   const chartData = {
@@ -85,17 +99,16 @@ const SIPCalculator = () => {
     datasets: [
       {
         data: [totalInvested, Number(totalReturns)],
-        backgroundColor: ["#d32f2f", "#17307a"], // Same colors as original
+        backgroundColor: ["#d32f2f", "#17307a"],
         borderColor: ["#ffffff", "#ffffff"],
         borderWidth: 2,
       },
     ],
   };
 
-  // Chart.js options for responsiveness and customization
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Allows chart to adapt to container height
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: isMobile ? "bottom" : "right",
@@ -112,12 +125,28 @@ const SIPCalculator = () => {
             const label = context.label || "";
             const value = context.raw || 0;
             const total = context.dataset.data.reduce((a, b) => a + b, 0);
-            const percentage = ((value / total) * 100).toFixed(0);
+            const percentage =
+              total === 0 ? 0 : ((value / total) * 100).toFixed(0);
             return `${label}: ₹${value.toLocaleString()} (${percentage}%)`;
           },
         },
       },
     },
+  };
+
+  const handleMonthlyInvestmentChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ""); // Allow only numbers
+    setMonthlyInvestment(value === "" ? 0 : Number(value));
+  };
+
+  const handleInterestRateChange = (e) => {
+    const value = e.target.value.replace(/[^0-9.]/g, ""); // Allow numbers and decimal
+    setInterestRate(value === "" ? 0 : Number(value));
+  };
+
+  const handleYearsChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ""); // Allow only numbers
+    setYears(value === "" ? 0 : Number(value));
   };
 
   return (
@@ -133,12 +162,12 @@ const SIPCalculator = () => {
             justifyContent: "left",
           }}
         >
-          <ArrowBackIosIcon style={{ cursor: "pointer",marginRight:"15px" }}  onClick={() => handleNavigation("/#calculator")} />
-
+          <ArrowBackIosIcon
+            style={{ cursor: "pointer", marginRight: "15px" }}
+            onClick={() => handleNavigation("/#calculator")}
+          />
           <Typography
             sx={{
-            //   padding: { xs: "20px 0", md: "10px 0 30px 0px" },
-            //   textAlign: "left",
               fontWeight: 400,
               color: "#49326b",
               fontSize: { xs: "28px", sm: "36px", md: "48px" },
@@ -149,7 +178,7 @@ const SIPCalculator = () => {
             Systematic Investment Plan Calculator
           </Typography>
         </Box>
-        <StyledDivider style={{marginBottom:"40px"}}/>
+        <StyledDivider style={{ marginBottom: "40px" }} />
         <Box
           sx={{
             display: "flex",
@@ -167,6 +196,7 @@ const SIPCalculator = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   width: "100%",
                   marginTop: "20px",
                   marginBottom: "20px",
@@ -179,19 +209,43 @@ const SIPCalculator = () => {
                 >
                   Monthly Investment (₹)
                 </Typography>
-                <Chip
-                  label={`₹${monthlyInvestment.toLocaleString()}`}
-                  sx={{
-                    bgcolor: "#e4d4fa",
-                    color: "#49326b",
-                    fontWeight: 900,
-                  }}
-                />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <TextField
+                    value={monthlyInvestment}
+                    onChange={handleMonthlyInvestmentChange}
+                    // variant="outlined"
+                    size="small"
+                    sx={{
+                      width: "120px",
+                      bgcolor: "#e4d4fa",
+                      "& .MuiInputBase-input": {
+                        color: "#49326b",
+                        fontWeight: 900,
+                        textAlign: "center",
+                      },
+                      // "& .MuiOutlinedInput-root": {
+                      //   borderRadius: "16px",
+                      // },
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <Typography sx={{ color: "#49326b", mr: 0.5 }}>
+                          ₹
+                        </Typography>
+                      ),
+                    }}
+                  />
+                  {monthlyInvestment === 0 && (
+                    <Tooltip title="Minimum value is 1000">
+                      <WarningAmberIcon sx={{ color: "red", ml: 1 }} />
+                    </Tooltip>
+                  )}
+                </Box>
               </Box>
               <Slider
                 value={monthlyInvestment}
                 onChange={(e, val) => setMonthlyInvestment(val)}
-                min={1000}
+                min={0}
                 max={200000}
                 step={1000}
                 valueLabelDisplay="auto"
@@ -202,6 +256,7 @@ const SIPCalculator = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   width: "100%",
                   marginTop: "20px",
                   marginBottom: "20px",
@@ -214,19 +269,43 @@ const SIPCalculator = () => {
                 >
                   Expected Return Rate (%)
                 </Typography>
-                <Chip
-                  label={`${interestRate}%`}
-                  sx={{
-                    bgcolor: "#e4d4fa",
-                    color: "#49326b",
-                    fontWeight: 900,
-                  }}
-                />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <TextField
+                    value={interestRate}
+                    onChange={handleInterestRateChange}
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      width: "120px",
+                      bgcolor: "#e4d4fa",
+                      "& .MuiInputBase-input": {
+                        color: "#49326b",
+                        fontWeight: 900,
+                        textAlign: "center",
+                      },
+                      // "& .MuiOutlinedInput-root": {
+                      //   borderRadius: "16px",
+                      // },
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <Typography sx={{ color: "#49326b", ml: 0.5 }}>
+                          %
+                        </Typography>
+                      ),
+                    }}
+                  />
+                  {interestRate === 0 && (
+                    <Tooltip title="Minimum value is 1">
+                      <WarningAmberIcon sx={{ color: "red", ml: 1 }} />
+                    </Tooltip>
+                  )}
+                </Box>
               </Box>
               <Slider
                 value={interestRate}
                 onChange={(e, val) => setInterestRate(val)}
-                min={1}
+                min={0}
                 max={30}
                 step={0.1}
                 valueLabelDisplay="auto"
@@ -236,6 +315,7 @@ const SIPCalculator = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   width: "100%",
                   marginTop: "20px",
                   marginBottom: "20px",
@@ -248,19 +328,43 @@ const SIPCalculator = () => {
                 >
                   Time Period (Years)
                 </Typography>
-                <Chip
-                  label={`${years} years`}
-                  sx={{
-                    bgcolor: "#e4d4fa",
-                    color: "#49326b",
-                    fontWeight: 900,
-                  }}
-                />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <TextField
+                    value={years}
+                    onChange={handleYearsChange}
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      width: "120px",
+                      bgcolor: "#e4d4fa",
+                      "& .MuiInputBase-input": {
+                        color: "#49326b",
+                        fontWeight: 900,
+                        textAlign: "center",
+                      },
+                      // "& .MuiOutlinedInput-root": {
+                      //   borderRadius: "16px",
+                      // },
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <Typography sx={{ color: "#49326b", ml: 0.5 }}>
+                          years
+                        </Typography>
+                      ),
+                    }}
+                  />
+                  {years === 0 && (
+                    <Tooltip title="Minimum value is 1">
+                      <WarningAmberIcon sx={{ color: "red", ml: 1 }} />
+                    </Tooltip>
+                  )}
+                </Box>
               </Box>
               <Slider
                 value={years}
                 onChange={(e, val) => setYears(val)}
-                min={1}
+                min={0}
                 max={30}
                 step={1}
                 valueLabelDisplay="auto"
@@ -395,7 +499,7 @@ const Main2Box = styled(Box)`
 `;
 
 const StyledDivider = styled(Divider)`
-  background-color:rgb(39, 20, 68);
+  background-color: rgb(39, 20, 68);
   height: 6px;
   width: 100%;
 `;
